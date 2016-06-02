@@ -4,7 +4,7 @@
 	{
 		try
 		{
-			$db = new PDO("sqlite:database.db");
+			$db = new PDO("sqlite:data.db");
 			$query = $db->prepare($_GET["query"]);
 			$query->execute();
 			$result = $query->fetchAll(PDO::FETCH_ASSOC);
