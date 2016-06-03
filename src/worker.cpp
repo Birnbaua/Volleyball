@@ -2,8 +2,8 @@
 
 Worker::Worker(QObject *parent) : QObject(parent)
 {
-    QString dbFile = "./resources/data.db";
-    QString logFile = "volleyball.log";
+    dbFile = "./resources/data.db";
+    logFile = "volleyball.log";
 
     // create logging
     logs = new Logging(logFile);
@@ -20,6 +20,7 @@ Worker::Worker(QObject *parent) : QObject(parent)
         // open database
         if(db->open())
         {
+			logging("start init ...");
             init();
         }
         else
@@ -39,12 +40,23 @@ Worker::Worker(QObject *parent) : QObject(parent)
 
 void Worker::init()
 {
+	// create ftploader thread
+	logging("create ftp module");
+	ftpload = new FTPLoader(dbFile, "", "", "");
+	connect(ftpload, SIGNAL(logMessages(QString)), this, SLOT(logging(QString)));
+
+	// create timer for ftp upload
+	uploader = new QTimer(this);
+	connect(uploader, SIGNAL(timeout()), ftpload, SLOT(startUpload()));
+	uploader->start(30 * 1000);
+
     // create container to exchange data between gui and worker
     data = new dataUi;
 
     teamsCount = 0;
 
     // string list mit gruppenkürzel a bis f
+	logging("create group prefixes");
     grPrefix << "a"<< "b"<< "c"<< "d"<< "e"<< "f" << "g" << "h";
     headerPrefix << "A"<< "B"<< "C"<< "D"<< "E"<< "F" << "G" << "H";
 
@@ -56,21 +68,26 @@ void Worker::init()
     << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h) VALUES(4,'','','','','','')";
 
     // create calculate results
+	logging("create calculateresults module");
     cr = new CalculateResults();
 
     // create qualifying games
+	logging("create qualifying module");
     qf = new QualifyingGames(db, &grPrefix);
     connect(qf, SIGNAL(logMessages(QString)), this, SLOT(logging(QString)));
 
     // create interim games
+	logging("create interim module");
     im = new InterimGames(db, &grPrefix);
     connect(im, SIGNAL(logMessages(QString)), this, SLOT(logging(QString)));
 
     // create cross games
+	logging("create crossgame module");
     cg = new CrossGames(db, &grPrefix);
     connect(cg, SIGNAL(logMessages(QString)), this, SLOT(logging(QString)));
 
     // create classement games
+	logging("create classement module");
     clg = new ClassementGames(db, &grPrefix);
     connect(clg, SIGNAL(logMessages(QString)), this, SLOT(logging(QString)));
 }

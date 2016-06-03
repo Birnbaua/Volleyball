@@ -6,6 +6,7 @@
 
 #include "database.h"
 #include "logging.h"
+#include "ftploader.h"
 #include "calculateresults.h"
 #include "qualifyinggames.h"
 #include "interimgames.h"
@@ -119,6 +120,7 @@ private:
 
     Logging *logs;
     Database *db;
+	FTPLoader *ftpload;
     CalculateResults *cr;
     QualifyingGames *qf;
     InterimGames *im;
@@ -126,8 +128,10 @@ private:
     ClassementGames *clg;
     dataUi *data;
 
+	QTimer *uploader;
     int teamsCount;
     QStringList grPrefix, headerPrefix, insertRows, fieldNames;
+	QString dbFile, logFile;
 };
 
 #endif // WORKER_H
