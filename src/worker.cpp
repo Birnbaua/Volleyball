@@ -4,6 +4,7 @@ Worker::Worker(QObject *parent) : QObject(parent)
 {
     dbFile = "./resources/data.db";
     logFile = "volleyball.log";
+    settingsFile = "config.ini";
 
     // create logging
     logs = new Logging(logFile);
@@ -40,15 +41,24 @@ Worker::Worker(QObject *parent) : QObject(parent)
 
 void Worker::init()
 {
+    // read settings for ftp login
+    QSettings settings(settingsFile, QSettings::IniFormat);
+    emit logging("ftp config " + settings.value("ftpurl", "").toString() + ", "
+                 + settings.value("ftpuser", "").toString() + ", "
+                 + settings.value("ftppw", "").toString());
+
 	// create ftploader thread
 	logging("create ftp module");
-	ftpload = new FTPLoader(dbFile, "", "", "");
+    ftpload = new FTPLoader(dbFile,
+                            settings.value("ftpurl", "").toString(),
+                            settings.value("ftpuser", "").toString(),
+                            settings.value("ftppw", "").toString());
 	connect(ftpload, SIGNAL(logMessages(QString)), this, SLOT(logging(QString)));
 
 	// create timer for ftp upload
-	uploader = new QTimer(this);
+    uploader = new QTimer(this);
+    uploader->setInterval(30 * 1000);
 	connect(uploader, SIGNAL(timeout()), ftpload, SLOT(startUpload()));
-	uploader->start(30 * 1000);
 
     // create container to exchange data between gui and worker
     data = new dataUi;
@@ -95,6 +105,18 @@ void Worker::init()
 void Worker::logging(QString message)
 {
     logs->write(message);
+}
+
+// activate ftp upload
+void Worker::startUploadTimer()
+{
+    uploader->start();
+}
+
+// deactivate ftp upload
+void Worker::stopUploadTimer()
+{
+    uploader->stop();
 }
 
 // check double team names

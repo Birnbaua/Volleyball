@@ -41,6 +41,7 @@ private slots:
     void on_pushButtonConfigSave_clicked();
     void on_pushButtonConfigRollback_clicked();
     void on_pushButtonConfigReset_clicked();
+    void on_checkBoxActivateFTPUpload_clicked(bool checked);
 
     void on_pushButtonSaveTeams_clicked();
     void on_pushButtonResetTeams_clicked();
@@ -89,8 +90,6 @@ private slots:
     void pastePLTableView();
     void plValueChanged();
     void plValueChangedFinishEdit();
-
-    void on_pushButtonShowAllResultsWindow_clicked();
 
 private:
     void init();

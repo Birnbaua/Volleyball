@@ -48,6 +48,8 @@ public:
     bool checkDoubleTeamNames(QSqlTableModel *model);
     void resetTeams();
     int getTeamsCount();
+    void startUploadTimer();
+    void stopUploadTimer();
 
     // fields
     void setFieldsTableRows(int spinBoxCount);
@@ -131,7 +133,7 @@ private:
 	QTimer *uploader;
     int teamsCount;
     QStringList grPrefix, headerPrefix, insertRows, fieldNames;
-	QString dbFile, logFile;
+    QString settingsFile, dbFile, logFile;
 };
 
 #endif // WORKER_H

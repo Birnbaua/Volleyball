@@ -30,7 +30,6 @@ SOURCES += main.cpp\
     viewclassementresults.cpp
 
 HEADERS  += mainwindow.h \
-    ui_mainwindow.h \
     database.h \
     logging.h \
 	ftploader.h \

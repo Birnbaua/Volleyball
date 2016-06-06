@@ -3,7 +3,7 @@
 ** Copyright (C) 2015 cfr
 ** Description: organize volleyball tournament up to 40 teams
 ** Contact:
-** Version: 0.7
+** Version: 0.8
 **
 ** Version 0.1  implemented game plan system, tournament setup (time, sets, ...),
 **              calculations, web views, postgresql database, reports
@@ -35,6 +35,8 @@
 **              bugfix add kreuzspiel gametime to start time platzspiele
 **
 ** Version 0.7  split up program to gui and worker
+**
+** Version 0.8  add ftp upload for db file, add read ftp config from ini file
 **
 ****************************************************************************/
 
@@ -168,7 +170,7 @@ void MainWindow::init()
     clView = NULL;
 
     // set window title and icon
-    this->setWindowTitle("Volleyball Tournament Organizer v0.7");
+    this->setWindowTitle("Volleyball Tournament Organizer v0.8");
     this->setWindowIcon(QIcon("./resources/mikasa.jpg"));
 }
 
@@ -586,7 +588,7 @@ void MainWindow::updateTournamentTime()
             break;
     }
 
-    ui->labelTournamentEnd_2->setText(time.toString("hh:mm"));
+    ui->labelTournamentEndValue->setText(time.toString("hh:mm"));
 }
 
 // return last time from round
@@ -607,15 +609,18 @@ QList<QVariant> MainWindow::returnTime()
     return QList<QVariant>() << "00:00" << 0;
 }
 
-// show games and results window
-void MainWindow::on_pushButtonShowAllResultsWindow_clicked()
+void MainWindow::on_checkBoxActivateFTPUpload_clicked(bool checked)
 {
-    /*m_VaR = new view_all_results(0, m_Db);
-    m_VaR->setAttribute(Qt::WA_DeleteOnClose);
-    //m_VaR->setgrPrefix(grPrefix);
-    m_VaR->startUpdateUi(5);
-    m_VaR->show();
-    */
+    if(checked)
+    {
+        emit log("activate ftp-upload");
+        worker->startUploadTimer();
+    }
+    else
+    {
+        emit log("deactivate ftp-upload");
+        worker->stopUploadTimer();
+    }
 }
 
 // ****************************************************************************************************

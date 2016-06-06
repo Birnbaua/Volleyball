@@ -885,9 +885,9 @@
      </spacer>
     </item>
     <item row="1" column="3">
-     <widget class="QPushButton" name="pushButtonShowAllResultsWindow">
+     <widget class="QCheckBox" name="checkBoxActivateFTPUpload">
       <property name="text">
-       <string>Spiele und Ergebnisse</string>
+       <string>FTP-Upload aktiviert</string>
       </property>
      </widget>
     </item>
@@ -899,7 +899,7 @@
      <x>0</x>
      <y>0</y>
      <width>762</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
