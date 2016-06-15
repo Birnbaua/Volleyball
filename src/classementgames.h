@@ -30,7 +30,7 @@ private:
     void writeToDb(QStringList *querys);
     QString intToStr(int nbr);
 
-    QList<QList<int> > classements;
+    QList<int> classements;
     QStringList *grPrefix, *fieldNames, tablesToClear;
     int satz, min, pause, fieldCount, teamsCount, lastGameNr, lastRoundNr;
     QString startRound;

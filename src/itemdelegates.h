@@ -1,17 +1,3 @@
-/****************************************************************************
-**
-** Copyright (C) 2015 cfr
-** Description: adds item delegates to models
-** Contact:
-** Version: 0.3
-**
-** Version 0.1  add background color change for items
-** Version 0.2  add eventfilter for copy + paste
-** Version 0.3  add eventfilter for return and esc key, signals for commit data
-**              and close editor
-**
-****************************************************************************/
-
 #ifndef ITEMDELEGATES_H
 #define ITEMDELEGATES_H
 

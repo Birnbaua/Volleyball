@@ -15,6 +15,7 @@ ViewDivisionResults::ViewDivisionResults(QString name, QList<QSqlTableModel*> *t
     tvList << ui->tableViewF;
     tvList << ui->tableViewG;
     tvList << ui->tableViewH;
+    tvList << ui->tableViewI;
 
     for(int i = 0; i < tmList->size(); i++)
     {
@@ -32,6 +33,6 @@ ViewDivisionResults::ViewDivisionResults(QString name, QList<QSqlTableModel*> *t
 
 ViewDivisionResults::~ViewDivisionResults()
 {
-    tvList.clear();
+    //tvList.clear();
     delete ui;
 }

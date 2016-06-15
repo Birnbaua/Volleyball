@@ -93,7 +93,7 @@ QStringList CrossGames::generateGamePlan(QTime startRound)
     QList<QList<QStringList> > resultDivisionsZw;
 
     // help lists
-    QStringList divisionA, divisionB, divisionC, divisionD, divisionE, divisionF, divisionG, divisionH;
+    QStringList divisionA, divisionB, divisionC, divisionD, divisionE, divisionF, divisionG, divisionH, divisionI;
 
     // read divisional rank results and add to list
     for(int i = 0; i < grPrefix->size(); i++)
@@ -107,6 +107,7 @@ QStringList CrossGames::generateGamePlan(QTime startRound)
     divisionF = getDivisionTeamNames(&(resultDivisionsZw.at(5)));
     divisionG = getDivisionTeamNames(&(resultDivisionsZw.at(6)));
     divisionH = getDivisionTeamNames(&(resultDivisionsZw.at(7)));
+    divisionI = getDivisionTeamNames(&(resultDivisionsZw.at(8)));
 
     lastRoundNr++;
     switch(teamsCount)
@@ -182,6 +183,7 @@ QStringList CrossGames::generateGamePlan(QTime startRound)
                 break;
 
         case 40:
+        case 45:
                 lastGameNr++;
                 querys << "INSERT INTO kreuzspiele_spielplan VALUES(1," + intToStr(lastRoundNr) + "," + intToStr(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',1,'','" + divisionA.at(0) + "','" + divisionB.at(1) + "','" + divisionA.at(1) + "',0,0,0,0,0,0)";
                 lastGameNr++;

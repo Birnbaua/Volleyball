@@ -65,17 +65,18 @@ void Worker::init()
 
     teamsCount = 0;
 
-    // string list mit gruppenkürzel a bis f
+    // string list mit gruppenkürzel a bis i
 	logging("create group prefixes");
-    grPrefix << "a"<< "b"<< "c"<< "d"<< "e"<< "f" << "g" << "h";
-    headerPrefix << "A"<< "B"<< "C"<< "D"<< "E"<< "F" << "G" << "H";
+    grPrefix << "a"<< "b"<< "c"<< "d"<< "e"<< "f" << "g" << "h" << "i";
+    headerPrefix << "A"<< "B"<< "C"<< "D"<< "E"<< "F" << "G" << "H" << "I";
 
     // if team table is reset, init as default
-    insertRows << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h) VALUES(0,'','','','','','')"
-    << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h) VALUES(1,'','','','','','')"
-    << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h) VALUES(2,'','','','','','')"
-    << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h) VALUES(3,'','','','','','')"
-    << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h) VALUES(4,'','','','','','')";
+    insertRows
+    << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i) VALUES(0,'','','','','','','')"
+    << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i) VALUES(1,'','','','','','','')"
+    << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i) VALUES(2,'','','','','','','')"
+    << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i) VALUES(3,'','','','','','','')"
+    << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i) VALUES(4,'','','','','','','')";
 
     // create calculate results
 	logging("create calculateresults module");
@@ -177,7 +178,7 @@ QStringList Worker::getFieldNames()
 int Worker::getTeamsCount()
 {
     int teamsCount = 0;
-    QList<QStringList> table = db->read("SELECT a, b, c, d, e, f, g, h FROM mannschaften");
+    QList<QStringList> table = db->read("SELECT a, b, c, d, e, f, g, h, i FROM mannschaften");
 
     foreach(QStringList row, table)
     {
