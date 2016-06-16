@@ -85,6 +85,9 @@
 			var grd = null;
 			var gre = null;
 			var grf = null;
+			var grg = null;
+			var grh = null;
+			var gri = null;
 			var pls = null;
 			window.setInterval(uhrzeit,1000);
 			var running = null;
@@ -235,11 +238,47 @@
 								tabledata[i].satz
 							]).draw();
 						}
+
+						grg.rows().remove().draw();
+						tabledata = readDB("SELECT ms, punkte, satz FROM "+runde+"_erg_grg ORDER BY punkte DESC, satz DESC");
+						for(var i = 0; i < tabledata.length; i++)
+						{
+							grg.row.add([
+								i+1,
+								tabledata[i].ms,
+								tabledata[i].punkte,
+								tabledata[i].satz
+							]).draw();
+						}
+
+						grh.rows().remove().draw();
+						tabledata = readDB("SELECT ms, punkte, satz FROM "+runde+"_erg_grh ORDER BY punkte DESC, satz DESC");
+						for(var i = 0; i < tabledata.length; i++)
+						{
+							grh.row.add([
+								i+1,
+								tabledata[i].ms,
+								tabledata[i].punkte,
+								tabledata[i].satz
+							]).draw();
+						}
+
+						gri.rows().remove().draw();
+						tabledata = readDB("SELECT ms, punkte, satz FROM "+runde+"_erg_gri ORDER BY punkte DESC, satz DESC");
+						for(var i = 0; i < tabledata.length; i++)
+						{
+							gri.row.add([
+								i+1,
+								tabledata[i].ms,
+								tabledata[i].punkte,
+								tabledata[i].satz
+							]).draw();
+						}
 					}
 				}
 				else
 				{
-          pls.rows().remove().draw();
+          			pls.rows().remove().draw();
 					var ergdata = readDB("SELECT platz,ms FROM platzspiele_erg ORDER BY platz ASC");
 					if(ergdata.length > 0)
 					{
@@ -261,10 +300,10 @@
 				setergtables();
 				$('#runde').panel('close');
 				filltable();
-        $('#navbar a').removeClass('ui-disabled');
-        $('#navbar a').removeClass('ui-btn-active');
+        		$('#navbar a').removeClass('ui-disabled');
+        		$('#navbar a').removeClass('ui-btn-active');
 				$('#navbar a[href="#tab1"]').addClass('ui-btn-active');
-        $('#tabs').tabs("option","active", 0 );
+        		$('#tabs').tabs("option","active", 0 );
 			});
 			
 			$('#zw').click(function()
@@ -274,10 +313,10 @@
 				setergtables();
 				$('#runde').panel('close');
 				filltable();
-        $('#navbar a').removeClass('ui-disabled');
-        $('#navbar a').removeClass('ui-btn-active');
+        		$('#navbar a').removeClass('ui-disabled');
+        		$('#navbar a').removeClass('ui-btn-active');
 				$('#navbar a[href="#tab1"]').addClass('ui-btn-active');
-        $('#tabs').tabs("option","active", 0 );
+        		$('#tabs').tabs("option","active", 0 );
 			});
 			
 			$('#kr').click(function()
@@ -287,9 +326,9 @@
 				setergtables();
 				$('#runde').panel('close');
 				filltable();
-        $('#navbar a').removeClass('ui-disabled');
-        $('#navbar a[href="#tab2"]').addClass('ui-disabled');
-        $('#navbar a').removeClass('ui-btn-active');
+        		$('#navbar a').removeClass('ui-disabled');
+        		$('#navbar a[href="#tab2"]').addClass('ui-disabled');
+        		$('#navbar a').removeClass('ui-btn-active');
 				$('#navbar a[href="#tab1"]').addClass('ui-btn-active');
 				$('#tabs').tabs("option","active", 0 );
 			});
@@ -301,11 +340,11 @@
 				setergtables();
 				$('#runde').panel('close');
 				filltable();
-        $('#navbar a').removeClass('ui-disabled');
-        $('#navbar a[href="#tab2"]').addClass('ui-disabled');
-        $('#navbar a').removeClass('ui-btn-active');
-					$('#navbar a[href="#tab1"]').addClass('ui-btn-active');
-					$('#tabs').tabs("option","active", 0 );
+        		$('#navbar a').removeClass('ui-disabled');
+        		$('#navbar a[href="#tab2"]').addClass('ui-disabled');
+        		$('#navbar a').removeClass('ui-btn-active');
+				$('#navbar a[href="#tab1"]').addClass('ui-btn-active');
+				$('#tabs').tabs("option","active", 0 );
 			});
 			
 			$('#erg').click(function()
@@ -317,9 +356,9 @@
 				filltable();
 				$('#navbar a').removeClass('ui-disabled');
 				$('#navbar a[href="#tab1"]').addClass('ui-disabled');
-        $('#navbar a').removeClass('ui-btn-active');
-					$('#navbar a[href="#tab2"]').addClass('ui-btn-active');
-					$('#tabs').tabs("option","active",1 );
+        		$('#navbar a').removeClass('ui-btn-active');
+				$('#navbar a[href="#tab2"]').addClass('ui-btn-active');
+				$('#tabs').tabs("option","active",1 );
 			});
 			
             function readDB(sqlquery)
@@ -446,6 +485,58 @@
 									+"</table>"
 								+"</td>"
 							+"</tr>"
+							+"<tr>"
+								+"<td>"
+									+"<table id=\"grg\" class=\"display\">"
+										+"<thead>"
+											+"<tr>"
+												+"<strong>Gruppe G</strong>"
+											+"</tr>"
+											+"<tr>"
+											+"<th>Platz</th>"
+												+"<th>Mannschaft</th>"
+												+"<th>Punkte</th>"
+												+"<th>Spielpunkte</th>"
+											+"</tr>"
+										+"</thead>"
+										+"<tbody></tbody>"
+									+"</table>"
+								+"</td>"
+								+"<td>"
+									+"<table id=\"grh\" class=\"display\">"
+										+"<thead>"
+											+"<tr>"
+												+"<strong>Gruppe H</strong>"
+											+"</tr>"
+											+"<tr>"
+											+"<th>Platz</th>"
+												+"<th>Mannschaft</th>"
+												+"<th>Punkte</th>"
+												+"<th>Spielpunkte</th>"
+											+"</tr>"
+										+"</thead>"
+										+"<tbody></tbody>"
+									+"</table>"
+								+"</td>"
+							+"</tr>"
+							+"<tr>"
+								+"<td>"
+									+"<table id=\"gri\" class=\"display\">"
+										+"<thead>"
+											+"<tr>"
+												+"<strong>Gruppe I</strong>"
+											+"</tr>"
+											+"<tr>"
+											+"<th>Platz</th>"
+												+"<th>Mannschaft</th>"
+												+"<th>Punkte</th>"
+												+"<th>Spielpunkte</th>"
+											+"</tr>"
+										+"</thead>"
+										+"<tbody></tbody>"
+									+"</table>"
+								+"</td>"
+							+"</tr>"
 						+"</table>");
 				}
 				else
@@ -555,6 +646,51 @@
 					searching : false,
 					info : false
 				});
+				grg = $('#grg').DataTable({
+					"language": {
+						"sEmptyTable": "Keine Daten in der Tabelle vorhanden",
+						"sInfoPostFix": "",
+						"sInfoThousands": ".",
+						"sLengthMenu": "_MENU_ Eintr&auml;ge anzeigen",
+						"sLoadingRecords": "Wird geladen...",
+						"sProcessing": "Bitte warten...",
+						"sZeroRecords": "Keine Eintr&auml;ge vorhanden."
+					},
+					ordering : false,
+					paging : false,
+					searching : false,
+					info : false
+				});
+				grh = $('#grh').DataTable({
+					"language": {
+						"sEmptyTable": "Keine Daten in der Tabelle vorhanden",
+						"sInfoPostFix": "",
+						"sInfoThousands": ".",
+						"sLengthMenu": "_MENU_ Eintr&auml;ge anzeigen",
+						"sLoadingRecords": "Wird geladen...",
+						"sProcessing": "Bitte warten...",
+						"sZeroRecords": "Keine Eintr&auml;ge vorhanden."
+					},
+					ordering : false,
+					paging : false,
+					searching : false,
+					info : false
+				});
+				gri = $('#gri').DataTable({
+					"language": {
+						"sEmptyTable": "Keine Daten in der Tabelle vorhanden",
+						"sInfoPostFix": "",
+						"sInfoThousands": ".",
+						"sLengthMenu": "_MENU_ Eintr&auml;ge anzeigen",
+						"sLoadingRecords": "Wird geladen...",
+						"sProcessing": "Bitte warten...",
+						"sZeroRecords": "Keine Eintr&auml;ge vorhanden."
+					},
+					ordering : false,
+					paging : false,
+					searching : false,
+					info : false
+				});
 				pls = $('#pls').DataTable({
 					"language": {
 						"sEmptyTable": "Keine Daten in der Tabelle vorhanden",
@@ -596,8 +732,9 @@
 					},
 					ordering : false
 				});
-        runde = "vorrunde";
-        resultsorpl();
+        
+				runde = "vorrunde";
+        		resultsorpl();
 				setergtables();
 				filltable();
 				$('#tabs').tabs({ active: 0 });
