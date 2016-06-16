@@ -6,6 +6,30 @@ ClassementGames::ClassementGames(Database *db, QStringList *grPrefix, QObject *p
     this->grPrefix = grPrefix;
 
     tablesToClear << "platzspiele_spielplan" << "platzierungen";
+}
+
+ClassementGames::~ClassementGames()
+{
+
+}
+
+// set platzspiele params
+void ClassementGames::setParameters(QString startRound, int lastgameTime, int pauseKrPl, int countSatz, int minSatz, int fieldCount, int teamsCount, QStringList *fieldNames, int lastRoundNr, int lastGameNr)
+{
+    emit logMessages("PLATZSPIELE:: set platzspiele params");
+    this->startRound = startRound;
+    this->satz = countSatz;
+    this->min = minSatz;
+    this->pause = 0;
+    this->fieldCount = fieldCount;
+    this->teamsCount = teamsCount;
+    this->fieldNames = fieldNames;
+    this->lastGameNr = lastGameNr;
+    this->lastRoundNr = lastRoundNr;
+
+    QTime time = QTime::fromString(this->startRound, "hh:mm");
+    time = time.addSecs((pauseKrPl * 60) + (lastgameTime * 60));
+    this->startRound = time.toString("hh:mm");
 
     switch(teamsCount)
     {
@@ -17,7 +41,7 @@ ClassementGames::ClassementGames(Database *db, QStringList *grPrefix, QObject *p
                              << 1 << 2;
             break;
 
-    case 25: classements = QList<int>() << 9 << 10 << 19 << 20
+        case 25: classements = QList<int>() << 9 << 10 << 19 << 20
                              << 7 << 8 << 17 << 18
                              << 5 << 6 << 15 << 16
                              << 3 << 4 << 13 << 14 << 23 << 24
@@ -25,7 +49,7 @@ ClassementGames::ClassementGames(Database *db, QStringList *grPrefix, QObject *p
                              << 1 << 2;
             break;
 
-    case 28: classements = QList<int>() << 9 << 10 << 19 << 20
+        case 28: classements = QList<int>() << 9 << 10 << 19 << 20
                              << 7 << 8 << 17 << 18 << 27 << 28
                              << 5 << 6 << 15 << 16 << 25 << 26
                              << 3 << 4 << 13 << 14 << 23 << 24
@@ -67,30 +91,6 @@ ClassementGames::ClassementGames(Database *db, QStringList *grPrefix, QObject *p
                              << 1 << 2;
             break;
     }
-}
-
-ClassementGames::~ClassementGames()
-{
-
-}
-
-// set platzspiele params
-void ClassementGames::setParameters(QString startRound, int lastgameTime, int pauseKrPl, int countSatz, int minSatz, int fieldCount, int teamsCount, QStringList *fieldNames, int lastRoundNr, int lastGameNr)
-{
-    emit logMessages("PLATZSPIELE:: set platzspiele params");
-    this->startRound = startRound;
-    this->satz = countSatz;
-    this->min = minSatz;
-    this->pause = 0;
-    this->fieldCount = fieldCount;
-    this->teamsCount = teamsCount;
-    this->fieldNames = fieldNames;
-    this->lastGameNr = lastGameNr;
-    this->lastRoundNr = lastRoundNr;
-
-    QTime time = QTime::fromString(this->startRound, "hh:mm");
-    time = time.addSecs((pauseKrPl * 60) + (lastgameTime * 60));
-    this->startRound = time.toString("hh:mm");
 }
 
 // clear platzspiele
