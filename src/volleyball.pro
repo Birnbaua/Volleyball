@@ -27,7 +27,8 @@ SOURCES += main.cpp\
     interimgames.cpp \
     crossgames.cpp \
     classementgames.cpp \
-    viewclassementresults.cpp
+    viewclassementresults.cpp \
+    basegamehandling.cpp
 
 HEADERS  += mainwindow.h \
     database.h \
@@ -41,7 +42,8 @@ HEADERS  += mainwindow.h \
     interimgames.h \
     crossgames.h \
     classementgames.h \
-    viewclassementresults.h
+    viewclassementresults.h \
+    basegamehandling.h
 
 FORMS    += mainwindow.ui \
     viewdivisionresults.ui \
