@@ -325,7 +325,6 @@ QStringList QualifyingGames::generateResultTables(QList<QStringList> *divisionsL
         {
             QString team = division.at(x);
             querys << "INSERT INTO vorrunde_erg_gr" + group + " VALUES(" + QString::number(x) + ",'" + team + "',0,0,0,0)";
-            x++;
         }
     }
 

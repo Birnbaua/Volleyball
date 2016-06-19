@@ -861,7 +861,6 @@ QStringList InterimGames::generateResultTables(QList<QStringList> *divisionsList
         {
             QString team = division.at(x);
             querys << "INSERT INTO zwischenrunde_erg_gr" + group + " VALUES(" + QString::number(x) + ",'" + team + "',0,0,0,0)";
-            x++;
         }
     }
 
