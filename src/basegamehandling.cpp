@@ -1,10 +1,20 @@
 #include "basegamehandling.h"
 
-BaseGameHandling::BaseGameHandling(QObject *parent) : QObject(parent)
+// base constructor
+BaseGameHandling::BaseGameHandling(Database *db,
+                                   QStringList *grPrefix,
+                                   QStringList *fieldNames,
+                                   int fieldcount,
+                                   int teamsCount)
 {
-
+    this->db = db;
+    this->grPrefix = grPrefix;
+    this->fieldNames = fieldNames;
+    this->fieldCount = fieldcount;
+    this->teamsCount = teamsCount;
 }
 
+// clear all data
 void BaseGameHandling::clearAllData(QStringList tables)
 {
     QStringList querys;
@@ -15,8 +25,26 @@ void BaseGameHandling::clearAllData(QStringList tables)
     writeToDB(&querys);
 }
 
+//recalculate time schedule
+void BaseGameHandling::recalculateTimeSchedule(QTableView *qtv, QSqlTableModel *model)
+{
+    QTime zeit = qtv->currentIndex().data().toTime();
+    int addzeit = ((satz * min) + pause)* 60;
+    int runde = model->data(model->index(qtv->currentIndex().row(), 1)).toInt();
+
+    for(int i = qtv->currentIndex().row(); i <= model->rowCount(); i++)
+    {
+        if(runde != model->data(model->index(i, 1)).toInt())
+        {
+            zeit = zeit.addSecs(addzeit);
+            runde++;
+        }
+        model->setData(model->index(i, 3), zeit.toString("hh:mm"));
+    }
+}
+
 // insert field numbers
-QStringList BaseGameHandling::insertFieldNr(QString round, int gameCount, int fieldCount)
+QStringList BaseGameHandling::insertFieldNr(QString round, int gameCount)
 {
     QStringList querys;
 
@@ -69,6 +97,49 @@ QStringList BaseGameHandling::generateResultTables(QString round, QList<QStringL
     }
 
     return querys;
+}
+
+// check equal division results
+QStringList BaseGameHandling::checkEqualDivisionResults(QString round, QString resultTableName)
+{
+    QStringList result;
+
+    for(int i = 0; i < grPrefix->size(); i++)
+    {
+        QString prefix = grPrefix->at(i);
+
+        QList<QStringList> getTeams = db->read("select distinct ms1.ms from " + resultTableName
+                                                   + prefix + " ms1, (select ms, satz, punkte, intern from " + resultTableName
+                                                   + prefix + ") ms2 where ms1.satz = ms2.satz and  ms1.punkte = ms2.punkte and ms1.intern = ms2.intern and ms1.ms != ms2.ms");
+
+        if(getTeams.count() == 2)
+        {
+            QStringList team1 = getTeams.at(0);
+            QStringList team2 = getTeams.at(1);
+            QString gamenr = db->read("SELECT spiel from " + round + " where ms_a = '"
+                                         + team1.at(0) + "' and ms_b = '" + team2.at(0) + "' or ms_a = '"
+                                         + team2.at(0) + "' and ms_b = '" + team1.at(0)+ "'").at(0).at(0);
+
+            result.append("0");
+            result.append(gamenr);
+            result.append(team1.at(0));
+            result.append(team2.at(0));
+            return result;
+        }
+        else if(getTeams.count() > 2)
+        {
+            QStringList teams;
+
+            teams << "1";
+
+            foreach(QStringList team, getTeams)
+                teams << team.at(0);
+
+            return teams;
+        }
+    }
+
+    return result;
 }
 
 // write statements to database
