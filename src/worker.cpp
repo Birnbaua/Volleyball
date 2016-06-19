@@ -3,8 +3,8 @@
 Worker::Worker(QObject *parent) : QObject(parent)
 {
     dbFile = "./resources/data.db";
-    logFile = "volleyball.log";
-    settingsFile = "config.ini";
+    logFile = "./resources/volleyball.log";
+    settingsFile = "./resources/config.ini";
 
     // create logging
     logs = new Logging(logFile);
