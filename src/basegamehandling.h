@@ -6,6 +6,7 @@
 #include <QTime>
 
 #include "database.h"
+#include "calculateresults.h"
 
 class BaseGameHandling : public QObject
 {
@@ -24,6 +25,7 @@ public:
     void writeToDB(QStringList *querys);
     void recalculateTimeSchedule(QTableView *qtv, QSqlTableModel *model);
     QStringList checkEqualDivisionResults(QString round, QString resultTableName);
+    void calculateResult(QString round, QString resultTableName);
 
 signals:
     void logMessages(QString);

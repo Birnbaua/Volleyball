@@ -25,6 +25,30 @@ void BaseGameHandling::clearAllData(QStringList tables)
     writeToDB(&querys);
 }
 
+// calculate results
+void BaseGameHandling::calculateResult(QString round, QString resultTableName)
+{
+    emit logMessages("INFO:: calculating " + round + " results");
+    QStringList execQuerys;
+    QList<QStringList> vrGameResults = db->read("SELECT spiel, ms_a, ms_b, satz1a, satz1b, satz2a, satz2b, satz3a, satz3b FROM " + round + " WHERE ms_a != '---' ORDER BY id ASC");
+    QList<CalculateResults::teamResult> teamResults = CalculateResults::addResultsVrZw(CalculateResults::calculateResults(&vrGameResults));
+
+    foreach(CalculateResults::teamResult tR, teamResults)
+    {
+        QString division;
+        for(int i = 0; i < grPrefix->size();i ++)
+        {
+            QString prefix = grPrefix->at(i);
+
+            if(db->read("SELECT * FROM " + resultTableName + prefix + " WHERE ms = '" + tR.teamName + "'").count() > 0)
+                division = prefix;
+        }
+        execQuerys << "UPDATE " + resultTableName + division + " SET punkte=" + QString::number(tR.sets) + ", satz=" + QString::number(tR.points) + " WHERE ms = '" + tR.teamName + "'";
+    }
+
+    writeToDB(&execQuerys);
+}
+
 //recalculate time schedule
 void BaseGameHandling::recalculateTimeSchedule(QTableView *qtv, QSqlTableModel *model)
 {
