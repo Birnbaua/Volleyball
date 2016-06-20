@@ -164,26 +164,35 @@ QStringList BaseGameHandling::checkEqualDivisionResults(QString round, QString r
     return result;
 }
 
-// write to database
+// write to database with query list
 void BaseGameHandling::dbWrite(QStringList *querys)
 {
     for(int i = 0; i < querys->size(); i++)
         db->write(querys->at(i));
 }
 
+// write to database with single query
 void BaseGameHandling::dbWrite(QString query)
 {
     db->write(query);
 }
 
+// read prefix from list
 QString BaseGameHandling::getPrefix(int index)
 {
     return grPrefix->at(index);
 }
 
+// return prefix count
 int BaseGameHandling::getPrefixCount()
 {
     return grPrefix->size();
+}
+
+// parse int to string
+QString BaseGameHandling::string(int val)
+{
+    return QString::number(val);
 }
 
 // read from database

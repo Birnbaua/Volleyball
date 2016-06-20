@@ -439,7 +439,7 @@ void Worker::generateCrossGames()
 
 void Worker::clearCrossGames()
 {
-    cg->clearAllData();
+    cg->clearAllData(Worker::crTablesToClear);
 }
 
 void Worker::recalculateCrossGamesTimeSchedule(QTableView *qtv, QSqlTableModel *tm)
@@ -476,7 +476,7 @@ void Worker::generateClassementGames()
 
 void Worker::clearClassementGames()
 {
-    clg->clearAllData();
+    clg->clearAllData(Worker::clTablesToClear);
 }
 
 void Worker::recalculateClassementGamesTimeSchedule(QTableView *qtv, QSqlTableModel *tm)

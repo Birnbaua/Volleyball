@@ -1,10 +1,6 @@
 #ifndef INTERIMGAMES_H
 #define INTERIMGAMES_H
 
-#include <QObject>
-#include <QTableView>
-#include <QTime>
-
 #include "basegamehandling.h"
 
 class InterimGames : public BaseGameHandling

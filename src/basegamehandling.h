@@ -39,6 +39,8 @@ public:
 
     int getPrefixCount();
 
+    QString string(int val);
+
 signals:
     void logMessages(QString);
 
