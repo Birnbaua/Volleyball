@@ -28,6 +28,7 @@ private:
     QStringList insertFieldNames();
     QStringList createClassement(QList<QStringList> *plGameResults);
     void writeToDb(QStringList *querys);
+    void writeToDb(QString query);
     QString intToStr(int nbr);
 
     QList<int> classements;

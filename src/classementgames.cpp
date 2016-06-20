@@ -33,14 +33,7 @@ void ClassementGames::setParameters(QString startRound, int lastgameTime, int pa
 
     switch(teamsCount)
     {
-        case 20: classements = QList<int>() << 9 << 10 << 19 << 20
-                             << 7 << 8 << 17 << 18
-                             << 5 << 6 << 15 << 16
-                             << 3 << 4 << 13 << 14
-                             << 11 << 12
-                             << 1 << 2;
-            break;
-
+        case 20:
         case 25: classements = QList<int>() << 9 << 10 << 19 << 20
                              << 7 << 8 << 17 << 18
                              << 5 << 6 << 15 << 16
@@ -57,15 +50,7 @@ void ClassementGames::setParameters(QString startRound, int lastgameTime, int pa
                              << 1 << 2;
             break;
 
-        case 30: classements = QList<int>() << 9 << 10 << 19 << 20 << 29 << 30
-                             << 7 << 8 << 17 << 18 << 27 << 28
-                             << 5 << 6 << 15 << 16 << 25 << 26
-                             << 3 << 4 << 13 << 14 << 23 << 24
-                             << 11 << 12 << 21 << 22
-                             << 1 << 2;
-
-            break;
-
+        case 30:
         case 35: classements = QList<int>() << 9 << 10 << 19 << 20 << 29 << 30
                              << 7 << 8 << 17 << 18 << 27 << 28
                              << 5 << 6 << 15 << 16 << 25 << 26
@@ -74,16 +59,8 @@ void ClassementGames::setParameters(QString startRound, int lastgameTime, int pa
                              << 1 << 2;
             break;
 
-        case 40: classements = QList<int>() << 9 << 10 << 19 << 20 << 29 << 30 << 39 << 40
-                             << 7 << 8 << 17 << 18 << 27 << 28 << 37 << 38
-                             << 5 << 6 << 15 << 16 << 25 << 26 << 35 << 36
-                             << 3 << 4 << 13 << 14 << 23 << 24 << 33 << 34
-                             << 11 << 12 << 21 << 22 << 31 << 32
-                             << 1 << 2;
-            break;
-
-        case 45: classements = QList<int>() << 40 << 41 << 42 << 43 << 44 << 45
-                             << 9 << 10 << 19 << 20 << 29 << 30 << 39 << 40
+        case 40:
+        case 45: classements = QList<int>() << 9 << 10 << 19 << 20 << 29 << 30 << 39 << 40
                              << 7 << 8 << 17 << 18 << 27 << 28 << 37 << 38
                              << 5 << 6 << 15 << 16 << 25 << 26 << 35 << 36
                              << 3 << 4 << 13 << 14 << 23 << 24 << 33 << 34
@@ -188,7 +165,6 @@ QStringList ClassementGames::generateGamePlan(QTime startRound, QList<QStringLis
             resultEdit << team.at(0);
 
         resultDivisionsZw << resultEdit;
-        i++;
     }
 
     divisionA = &(resultDivisionsZw.at(0));
@@ -206,43 +182,6 @@ QStringList ClassementGames::generateGamePlan(QTime startRound, QList<QStringLis
     switch(teamsCount)
     {
         case 20:
-            lastGameNr++;
-            querys << "INSERT INTO platzspiele_spielplan VALUES(1," + intToStr(lastRoundNr) + "," + intToStr(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',1,'','" + divisionA->at(4) + "','" + divisionB->at(4) + "','" + divisionA->at(1) + "',0,0,0,0,0,0)";
-            // spiel um platz 9
-            lastGameNr++;
-            querys << "INSERT INTO platzspiele_spielplan VALUES(2," + intToStr(lastRoundNr) + "," + intToStr(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',2,'','" + krGameResults->at(1).at(2) + "','" + krGameResults->at(5).at(2) + "','" + divisionB->at(1) + "',0,0,0,0,0,0)";
-            // spiel um platz 7
-            lastGameNr++;
-            querys << "INSERT INTO platzspiele_spielplan VALUES(3," + intToStr(lastRoundNr) + "," + intToStr(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',3,'','" + divisionC->at(4) + "','" + divisionD->at(4) + "','" + divisionC->at(1) + "',0,0,0,0,0,0)";
-            // spiel um platz 19
-            lastGameNr++;
-            querys << "INSERT INTO platzspiele_spielplan VALUES(4," + intToStr(lastRoundNr) + "," + intToStr(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',4,'','" + krGameResults->at(3).at(2) + "','" + krGameResults->at(7).at(2) + "','" + divisionD->at(1) + "',0,0,0,0,0,0)";
-
-            startRound = startRound.addSecs(addzeit);
-            lastRoundNr++;
-            // spiel um platz 17
-            lastGameNr++;
-            querys << "INSERT INTO platzspiele_spielplan VALUES(5," + intToStr(lastRoundNr) + "," + intToStr(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',1,'','" + krGameResults->at(1).at(1) + "','" + krGameResults->at(5).at(2) + "','" + divisionA->at(4) + "',0,0,0,0,0,0)";
-            // spiel um platz 3
-            lastGameNr++;
-            querys << "INSERT INTO platzspiele_spielplan VALUES(6," + intToStr(lastRoundNr) + "," + intToStr(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',2,'','" + krGameResults->at(0).at(2) + "','" + krGameResults->at(4).at(2) + "','" + divisionB->at(4) + "',0,0,0,0,0,0)";
-            // spiel um platz 15
-            lastGameNr++;
-            querys << "INSERT INTO platzspiele_spielplan VALUES(7," + intToStr(lastRoundNr) + "," + intToStr(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',3,'','" + krGameResults->at(3).at(1) + "','" + krGameResults->at(7).at(1) + "','" + divisionC->at(4) + "',0,0,0,0,0,0)";
-            // spiel um platz 13
-            lastGameNr++;
-            querys << "INSERT INTO platzspiele_spielplan VALUES(8," + intToStr(lastRoundNr) + "," + intToStr(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',4,'','" + krGameResults->at(2).at(2) + "','" + krGameResults->at(6).at(2) + "','" + divisionD->at(4) + "',0,0,0,0,0,0)";
-            // spiel um platz 11
-            lastGameNr++;
-            querys << "INSERT INTO platzspiele_spielplan VALUES(9," + intToStr(lastRoundNr) + "," + intToStr(lastGameNr) + ",'" + startRound.addSecs(addzeit).toString("hh:mm") + "',2,'','" + krGameResults->at(2).at(1) + "','" + krGameResults->at(6).at(1) + "','" + divisionC->at(3) + "',0,0,0,0,0,0)";
-
-            startRound = startRound.addSecs(addzeit);
-            lastRoundNr++;
-            // spiel um platz 1
-            lastGameNr++;
-            querys << "INSERT INTO platzspiele_spielplan VALUES(10," + intToStr(lastRoundNr) + "," + intToStr(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',1,'','" + krGameResults->at(0).at(1) + "','" + krGameResults->at(4).at(1) + "','" + divisionA->at(3) + "',0,0,0,0,0,0)";
-            break;
-
         case 25:
             // spiel um platz 9
             lastGameNr++;
@@ -484,7 +423,7 @@ QStringList ClassementGames::createClassement(QList<QStringList> *plGameResults)
 {
     QStringList querys;
     QList<QStringList> bottomRankings;
-    int i = 0, id = 0;
+    int id = 0;
 
     for(int i = 0, x = 0; i < plGameResults->size(); i++)
     {
@@ -494,34 +433,33 @@ QStringList ClassementGames::createClassement(QList<QStringList> *plGameResults)
     }
 
     // rest of classement, teams which played vorrunde and zwischenrunde
-    i++;
     switch(teamsCount)
     {
         case 25:
             bottomRankings = db->read("SELECT ms FROM zwischenrunde_gre_view");
-            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(i++) + ",'" + bottomRankings.at(0).at(0) + "')";
-            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(i++) + ",'" + bottomRankings.at(1).at(0) + "')";
-            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(i++) + ",'" + bottomRankings.at(2).at(0) + "')";
-            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(i++) + ",'" + bottomRankings.at(3).at(0) + "')";
-            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(i++) + ",'" + bottomRankings.at(4).at(0) + "')";
+            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(id + 1) + ",'" + bottomRankings.at(0).at(0) + "')";
+            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(id + 1) + ",'" + bottomRankings.at(1).at(0) + "')";
+            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(id + 1) + ",'" + bottomRankings.at(2).at(0) + "')";
+            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(id + 1) + ",'" + bottomRankings.at(3).at(0) + "')";
+            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(id + 1) + ",'" + bottomRankings.at(4).at(0) + "')";
             break;
 
         case 35:
             bottomRankings = db->read("SELECT ms FROM zwischenrunde_grg_view");
-            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(i++) + ",'" + bottomRankings.at(0).at(0) + "')";
-            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(i++) + ",'" + bottomRankings.at(1).at(0) + "')";
-            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(i++) + ",'" + bottomRankings.at(2).at(0) + "')";
-            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(i++) + ",'" + bottomRankings.at(3).at(0) + "')";
-            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(i++) + ",'" + bottomRankings.at(4).at(0) + "')";
+            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(id + 1) + ",'" + bottomRankings.at(0).at(0) + "')";
+            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(id + 1) + ",'" + bottomRankings.at(1).at(0) + "')";
+            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(id + 1) + ",'" + bottomRankings.at(2).at(0) + "')";
+            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(id + 1) + ",'" + bottomRankings.at(3).at(0) + "')";
+            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(id + 1) + ",'" + bottomRankings.at(4).at(0) + "')";
             break;
 
         case 45:
             bottomRankings = db->read("SELECT ms FROM zwischenrunde_gri_view");
-            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(i++) + ",'" + bottomRankings.at(0).at(0) + "')";
-            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(i++) + ",'" + bottomRankings.at(1).at(0) + "')";
-            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(i++) + ",'" + bottomRankings.at(2).at(0) + "')";
-            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(i++) + ",'" + bottomRankings.at(3).at(0) + "')";
-            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(i++) + ",'" + bottomRankings.at(4).at(0) + "')";
+            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(id + 1) + ",'" + bottomRankings.at(0).at(0) + "')";
+            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(id + 1) + ",'" + bottomRankings.at(1).at(0) + "')";
+            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(id + 1) + ",'" + bottomRankings.at(2).at(0) + "')";
+            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(id + 1) + ",'" + bottomRankings.at(3).at(0) + "')";
+            querys << "INSERT INTO platzierungen VALUES(" + intToStr(id++) + "," + intToStr(id + 1) + ",'" + bottomRankings.at(4).at(0) + "')";
             break;
     }
 
@@ -533,6 +471,11 @@ void ClassementGames::writeToDb(QStringList *querys)
 {
     for(int i = 0; i < querys->size(); i++)
         db->write(querys->at(i));
+}
+
+void ClassementGames::writeToDb(QString query)
+{
+    db->write(query);
 }
 
 // cast int to string

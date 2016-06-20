@@ -171,6 +171,11 @@ void BaseGameHandling::dbWrite(QStringList *querys)
         db->write(querys->at(i));
 }
 
+void BaseGameHandling::dbWrite(QString query)
+{
+    db->write(query);
+}
+
 QString BaseGameHandling::getPrefix(int index)
 {
     return grPrefix->at(index);

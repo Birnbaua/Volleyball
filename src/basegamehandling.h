@@ -33,6 +33,8 @@ public:
 
     void dbWrite(QStringList *querys);
 
+    void dbWrite(QString query);
+
     QString getPrefix(int index);
 
     int getPrefixCount();
