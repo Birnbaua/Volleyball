@@ -23,6 +23,8 @@ void CrossGames::setParameters(QString startRound, int lastgameTime, int pauseZw
     this->lastGameNr = lastGameNr;
     this->lastRoundNr = lastRoundNr;
 
+    setTimeParameters(satz, min, pause);
+
     QTime time = QTime::fromString(this->startRound, "hh:mm");
     time = time.addSecs((pauseZwKr * 60) + (lastgameTime * 60));
     this->startRound = time.toString("hh:mm");

@@ -12,6 +12,14 @@ BaseGameHandling::~BaseGameHandling()
 {
 }
 
+// set time parameters
+void BaseGameHandling::setTimeParameters(int satz, int min, int pause)
+{
+    this->satz = satz;
+    this->min = min;
+    this->pause = pause;
+}
+
 // clear all data
 void BaseGameHandling::clearAllData(QStringList tables)
 {
@@ -51,7 +59,7 @@ void BaseGameHandling::calculateResult(QString round, QString resultTableName)
 void BaseGameHandling::recalculateTimeSchedule(QTableView *qtv, QSqlTableModel *model)
 {
     QTime zeit = qtv->currentIndex().data().toTime();
-    int addzeit = ((satz * min) + pause)* 60;
+    int addzeit = ((satz * min) + pause) * 60;
     int runde = model->data(model->index(qtv->currentIndex().row(), 1)).toInt();
 
     for(int i = qtv->currentIndex().row(); i <= model->rowCount(); i++)

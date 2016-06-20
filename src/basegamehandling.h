@@ -41,14 +41,16 @@ public:
 
     QString string(int val);
 
+    void setTimeParameters(int satz, int min, int pause);
+
 signals:
     void logMessages(QString);
 
 private:
     Database *db;
     QString startRound;
-    int satz, min, pause;
     QStringList *grPrefix;
+    int satz, min, pause;
 };
 
 #endif // BASEGAMEHANDLING_H

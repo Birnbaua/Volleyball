@@ -56,6 +56,8 @@ void QualifyingGames::setParameters(QString startTurnier, int countSatz, int min
     this->fieldCount = fieldCount;
     this->teamsCount = teamsCount;
     this->fieldNames = fieldNames;
+
+    setTimeParameters(satz, min, pause);
 }
 
 void QualifyingGames::generateGames()

@@ -60,6 +60,8 @@ void InterimGames::setParameters(QString startRound, int pauseVrZw, int countSat
     this->lastGameNr = lastGameNr;
     this->lastRoundNr = lastRoundNr;
 
+    setTimeParameters(satz, min, pause);
+
     QTime time = QTime::fromString(this->startRound, "hh:mm");
     time = time.addSecs(pauseVrZw * 60);
     this->startRound = time.toString("hh:mm");
