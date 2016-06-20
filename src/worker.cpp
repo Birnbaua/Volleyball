@@ -397,12 +397,12 @@ bool Worker::generateInterimGames()
 
 void Worker::clearInterimGames()
 {
-    im->clearAllData();
+    im->clearAllData(Worker::itTablesToClear);
 }
 
 void Worker::calculateInterimGames()
 {
-    im->calculateResult();
+    im->calculateResult("zwischenrunde_spielplan", "zwischenrunde_erg_gr");
 }
 
 void Worker::recalculateInterimGamesTimeSchedule(QTableView *qtv, QSqlTableModel *tm)

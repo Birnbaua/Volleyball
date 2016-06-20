@@ -23,9 +23,8 @@ private:
     bool first;
     int prefixCount, fieldCount, teamsCount, gamesCount;
     int satz, min, pause;
-    QStringList *grPrefix, *fieldNames, tablesToClear;
+    QStringList *grPrefix, *fieldNames;
     QList<QList<int> > firstFourMsDivision, fourMsDivision, fiveMsDivision;
-    Database *db;
 };
 
 #endif // QUALIFYINGGAMES_H
