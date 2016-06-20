@@ -1,16 +1,9 @@
 #include "qualifyinggames.h"
 
 QualifyingGames::QualifyingGames(Database *db, QStringList *grPrefix)
+    : BaseGameHandling(db, grPrefix)
 {
-    this->db = db;
-    this->grPrefix = grPrefix;
-
     first = true;
-
-    tablesToClear << "vorrunde_spielplan";
-
-    for(int i = 0; i < grPrefix->size(); i++)
-        tablesToClear << ("vorrunde_erg_gr" + grPrefix->at(i));
 
     // game plan for 4 teams in division
     firstFourMsDivision.append(QList<int>() << 0 << 1 << 2);
@@ -51,7 +44,6 @@ QualifyingGames::QualifyingGames(Database *db, QStringList *grPrefix)
 
 QualifyingGames::~QualifyingGames()
 {
-
 }
 
 void QualifyingGames::setParameters(QString startTurnier, int countSatz, int minSatz, int minPause, int fieldCount, int teamsCount, QStringList *fieldNames)
@@ -66,29 +58,21 @@ void QualifyingGames::setParameters(QString startTurnier, int countSatz, int min
     this->fieldNames = fieldNames;
 }
 
-void QualifyingGames::clearAllData()
-{
-    QStringList querys;
-
-    foreach(QString table, tablesToClear)
-        querys << "DELETE FROM " + table;
-
-    writeToDb(&querys);
-}
-
 void QualifyingGames::generateGames()
 {
     QList<QStringList> divisionsList;
     QList<QList<QStringList> > divisionsGameList;
     QStringList execQuerys;
-    int gamesCount = 0;
+
+    prefixCount = getPrefixCount();
+    gamesCount = 0;
 
     // preparte lists for all divisions
-    for(int i = 0; i < grPrefix->size(); i++)
+    for(int i = 0; i < prefixCount; i++)
     {
         QStringList division;
-        QString group = grPrefix->at(i);
-        QList<QStringList> list = db->read("SELECT " + group + " FROM mannschaften WHERE " + group + " != ''");
+        QString group = getPrefix(i);
+        QList<QStringList> list = dbRead("SELECT " + group + " FROM mannschaften WHERE " + group + " != ''");
 
         // for each division one stringlist
         for(int j = 0; j < list.size(); j++)
@@ -111,99 +95,17 @@ void QualifyingGames::generateGames()
     // generate game plan over all divisonal games
     execQuerys << generateGamePlan(&divisionsGameList, gamesCount, QTime::fromString(startTurnier), satz, min, pause);
 
-    // generate time schedule for game plan
-    execQuerys << insertFieldNr(gamesCount, fieldCount);
+    // insert field numbers into gameplan
+    execQuerys << insertFieldNr("vorrunde_spielplan", gamesCount, fieldCount);
 
     // insert field names
-    execQuerys << insertFieldNames();
+    execQuerys << insertFieldNames("vorrunde_spielplan", fieldNames);
 
     // generate vorrunde divisions result tables
-    execQuerys << generateResultTables(&divisionsList);
+    execQuerys << generateResultTables("vorrunde_erg_gr", &divisionsList);
 
     // execute all statements to database
-    writeToDb(&execQuerys);
-}
-
-void QualifyingGames::calculateResult()
-{
-    emit logMessages("INFO:: calculating vorrunde results");
-    QStringList execQuerys;
-    QList<QStringList> vrGameResults = db->read("SELECT spiel, ms_a, ms_b, satz1a, satz1b, satz2a, satz2b, satz3a, satz3b FROM vorrunde_spielplan WHERE ms_a != '---' ORDER BY id ASC");
-    QList<CalculateResults::teamResult> teamResults = CalculateResults::addResultsVrZw(CalculateResults::calculateResults(&vrGameResults));
-
-    foreach(CalculateResults::teamResult tR, teamResults)
-    {
-        QString division;
-        for(int i = 0; i < grPrefix->size();i ++)
-        {
-            QString prefix = grPrefix->at(i);
-
-            if(db->read("SELECT * FROM vorrunde_erg_gr" + prefix + " WHERE ms = '" + tR.teamName + "'").count() > 0)
-                division = prefix;
-        }
-        execQuerys << "UPDATE vorrunde_erg_gr" + division + " SET punkte=" + QString::number(tR.sets) + ", satz=" + QString::number(tR.points) + " WHERE ms = '" + tR.teamName + "'";
-    }
-
-    writeToDb(&execQuerys);
-}
-
-void QualifyingGames::recalculateTimeSchedule(QTableView *qtv, QSqlTableModel *model)
-{
-    QTime zeit = qtv->currentIndex().data().toTime();
-    int addzeit = ((satz * min) + pause)* 60;
-    int runde = model->data(model->index(qtv->currentIndex().row(), 1)).toInt();
-
-    for(int i = qtv->currentIndex().row(); i <= model->rowCount(); i++)
-    {
-        if(runde != model->data(model->index(i, 1)).toInt())
-        {
-            zeit = zeit.addSecs(addzeit);
-            runde++;
-        }
-        model->setData(model->index(i, 3), zeit.toString("hh:mm"));
-    }
-}
-
-QStringList QualifyingGames::checkEqualDivisionResults()
-{
-    QStringList result;
-
-    for(int i = 0; i < grPrefix->size(); i++)
-    {
-        QString prefix = grPrefix->at(i);
-
-        QList<QStringList> getTeams = db->read("select distinct ms1.ms from vorrunde_erg_gr"
-                                                   + prefix + " ms1, (select ms, satz, punkte, intern from vorrunde_erg_gr"
-                                                   + prefix + ") ms2 where ms1.satz = ms2.satz and  ms1.punkte = ms2.punkte and ms1.intern = ms2.intern and ms1.ms != ms2.ms");
-
-        if(getTeams.count() == 2)
-        {
-            QStringList team1 = getTeams.at(0);
-            QStringList team2 = getTeams.at(1);
-            QString gamenr = db->read("SELECT spiel from vorrunde_spielplan where ms_a = '"
-                                         + team1.at(0) + "' and ms_b = '" + team2.at(0) + "' or ms_a = '"
-                                         + team2.at(0) + "' and ms_b = '" + team1.at(0)+ "'").at(0).at(0);
-
-            result.append("0");
-            result.append(gamenr);
-            result.append(team1.at(0));
-            result.append(team2.at(0));
-            return result;
-        }
-        else if(getTeams.count() > 2)
-        {
-            QStringList teams;
-
-            teams << "1";
-
-            foreach(QStringList team, getTeams)
-                teams << team.at(0);
-
-            return teams;
-        }
-    }
-
-    return result;
+    dbWrite(&execQuerys);
 }
 
 // generate divisional game plan, use game sequence defined in constructor
@@ -273,66 +175,4 @@ QStringList QualifyingGames::generateGamePlan(QList<QList<QStringList> > *divisi
     }
 
     return querys;
-}
-
-// insert field numbers
-QStringList QualifyingGames::insertFieldNr(int gameCount, int fieldCount)
-{
-    QStringList querys;
-
-    for (int i = 1, field = 1; i <= gameCount; i++)
-    {
-        for(int x = 1, fieldHelp = field; x <= fieldCount; x++, fieldHelp++, i++)
-        {
-            querys << "UPDATE vorrunde_spielplan SET feldnummer = " + QString::number(fieldHelp) + " WHERE id = " + QString::number(i);
-            if(fieldHelp >= fieldCount)
-                fieldHelp = 0;
-        }
-
-        i--;
-
-        if(field < fieldCount)
-            field++;
-        else
-            field = 1;
-    }
-
-    return querys;
-}
-
-// insert field names
-QStringList QualifyingGames::insertFieldNames()
-{
-    QStringList querys;
-
-    for(int i = 1; i <= fieldNames->count(); i++)
-        querys << "UPDATE vorrunde_spielplan SET feldname = '" + fieldNames->at(i-1) + "' WHERE feldnummer = " + QString::number(i);
-
-    return querys;
-}
-
-// generate qualifying divisions result table
-QStringList QualifyingGames::generateResultTables(QList<QStringList> *divisionsList)
-{
-    QStringList querys;
-
-    for(int i = 0, prefix = 0; i < divisionsList->size(); i++, prefix++)
-    {
-        QStringList division = divisionsList->at(i);
-        QString group = grPrefix->at(prefix);
-
-        for(int x = 0; x < division.size(); x++)
-        {
-            QString team = division.at(x);
-            querys << "INSERT INTO vorrunde_erg_gr" + group + " VALUES(" + QString::number(x) + ",'" + team + "',0,0,0,0)";
-        }
-    }
-
-    return querys;
-}
-
-void QualifyingGames::writeToDb(QStringList *querys)
-{
-    for(int i = 0; i < querys->size(); i++)
-        db->write(querys->at(i));
 }

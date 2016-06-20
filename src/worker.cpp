@@ -1,11 +1,48 @@
 #include "worker.h"
 
+QStringList Worker::qfTablesToClear = QStringList() << "vorrunde_spielplan"
+                                                    << "vorrunde_erg_gra"
+                                                    << "vorrunde_erg_grb"
+                                                    << "vorrunde_erg_grc"
+                                                    << "vorrunde_erg_grd"
+                                                    << "vorrunde_erg_gre"
+                                                    << "vorrunde_erg_grf"
+                                                    << "vorrunde_erg_grg"
+                                                    << "vorrunde_erg_grh"
+                                                    << "vorrunde_erg_gri";
+
+QStringList Worker::itTablesToClear = QStringList() << "zwischenrunde_spielplan"
+                                                    << "zwischenrunde_erg_gra"
+                                                    << "zwischenrunde_erg_grb"
+                                                    << "zwischenrunde_erg_grc"
+                                                    << "zwischenrunde_erg_grd"
+                                                    << "zwischenrunde_erg_gre"
+                                                    << "zwischenrunde_erg_grf"
+                                                    << "zwischenrunde_erg_grg"
+                                                    << "zwischenrunde_erg_grh"
+                                                    << "zwischenrunde_erg_gri";
+
+QStringList Worker::crTablesToClear = QStringList() << "kreuzspiele_spielplan";
+
+QStringList Worker::clTablesToClear = QStringList() << "platzspiele_spielplan"
+                                                    << "platzierungen";
+
+QStringList Worker::insertRows = QStringList() << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i) VALUES(0,'','','','','','','')"
+                                               << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i) VALUES(1,'','','','','','','')"
+                                               << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i) VALUES(2,'','','','','','','')"
+                                               << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i) VALUES(3,'','','','','','','')"
+                                               << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i) VALUES(4,'','','','','','','')";
+
+QStringList Worker::grPrefix = QStringList() << "a"<< "b"<< "c"<< "d"<< "e"<< "f" << "g" << "h" << "i";
+
+QStringList Worker::headerPrefix = QStringList() << "A"<< "B"<< "C"<< "D"<< "E"<< "F" << "G" << "H" << "I";
+
+QString Worker::dbFile = QString("./resources/data.db");
+QString Worker::logFile = QString("./resources/volleyball.log");
+QString Worker::settingsFile = QString("./resources/config.ini");
+
 Worker::Worker(QObject *parent) : QObject(parent)
 {
-    dbFile = "./resources/data.db";
-    logFile = "./resources/volleyball.log";
-    settingsFile = "./resources/config.ini";
-
     // create logging
     logs = new Logging(logFile);
     connect(this, SIGNAL(log(QString)), logs, SLOT(write(QString)));
@@ -41,6 +78,12 @@ Worker::Worker(QObject *parent) : QObject(parent)
 
 void Worker::init()
 {
+    // create container to exchange data between gui and worker
+    data = new dataUi;
+
+    // set teamscount
+    teamsCount = 0;
+
     // read settings for ftp login
     QSettings settings(settingsFile, QSettings::IniFormat);
     emit logging("ftp config " + settings.value("ftpurl", "").toString() + ", "
@@ -59,24 +102,6 @@ void Worker::init()
     uploader = new QTimer(this);
     uploader->setInterval(30 * 1000);
 	connect(uploader, SIGNAL(timeout()), ftpload, SLOT(startUpload()));
-
-    // create container to exchange data between gui and worker
-    data = new dataUi;
-
-    teamsCount = 0;
-
-    // string list mit gruppenkürzel a bis i
-	logging("create group prefixes");
-    grPrefix << "a"<< "b"<< "c"<< "d"<< "e"<< "f" << "g" << "h" << "i";
-    headerPrefix << "A"<< "B"<< "C"<< "D"<< "E"<< "F" << "G" << "H" << "I";
-
-    // if team table is reset, init as default
-    insertRows
-    << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i) VALUES(0,'','','','','','','')"
-    << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i) VALUES(1,'','','','','','','')"
-    << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i) VALUES(2,'','','','','','','')"
-    << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i) VALUES(3,'','','','','','','')"
-    << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i) VALUES(4,'','','','','','','')";
 
     // create calculate results
 	logging("create calculateresults module");
@@ -326,12 +351,12 @@ void Worker::generateQualifyingGames()
 
 void Worker::clearQualifyingGames()
 {
-    qf->clearAllData();
+    qf->clearAllData(Worker::qfTablesToClear);
 }
 
 void Worker::calculateQualifyingGames()
 {
-    qf->calculateResult();
+    qf->calculateResult("vorrunde_spielplan", "vorrunde_erg_gr");
 }
 
 void Worker::recalculateQualifyingGamesTimeSchedule(QTableView *qtv, QSqlTableModel *tm)
@@ -346,7 +371,7 @@ int Worker::getQualifyingGamesCount()
 
 QStringList Worker::checkEqualDivisionResults()
 {
-    return qf->checkEqualDivisionResults();
+    return qf->checkEqualDivisionResults("vorrunde_spielplan", "vorrunde_erg_gr");
 }
 
 QString Worker::getQualifyingGamesMaxTime()

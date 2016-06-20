@@ -120,6 +120,11 @@ private:
                      int satzvr, int minsatzvr, int pauseminvr, int satzzw, int minsatzzw, int pauseminzw, int satzkr,
                      int minsatzkr, int pauseminkr, int satzpl, int minsatzpl, int zeitfinale, int pauseplehrung);
 
+    static QStringList qfTablesToClear, itTablesToClear, crTablesToClear, clTablesToClear;
+    static QStringList insertRows;
+    static QStringList grPrefix, headerPrefix;
+    static QString settingsFile, dbFile, logFile;
+
     Logging *logs;
     Database *db;
 	FTPLoader *ftpload;
@@ -132,8 +137,7 @@ private:
 
 	QTimer *uploader;
     int teamsCount;
-    QStringList grPrefix, headerPrefix, insertRows, fieldNames;
-    QString settingsFile, dbFile, logFile;
+    QStringList fieldNames;
 };
 
 #endif // WORKER_H

@@ -1,17 +1,15 @@
 #include "basegamehandling.h"
 
 // base constructor
-BaseGameHandling::BaseGameHandling(Database *db,
-                                   QStringList *grPrefix,
-                                   QStringList *fieldNames,
-                                   int fieldcount,
-                                   int teamsCount)
+BaseGameHandling::BaseGameHandling(Database *db, QStringList *grPrefix)
 {
     this->db = db;
     this->grPrefix = grPrefix;
-    this->fieldNames = fieldNames;
-    this->fieldCount = fieldcount;
-    this->teamsCount = teamsCount;
+}
+
+// base destructor
+BaseGameHandling::~BaseGameHandling()
+{
 }
 
 // clear all data
@@ -22,7 +20,7 @@ void BaseGameHandling::clearAllData(QStringList tables)
     foreach(QString table, tables)
         querys << "DELETE FROM " + table;
 
-    writeToDB(&querys);
+    dbWrite(&querys);
 }
 
 // calculate results
@@ -30,7 +28,7 @@ void BaseGameHandling::calculateResult(QString round, QString resultTableName)
 {
     emit logMessages("INFO:: calculating " + round + " results");
     QStringList execQuerys;
-    QList<QStringList> vrGameResults = db->read("SELECT spiel, ms_a, ms_b, satz1a, satz1b, satz2a, satz2b, satz3a, satz3b FROM " + round + " WHERE ms_a != '---' ORDER BY id ASC");
+    QList<QStringList> vrGameResults = dbRead("SELECT spiel, ms_a, ms_b, satz1a, satz1b, satz2a, satz2b, satz3a, satz3b FROM " + round + " WHERE ms_a != '---' ORDER BY id ASC");
     QList<CalculateResults::teamResult> teamResults = CalculateResults::addResultsVrZw(CalculateResults::calculateResults(&vrGameResults));
 
     foreach(CalculateResults::teamResult tR, teamResults)
@@ -40,13 +38,13 @@ void BaseGameHandling::calculateResult(QString round, QString resultTableName)
         {
             QString prefix = grPrefix->at(i);
 
-            if(db->read("SELECT * FROM " + resultTableName + prefix + " WHERE ms = '" + tR.teamName + "'").count() > 0)
+            if(dbRead("SELECT * FROM " + resultTableName + prefix + " WHERE ms = '" + tR.teamName + "'").count() > 0)
                 division = prefix;
         }
         execQuerys << "UPDATE " + resultTableName + division + " SET punkte=" + QString::number(tR.sets) + ", satz=" + QString::number(tR.points) + " WHERE ms = '" + tR.teamName + "'";
     }
 
-    writeToDB(&execQuerys);
+    dbWrite(&execQuerys);
 }
 
 //recalculate time schedule
@@ -68,7 +66,7 @@ void BaseGameHandling::recalculateTimeSchedule(QTableView *qtv, QSqlTableModel *
 }
 
 // insert field numbers
-QStringList BaseGameHandling::insertFieldNr(QString round, int gameCount)
+QStringList BaseGameHandling::insertFieldNr(QString round, int gameCount, int fieldCount)
 {
     QStringList querys;
 
@@ -93,12 +91,12 @@ QStringList BaseGameHandling::insertFieldNr(QString round, int gameCount)
 }
 
 // insert field names
-QStringList BaseGameHandling::insertFieldNames(QString round)
+QStringList BaseGameHandling::insertFieldNames(QString round, QStringList *fieldnames)
 {
     QStringList querys;
 
-    for(int i = 1; i <= fieldNames->count(); i++)
-        querys << "UPDATE " + round + " SET feldname = '" + fieldNames->at(i-1) + "' WHERE feldnummer = " + QString::number(i);
+    for(int i = 1; i <= fieldnames->size(); i++)
+        querys << "UPDATE " + round + " SET feldname = '" + fieldnames->at(i-1) + "' WHERE feldnummer = " + QString::number(i);
 
     return querys;
 }
@@ -132,7 +130,7 @@ QStringList BaseGameHandling::checkEqualDivisionResults(QString round, QString r
     {
         QString prefix = grPrefix->at(i);
 
-        QList<QStringList> getTeams = db->read("select distinct ms1.ms from " + resultTableName
+        QList<QStringList> getTeams = dbRead("select distinct ms1.ms from " + resultTableName
                                                    + prefix + " ms1, (select ms, satz, punkte, intern from " + resultTableName
                                                    + prefix + ") ms2 where ms1.satz = ms2.satz and  ms1.punkte = ms2.punkte and ms1.intern = ms2.intern and ms1.ms != ms2.ms");
 
@@ -166,9 +164,25 @@ QStringList BaseGameHandling::checkEqualDivisionResults(QString round, QString r
     return result;
 }
 
-// write statements to database
-void BaseGameHandling::writeToDB(QStringList *querys)
+// write to database
+void BaseGameHandling::dbWrite(QStringList *querys)
 {
     for(int i = 0; i < querys->size(); i++)
         db->write(querys->at(i));
+}
+
+QString BaseGameHandling::getPrefix(int index)
+{
+    return grPrefix->at(index);
+}
+
+int BaseGameHandling::getPrefixCount()
+{
+    return grPrefix->size();
+}
+
+// read from database
+QList<QStringList> BaseGameHandling::dbRead(QString query)
+{
+    return db->read(query);
 }
