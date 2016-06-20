@@ -38,7 +38,8 @@
 **
 ** Version 0.8  added ftp upload for db file, added read ftp config from ini file
 **
-** Version 0.9  added game plan for 45 teams
+** Version 0.9  added game plan for 45 teams, added base class basegamehandling
+**              added tables and view (vr & zw gri) to database
 **
 *********************************************************************************************/
 

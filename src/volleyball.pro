@@ -8,8 +8,7 @@ QT += core
 QT += gui
 QT += sql
 QT += network
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT += widgets
 
 TARGET = volleyball
 TEMPLATE = app
