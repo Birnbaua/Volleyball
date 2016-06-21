@@ -53,3 +53,11 @@ C:\appl\Downloads\Volleyball\builds\Debug-vbreporter\report_zwischenrunde.rdlc
 C:\appl\Downloads\Volleyball\builds\Debug-vbreporter\report_zwischenrunde_spielplan.rdlc
 C:\appl\Downloads\Volleyball\builds\Debug-vbreporter\vbtournamentreporter.exe
 C:\appl\Downloads\Volleyball\builds\Debug-vbreporter\vbtournamentreporter.pdb
+C:\appl\Downloads\Volleyball\src\reporter\obj\Debug\vbtournamentreporter.exe
+C:\appl\Downloads\Volleyball\src\reporter\obj\Debug\vbtournamentreporter.pdb
+C:\appl\Downloads\Volleyball\src\reporter\obj\Debug\vbtournamentreporter.csprojResolveAssemblyReference.cache
+C:\appl\Downloads\Volleyball\src\reporter\obj\Debug\vbtournamentreporter.Properties.Resources.resources
+C:\appl\Downloads\Volleyball\src\reporter\obj\Debug\vbtournamentreporter.reporter.resources
+C:\appl\Downloads\Volleyball\src\reporter\obj\Debug\vbtournamentreporter.csproj.GenerateResource.Cache
+C:\appl\Downloads\Volleyball\src\reporter\obj\Debug\RdlCompile.cache
+C:\appl\Downloads\Volleyball\src\reporter\obj\Debug\RdlCompile.compiled
