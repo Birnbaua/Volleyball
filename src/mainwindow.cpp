@@ -1,4 +1,4 @@
-/****************************************************************************
+/*********************************************************************************************
 **
 ** Copyright (C) 2015 cfr
 ** Description: organize volleyball tournament up to 40 teams
@@ -36,9 +36,12 @@
 **
 ** Version 0.7  split up program to gui and worker
 **
-** Version 0.8  add ftp upload for db file, add read ftp config from ini file
+** Version 0.8  added ftp upload for db file, added read ftp config from ini file
 **
-****************************************************************************/
+** Version 0.9  added game plan for 45 teams, added base class basegamehandling
+**              added tables and view (vr & zw gri) to database
+**
+*********************************************************************************************/
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -94,7 +97,7 @@ void MainWindow::init()
     colTableViewFields << "Feldnummer" << "Feldname";
 
     colTableViewTeams << "ID" << "Gruppe A" << "Gruppe B" << "Gruppe C" << "Gruppe D"
-                      << "Gruppe E" << "Gruppe F" << "Gruppe G" << "Gruppe H";
+                      << "Gruppe E" << "Gruppe F" << "Gruppe G" << "Gruppe H" << "Gruppe I";
 
     colTableViewQualifying << "ID" << "Runde" << "Spiel" << "Zeit" << "Feldnr" << "Feldname"
                            << "Mannschaft A" << "Mannschaft B" << "Schiedsgericht"
@@ -170,7 +173,7 @@ void MainWindow::init()
     clView = NULL;
 
     // set window title and icon
-    this->setWindowTitle("Volleyball Tournament Organizer v0.8");
+    this->setWindowTitle("Volleyball Tournament Organizer v0.9");
     this->setWindowIcon(QIcon("./resources/mikasa.jpg"));
 }
 
@@ -546,6 +549,7 @@ void MainWindow::updateTournamentTime()
         case 30:
         case 35:
         case 40:
+        case 45:
             addTKr += (((data->satzKr * data->minSatzKr) + data->pauseMinKr) * 60) * 12 / data->anzFelder;
             break;
     }

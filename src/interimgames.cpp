@@ -1,16 +1,9 @@
 #include "interimgames.h"
 
 InterimGames::InterimGames(Database *db, QStringList *grPrefix)
+    : BaseGameHandling(db, grPrefix)
 {
-    this->db = db;
-    this->grPrefix = grPrefix;
-
     first = true;
-
-    tablesToClear << "zwischenrunde_spielplan";
-
-    for(int i = 0; i < grPrefix->size(); i++)
-        tablesToClear << ("zwischenrunde_erg_gr" + grPrefix->at(i));
 
     // game plan for 4 teams in division
     firstFourMsDivision.append(QList<int>() << 0 << 1 << 2);
@@ -51,7 +44,6 @@ InterimGames::InterimGames(Database *db, QStringList *grPrefix)
 
 InterimGames::~InterimGames()
 {
-
 }
 
 // set vorrunde params
@@ -68,6 +60,8 @@ void InterimGames::setParameters(QString startRound, int pauseVrZw, int countSat
     this->lastGameNr = lastGameNr;
     this->lastRoundNr = lastRoundNr;
 
+    setTimeParameters(satz, min, pause);
+
     QTime time = QTime::fromString(this->startRound, "hh:mm");
     time = time.addSecs(pauseVrZw * 60);
     this->startRound = time.toString("hh:mm");
@@ -79,7 +73,9 @@ bool InterimGames::generateGames()
     QList<QStringList> divisionsList;
     QList<QList<QStringList> > divisionsGameList;
     QStringList execQuerys;
-    int gamesCount = 0;
+
+    prefixCount = getPrefixCount();
+    gamesCount = 0;
 
     divisionsList = generateNewDivisions();
 
@@ -97,96 +93,19 @@ bool InterimGames::generateGames()
     // generate game plan over all divisonal games
     execQuerys << generateGamePlan(&divisionsGameList, gamesCount, QTime::fromString(startRound), lastRoundNr, lastGameNr, satz, min, pause);
 
-    // insert field numbers and names
-    execQuerys << insertFieldNr(gamesCount, fieldCount);
-    execQuerys << insertFieldNames();
+    // insert field numbers
+    execQuerys << insertFieldNr("zwischenrunde_spielplan", gamesCount, fieldCount);
+
+    // insert field names
+    execQuerys << insertFieldNames("zwischenrunde_spielplan", fieldNames);
 
     // generate vorrunde divisions result tables
-    execQuerys << generateResultTables(&divisionsList);
+    execQuerys << generateResultTables("zwischenrunde_erg_gr", &divisionsList);
 
     // execute all statements to database
-    writeToDb(&execQuerys);
+    dbWrite(&execQuerys);
 
     return true;
-}
-
-// clear zwischenrunde
-void InterimGames::clearAllData()
-{
-    QStringList querys;
-
-    foreach(QString table, tablesToClear)
-        querys << "DELETE FROM " + table;
-
-    writeToDb(&querys);
-}
-
-// calculate result zwischenrunde
-void InterimGames::calculateResult()
-{
-    emit logMessages("INFO:: calculating zwischenrunde results");
-    QStringList execQuerys;
-    QList<QStringList> zwGameResults = db->read("SELECT spiel, ms_a, ms_b, satz1a, satz1b, satz2a, satz2b, satz3a, satz3b FROM zwischenrunde_spielplan WHERE ms_a != '---' ORDER BY id ASC");
-    QList<CalculateResults::teamResult> teamResults = CalculateResults::addResultsVrZw(CalculateResults::calculateResults(&zwGameResults));
-
-    foreach(CalculateResults::teamResult tR, teamResults)
-    {
-        QString division;
-        for(int i = 0; i < grPrefix->size(); i++)
-        {
-            if(db->read("SELECT * FROM zwischenrunde_erg_gr" + grPrefix->at(i) + " WHERE ms = '" + tR.teamName + "'").count() > 0)
-                division = grPrefix->at(i);
-        }
-        execQuerys << "UPDATE zwischenrunde_erg_gr" + division + " SET punkte=" + QString::number(tR.sets) + ", satz=" + QString::number(tR.points) + " WHERE ms = '" + tR.teamName + "'";
-    }
-
-    writeToDb(&execQuerys);
-}
-
-// recalculate time schedule
-void InterimGames::recalculateTimeSchedule(QTableView *qtv, QSqlTableModel *model)
-{
-    QTime zeit = qtv->currentIndex().data().toTime();
-    int addzeit = ((satz * min) + pause)* 60;
-    int runde = model->data(model->index(qtv->currentIndex().row(), 1)).toInt();
-
-    for(int i = qtv->currentIndex().row(); i <= model->rowCount(); i++)
-    {
-        if(runde != model->data(model->index(i, 1)).toInt())
-        {
-            zeit = zeit.addSecs(addzeit);
-            runde++;
-        }
-        model->setData(model->index(i, 3), zeit.toString("hh:mm"));
-    }
-}
-
-QStringList InterimGames::checkEqualDivisionResults()
-{
-    for(int i = 0; i < grPrefix->size(); i++)
-    {
-        QList<QStringList> result = db->read("select distinct ms1.ms from zwischenrunde_erg_gr" + grPrefix->at(i)
-                                             + " ms1, (select ms, satz, punkte, intern from zwischenrunde_erg_gr" + grPrefix->at(i)
-                                             + ") ms2 where ms1.satz = ms2.satz and  ms1.punkte = ms2.punkte and ms1.intern = ms2.intern and ms1.ms != ms2.ms");
-        if(result.count() == 2)
-        {
-            QStringList team1 = result.at(0);
-            QStringList team2 = result.at(1);
-            QString gamenr = db->read("SELECT spiel from zwischenrunde_spielplan where ms_a = '" + team1.at(0) + "' and ms_b = '" + team2.at(0) + "' or ms_a = '" + team2.at(0) + "' and ms_b = '" + team1.at(0)+ "'").at(0).at(0);
-            return QStringList() << "0" << gamenr << team1.at(0) << team2.at(0);
-        }
-        else if(result.count() > 2)
-        {
-            QStringList teams;
-
-            teams << "1";
-            foreach(QStringList team, result)
-                teams << team.at(0);
-
-            return teams;
-        }
-    }
-    return QStringList();
 }
 
 // sort qlist<qstringlist>
@@ -279,8 +198,8 @@ QList<QStringList> InterimGames::generateNewDivisions()
     QList<QStringList> newDivisionsZw;
 
     // read divisional rank results and add to list
-    for(int i = 0; i < grPrefix->size(); i++)
-        resultDivisionsVr.append(db->read("select ms, punkte, satz, intern, extern from vorrunde_erg_gr" + grPrefix->at(i) + " order by punkte desc, satz desc, intern asc"));
+    for(int i = 0; i < prefixCount; i++)
+        resultDivisionsVr.append(dbRead("select ms, punkte, satz, intern, extern from vorrunde_erg_gr" + getPrefix(i) + " order by punkte desc, satz desc, intern asc"));
 
     divisionsFirst = getDivisionsClassement(&resultDivisionsVr, 1);
     divisionsSecond = getDivisionsClassement(&resultDivisionsVr, 2);
@@ -631,6 +550,102 @@ QList<QStringList> InterimGames::generateNewDivisions()
                                     << divisionsFifthNames.at(5)
                                     << divisionsFifthNames.at(7));
             break;
+        case 45:
+            // make ranking of all divisions second teams
+            sortList(&divisionsSecond);
+
+            if(checkListDoubleResults(&divisionsSecond))
+                return QList<QStringList>();
+
+            // make ranking of all divisions third teams
+            sortList(&divisionsThird);
+
+            if(checkListDoubleResults(&divisionsThird))
+                return QList<QStringList>();
+
+            // make ranking of all divisions fourth teams
+            sortList(&divisionsFourth);
+
+            if(checkListDoubleResults(&divisionsFourth))
+                return QList<QStringList>();
+
+            // make ranking of all divisions fifth teams
+            sortList(&divisionsFifth);
+
+            if(checkListDoubleResults(&divisionsFifth))
+                return QList<QStringList>();
+
+            // get team names from divisions
+            divisionsFirstNames = getTeamList(&divisionsFirst);
+            divisionsSecondNames = getTeamList(&divisionsSecond);
+            divisionsThirdNames = getTeamList(&divisionsThird);
+            divisionsFourthNames = getTeamList(&divisionsFourth);
+            divisionsFifthNames = getTeamList(&divisionsFifth);
+
+            // create divisions with max 5 teams from helpList(can contain teams up to 5)
+            newDivisionsZw.append(QStringList()
+                                    << divisionsFirstNames.at(0)
+                                    << divisionsFirstNames.at(1)
+                                    << divisionsFirstNames.at(2)
+                                    << divisionsFirstNames.at(3)
+                                    << divisionsFirstNames.at(4));
+
+            newDivisionsZw.append(QStringList()
+                                    << divisionsFirstNames.at(5)
+                                    << divisionsFirstNames.at(6)
+                                    << divisionsFirstNames.at(7)
+                                    << divisionsFirstNames.at(8)
+                                    << divisionsSecondNames.at(0));
+
+            newDivisionsZw.append(QStringList()
+                                    << divisionsSecondNames.at(1)
+                                    << divisionsSecondNames.at(2)
+                                    << divisionsSecondNames.at(3)
+                                    << divisionsSecondNames.at(4)
+                                    << divisionsThirdNames.at(0));
+
+            newDivisionsZw.append(QStringList()
+                                    << divisionsSecondNames.at(5)
+                                    << divisionsSecondNames.at(6)
+                                    << divisionsSecondNames.at(7)
+                                    << divisionsSecondNames.at(8)
+                                    << divisionsThirdNames.at(1));
+
+            newDivisionsZw.append(QStringList()
+                                    << divisionsThirdNames.at(2)
+                                    << divisionsThirdNames.at(4)
+                                    << divisionsThirdNames.at(6)
+                                    << divisionsThirdNames.at(8)
+                                    << divisionsFourthNames.at(0));
+
+            newDivisionsZw.append(QStringList()
+                                    << divisionsThirdNames.at(3)
+                                    << divisionsThirdNames.at(5)
+                                    << divisionsThirdNames.at(7)
+                                    << divisionsFourthNames.at(1)
+                                    << divisionsFourthNames.at(2));
+
+            newDivisionsZw.append(QStringList()
+                                    << divisionsFourthNames.at(4)
+                                    << divisionsFourthNames.at(6)
+                                    << divisionsFourthNames.at(8)
+                                    << divisionsFifthNames.at(0)
+                                    << divisionsFifthNames.at(2));
+
+            newDivisionsZw.append(QStringList()
+                                    << divisionsFourthNames.at(3)
+                                    << divisionsFourthNames.at(5)
+                                    << divisionsFourthNames.at(7)
+                                    << divisionsFifthNames.at(1)
+                                    << divisionsFifthNames.at(3));
+
+            newDivisionsZw.append(QStringList()
+                                    << divisionsFifthNames.at(4)
+                                    << divisionsFifthNames.at(5)
+                                    << divisionsFifthNames.at(6)
+                                    << divisionsFifthNames.at(7)
+                                    << divisionsFifthNames.at(8));
+            break;
         default: logMessages("ZWISCHENRUNDE_ERROR:: team count not correct");
     }
 
@@ -713,67 +728,4 @@ QStringList InterimGames::generateGamePlan(QList<QList<QStringList> > *divisions
     }
 
     return querys;
-}
-
-// insert field numbers
-QStringList InterimGames::insertFieldNr(int gameCount, int fieldCount)
-{
-    QStringList querys;
-
-    for (int i = 1, field = 1; i <= gameCount; i++)
-    {
-        for(int x = 1, fieldHelp = field; x <= fieldCount; x++, fieldHelp++, i++)
-        {
-            querys << "UPDATE zwischenrunde_spielplan SET feldnummer = " + QString::number(fieldHelp) + " WHERE id = " + QString::number(i);
-            if(fieldHelp >= fieldCount)
-                fieldHelp = 0;
-        }
-
-        i--;
-
-        if(field < fieldCount)
-            field++;
-        else
-            field = 1;
-    }
-
-    return querys;
-}
-
-// insert field names
-QStringList InterimGames::insertFieldNames()
-{
-    QStringList querys;
-
-    for(int i = 1; i <= fieldNames->count(); i++)
-        querys << "UPDATE zwischenrunde_spielplan SET feldname = '" + fieldNames->at(i-1) + "' WHERE feldnummer = " + QString::number(i);
-
-    return querys;
-}
-
-// generate qualifying divisions result table
-QStringList InterimGames::generateResultTables(QList<QStringList> *divisionsList)
-{
-    QStringList querys;
-
-    for(int i = 0, prefix = 0; i < divisionsList->size(); i++, prefix++)
-    {
-        QStringList division = divisionsList->at(i);
-        QString group = grPrefix->at(prefix);
-
-        for(int x = 0; x < division.size(); x++)
-        {
-            QString team = division.at(x);
-            querys << "INSERT INTO zwischenrunde_erg_gr" + group + " VALUES(" + QString::number(x) + ",'" + team + "',0,0,0,0)";
-            x++;
-        }
-    }
-
-    return querys;
-}
-
-void InterimGames::writeToDb(QStringList *querys)
-{
-    for(int i = 0; i < querys->size(); i++)
-        db->write(querys->at(i));
 }

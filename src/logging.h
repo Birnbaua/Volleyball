@@ -1,19 +1,3 @@
-/****************************************************************************
-**
-** Copyright (C) 2015 cfr
-** Description: adds log support, write to file
-** Contact:
-** Version: 0.4
-**
-** Version 0.1  write logs to database table
-** Version 0.2  add file log support, add timestamp
-** Version 0.3  use destructor to close file if logtyp = file
-**              little code updates
-** Version 0.4  fixed timestamp day and year result,
-**              fixed write logstring immediately to file with flush
-**
-****************************************************************************/
-
 #ifndef LOGGING_H
 #define LOGGING_H
 

@@ -1,14 +1,3 @@
-/****************************************************************************
-**
-** Copyright (C) 2015 cfr
-** Description: adds ftp support, write file to ftp
-** Contact:
-** Version: 0.1
-**
-** Version 0.1  write file to ftp
-**
-****************************************************************************/
-
 #ifndef FTPLOADER_H
 #define FTPLOADER_H
 

@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_9">
+  <layout class="QGridLayout" name="gridLayout_10">
    <item row="0" column="0">
     <widget class="QGroupBox" name="groupBoxA">
      <property name="title">
@@ -113,6 +113,18 @@
      <layout class="QGridLayout" name="gridLayout_8">
       <item row="0" column="0">
        <widget class="QTableView" name="tableViewH"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QGroupBox" name="groupBoxI">
+     <property name="title">
+      <string>Gruppe I</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_9">
+      <item row="0" column="0">
+       <widget class="QTableView" name="tableViewI"/>
       </item>
      </layout>
     </widget>

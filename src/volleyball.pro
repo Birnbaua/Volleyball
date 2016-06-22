@@ -8,8 +8,7 @@ QT += core
 QT += gui
 QT += sql
 QT += network
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT += widgets
 
 TARGET = volleyball
 TEMPLATE = app
@@ -27,7 +26,8 @@ SOURCES += main.cpp\
     interimgames.cpp \
     crossgames.cpp \
     classementgames.cpp \
-    viewclassementresults.cpp
+    viewclassementresults.cpp \
+    basegamehandling.cpp
 
 HEADERS  += mainwindow.h \
     database.h \
@@ -41,7 +41,8 @@ HEADERS  += mainwindow.h \
     interimgames.h \
     crossgames.h \
     classementgames.h \
-    viewclassementresults.h
+    viewclassementresults.h \
+    basegamehandling.h
 
 FORMS    += mainwindow.ui \
     viewdivisionresults.ui \
