@@ -26,34 +26,39 @@ add button function to show platzierungen_view => show new window to show result
 catch button click generate if round was already generated
 
 ###Version 0.4
-- add: game plan for 35 teams,
-- add: key events to itemdelegates, handle copy and paste, return esc keys, 
-- add: icons to widgets
+add/change
+- game plan for 35 teams,
+- key events to itemdelegates, handle copy and paste, return esc keys
+- icons to widgets
 
-- fix: recalculate time event
+fix
+- recalculate time event
 
-          
 ###Version 0.3
-*fixed commit bug for sqltablemodels => dont use removecolumn
-*instead tableview => hidecolumn
-*add widget to show results and game plan => use view_division_results in view_all_results,
-*fixed tableview input and column numbers,
-*fixed generate zwischenrunde_spielplan
-*fixed insert fieldnumbers and fieldnames
-*add time calculation for whole tournament
+add/change
+- widget to show results and game plan => use view_division_results in view_all_results
+- add time calculation for whole tournament
+
+fix
+- commit bug for sqltablemodels => dont use removecolumn instead tableview => hidecolumn
+- fixed tableview input and column numbers
+- fixed generate zwischenrunde_spielplan
+- fixed insert fieldnumbers and fieldnames
 
 ###Version 0.2
-*remastered system
-*removed web views
-*use sqlite for datastorage
+add/change
+- remastered system
+- removed web views
+- use sqlite instead of postgres for datastorage
 
 ###Version 0.1
-*implemented game plan system
-*tournament setup (time, sets, ...)
-*add calculations
-*add web views
-*add postgresql database
-*add reports
+add/change
+- implemented game plan system
+- tournament setup (time, sets, ...)
+- calculations
+- web views
+- postgresql database
+- reports
 
 ##Copyright
 Copyright(C) 2015 cfr
