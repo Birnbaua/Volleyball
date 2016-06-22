@@ -1,5 +1,5 @@
 # Volleyball
-organize volleyball tournaments up to 45 teams
+organize volleyball tournaments up to 45 teams, Copyright(C) 2015 cfr
 
 ###Version 0.9  
 add/change
@@ -68,6 +68,3 @@ add/change
 - web views
 - postgresql database
 - reports
-
-##Copyright
-Copyright(C) 2015 cfr
