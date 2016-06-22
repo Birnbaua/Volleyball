@@ -1,6 +1,10 @@
 # Volleyball
 organize volleyball tournaments up to 45 teams, Copyright(C) 2015 cfr
 
+###Version 10
+add/change
+- make stringlists (table column names) static 
+
 ###Version 9  
 add/change
 - game plan for 45 teams
