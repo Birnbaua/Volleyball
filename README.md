@@ -1,22 +1,22 @@
 # Volleyball
 organize volleyball tournaments up to 45 teams, Copyright(C) 2015 cfr
 
-###Version 0.9  
+###Version 9  
 add/change
 - game plan for 45 teams
 - base class basegamehandling for all rounds (qualifying, interim, crossgames, classement)
 - tables and view (vr & zw gri) to database
 
-###Version 0.8
+###Version 8
 add/change
 - ftp upload for db file
 - read ftp config from ini file
 
-###Version 0.7
+###Version 7
 add/change
 - split up program to gui and worker
 
-###Version 0.6
+###Version 6
 add/change
 - rebuild ergebnisse widget
 - uses now editable sqltablemodel for tickets to solve internal and external double team results
@@ -25,7 +25,7 @@ add/change
 fix
 - kreuzspiel gametime to start time platzspiele
 
-###Version 0.5
+###Version 5
 add/change
 - game plan for 40 teams
 - button function to show platzierungen_view => show new window to show results
@@ -34,7 +34,7 @@ fix
 - checkequalresults in vorrunde and zwischenrunde, handling for two or more equal teams
 - catch button click generate if round was already generated
 
-###Version 0.4
+###Version 4
 add/change
 - game plan for 35 teams,
 - key events to itemdelegates, handle copy and paste, return esc keys
@@ -43,7 +43,7 @@ add/change
 fix
 - recalculate time event
 
-###Version 0.3
+###Version 3
 add/change
 - widget to show results and game plan => use view_division_results in view_all_results
 - add time calculation for whole tournament
@@ -54,13 +54,13 @@ fix
 - fixed generate zwischenrunde_spielplan
 - fixed insert fieldnumbers and fieldnames
 
-###Version 0.2
+###Version 2
 add/change
 - remastered system
 - removed web views
 - use sqlite instead of postgres for datastorage
 
-###Version 0.1
+###Version 1
 add/change
 - implemented game plan system
 - tournament setup (time, sets, ...)
