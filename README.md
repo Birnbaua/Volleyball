@@ -26,10 +26,11 @@ add button function to show platzierungen_view => show new window to show result
 catch button click generate if round was already generated
 
 ###Version 0.4
-add: game plan for 35 teams,
-     key events to itemdelegates, handle copy and paste, return esc keys, 
-     icons to widgets
-fix: recalculate time event
+-add: game plan for 35 teams,
+-add: key events to itemdelegates, handle copy and paste, return esc keys, 
+-add: icons to widgets
+
+-fix: recalculate time event
 
           
 ###Version 0.3
