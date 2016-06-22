@@ -128,7 +128,7 @@ void MainWindow::init()
     clView = NULL;
 
     // set window title and icon
-    this->setWindowTitle("Volleyball Tournament Organizer v0.9");
+    this->setWindowTitle("Volleyball Tournament Organizer v9");
     this->setWindowIcon(QIcon("./resources/mikasa.jpg"));
 }
 
