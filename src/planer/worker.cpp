@@ -376,7 +376,7 @@ QStringList Worker::checkEqualDivisionResults()
 
 QString Worker::getQualifyingGamesMaxTime()
 {
-    return db->read("SELECT MAX(zeit) FROM platzspiele_spielplan ORDER BY id").at(0).at(0);
+    return db->read("SELECT MAX(zeit) FROM vorrunde_spielplan ORDER BY id").at(0).at(0);
 }
 
 // ****************************************************************************************************
@@ -417,7 +417,7 @@ int Worker::getInterimGamesCount()
 
 QString Worker::getInterimGamesMaxTime()
 {
-    return db->read("SELECT MAX(zeit) FROM kreuzspiele_spielplan ORDER BY id").at(0).at(0);
+    return db->read("SELECT MAX(zeit) FROM zwischenrunde_spielplan ORDER BY id").at(0).at(0);
 }
 
 // ****************************************************************************************************
@@ -454,7 +454,7 @@ int Worker::getCrossGamesCount()
 
 QString Worker::getCrossGamesMaxTime()
 {
-    return db->read("SELECT MAX(zeit) FROM zwischenrunde_spielplan ORDER BY id").at(0).at(0);
+    return db->read("SELECT MAX(zeit) FROM kreuzspiele_spielplan ORDER BY id").at(0).at(0);
 }
 
 // ****************************************************************************************************
@@ -496,6 +496,6 @@ void Worker::getFinalClassement()
 
 QString Worker::getClassementGamesMaxTime()
 {
-    return db->read("SELECT MAX(zeit) FROM vorrunde_spielplan ORDER BY id").at(0).at(0);
+    return db->read("SELECT MAX(zeit) FROM platzspiele_spielplan ORDER BY id").at(0).at(0);
 }
 

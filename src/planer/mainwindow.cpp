@@ -117,6 +117,8 @@ void MainWindow::init()
     connect(idClassement, SIGNAL(ctrlCopyKeyEvent()), this, SLOT(copyPlTableView()));
     connect(idClassement, SIGNAL(ctrlPasteKeyEvent()), this, SLOT(pastePLTableView()));
 
+    viewClassementResults = NULL;
+
     // create clipboard management
     clipboard = QApplication::clipboard();
 
@@ -132,7 +134,7 @@ void MainWindow::init()
     clView = NULL;
 
     // set window title and icon
-    this->setWindowTitle("Volleyball Tournament Organizer v9");
+    this->setWindowTitle("Volleyball Tournament Organizer v10");
     this->setWindowIcon(QIcon("./resources/mikasa.jpg"));
 }
 
@@ -1119,7 +1121,7 @@ void MainWindow::on_pushButtonPlPrint_clicked()
 
 void MainWindow::on_pushButtonPlResult_clicked()
 {
-    if(viewClassementResults != 0)
+    if(viewClassementResults != NULL)
         viewClassementResults->clear();
 
     worker->getFinalClassement();

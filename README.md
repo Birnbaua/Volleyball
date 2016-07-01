@@ -5,6 +5,10 @@ organize volleyball tournaments up to 45 teams, Copyright(C) 2015 cfr
 add/change
 - make stringlists (table column names) static 
 
+fix
+- classement window crash, no instance at beginning
+- time calculation for tournament end, wrong tables selected for getmaxtime...
+
 ###Version 9  
 add/change
 - game plan for 45 teams
