@@ -109,15 +109,21 @@ private:
     Worker *worker;
     Worker::dataUi *data;
     QClipboard *clipboard;
-    ViewDivisionResults *qfView, *imView;
-    ViewClassementResults *clView;
-    QList<QSqlTableModel*> viewQualifyingModels, viewIntermModels;
-    QSqlTableModel *tmFields, *tmTeams, *tmVr, *tmZw, *tmKr, *tmPl, *tmPlatz, *viewClassementResults;
-    ItemDelegates *idQualifyingGames, *idInterimGames, *idCrossGames, *idClassement;
-    QStringList colTableViewFields, colTableViewTeams, colTableViewQualifying, colTalbeViewDivisionResults, colTableViewClassement, *grPrefix, *headerPrefix;
-    bool msChanged, configChanged, vrChanged, zwChanged, krChanged, plChanged;
     QIcon windowIcon;
     QTimer *timerUpdateTournamentTime;
+
+    static QStringList colTableViewFields, colTableViewTeams, colTableViewQualifying, colTalbeViewDivisionResults, colTableViewClassement;
+
+    ViewDivisionResults *qfView, *imView;
+    ViewClassementResults *clView;
+
+    QList<QSqlTableModel*> viewQualifyingModels, viewIntermModels;
+    QSqlTableModel *tmFields, *tmTeams, *tmVr, *tmZw, *tmKr, *tmPl, *tmPlatz, *viewClassementResults;
+
+    ItemDelegates *idQualifyingGames, *idInterimGames, *idCrossGames, *idClassement;
+
+    QStringList *grPrefix, *headerPrefix;
+    bool msChanged, configChanged, vrChanged, zwChanged, krChanged, plChanged;
 };
 
 #endif // MAINWINDOW_H
