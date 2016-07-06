@@ -47,3 +47,6 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui \
     viewdivisionresults.ui \
     viewclassementresults.ui
+
+DISTFILES += \
+    ../../README.md

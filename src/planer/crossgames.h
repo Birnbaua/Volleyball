@@ -14,9 +14,6 @@ public:
 
     void generateCrossGames();
 
-signals:
-    void logMessages(QString);
-
 private:
     QStringList getDivisionTeamNames(const QList<QStringList> *list);
     QStringList generateGamePlan(QTime startRound);

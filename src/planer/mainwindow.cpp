@@ -1,6 +1,25 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+QStringList MainWindow::colTableViewFields = QStringList() << "Feldnummer" << "Feldname";
+
+QStringList MainWindow::colTableViewTeams = QStringList() << "ID"
+                                  << "Gruppe A" << "Gruppe B" << "Gruppe C"
+                                  << "Gruppe D" << "Gruppe E" << "Gruppe F"
+                                  << "Gruppe G" << "Gruppe H" << "Gruppe I";
+
+QStringList MainWindow::colTableViewQualifying = QStringList() << "ID" << "Runde" << "Spiel" << "Zeit" << "Feldnr" << "Feldname"
+                                       << "Mannschaft A" << "Mannschaft B" << "Schiedsgericht"
+                                       << "Satz 1 A" << "Satz 1 B"
+                                       << "Satz 2 A" << "Satz 2 B"
+                                       << "Satz 3 A" << "Satz 3 B";
+
+QStringList MainWindow::colTalbeViewDivisionResults = QStringList() << "ID" << "Mannschaft"
+                                            << "Satzpunkte" << "Spielpunkte"
+                                            << "int. W" << "ext. W";
+
+QStringList MainWindow::colTableViewClassement = QStringList() << "Platz" << "Mannschaft";
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -49,21 +68,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::init()
 {
-    colTableViewFields << "Feldnummer" << "Feldname";
-
-    colTableViewTeams << "ID" << "Gruppe A" << "Gruppe B" << "Gruppe C" << "Gruppe D"
-                      << "Gruppe E" << "Gruppe F" << "Gruppe G" << "Gruppe H" << "Gruppe I";
-
-    colTableViewQualifying << "ID" << "Runde" << "Spiel" << "Zeit" << "Feldnr" << "Feldname"
-                           << "Mannschaft A" << "Mannschaft B" << "Schiedsgericht"
-                           << "Satz 1 A" << "Satz 1 B" << "Satz 2 A" << "Satz 2 B"
-                           << "Satz 3 A" << "Satz 3 B";
-
-    colTalbeViewDivisionResults << "ID" << "Mannschaft" << "Satzpunkte" << "Spielpunkte"
-                                  << "int. W" << "ext. W";
-
-    colTableViewClassement << "Platz" << "Mannschaft";
-
     // create container for data exchange between gui and worker
     data = new Worker::dataUi;
 
@@ -113,6 +117,8 @@ void MainWindow::init()
     connect(idClassement, SIGNAL(ctrlCopyKeyEvent()), this, SLOT(copyPlTableView()));
     connect(idClassement, SIGNAL(ctrlPasteKeyEvent()), this, SLOT(pastePLTableView()));
 
+    viewClassementResults = NULL;
+
     // create clipboard management
     clipboard = QApplication::clipboard();
 
@@ -128,7 +134,7 @@ void MainWindow::init()
     clView = NULL;
 
     // set window title and icon
-    this->setWindowTitle("Volleyball Tournament Organizer v9");
+    this->setWindowTitle("Volleyball Tournament Organizer v10");
     this->setWindowIcon(QIcon("./resources/mikasa.jpg"));
 }
 
@@ -1115,7 +1121,7 @@ void MainWindow::on_pushButtonPlPrint_clicked()
 
 void MainWindow::on_pushButtonPlResult_clicked()
 {
-    if(viewClassementResults != 0)
+    if(viewClassementResults != NULL)
         viewClassementResults->clear();
 
     worker->getFinalClassement();
