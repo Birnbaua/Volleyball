@@ -1,9 +1,9 @@
-#include "viewdivisionresults.h"
-#include "ui_viewdivisionresults.h"
+#include "viewdivisions.h"
+#include "ui_viewdivisions.h"
 
-ViewDivisionResults::ViewDivisionResults(QString name, QList<QSqlTableModel*> *tmList, QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::ViewDivisionResults)
+ViewDivisions::ViewDivisions(QString windowTitle, QList<QSqlTableModel*> *tmList, QIcon appIcon, QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::ViewDivisions)
 {
     ui->setupUi(this);
 
@@ -25,14 +25,11 @@ ViewDivisionResults::ViewDivisionResults(QString name, QList<QSqlTableModel*> *t
         tvList.at(i)->hideColumn(0);
     }
 
-    this->setWindowTitle(name);
-    this->setWindowIcon(QIcon("./resources/mikasa.jpg"));
-
-    tmList->clear();
+    this->setWindowTitle(windowTitle);
+    this->setWindowIcon(appIcon);
 }
 
-ViewDivisionResults::~ViewDivisionResults()
+ViewDivisions::~ViewDivisions()
 {
-    //tvList.clear();
     delete ui;
 }

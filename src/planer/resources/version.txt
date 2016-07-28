@@ -1,6 +1,14 @@
 # Volleyball
 organize volleyball tournaments up to 45 teams, Copyright(C) 2010 - 2016, cfr
 
+###Version 11
+add/change
+- define static windowtitle
+- make about info dialog app modal
+- classement widget window to dialog app modal
+- divisions widget window to dialog app modal
+- set global app icon
+
 ###Version 10
 add/change
 - make stringlists (table column names) static 

@@ -8,8 +8,9 @@
 
 #include "worker.h"
 #include "itemdelegates.h"
-#include "viewdivisionresults.h"
-#include "viewclassementresults.h"
+#include "viewdivisions.h"
+#include "viewclassement.h"
+#include "about.h"
 
 namespace Ui {
 class MainWindow;
@@ -91,8 +92,12 @@ private slots:
     void plValueChanged();
     void plValueChangedFinishEdit();
 
+    void on_actionBeenden_triggered();
+    void on_actionAbout_triggered();
+
 private:
     void init();
+    void setViews();
     QList<QVariant> returnTime();
     void initTableViewFields();
     void initTableViewTeams();
@@ -109,13 +114,15 @@ private:
     Worker *worker;
     Worker::dataUi *data;
     QClipboard *clipboard;
-    QIcon windowIcon;
+    QIcon appIcon;
     QTimer *timerUpdateTournamentTime;
 
     static QStringList colTableViewFields, colTableViewTeams, colTableViewQualifying, colTalbeViewDivisionResults, colTableViewClassement;
+    static QString windowTitleVersion, versionFileName;
 
-    ViewDivisionResults *qfView, *imView;
-    ViewClassementResults *clView;
+    ViewDivisions *qfView, *imView;
+    ViewClassement *clView;
+    About *abView;
 
     QList<QSqlTableModel*> viewQualifyingModels, viewIntermModels;
     QSqlTableModel *tmFields, *tmTeams, *tmVr, *tmZw, *tmKr, *tmPl, *tmPlatz, *viewClassementResults;
@@ -123,6 +130,7 @@ private:
     ItemDelegates *idQualifyingGames, *idInterimGames, *idCrossGames, *idClassement;
 
     QStringList *grPrefix, *headerPrefix;
+
     bool msChanged, configChanged, vrChanged, zwChanged, krChanged, plChanged;
 };
 
