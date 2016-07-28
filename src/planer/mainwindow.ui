@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>762</width>
+    <width>933</width>
     <height>869</height>
    </rect>
   </property>
@@ -24,172 +24,15 @@
        <attribute name="title">
         <string>Mannschaften/Zeitplanung</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_22">
-        <item row="1" column="0">
-         <layout class="QGridLayout" name="gridLayout_10">
-          <item row="0" column="1">
-           <widget class="QGroupBox" name="groupBox_zwischenrunde_2">
-            <property name="title">
-             <string>Zeitplanung Zwischenrunde</string>
-            </property>
-            <layout class="QGridLayout" name="gridLayout_23">
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_satz_zw_2">
-               <property name="text">
-                <string>Sätze</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QSpinBox" name="spinBoxSatzZw">
-               <property name="maximumSize">
-                <size>
-                 <width>50</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="minimum">
-                <number>1</number>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_min_pro_satz_zw_2">
-               <property name="text">
-                <string>Minuten pro Satz</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QSpinBox" name="spinBoxMinProSatzZw">
-               <property name="maximumSize">
-                <size>
-                 <width>50</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="minimum">
-                <number>1</number>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="label_pause_min_zw_2">
-               <property name="text">
-                <string>Pause (min) zw. den Runden</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="1">
-              <widget class="QSpinBox" name="spinBoxPauseMinZw">
-               <property name="maximumSize">
-                <size>
-                 <width>50</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QGroupBox" name="groupBox_vorrunde_2">
-            <property name="title">
-             <string>Zeitplanung Vorrunde</string>
-            </property>
-            <layout class="QGridLayout" name="gridLayout_24">
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_satz_vr_2">
-               <property name="text">
-                <string>Sätze</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QSpinBox" name="spinBoxSatzVr">
-               <property name="maximumSize">
-                <size>
-                 <width>50</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="minimum">
-                <number>1</number>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_min_pro_satz_vr_2">
-               <property name="text">
-                <string>Minuten pro Satz</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QSpinBox" name="spinBoxMinProSatzVr">
-               <property name="maximumSize">
-                <size>
-                 <width>50</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="minimum">
-                <number>1</number>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="label_pause_min_vr_2">
-               <property name="text">
-                <string>Pause (min) zw. den Runden</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="1">
-              <widget class="QSpinBox" name="spinBoxPauseMinVr">
-               <property name="maximumSize">
-                <size>
-                 <width>50</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-         </layout>
-        </item>
+       <layout class="QGridLayout" name="gridLayout_3">
         <item row="0" column="0">
-         <layout class="QGridLayout" name="gridLayout_25">
+         <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="0">
            <widget class="QGroupBox" name="groupBox_turnier_2">
             <property name="title">
              <string>Turnierstart und Pausenzeit</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_26">
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_pause_vr_zw_2">
-               <property name="text">
-                <string>Pause zw. Vor- und Zwischenrunde</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_turnierstart_2">
-               <property name="text">
-                <string>Start Turnier (hh:mm)</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="label_pause_zw_kr_3">
-               <property name="text">
-                <string>Pause zw. Zwischenrunde und Kreuzspiele</string>
-               </property>
-              </widget>
-             </item>
              <item row="2" column="2">
               <widget class="QSpinBox" name="spinBoxPauseZwKr">
                <property name="maximumSize">
@@ -217,6 +60,13 @@
                </property>
               </widget>
              </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_pause_zw_kr_3">
+               <property name="text">
+                <string>Pause zw. Zwischenrunde und Kreuzspiele</string>
+               </property>
+              </widget>
+             </item>
              <item row="3" column="2">
               <widget class="QSpinBox" name="spinBoxPauseKrPl">
                <property name="maximumSize">
@@ -234,36 +84,347 @@
                </property>
               </widget>
              </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_pause_vr_zw_2">
+               <property name="text">
+                <string>Pause zw. Vor- und Zwischenrunde</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_turnierstart_2">
+               <property name="text">
+                <string>Start Turnier (hh:mm)</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <spacer name="horizontalSpacer_2">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
             </layout>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="QGroupBox" name="groupBox_konfiguration_2">
-            <property name="title">
-             <string>erweiterte Konfiguration</string>
-            </property>
-            <layout class="QGridLayout" name="gridLayout_27">
-             <item row="0" column="0" rowspan="5">
-              <widget class="QTableView" name="tableViewFields">
-               <property name="alternatingRowColors">
-                <bool>true</bool>
-               </property>
-               <property name="selectionMode">
-                <enum>QAbstractItemView::SingleSelection</enum>
-               </property>
-               <attribute name="horizontalHeaderStretchLastSection">
-                <bool>true</bool>
-               </attribute>
-               <attribute name="verticalHeaderVisible">
-                <bool>false</bool>
-               </attribute>
-               <attribute name="verticalHeaderStretchLastSection">
-                <bool>true</bool>
-               </attribute>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <layout class="QGridLayout" name="gridLayout_28">
+          <item row="1" column="0">
+           <layout class="QGridLayout" name="gridLayout_10">
+            <item row="0" column="1">
+             <widget class="QGroupBox" name="groupBox_zwischenrunde_2">
+              <property name="title">
+               <string>Zeitplanung Zwischenrunde</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_23">
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_satz_zw_2">
+                 <property name="text">
+                  <string>Sätze</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QSpinBox" name="spinBoxSatzZw">
+                 <property name="maximumSize">
+                  <size>
+                   <width>50</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_min_pro_satz_zw_2">
+                 <property name="text">
+                  <string>Minuten pro Satz</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QSpinBox" name="spinBoxMinProSatzZw">
+                 <property name="maximumSize">
+                  <size>
+                   <width>50</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="label_pause_min_zw_2">
+                 <property name="text">
+                  <string>Pause (min) zw. den Runden</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QSpinBox" name="spinBoxPauseMinZw">
+                 <property name="maximumSize">
+                  <size>
+                   <width>50</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QGroupBox" name="groupBox_vorrunde_2">
+              <property name="title">
+               <string>Zeitplanung Vorrunde</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_24">
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_satz_vr_2">
+                 <property name="text">
+                  <string>Sätze</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QSpinBox" name="spinBoxSatzVr">
+                 <property name="maximumSize">
+                  <size>
+                   <width>50</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_min_pro_satz_vr_2">
+                 <property name="text">
+                  <string>Minuten pro Satz</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QSpinBox" name="spinBoxMinProSatzVr">
+                 <property name="maximumSize">
+                  <size>
+                   <width>50</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="label_pause_min_vr_2">
+                 <property name="text">
+                  <string>Pause (min) zw. den Runden</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QSpinBox" name="spinBoxPauseMinVr">
+                 <property name="maximumSize">
+                  <size>
+                   <width>50</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="2" column="0">
+           <layout class="QGridLayout" name="gridLayout_30">
+            <item row="0" column="1">
+             <widget class="QGroupBox" name="groupBox_platzspiele_finale_2">
+              <property name="title">
+               <string>Zeitplan Platzierungsspiele und Finale</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_31">
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_pause_zw_kr_4">
+                 <property name="text">
+                  <string>geschätzte Platzierungsspielzeit pro Satz (min)</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QSpinBox" name="spinBoxMinProSatzPl">
+                 <property name="maximumSize">
+                  <size>
+                   <width>50</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QSpinBox" name="spinBoxSatzPl">
+                 <property name="maximumSize">
+                  <size>
+                   <width>50</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_satz_pl_2">
+                 <property name="text">
+                  <string>Sätze</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QSpinBox" name="spinBoxZeitFinale">
+                 <property name="maximumSize">
+                  <size>
+                   <width>50</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="label_pause_kr_pl_4">
+                 <property name="text">
+                  <string>geschätzte Spielzeit Finale (min)</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0">
+                <widget class="QLabel" name="label_zeit_pause_nach_finale_siegerehrung_2">
+                 <property name="text">
+                  <string>Dauer Pause inkl. Siegerehrung nach Finale</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="1">
+                <widget class="QSpinBox" name="spinBoxPausePlEhrung">
+                 <property name="maximum">
+                  <number>999</number>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QGroupBox" name="groupBox_kreuzspiele_2">
+              <property name="title">
+               <string>Zeitplanung Kreuzspiele</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_32">
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_satz_kr_2">
+                 <property name="text">
+                  <string>Sätze</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_min_pro_satz_kr_2">
+                 <property name="text">
+                  <string>Minuten pro Satz</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QSpinBox" name="spinBoxMinProSatzKr">
+                 <property name="maximumSize">
+                  <size>
+                   <width>50</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QSpinBox" name="spinBoxPauseMinKr">
+                 <property name="maximumSize">
+                  <size>
+                   <width>50</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QSpinBox" name="spinBoxSatzKr">
+                 <property name="maximumSize">
+                  <size>
+                   <width>50</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="label_pause_min_kr_2">
+                 <property name="text">
+                  <string>Pause (min) zw. den Runden</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item row="0" column="1">
+         <widget class="QGroupBox" name="groupBox_konfiguration_2">
+          <property name="title">
+           <string>erweiterte Konfiguration</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="0" column="0">
+            <widget class="QTableView" name="tableViewFields">
+             <property name="alternatingRowColors">
+              <bool>true</bool>
+             </property>
+             <property name="selectionMode">
+              <enum>QAbstractItemView::SingleSelection</enum>
+             </property>
+             <attribute name="horizontalHeaderStretchLastSection">
+              <bool>true</bool>
+             </attribute>
+             <attribute name="verticalHeaderVisible">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="verticalHeaderStretchLastSection">
+              <bool>true</bool>
+             </attribute>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <layout class="QGridLayout" name="gridLayout_5">
+             <item row="0" column="0">
+              <layout class="QGridLayout" name="gridLayout_4">
                <item row="0" column="0">
                 <widget class="QLabel" name="label_anzahl_felder_2">
                  <property name="text">
@@ -284,42 +445,55 @@
                  </property>
                 </widget>
                </item>
+               <item row="1" column="0">
+                <widget class="QCheckBox" name="checkBoxKreuzspiele">
+                 <property name="text">
+                  <string>Kreuzspiele</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0" colspan="2">
+                <widget class="QPushButton" name="pushButtonConfigSave">
+                 <property name="text">
+                  <string>Änderungen speichern</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0" colspan="2">
+                <widget class="QPushButton" name="pushButtonConfigRollback">
+                 <property name="text">
+                  <string>Änderungen verwerfen</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0" colspan="2">
+                <widget class="QPushButton" name="pushButtonConfigReset">
+                 <property name="text">
+                  <string>Konfiguration zurücksetzen</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </item>
-             <item row="1" column="1">
-              <widget class="QCheckBox" name="checkBoxKreuzspiele">
-               <property name="text">
-                <string>Kreuzspiele</string>
+             <item row="1" column="0">
+              <spacer name="verticalSpacer">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
                </property>
-              </widget>
-             </item>
-             <item row="2" column="1">
-              <widget class="QPushButton" name="pushButtonConfigSave">
-               <property name="text">
-                <string>Änderungen speichern</string>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
                </property>
-              </widget>
-             </item>
-             <item row="3" column="1">
-              <widget class="QPushButton" name="pushButtonConfigRollback">
-               <property name="text">
-                <string>Änderungen verwerfen</string>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="1">
-              <widget class="QPushButton" name="pushButtonConfigReset">
-               <property name="text">
-                <string>Konfiguration zurücksetzen</string>
-               </property>
-              </widget>
+              </spacer>
              </item>
             </layout>
-           </widget>
-          </item>
-         </layout>
+           </item>
+          </layout>
+         </widget>
         </item>
-        <item row="3" column="0">
+        <item row="1" column="0" colspan="2">
          <widget class="QGroupBox" name="groupBox_mannschaften_2">
           <property name="maximumSize">
            <size>
@@ -395,150 +569,6 @@
            </item>
           </layout>
          </widget>
-        </item>
-        <item row="2" column="0">
-         <layout class="QGridLayout" name="gridLayout_30">
-          <item row="0" column="1">
-           <widget class="QGroupBox" name="groupBox_platzspiele_finale_2">
-            <property name="title">
-             <string>Zeitplan Platzierungsspiele und Finale</string>
-            </property>
-            <layout class="QGridLayout" name="gridLayout_31">
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_pause_zw_kr_4">
-               <property name="text">
-                <string>geschätzte Platzierungsspielzeit pro Satz (min)</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QSpinBox" name="spinBoxMinProSatzPl">
-               <property name="maximumSize">
-                <size>
-                 <width>50</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QSpinBox" name="spinBoxSatzPl">
-               <property name="maximumSize">
-                <size>
-                 <width>50</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_satz_pl_2">
-               <property name="text">
-                <string>Sätze</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="1">
-              <widget class="QSpinBox" name="spinBoxZeitFinale">
-               <property name="maximumSize">
-                <size>
-                 <width>50</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="label_pause_kr_pl_4">
-               <property name="text">
-                <string>geschätzte Spielzeit Finale (min)</string>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="0">
-              <widget class="QLabel" name="label_zeit_pause_nach_finale_siegerehrung_2">
-               <property name="text">
-                <string>Dauer Pause inkl. Siegerehrung nach Finale</string>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="1">
-              <widget class="QSpinBox" name="spinBoxPausePlEhrung">
-               <property name="maximum">
-                <number>999</number>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QGroupBox" name="groupBox_kreuzspiele_2">
-            <property name="title">
-             <string>Zeitplanung Kreuzspiele</string>
-            </property>
-            <layout class="QGridLayout" name="gridLayout_32">
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_satz_kr_2">
-               <property name="text">
-                <string>Sätze</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_min_pro_satz_kr_2">
-               <property name="text">
-                <string>Minuten pro Satz</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QSpinBox" name="spinBoxMinProSatzKr">
-               <property name="maximumSize">
-                <size>
-                 <width>50</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="minimum">
-                <number>1</number>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="1">
-              <widget class="QSpinBox" name="spinBoxPauseMinKr">
-               <property name="maximumSize">
-                <size>
-                 <width>50</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QSpinBox" name="spinBoxSatzKr">
-               <property name="maximumSize">
-                <size>
-                 <width>50</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="minimum">
-                <number>1</number>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="label_pause_min_kr_2">
-               <property name="text">
-                <string>Pause (min) zw. den Runden</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-         </layout>
         </item>
        </layout>
       </widget>
@@ -898,7 +928,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>762</width>
+     <width>933</width>
      <height>26</height>
     </rect>
    </property>

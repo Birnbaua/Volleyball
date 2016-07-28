@@ -8,6 +8,7 @@ add/change
 - classement widget window to dialog app modal
 - divisions widget window to dialog app modal
 - set global app icon
+- changed layout configuration and team page
 
 ###Version 10
 add/change
