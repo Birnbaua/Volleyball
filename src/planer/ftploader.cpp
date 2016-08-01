@@ -7,15 +7,15 @@ FTPLoader::FTPLoader(QString fileName, QString ftpurl, QString ftpuser, QString 
 	this->ftppw = ftppw;
 	this->ftpurl = ftpurl;
 
+    uploadactive = false;
 	uploadName = "./upload/data.db";
 
-	nam = new QNetworkAccessManager(this);
+    nam = new QNetworkAccessManager(this);
 	connect(nam, SIGNAL(finished(QNetworkReply*)), this, SLOT(uploadFinished(QNetworkReply*)));
 }
 
 FTPLoader::~FTPLoader()
 {
-
 }
 
 void FTPLoader::startUpload()
@@ -24,8 +24,10 @@ void FTPLoader::startUpload()
 	QFile::copy(fileName, uploadName);
     uploadFile = new QFile(uploadName);
 	
-    if(uploadFile->open(QIODevice::ReadOnly))
+    if(uploadFile->open(QIODevice::ReadOnly) && uploadactive == false)
 	{
+        uploadactive = true;
+
 		emit logMessages("INFO: start uploading to " + ftpurl + ", " + ftpuser + ", " + ftppw);
 		QUrl url(ftpurl);
 		url.setUserName(ftpuser);
@@ -48,4 +50,5 @@ void FTPLoader::uploadFinished(QNetworkReply* reply)
 
 	uploadFile->close();
 	reply->deleteLater();
+    uploadactive = false;
 }

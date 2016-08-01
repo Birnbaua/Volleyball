@@ -48,8 +48,7 @@ public:
     bool checkDoubleTeamNames(QSqlTableModel *model);
     void resetTeams();
     int getTeamsCount();
-    void startUploadTimer();
-    void stopUploadTimer();
+    void uploadFile();
 
     // fields
     void setFieldsTableRows(int spinBoxCount);
@@ -135,7 +134,6 @@ private:
     ClassementGames *clg;
     dataUi *data;
 
-	QTimer *uploader;
     int teamsCount;
     QStringList fieldNames;
 };

@@ -25,6 +25,7 @@ private:
 	QNetworkAccessManager *nam;
 	QFile *uploadFile;
 	QString fileName, ftpurl, ftpuser, ftppw, uploadName;
+    bool uploadactive;
 };
 
 #endif // FTPLOADER_H

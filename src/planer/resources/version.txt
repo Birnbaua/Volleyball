@@ -9,6 +9,9 @@ add/change
 - divisions widget window to dialog app modal
 - set global app icon
 - changed layout configuration and team page
+- start window size 1024x768
+- change automatic ftp upload to upload after save action
+- add menu points for close app, show logfile, app info
 
 ###Version 10
 add/change

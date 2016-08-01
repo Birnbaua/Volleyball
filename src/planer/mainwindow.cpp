@@ -625,20 +625,6 @@ QList<QVariant> MainWindow::returnTime()
     return QList<QVariant>() << "00:00" << 0;
 }
 
-void MainWindow::on_checkBoxActivateFTPUpload_clicked(bool checked)
-{
-    if(checked)
-    {
-        emit log("activate ftp-upload");
-        worker->startUploadTimer();
-    }
-    else
-    {
-        emit log("deactivate ftp-upload");
-        worker->stopUploadTimer();
-    }
-}
-
 // ****************************************************************************************************
 // functions qualifying games
 // ****************************************************************************************************
@@ -731,6 +717,7 @@ void MainWindow::on_pushButtonVrSave_clicked()
     {
         messageBoxInformation("Vorrunde wurde gespeichert");
         worker->calculateQualifyingGames();
+        worker->uploadFile();
         vrChanged = false;
         return;
     }
@@ -868,6 +855,7 @@ void MainWindow::on_pushButtonZwSave_clicked()
     {
         messageBoxInformation("Zwischenrunde wurde gespeichert");
         worker->calculateInterimGames();
+        worker->uploadFile();
         zwChanged = false;
         return;
     }
@@ -1013,6 +1001,7 @@ void MainWindow::on_pushButtonKrSave_clicked()
     if(worker->commitSqlTableModel(tmKr))
     {
         messageBoxInformation("Kreuzspiele wurden gespeichert");
+        worker->uploadFile();
         krChanged = false;
         return;
     }
@@ -1112,6 +1101,7 @@ void MainWindow::on_pushButtonPlSave_clicked()
     if(worker->commitSqlTableModel(tmPl))
     {
         messageBoxInformation("Platzspiele wurden gespeichert");
+        worker->uploadFile();
         plChanged = false;
         return;
     }
@@ -1157,4 +1147,11 @@ void MainWindow::on_actionBeenden_triggered()
 void MainWindow::on_actionAbout_triggered()
 {
     abView->show();
+}
+
+// show log file
+void MainWindow::on_actionShowlogfile_triggered()
+{
+    dir = QFileInfo("./resources/volleyball.log").absoluteDir();
+    QDesktopServices::openUrl(QUrl(dir.absolutePath() + "/volleyball.log"));
 }

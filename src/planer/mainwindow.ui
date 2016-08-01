@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>933</width>
-    <height>869</height>
+    <width>1024</width>
+    <height>768</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -914,13 +914,6 @@
       </property>
      </spacer>
     </item>
-    <item row="1" column="3">
-     <widget class="QCheckBox" name="checkBoxActivateFTPUpload">
-      <property name="text">
-       <string>FTP-Upload aktiviert</string>
-      </property>
-     </widget>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -928,7 +921,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>933</width>
+     <width>1024</width>
      <height>26</height>
     </rect>
    </property>
@@ -942,6 +935,7 @@
     <property name="title">
      <string>Hilfe</string>
     </property>
+    <addaction name="actionShowlogfile"/>
     <addaction name="actionAbout"/>
    </widget>
    <addaction name="menuDatei"/>
@@ -956,6 +950,11 @@
   <action name="actionBeenden">
    <property name="text">
     <string>Beenden</string>
+   </property>
+  </action>
+  <action name="actionShowlogfile">
+   <property name="text">
+    <string>zeige Logfile</string>
    </property>
   </action>
  </widget>
