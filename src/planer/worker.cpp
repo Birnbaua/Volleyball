@@ -98,11 +98,6 @@ void Worker::init()
                             settings.value("ftppw", "").toString());
 	connect(ftpload, SIGNAL(logMessages(QString)), this, SLOT(logging(QString)));
 
-	// create timer for ftp upload
-    uploader = new QTimer(this);
-    uploader->setInterval(30 * 1000);
-	connect(uploader, SIGNAL(timeout()), ftpload, SLOT(startUpload()));
-
     // create calculate results
 	logging("create calculateresults module");
     cr = new CalculateResults();
@@ -131,18 +126,6 @@ void Worker::init()
 void Worker::logging(QString message)
 {
     logs->write(message);
-}
-
-// activate ftp upload
-void Worker::startUploadTimer()
-{
-    uploader->start();
-}
-
-// deactivate ftp upload
-void Worker::stopUploadTimer()
-{
-    uploader->stop();
 }
 
 // check double team names
@@ -215,6 +198,11 @@ int Worker::getTeamsCount()
     }
 
     return teamsCount;
+}
+
+void Worker::uploadFile()
+{
+    ftpload->startUpload();
 }
 
 // set fields table rows

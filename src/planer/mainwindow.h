@@ -4,12 +4,15 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QClipboard>
-#include <QTimer>
+#include <QDesktopServices>
+#include <QDir>
+#include <QFileInfo>
 
 #include "worker.h"
 #include "itemdelegates.h"
-#include "viewdivisionresults.h"
-#include "viewclassementresults.h"
+#include "viewdivisions.h"
+#include "viewclassement.h"
+#include "about.h"
 
 namespace Ui {
 class MainWindow;
@@ -31,9 +34,11 @@ private slots:
     void messageBoxInformation(QString msg);
     void messageBoxWarning(QString msg);
     bool userCheckButton(QString msg, QString head);
-
     void updateUiData(Worker::dataUi *data);
     void updateWorkerData();
+    void on_actionBeenden_triggered();
+    void on_actionAbout_triggered();
+    void on_actionShowlogfile_triggered();
 
     void updateTournamentTime();
     void fieldsValueChanged();
@@ -41,8 +46,6 @@ private slots:
     void on_pushButtonConfigSave_clicked();
     void on_pushButtonConfigRollback_clicked();
     void on_pushButtonConfigReset_clicked();
-    void on_checkBoxActivateFTPUpload_clicked(bool checked);
-
     void on_pushButtonSaveTeams_clicked();
     void on_pushButtonResetTeams_clicked();
     void on_pushButtonPrintTeams_clicked();
@@ -93,6 +96,7 @@ private slots:
 
 private:
     void init();
+    void setViews();
     QList<QVariant> returnTime();
     void initTableViewFields();
     void initTableViewTeams();
@@ -109,19 +113,20 @@ private:
     Worker *worker;
     Worker::dataUi *data;
     QClipboard *clipboard;
-    QIcon windowIcon;
+    QIcon appIcon;
+    QDir dir;
     QTimer *timerUpdateTournamentTime;
 
     static QStringList colTableViewFields, colTableViewTeams, colTableViewQualifying, colTalbeViewDivisionResults, colTableViewClassement;
+    static QString windowTitleVersion, versionFileName;
 
-    ViewDivisionResults *qfView, *imView;
-    ViewClassementResults *clView;
+    ViewDivisions *qfView, *imView;
+    ViewClassement *clView;
+    About *abView;
 
     QList<QSqlTableModel*> viewQualifyingModels, viewIntermModels;
     QSqlTableModel *tmFields, *tmTeams, *tmVr, *tmZw, *tmKr, *tmPl, *tmPlatz, *viewClassementResults;
-
     ItemDelegates *idQualifyingGames, *idInterimGames, *idCrossGames, *idClassement;
-
     QStringList *grPrefix, *headerPrefix;
     bool msChanged, configChanged, vrChanged, zwChanged, krChanged, plChanged;
 };

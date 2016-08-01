@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+// ****************************************************************************************************
+// static members
+// ****************************************************************************************************
 QStringList MainWindow::colTableViewFields = QStringList() << "Feldnummer" << "Feldname";
 
 QStringList MainWindow::colTableViewTeams = QStringList() << "ID"
@@ -20,13 +23,20 @@ QStringList MainWindow::colTalbeViewDivisionResults = QStringList() << "ID" << "
 
 QStringList MainWindow::colTableViewClassement = QStringList() << "Platz" << "Mannschaft";
 
+QString MainWindow::versionFileName = "./resources/version.txt";
+
+QString MainWindow::windowTitleVersion = "Volleyball Tournament Organizer v";
+
+// ****************************************************************************************************
+// mainwindow
+// ****************************************************************************************************
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
-    // init
+    // init members
     init();
 
     // get settings to ui
@@ -58,6 +68,14 @@ MainWindow::MainWindow(QWidget *parent) :
     if(worker->getClassementGamesCount() > 0)
         worker->setParametersClassementGames();
 
+    // set views
+    setViews();
+
+    // set window title and icon
+    this->setWindowTitle(windowTitleVersion + abView->getVersionNr());
+    this->setWindowIcon(appIcon);
+
+    // set updater
     timerUpdateTournamentTime->start(15 * 1000);
 }
 
@@ -88,6 +106,7 @@ void MainWindow::init()
     connect(this, SIGNAL(log(QString)), worker, SLOT(logging(QString)), Qt::DirectConnection);
     connect(this, SIGNAL(updateWorker(Worker::dataUi*)), worker, SLOT(updateWorkerData(Worker::dataUi*)));
 
+    // set prefixes
     grPrefix = worker->getPrefix();
     headerPrefix = worker->getHeaderPrefix();
 
@@ -117,8 +136,6 @@ void MainWindow::init()
     connect(idClassement, SIGNAL(ctrlCopyKeyEvent()), this, SLOT(copyPlTableView()));
     connect(idClassement, SIGNAL(ctrlPasteKeyEvent()), this, SLOT(pastePLTableView()));
 
-    viewClassementResults = NULL;
-
     // create clipboard management
     clipboard = QApplication::clipboard();
 
@@ -133,9 +150,43 @@ void MainWindow::init()
     tmPl = NULL;
     clView = NULL;
 
-    // set window title and icon
-    this->setWindowTitle("Volleyball Tournament Organizer v10");
-    this->setWindowIcon(QIcon("./resources/mikasa.jpg"));
+    // set app icon
+    appIcon = QIcon("./resources/mikasa.jpg");
+}
+
+// set views
+void MainWindow::setViews()
+{
+    // set qualifying games dialog window
+    for(int i = 0; i < grPrefix->size(); i++)
+    {
+        QSqlTableModel *tm = worker->createSqlTableModel("vorrunde_erg_gr" + grPrefix->at(i), colTalbeViewDivisionResults);
+        tm->setEditStrategy(QSqlTableModel::OnFieldChange);
+        tm->setFilter("1 ORDER BY punkte DESC, satz DESC, intern ASC");
+        tm->select();
+        viewQualifyingModels << tm;
+    }
+
+    qfView = new ViewDivisions("Ergebnisse Vorrunde", &viewQualifyingModels, appIcon);
+
+    // set interim games dialog window
+    for(int i = 0; i < grPrefix->size(); i++)
+    {
+        QSqlTableModel *tm = worker->createSqlTableModel("zwischenrunde_erg_gr" + grPrefix->at(i), colTalbeViewDivisionResults);
+        tm->setEditStrategy(QSqlTableModel::OnFieldChange);
+        tm->setFilter("1 ORDER BY punkte DESC, satz DESC, intern ASC");
+        tm->select();
+        viewIntermModels << tm;
+    }
+
+    imView = new ViewDivisions("Ergebnisse Zwischenrunde", &viewIntermModels, appIcon);
+
+    // set classement dialog window
+    viewClassementResults = worker->createSqlTableModel("platzierungen_view", colTableViewClassement);
+    clView = new ViewClassement("Platzierung", viewClassementResults, appIcon);
+
+    // set about dialog window
+    abView = new About(versionFileName, windowTitleVersion);
 }
 
 // create critical messagebox
@@ -574,20 +625,6 @@ QList<QVariant> MainWindow::returnTime()
     return QList<QVariant>() << "00:00" << 0;
 }
 
-void MainWindow::on_checkBoxActivateFTPUpload_clicked(bool checked)
-{
-    if(checked)
-    {
-        emit log("activate ftp-upload");
-        worker->startUploadTimer();
-    }
-    else
-    {
-        emit log("deactivate ftp-upload");
-        worker->stopUploadTimer();
-    }
-}
-
 // ****************************************************************************************************
 // functions qualifying games
 // ****************************************************************************************************
@@ -680,6 +717,7 @@ void MainWindow::on_pushButtonVrSave_clicked()
     {
         messageBoxInformation("Vorrunde wurde gespeichert");
         worker->calculateQualifyingGames();
+        worker->uploadFile();
         vrChanged = false;
         return;
     }
@@ -699,22 +737,7 @@ void MainWindow::on_pushButtonVrPrint_clicked()
 
 void MainWindow::on_pushButtonVrResult_clicked()
 {
-    if(viewQualifyingModels.size() > 0)
-        viewQualifyingModels.clear();
-
     worker->calculateQualifyingGames();
-
-    for(int i = 0; i < grPrefix->size(); i++)
-    {
-        QSqlTableModel *tm = worker->createSqlTableModel("vorrunde_erg_gr" + grPrefix->at(i), colTalbeViewDivisionResults);
-        tm->setEditStrategy(QSqlTableModel::OnFieldChange);
-        tm->setFilter("1 ORDER BY punkte DESC, satz DESC, intern ASC");
-        tm->select();
-        viewQualifyingModels << tm;
-    }
-
-    qfView = new ViewDivisionResults("Ergebnisse Vorrunde", &viewQualifyingModels, 0);
-    qfView->setAttribute(Qt::WA_DeleteOnClose);
     qfView->show();
 }
 
@@ -832,6 +855,7 @@ void MainWindow::on_pushButtonZwSave_clicked()
     {
         messageBoxInformation("Zwischenrunde wurde gespeichert");
         worker->calculateInterimGames();
+        worker->uploadFile();
         zwChanged = false;
         return;
     }
@@ -867,22 +891,7 @@ void MainWindow::on_pushButtonZwPrint_clicked()
 
 void MainWindow::on_pushButtonZwResult_clicked()
 {
-    if(viewIntermModels.size() > 0)
-        viewIntermModels.clear();
-
     worker->calculateInterimGames();
-
-    for(int i = 0; i < grPrefix->size(); i++)
-    {
-        QSqlTableModel *tm = worker->createSqlTableModel("zwischenrunde_erg_gr" + grPrefix->at(i), colTalbeViewDivisionResults);
-        tm->setEditStrategy(QSqlTableModel::OnFieldChange);
-        tm->setFilter("1 ORDER BY punkte DESC, satz DESC, intern ASC");
-        tm->select();
-        viewIntermModels << tm;
-    }
-
-    imView = new ViewDivisionResults("Ergebnisse Zwischenrunde", &viewIntermModels, 0);
-    imView->setAttribute(Qt::WA_DeleteOnClose);
     imView->show();
 }
 
@@ -992,6 +1001,7 @@ void MainWindow::on_pushButtonKrSave_clicked()
     if(worker->commitSqlTableModel(tmKr))
     {
         messageBoxInformation("Kreuzspiele wurden gespeichert");
+        worker->uploadFile();
         krChanged = false;
         return;
     }
@@ -1091,6 +1101,7 @@ void MainWindow::on_pushButtonPlSave_clicked()
     if(worker->commitSqlTableModel(tmPl))
     {
         messageBoxInformation("Platzspiele wurden gespeichert");
+        worker->uploadFile();
         plChanged = false;
         return;
     }
@@ -1119,16 +1130,28 @@ void MainWindow::on_pushButtonPlPrint_clicked()
     // todo
 }
 
+// show result window
 void MainWindow::on_pushButtonPlResult_clicked()
 {
-    if(viewClassementResults != NULL)
-        viewClassementResults->clear();
-
     worker->getFinalClassement();
-
-    viewClassementResults = worker->createSqlTableModel("platzierungen_view", colTableViewClassement);
-
-    clView = new ViewClassementResults("Platzierung", viewClassementResults, 0);
-    clView->setAttribute(Qt::WA_DeleteOnClose);
     clView->show();
+}
+
+// exit programm
+void MainWindow::on_actionBeenden_triggered()
+{
+    exit(0);
+}
+
+// show about info dialog
+void MainWindow::on_actionAbout_triggered()
+{
+    abView->show();
+}
+
+// show log file
+void MainWindow::on_actionShowlogfile_triggered()
+{
+    dir = QFileInfo("./resources/volleyball.log").absoluteDir();
+    QDesktopServices::openUrl(QUrl(dir.absolutePath() + "/volleyball.log"));
 }

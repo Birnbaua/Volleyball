@@ -21,13 +21,14 @@ SOURCES += main.cpp\
     worker.cpp \
     qualifyinggames.cpp \
     calculateresults.cpp \
-    viewdivisionresults.cpp \
     itemdelegates.cpp \
     interimgames.cpp \
     crossgames.cpp \
     classementgames.cpp \
-    viewclassementresults.cpp \
-    basegamehandling.cpp
+    basegamehandling.cpp \
+    about.cpp \
+    viewclassement.cpp \
+    viewdivisions.cpp
 
 HEADERS  += mainwindow.h \
     database.h \
@@ -36,17 +37,20 @@ HEADERS  += mainwindow.h \
     worker.h \
     qualifyinggames.h \
     calculateresults.h \
-    viewdivisionresults.h \
     itemdelegates.h \
     interimgames.h \
     crossgames.h \
     classementgames.h \
-    viewclassementresults.h \
-    basegamehandling.h
+    basegamehandling.h \
+    about.h \
+    viewclassement.h \
+    viewdivisions.h
 
 FORMS    += mainwindow.ui \
-    viewdivisionresults.ui \
-    viewclassementresults.ui
+    about.ui \
+    viewclassement.ui \
+    viewdivisions.ui
 
 DISTFILES += \
-    ../../README.md
+    resources/config.ini \
+    resources/version.txt
