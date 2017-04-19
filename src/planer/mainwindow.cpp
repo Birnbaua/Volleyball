@@ -7,9 +7,8 @@
 QStringList MainWindow::colTableViewFields = QStringList() << "Feldnummer" << "Feldname";
 
 QStringList MainWindow::colTableViewTeams = QStringList() << "ID"
-                                  << "Gruppe A" << "Gruppe B" << "Gruppe C"
-                                  << "Gruppe D" << "Gruppe E" << "Gruppe F"
-                                  << "Gruppe G" << "Gruppe H" << "Gruppe I";
+                                  << "Gruppe A" << "Gruppe B" << "Gruppe C" << "Gruppe D" << "Gruppe E"
+                                  << "Gruppe F" << "Gruppe G" << "Gruppe H" << "Gruppe I" << "Gruppe J";
 
 QStringList MainWindow::colTableViewQualifying = QStringList() << "ID" << "Runde" << "Spiel" << "Zeit" << "Feldnr" << "Feldname"
                                        << "Mannschaft A" << "Mannschaft B" << "Schiedsgericht"

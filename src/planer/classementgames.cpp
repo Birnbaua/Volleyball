@@ -125,6 +125,7 @@ QStringList ClassementGames::generateGamePlan(QTime startRound, QList<QStringLis
     const QStringList *divisionG;
     const QStringList *divisionH;
     const QStringList *divisionI;
+    const QStringList *divisionJ;
 
     // read divisional rank results and add to list
     for(int i = 0; i < prefixCount; i++)
@@ -147,6 +148,7 @@ QStringList ClassementGames::generateGamePlan(QTime startRound, QList<QStringLis
     divisionG = &(resultDivisionsZw.at(6));
     divisionH = &(resultDivisionsZw.at(7));
     divisionI = &(resultDivisionsZw.at(8));
+    divisionJ = &(resultDivisionsZw.at(9));
 
     lastRoundNr++;
 

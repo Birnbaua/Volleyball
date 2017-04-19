@@ -646,6 +646,110 @@ QList<QStringList> InterimGames::generateNewDivisions()
                                     << divisionsFifthNames.at(7)
                                     << divisionsFifthNames.at(8));
             break;
+
+        case 50:
+            // make ranking of all divisions second teams
+            sortList(&divisionsSecond);
+
+            if(checkListDoubleResults(&divisionsSecond))
+                return QList<QStringList>();
+
+            // make ranking of all divisions third teams
+            sortList(&divisionsThird);
+
+            if(checkListDoubleResults(&divisionsThird))
+                return QList<QStringList>();
+
+            // make ranking of all divisions fourth teams
+            sortList(&divisionsFourth);
+
+            if(checkListDoubleResults(&divisionsFourth))
+                return QList<QStringList>();
+
+            // make ranking of all divisions fifth teams
+            sortList(&divisionsFifth);
+
+            if(checkListDoubleResults(&divisionsFifth))
+                return QList<QStringList>();
+
+            // get team names from divisions
+            divisionsFirstNames = getTeamList(&divisionsFirst);
+            divisionsSecondNames = getTeamList(&divisionsSecond);
+            divisionsThirdNames = getTeamList(&divisionsThird);
+            divisionsFourthNames = getTeamList(&divisionsFourth);
+            divisionsFifthNames = getTeamList(&divisionsFifth);
+
+            // create divisions with max 5 teams from helpList(can contain teams up to 5)
+            newDivisionsZw.append(QStringList()
+                                    << divisionsFirstNames.at(0)
+                                    << divisionsFirstNames.at(1)
+                                    << divisionsFirstNames.at(2)
+                                    << divisionsFirstNames.at(3)
+                                    << divisionsFirstNames.at(4));
+
+            newDivisionsZw.append(QStringList()
+                                    << divisionsFirstNames.at(5)
+                                    << divisionsFirstNames.at(6)
+                                    << divisionsFirstNames.at(7)
+                                    << divisionsFirstNames.at(8)
+                                    << divisionsFirstNames.at(9));
+
+            newDivisionsZw.append(QStringList()
+                                    << divisionsSecondNames.at(0)
+                                    << divisionsSecondNames.at(1)
+                                    << divisionsSecondNames.at(2)
+                                    << divisionsSecondNames.at(3)
+                                    << divisionsSecondNames.at(4));
+
+            newDivisionsZw.append(QStringList()
+                                    << divisionsSecondNames.at(5)
+                                    << divisionsSecondNames.at(6)
+                                    << divisionsSecondNames.at(7)
+                                    << divisionsSecondNames.at(8)
+                                    << divisionsSecondNames.at(9));
+
+            newDivisionsZw.append(QStringList()
+                                    << divisionsThirdNames.at(0)
+                                    << divisionsThirdNames.at(1)
+                                    << divisionsThirdNames.at(2)
+                                    << divisionsThirdNames.at(3)
+                                    << divisionsThirdNames.at(4));
+
+            newDivisionsZw.append(QStringList()
+                                    << divisionsThirdNames.at(5)
+                                    << divisionsThirdNames.at(6)
+                                    << divisionsThirdNames.at(7)
+                                    << divisionsThirdNames.at(8)
+                                    << divisionsThirdNames.at(9));
+
+            newDivisionsZw.append(QStringList()
+                                    << divisionsFourthNames.at(0)
+                                    << divisionsFourthNames.at(1)
+                                    << divisionsFourthNames.at(2)
+                                    << divisionsFourthNames.at(3)
+                                    << divisionsFourthNames.at(4));
+
+            newDivisionsZw.append(QStringList()
+                                    << divisionsFourthNames.at(5)
+                                    << divisionsFourthNames.at(6)
+                                    << divisionsFourthNames.at(7)
+                                    << divisionsFourthNames.at(8)
+                                    << divisionsFourthNames.at(9));
+
+            newDivisionsZw.append(QStringList()
+                                    << divisionsFifthNames.at(0)
+                                    << divisionsFifthNames.at(1)
+                                    << divisionsFifthNames.at(2)
+                                    << divisionsFifthNames.at(3)
+                                    << divisionsFifthNames.at(4));
+
+            newDivisionsZw.append(QStringList()
+                                    << divisionsFifthNames.at(5)
+                                    << divisionsFifthNames.at(6)
+                                    << divisionsFifthNames.at(7)
+                                    << divisionsFifthNames.at(8)
+                                    << divisionsFifthNames.at(9));
+            break;
         default: logMessages("ZWISCHENRUNDE_ERROR:: team count not correct");
     }
 
