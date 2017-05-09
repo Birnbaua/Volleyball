@@ -550,6 +550,7 @@ QList<QStringList> InterimGames::generateNewDivisions()
                                     << divisionsFifthNames.at(5)
                                     << divisionsFifthNames.at(7));
             break;
+
         case 45:
             // make ranking of all divisions second teams
             sortList(&divisionsSecond);
@@ -648,6 +649,7 @@ QList<QStringList> InterimGames::generateNewDivisions()
             break;
 
         case 50:
+<<<<<<< HEAD
             // make ranking of all divisions second teams
             sortList(&divisionsSecond);
 
@@ -672,6 +674,8 @@ QList<QStringList> InterimGames::generateNewDivisions()
             if(checkListDoubleResults(&divisionsFifth))
                 return QList<QStringList>();
 
+=======
+>>>>>>> refs/remotes/origin/master
             // get team names from divisions
             divisionsFirstNames = getTeamList(&divisionsFirst);
             divisionsSecondNames = getTeamList(&divisionsSecond);
@@ -750,6 +754,10 @@ QList<QStringList> InterimGames::generateNewDivisions()
                                     << divisionsFifthNames.at(8)
                                     << divisionsFifthNames.at(9));
             break;
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/master
         default: logMessages("ZWISCHENRUNDE_ERROR:: team count not correct");
     }
 
