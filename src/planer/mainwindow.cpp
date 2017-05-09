@@ -22,6 +22,8 @@ QStringList MainWindow::colTalbeViewDivisionResults = QStringList() << "ID" << "
 
 QStringList MainWindow::colTableViewClassement = QStringList() << "Platz" << "Mannschaft";
 
+QStringList MainWindow::colTableViewVrZwAllResults = QStringList() << "Mannschaft" << "Punkte" << "Spielpunkte" << "Intern" << "Extern";
+
 QString MainWindow::versionFileName = "./resources/version.txt";
 
 QString MainWindow::windowTitleVersion = "Volleyball Tournament Organizer v";
@@ -148,6 +150,8 @@ void MainWindow::init()
     tmKr = NULL;
     tmPl = NULL;
     clView = NULL;
+    allVrView = NULL;
+    allZwView = NULL;
 
     // set app icon
     appIcon = QIcon("./resources/mikasa.jpg");
@@ -179,6 +183,14 @@ void MainWindow::setViews()
     }
 
     imView = new ViewDivisions("Ergebnisse Zwischenrunde", &viewIntermModels, appIcon);
+
+    // set qualifying allresult dialog window
+    viewAllVrResults = worker->createSqlTableModel("vorrunde_all_view", colTableViewVrZwAllResults);
+    allVrView = new ViewAllResults("Vorrunde Ergebnisse alle Mannschaften", viewAllVrResults, appIcon);
+
+    // set interim allresult dialog window
+    viewAllZwResults = worker->createSqlTableModel("zwischenrunde_all_view", colTableViewVrZwAllResults);
+    allZwView = new ViewAllResults("Zwischenrunde Ergebnisse alle Mannschaften", viewAllZwResults, appIcon);
 
     // set classement dialog window
     viewClassementResults = worker->createSqlTableModel("platzierungen_view", colTableViewClassement);
@@ -740,6 +752,11 @@ void MainWindow::on_pushButtonVrResult_clicked()
     qfView->show();
 }
 
+void MainWindow::on_pushButtonVrAllResults_clicked()
+{
+    allVrView->show();
+}
+
 // ****************************************************************************************************
 // functions ZWISCHENRUNDE
 // ****************************************************************************************************
@@ -892,6 +909,11 @@ void MainWindow::on_pushButtonZwResult_clicked()
 {
     worker->calculateInterimGames();
     imView->show();
+}
+
+void MainWindow::on_pushButtonZwAllResults_clicked()
+{
+    allZwView->show();
 }
 
 // ****************************************************************************************************

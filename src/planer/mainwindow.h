@@ -12,6 +12,7 @@
 #include "itemdelegates.h"
 #include "viewdivisions.h"
 #include "viewclassement.h"
+#include "viewallresults.h"
 #include "about.h"
 
 namespace Ui {
@@ -61,6 +62,7 @@ private slots:
     void pasteVrTableView();
     void vrValueChanged();
     void vrValueChangedFinishEdit();
+    void on_pushButtonVrAllResults_clicked();
 
     void on_pushButtonZwGenerate_clicked();
     void on_pushButtonZwSave_clicked();
@@ -72,6 +74,7 @@ private slots:
     void pasteZwTableView();
     void zwValueChanged();
     void zwValueChangedFinishEdit();
+    void on_pushButtonZwAllResults_clicked();
 
     void on_pushButtonKrGenerate_clicked();
     void on_pushButtonKrSave_clicked();
@@ -117,15 +120,16 @@ private:
     QDir dir;
     QTimer *timerUpdateTournamentTime;
 
-    static QStringList colTableViewFields, colTableViewTeams, colTableViewQualifying, colTalbeViewDivisionResults, colTableViewClassement;
+    static QStringList colTableViewFields, colTableViewTeams, colTableViewQualifying, colTalbeViewDivisionResults, colTableViewClassement, colTableViewVrZwAllResults;
     static QString windowTitleVersion, versionFileName;
 
     ViewDivisions *qfView, *imView;
     ViewClassement *clView;
     About *abView;
+    ViewAllResults *allVrView, *allZwView;
 
     QList<QSqlTableModel*> viewQualifyingModels, viewIntermModels;
-    QSqlTableModel *tmFields, *tmTeams, *tmVr, *tmZw, *tmKr, *tmPl, *tmPlatz, *viewClassementResults;
+    QSqlTableModel *tmFields, *tmTeams, *tmVr, *tmZw, *tmKr, *tmPl, *tmPlatz, *viewClassementResults, *viewAllVrResults, *viewAllZwResults;
     ItemDelegates *idQualifyingGames, *idInterimGames, *idCrossGames, *idClassement;
     QStringList *grPrefix, *headerPrefix;
     bool msChanged, configChanged, vrChanged, zwChanged, krChanged, plChanged;
