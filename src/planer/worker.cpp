@@ -9,7 +9,8 @@ QStringList Worker::qfTablesToClear = QStringList() << "vorrunde_spielplan"
                                                     << "vorrunde_erg_grf"
                                                     << "vorrunde_erg_grg"
                                                     << "vorrunde_erg_grh"
-                                                    << "vorrunde_erg_gri";
+                                                    << "vorrunde_erg_gri"
+                                                    << "vorrunde_erg_grj";
 
 QStringList Worker::itTablesToClear = QStringList() << "zwischenrunde_spielplan"
                                                     << "zwischenrunde_erg_gra"
@@ -20,22 +21,23 @@ QStringList Worker::itTablesToClear = QStringList() << "zwischenrunde_spielplan"
                                                     << "zwischenrunde_erg_grf"
                                                     << "zwischenrunde_erg_grg"
                                                     << "zwischenrunde_erg_grh"
-                                                    << "zwischenrunde_erg_gri";
+                                                    << "zwischenrunde_erg_gri"
+                                                    << "zwischenrunde_erg_grj";
 
 QStringList Worker::crTablesToClear = QStringList() << "kreuzspiele_spielplan";
 
 QStringList Worker::clTablesToClear = QStringList() << "platzspiele_spielplan"
                                                     << "platzierungen";
 
-QStringList Worker::insertRows = QStringList() << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i) VALUES(0,'','','','','','','')"
-                                               << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i) VALUES(1,'','','','','','','')"
-                                               << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i) VALUES(2,'','','','','','','')"
-                                               << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i) VALUES(3,'','','','','','','')"
-                                               << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i) VALUES(4,'','','','','','','')";
+QStringList Worker::insertRows = QStringList() << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j) VALUES(0,'','','','','','','')"
+                                               << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j) VALUES(1,'','','','','','','')"
+                                               << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j) VALUES(2,'','','','','','','')"
+                                               << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j) VALUES(3,'','','','','','','')"
+                                               << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j) VALUES(4,'','','','','','','')";
 
-QStringList Worker::grPrefix = QStringList() << "a"<< "b"<< "c"<< "d"<< "e"<< "f" << "g" << "h" << "i";
+QStringList Worker::grPrefix = QStringList() << "a"<< "b"<< "c"<< "d"<< "e"<< "f" << "g" << "h" << "i" << "j";
 
-QStringList Worker::headerPrefix = QStringList() << "A"<< "B"<< "C"<< "D"<< "E"<< "F" << "G" << "H" << "I";
+QStringList Worker::headerPrefix = QStringList() << "A"<< "B"<< "C"<< "D"<< "E"<< "F" << "G" << "H" << "I" << "J";
 
 QString Worker::dbFile = QString("./resources/data.db");
 QString Worker::logFile = QString("./resources/volleyball.log");
@@ -186,7 +188,7 @@ QStringList Worker::getFieldNames()
 int Worker::getTeamsCount()
 {
     int teamsCount = 0;
-    QList<QStringList> table = db->read("SELECT a, b, c, d, e, f, g, h, i FROM mannschaften");
+    QList<QStringList> table = db->read("SELECT a, b, c, d, e, f, g, h, i, j FROM mannschaften");
 
     foreach(QStringList row, table)
     {
