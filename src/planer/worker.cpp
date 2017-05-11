@@ -257,7 +257,7 @@ QStringList* Worker::getHeaderPrefix()
     return &(this->headerPrefix);
 }
 
-QSqlTableModel* Worker::createSqlTableModel(QString tableName, QStringList columnName)
+QSqlTableModel* Worker::createSqlTableModel(QString tableName, QStringList *columnName)
 {
     return db->createSqlTableModel(tableName, columnName);
 }

@@ -81,7 +81,7 @@ QSqlQueryModel *Database::createSqlQueryModel(QString query)
     return model;
 }
 
-QSqlTableModel* Database::createSqlTableModel(QString tableName, QStringList columnName)
+QSqlTableModel* Database::createSqlTableModel(QString tableName, QStringList *columnName)
 {
     int i = 0;
     QSqlTableModel *model = new QSqlTableModel();
@@ -95,13 +95,12 @@ QSqlTableModel* Database::createSqlTableModel(QString tableName, QStringList col
     if(model->lastError().number() > 0)
         emit log("DB_ERROR:: " + model->lastError().text());
 
-    if(!columnName.isEmpty())
+    if(!columnName->isEmpty())
     {
         // set column header names
-        foreach(QString column, columnName)
+        for(int i = 0; i < columnName->length(); i++)
         {
-            model->setHeaderData(i, Qt::Horizontal, column);
-            i++;
+            model->setHeaderData(i, Qt::Horizontal, columnName->at(i));
         }
     }
 

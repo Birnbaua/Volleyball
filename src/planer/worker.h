@@ -62,7 +62,7 @@ public:
 
     // db
     QSqlQueryModel* createSqlQueryModel(QString query);
-    QSqlTableModel* createSqlTableModel(QString tableName, QStringList columnName);
+    QSqlTableModel* createSqlTableModel(QString tableName, QStringList *columnName);
     bool commitSqlTableModel(QSqlTableModel *model);
 
     // qualifying games

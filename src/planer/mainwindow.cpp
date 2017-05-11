@@ -163,7 +163,7 @@ void MainWindow::setViews()
     // set qualifying games dialog window
     for(int i = 0; i < grPrefix->size(); i++)
     {
-        QSqlTableModel *tm = worker->createSqlTableModel("vorrunde_erg_gr" + grPrefix->at(i), colTalbeViewDivisionResults);
+        QSqlTableModel *tm = worker->createSqlTableModel("vorrunde_erg_gr" + grPrefix->at(i), &colTalbeViewDivisionResults);
         tm->setEditStrategy(QSqlTableModel::OnFieldChange);
         tm->setFilter("1 ORDER BY punkte DESC, satz DESC, intern ASC");
         tm->select();
@@ -175,7 +175,7 @@ void MainWindow::setViews()
     // set interim games dialog window
     for(int i = 0; i < grPrefix->size(); i++)
     {
-        QSqlTableModel *tm = worker->createSqlTableModel("zwischenrunde_erg_gr" + grPrefix->at(i), colTalbeViewDivisionResults);
+        QSqlTableModel *tm = worker->createSqlTableModel("zwischenrunde_erg_gr" + grPrefix->at(i), &colTalbeViewDivisionResults);
         tm->setEditStrategy(QSqlTableModel::OnFieldChange);
         tm->setFilter("1 ORDER BY punkte DESC, satz DESC, intern ASC");
         tm->select();
@@ -185,15 +185,15 @@ void MainWindow::setViews()
     imView = new ViewDivisions("Ergebnisse Zwischenrunde", &viewIntermModels, appIcon);
 
     // set qualifying allresult dialog window
-    viewAllVrResults = worker->createSqlTableModel("vorrunde_all_view", colTableViewVrZwAllResults);
+    viewAllVrResults = worker->createSqlTableModel("vorrunde_all_view", &colTableViewVrZwAllResults);
     allVrView = new ViewAllResults("Vorrunde Ergebnisse alle Mannschaften", viewAllVrResults, appIcon);
 
     // set interim allresult dialog window
-    viewAllZwResults = worker->createSqlTableModel("zwischenrunde_all_view", colTableViewVrZwAllResults);
+    viewAllZwResults = worker->createSqlTableModel("zwischenrunde_all_view", &colTableViewVrZwAllResults);
     allZwView = new ViewAllResults("Zwischenrunde Ergebnisse alle Mannschaften", viewAllZwResults, appIcon);
 
     // set classement dialog window
-    viewClassementResults = worker->createSqlTableModel("platzierungen_view", colTableViewClassement);
+    viewClassementResults = worker->createSqlTableModel("platzierungen_view", &colTableViewClassement);
     clView = new ViewClassement("Platzierung", viewClassementResults, appIcon);
 
     // set about dialog window
@@ -350,7 +350,7 @@ void MainWindow::initTableViewFields()
     if(tmFields != NULL)
         tmFields->clear();
 
-    tmFields = worker->createSqlTableModel("felder", colTableViewFields);
+    tmFields = worker->createSqlTableModel("felder", &colTableViewFields);
     ui->tableViewFields->setModel(tmFields);
     connect(tmFields, SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(fieldsValueChanged()));
 }
@@ -372,7 +372,7 @@ void MainWindow::initTableViewTeams()
     if(tmTeams != NULL)
         tmTeams->clear();
 
-    tmTeams = worker->createSqlTableModel("mannschaften", colTableViewTeams);
+    tmTeams = worker->createSqlTableModel("mannschaften", &colTableViewTeams);
     ui->tableViewTeams->setModel(tmTeams);
     ui->tableViewTeams->hideColumn(0);
     connect(tmTeams, SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(teamsValueChanged()));
@@ -646,7 +646,7 @@ void MainWindow::initTableViewVorrunde(int hideCol)
     if(tmVr != NULL)
         tmVr->clear();
 
-    tmVr = worker->createSqlTableModel("vorrunde_spielplan", colTableViewQualifying);
+    tmVr = worker->createSqlTableModel("vorrunde_spielplan", &colTableViewQualifying);
     connect(tmVr, SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(vrValueChanged()));
 
     ui->tableViewVorrunde->setModel(tmVr);
@@ -767,7 +767,7 @@ void MainWindow::initTableViewZwischenrunde(int hideCol)
     if(tmZw != NULL)
         tmZw->clear();
 
-    tmZw = worker->createSqlTableModel("zwischenrunde_spielplan", colTableViewQualifying);
+    tmZw = worker->createSqlTableModel("zwischenrunde_spielplan", &colTableViewQualifying);
     connect(tmZw, SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(zwValueChanged()));
 
     ui->tableViewZwischenrunde->setModel(tmZw);
@@ -926,7 +926,7 @@ void MainWindow::initTableViewKreuzspiele(int hideCol)
     if(tmKr != NULL)
         tmKr->clear();
 
-    tmKr = worker->createSqlTableModel("kreuzspiele_spielplan", colTableViewQualifying);
+    tmKr = worker->createSqlTableModel("kreuzspiele_spielplan", &colTableViewQualifying);
     connect(tmKr, SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(krValueChanged()));
 
     ui->tableViewKreuzspiele->setModel(tmKr);
@@ -1057,7 +1057,7 @@ void MainWindow::on_pushButtonKrPrint_clicked()
 void MainWindow::initTableViewPlatzspiele(int hideCol)
 {
     emit log("INFO:: init tableview platzspiele");
-    tmPl = worker->createSqlTableModel("platzspiele_spielplan", colTableViewQualifying);
+    tmPl = worker->createSqlTableModel("platzspiele_spielplan", &colTableViewQualifying);
     connect(tmPl, SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(plValueChanged()));
 
     ui->tableViewPlatzspiele->setModel(tmPl);

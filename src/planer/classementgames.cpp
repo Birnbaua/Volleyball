@@ -480,7 +480,7 @@ QStringList ClassementGames::createClassement(QList<QStringList> *plGameResults)
 {
     QStringList querys;
     QList<QStringList> bottomRankings;
-    int id = 0;
+    int rowid = 0, id = 0;
 
     for(int i = 0, x = 0; i < plGameResults->size(); i++)
     {
@@ -494,29 +494,44 @@ QStringList ClassementGames::createClassement(QList<QStringList> *plGameResults)
     {
         case 25:
             bottomRankings = dbRead("SELECT ms FROM zwischenrunde_gre_view");
-            querys << "INSERT INTO platzierungen VALUES(" + string(id++) + "," + string(id + 1) + ",'" + bottomRankings.at(0).at(0) + "')";
-            querys << "INSERT INTO platzierungen VALUES(" + string(id++) + "," + string(id + 1) + ",'" + bottomRankings.at(1).at(0) + "')";
-            querys << "INSERT INTO platzierungen VALUES(" + string(id++) + "," + string(id + 1) + ",'" + bottomRankings.at(2).at(0) + "')";
-            querys << "INSERT INTO platzierungen VALUES(" + string(id++) + "," + string(id + 1) + ",'" + bottomRankings.at(3).at(0) + "')";
-            querys << "INSERT INTO platzierungen VALUES(" + string(id++) + "," + string(id + 1) + ",'" + bottomRankings.at(4).at(0) + "')";
+            id++; rowid = id + 1;
+            querys << "INSERT INTO platzierungen VALUES(" + string(id) + "," + string(rowid) + ",'" + bottomRankings.at(0).at(0) + "')";
+            id++; rowid = id + 1;
+            querys << "INSERT INTO platzierungen VALUES(" + string(id) + "," + string(rowid) + ",'" + bottomRankings.at(1).at(0) + "')";
+            id++; rowid = id + 1;
+            querys << "INSERT INTO platzierungen VALUES(" + string(id) + "," + string(rowid) + ",'" + bottomRankings.at(2).at(0) + "')";
+            id++; rowid = id + 1;
+            querys << "INSERT INTO platzierungen VALUES(" + string(id) + "," + string(rowid) + ",'" + bottomRankings.at(3).at(0) + "')";
+            id++; rowid = id + 1;
+            querys << "INSERT INTO platzierungen VALUES(" + string(id) + "," + string(rowid) + ",'" + bottomRankings.at(4).at(0) + "')";
             break;
 
         case 35:
             bottomRankings = dbRead("SELECT ms FROM zwischenrunde_grg_view");
-            querys << "INSERT INTO platzierungen VALUES(" + string(id++) + "," + string(id + 1) + ",'" + bottomRankings.at(0).at(0) + "')";
-            querys << "INSERT INTO platzierungen VALUES(" + string(id++) + "," + string(id + 1) + ",'" + bottomRankings.at(1).at(0) + "')";
-            querys << "INSERT INTO platzierungen VALUES(" + string(id++) + "," + string(id + 1) + ",'" + bottomRankings.at(2).at(0) + "')";
-            querys << "INSERT INTO platzierungen VALUES(" + string(id++) + "," + string(id + 1) + ",'" + bottomRankings.at(3).at(0) + "')";
-            querys << "INSERT INTO platzierungen VALUES(" + string(id++) + "," + string(id + 1) + ",'" + bottomRankings.at(4).at(0) + "')";
+            id++; rowid = id + 1;
+            querys << "INSERT INTO platzierungen VALUES(" + string(id) + "," + string(rowid) + ",'" + bottomRankings.at(0).at(0) + "')";
+            id++; rowid = id + 1;
+            querys << "INSERT INTO platzierungen VALUES(" + string(id) + "," + string(rowid) + ",'" + bottomRankings.at(1).at(0) + "')";
+            id++; rowid = id + 1;
+            querys << "INSERT INTO platzierungen VALUES(" + string(id) + "," + string(rowid) + ",'" + bottomRankings.at(2).at(0) + "')";
+            id++; rowid = id + 1;
+            querys << "INSERT INTO platzierungen VALUES(" + string(id) + "," + string(rowid) + ",'" + bottomRankings.at(3).at(0) + "')";
+            id++; rowid = id + 1;
+            querys << "INSERT INTO platzierungen VALUES(" + string(id) + "," + string(rowid) + ",'" + bottomRankings.at(4).at(0) + "')";
             break;
 
         case 45:
             bottomRankings = dbRead("SELECT ms FROM zwischenrunde_gri_view");
-            querys << "INSERT INTO platzierungen VALUES(" + string(id++) + "," + string(id + 1) + ",'" + bottomRankings.at(0).at(0) + "')";
-            querys << "INSERT INTO platzierungen VALUES(" + string(id++) + "," + string(id + 1) + ",'" + bottomRankings.at(1).at(0) + "')";
-            querys << "INSERT INTO platzierungen VALUES(" + string(id++) + "," + string(id + 1) + ",'" + bottomRankings.at(2).at(0) + "')";
-            querys << "INSERT INTO platzierungen VALUES(" + string(id++) + "," + string(id + 1) + ",'" + bottomRankings.at(3).at(0) + "')";
-            querys << "INSERT INTO platzierungen VALUES(" + string(id++) + "," + string(id + 1) + ",'" + bottomRankings.at(4).at(0) + "')";
+            id++; rowid = id + 1;
+            querys << "INSERT INTO platzierungen VALUES(" + string(id) + "," + string(rowid) + ",'" + bottomRankings.at(0).at(0) + "')";
+            id++; rowid = id + 1;
+            querys << "INSERT INTO platzierungen VALUES(" + string(id) + "," + string(rowid) + ",'" + bottomRankings.at(1).at(0) + "')";
+            id++; rowid = id + 1;
+            querys << "INSERT INTO platzierungen VALUES(" + string(id) + "," + string(rowid) + ",'" + bottomRankings.at(2).at(0) + "')";
+            id++; rowid = id + 1;
+            querys << "INSERT INTO platzierungen VALUES(" + string(id) + "," + string(rowid) + ",'" + bottomRankings.at(3).at(0) + "')";
+            id++; rowid = id + 1;
+            querys << "INSERT INTO platzierungen VALUES(" + string(id) + "," + string(rowid) + ",'" + bottomRankings.at(4).at(0) + "')";
             break;
     }
 
