@@ -161,16 +161,7 @@ void MainWindow::init()
 void MainWindow::setViews()
 {
     // set qualifying games dialog window
-    for(int i = 0; i < grPrefix->size(); i++)
-    {
-        QSqlTableModel *tm = worker->createSqlTableModel("vorrunde_erg_gr" + grPrefix->at(i), &colTalbeViewDivisionResults);
-        tm->setEditStrategy(QSqlTableModel::OnFieldChange);
-        tm->setFilter("1 ORDER BY punkte DESC, satz DESC, intern ASC");
-        tm->select();
-        viewQualifyingModels << tm;
-    }
-
-    qfView = new ViewDivisions("Ergebnisse Vorrunde", &viewQualifyingModels, appIcon);
+    initTableViewVorrundeResults();
 
     // set interim games dialog window
     for(int i = 0; i < grPrefix->size(); i++)
@@ -656,6 +647,23 @@ void MainWindow::initTableViewVorrunde(int hideCol)
     hideTableViewColumns(hideCol, ui->tableViewVorrunde);
 }
 
+void MainWindow::initTableViewVorrundeResults()
+{
+    viewQualifyingModels.clear();
+
+    // set qualifying games dialog window
+    for(int i = 0; i < grPrefix->size(); i++)
+    {
+        QSqlTableModel *tm = worker->createSqlTableModel("vorrunde_erg_gr" + grPrefix->at(i), &colTalbeViewDivisionResults);
+        tm->setEditStrategy(QSqlTableModel::OnFieldChange);
+        tm->setFilter("1 ORDER BY punkte DESC, satz DESC, intern ASC");
+        tm->select();
+        viewQualifyingModels << tm;
+    }
+
+    qfView = new ViewDivisions("Ergebnisse Vorrunde", &viewQualifyingModels, appIcon);
+}
+
 void MainWindow::copyVrTableView()
 {
     copyEvent(ui->tableViewVorrunde);
@@ -748,7 +756,6 @@ void MainWindow::on_pushButtonVrPrint_clicked()
 
 void MainWindow::on_pushButtonVrResult_clicked()
 {
-    worker->calculateQualifyingGames();
     qfView->show();
 }
 

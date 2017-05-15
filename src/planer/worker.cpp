@@ -29,11 +29,11 @@ QStringList Worker::crTablesToClear = QStringList() << "kreuzspiele_spielplan";
 QStringList Worker::clTablesToClear = QStringList() << "platzspiele_spielplan"
                                                     << "platzierungen";
 
-QStringList Worker::insertRows = QStringList() << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j) VALUES(0,'','','','','','','')"
-                                               << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j) VALUES(1,'','','','','','','')"
-                                               << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j) VALUES(2,'','','','','','','')"
-                                               << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j) VALUES(3,'','','','','','','')"
-                                               << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j) VALUES(4,'','','','','','','')";
+QStringList Worker::insertRows = QStringList() << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j) VALUES(0,'','','','','','','','','','')"
+                                               << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j) VALUES(1,'','','','','','','','','','')"
+                                               << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j) VALUES(2,'','','','','','','','','','')"
+                                               << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j) VALUES(3,'','','','','','','','','','')"
+                                               << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j) VALUES(4,'','','','','','','','','','')";
 
 QStringList Worker::grPrefix = QStringList() << "a"<< "b"<< "c"<< "d"<< "e"<< "f" << "g" << "h" << "i" << "j";
 

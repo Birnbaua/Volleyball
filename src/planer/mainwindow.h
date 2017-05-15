@@ -105,6 +105,7 @@ private:
     void initTableViewTeams();
     void hideTableViewColumns(int hideCol, QTableView *qtv);
     void initTableViewVorrunde(int hideCol);
+    void initTableViewVorrundeResults();
     void initTableViewZwischenrunde(int hideCol);
     void initTableViewKreuzspiele(int hideCol);
     void setKreuzspieleParams();
