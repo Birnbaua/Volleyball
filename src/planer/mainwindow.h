@@ -99,17 +99,20 @@ private slots:
 
 private:
     void init();
-    void setViews();
     QList<QVariant> returnTime();
     void initTableViewFields();
     void initTableViewTeams();
     void hideTableViewColumns(int hideCol, QTableView *qtv);
-    void initTableViewVorrunde(int hideCol);
-    void initTableViewVorrundeResults();
-    void initTableViewZwischenrunde(int hideCol);
-    void initTableViewKreuzspiele(int hideCol);
-    void setKreuzspieleParams();
-    void initTableViewPlatzspiele(int hideCol);
+    void initTableViewQualifying(int hideCol);
+    void initTableViewQualifyingResults();
+    void initTableViewQualifyingAllResults();
+    void initTableViewInterim(int hideCol);
+    void initTableViewInterimResults();
+    void initTableViewInterimAllResults();
+    void initTableViewCrossGames(int hideCol);
+    void setCrossGamesParams();
+    void initTableViewClassement(int hideCol);
+    void initTableViewClassementResults();
     void copyEvent(QTableView *tv);
     void pasteEvent(QTableView *tv, QSqlTableModel *model);
 
