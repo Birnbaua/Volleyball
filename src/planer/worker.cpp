@@ -1,33 +1,22 @@
 #include "worker.h"
 
 QStringList Worker::qfTablesToClear = QStringList() << "vorrunde_spielplan"
-                                                    << "vorrunde_erg_gra"
-                                                    << "vorrunde_erg_grb"
-                                                    << "vorrunde_erg_grc"
-                                                    << "vorrunde_erg_grd"
-                                                    << "vorrunde_erg_gre"
-                                                    << "vorrunde_erg_grf"
-                                                    << "vorrunde_erg_grg"
-                                                    << "vorrunde_erg_grh"
-                                                    << "vorrunde_erg_gri"
-                                                    << "vorrunde_erg_grj";
+                                                    << "vorrunde_erg_gra" << "vorrunde_erg_grb"
+                                                    << "vorrunde_erg_grc" << "vorrunde_erg_grd"
+                                                    << "vorrunde_erg_gre" << "vorrunde_erg_grf"
+                                                    << "vorrunde_erg_grg" << "vorrunde_erg_grh"
+                                                    << "vorrunde_erg_gri" << "vorrunde_erg_grj";
 
 QStringList Worker::itTablesToClear = QStringList() << "zwischenrunde_spielplan"
-                                                    << "zwischenrunde_erg_gra"
-                                                    << "zwischenrunde_erg_grb"
-                                                    << "zwischenrunde_erg_grc"
-                                                    << "zwischenrunde_erg_grd"
-                                                    << "zwischenrunde_erg_gre"
-                                                    << "zwischenrunde_erg_grf"
-                                                    << "zwischenrunde_erg_grg"
-                                                    << "zwischenrunde_erg_grh"
-                                                    << "zwischenrunde_erg_gri"
-                                                    << "zwischenrunde_erg_grj";
+                                                    << "zwischenrunde_erg_gra" << "zwischenrunde_erg_grb"
+                                                    << "zwischenrunde_erg_grc" << "zwischenrunde_erg_grd"
+                                                    << "zwischenrunde_erg_gre" << "zwischenrunde_erg_grf"
+                                                    << "zwischenrunde_erg_grg" << "zwischenrunde_erg_grh"
+                                                    << "zwischenrunde_erg_gri" << "zwischenrunde_erg_grj";
 
 QStringList Worker::crTablesToClear = QStringList() << "kreuzspiele_spielplan";
 
-QStringList Worker::clTablesToClear = QStringList() << "platzspiele_spielplan"
-                                                    << "platzierungen";
+QStringList Worker::clTablesToClear = QStringList() << "platzspiele_spielplan" << "platzierungen";
 
 QStringList Worker::insertRows = QStringList() << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j) VALUES(0,'','','','','','','','','','')"
                                                << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j) VALUES(1,'','','','','','','','','','')"

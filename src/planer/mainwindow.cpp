@@ -231,6 +231,25 @@ void MainWindow::pasteEvent(QTableView *tv, QSqlTableModel *model)
     }
 }
 
+// exit programm
+void MainWindow::on_actionBeenden_triggered()
+{
+    exit(0);
+}
+
+// show about info dialog
+void MainWindow::on_actionAbout_triggered()
+{
+    abView->show();
+}
+
+// show log file
+void MainWindow::on_actionShowlogfile_triggered()
+{
+    dir = QFileInfo("./resources/volleyball.log").absoluteDir();
+    QDesktopServices::openUrl(QUrl(dir.absolutePath() + "/volleyball.log"));
+}
+
 // ****************************************************************************************************
 // functions settings and checks
 // ****************************************************************************************************
@@ -627,6 +646,7 @@ void MainWindow::initTableViewQualifyingResults()
         viewQualifyingModels << tm;
     }
 
+    qfView = NULL;
     qfView = new ViewDivisions("Ergebnisse Vorrunde",  &viewQualifyingModels, appIcon);
     qfView->setAttribute(Qt::WA_DeleteOnClose);
 }
@@ -777,6 +797,7 @@ void MainWindow::initTableViewInterimResults()
         viewIntermModels << tm;
     }
 
+    imView = NULL;
     imView = new ViewDivisions("Ergebnisse Zwischenrunde", &viewIntermModels, appIcon);
     imView->setAttribute(Qt::WA_DeleteOnClose);
 }
@@ -1181,23 +1202,4 @@ void MainWindow::on_pushButtonPlResult_clicked()
     worker->getFinalClassement();
     initTableViewClassementResults();
     clView->show();
-}
-
-// exit programm
-void MainWindow::on_actionBeenden_triggered()
-{
-    exit(0);
-}
-
-// show about info dialog
-void MainWindow::on_actionAbout_triggered()
-{
-    abView->show();
-}
-
-// show log file
-void MainWindow::on_actionShowlogfile_triggered()
-{
-    dir = QFileInfo("./resources/volleyball.log").absoluteDir();
-    QDesktopServices::openUrl(QUrl(dir.absolutePath() + "/volleyball.log"));
 }
