@@ -21,12 +21,12 @@ void BaseGameHandling::setTimeParameters(int satz, int min, int pause)
 }
 
 // clear all data
-void BaseGameHandling::clearAllData(QStringList tables)
+void BaseGameHandling::clearAllData(QStringList *tables)
 {
     QStringList querys;
 
-    foreach(QString table, tables)
-        querys << "DELETE FROM " + table;
+    for(int i = 0; i < tables->size(); i++)
+        querys << "DELETE FROM " + tables->at(i);
 
     dbWrite(&querys);
 }

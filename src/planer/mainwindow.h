@@ -124,8 +124,10 @@ private:
     QDir dir;
     QTimer *timerUpdateTournamentTime;
 
-    static QStringList colTableViewFields, colTableViewTeams, colTableViewQualifying, colTalbeViewDivisionResults, colTableViewClassement, colTableViewVrZwAllResults;
-    static QString windowTitleVersion, versionFileName;
+    static QStringList colTableViewFields, colTableViewTeams, colTableViewQualifying, colTalbeViewDivisionResults,
+        colTableViewClassement, colTableViewVrZwAllResults, qfTablesToClear, itTablesToClear, crTablesToClear, clTablesToClear,
+        insertRows, grPrefix, headerPrefix;
+    static QString windowTitleVersion, versionFileName, settingsFile, dbFile, logFile;
 
     ViewDivisions *qfView, *imView;
     ViewClassement *clView;
@@ -135,7 +137,6 @@ private:
     QList<QSqlTableModel*> viewQualifyingModels, viewIntermModels;
     QSqlTableModel *tmFields, *tmTeams, *tmVr, *tmZw, *tmKr, *tmPl, *tmPlatz, *viewClassementResults, *viewAllVrResults, *viewAllZwResults;
     ItemDelegates *idQualifyingGames, *idInterimGames, *idCrossGames, *idClassement;
-    QStringList *grPrefix, *headerPrefix;
     bool msChanged, configChanged, vrChanged, zwChanged, krChanged, plChanged;
 };
 

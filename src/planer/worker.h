@@ -42,7 +42,10 @@ public:
         int pausePlEhrung;
     } dataUi;
 
-    explicit Worker(QObject *parent = 0);
+    explicit Worker(QString *settingsFile, QString *dbFile, QString *logFile,
+                    QStringList *qfTablesToClear, QStringList *itTablesToClear,
+                    QStringList *crTablesToClear, QStringList *clTablesToClear,
+                    QStringList *insertRows, QStringList *grPrefix, QStringList *headerPrefix, QObject *parent = 0);
 
     // teams
     bool checkDoubleTeamNames(QSqlTableModel *model);
@@ -57,8 +60,6 @@ public:
     // data ui <=> worker
     void updateUiData();
     void resetConfig();
-    QStringList* getPrefix();
-    QStringList* getHeaderPrefix();
 
     // db
     QSqlQueryModel* createSqlQueryModel(QString query);
@@ -119,10 +120,9 @@ private:
                      int satzvr, int minsatzvr, int pauseminvr, int satzzw, int minsatzzw, int pauseminzw, int satzkr,
                      int minsatzkr, int pauseminkr, int satzpl, int minsatzpl, int zeitfinale, int pauseplehrung);
 
-    static QStringList qfTablesToClear, itTablesToClear, crTablesToClear, clTablesToClear;
-    static QStringList insertRows;
-    static QStringList grPrefix, headerPrefix;
-    static QString settingsFile, dbFile, logFile;
+    QStringList *qfTablesToClear, *itTablesToClear, *crTablesToClear, *clTablesToClear;
+    QStringList *insertRows, *grPrefix, *headerPrefix;
+    QString *settingsFile, *dbFile, *logFile;
 
     Logging *logs;
     Database *db;

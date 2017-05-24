@@ -17,6 +17,8 @@ ViewDivisions::ViewDivisions(QString windowTitle, QList<QSqlTableModel*> *tmList
     tvList << ui->tableViewH;
     tvList << ui->tableViewI;
     tvList << ui->tableViewJ;
+    tvList << ui->tableViewK;
+    tvList << ui->tableViewL;
 
     for(int i = 0; i < tmList->size(); i++)
     {

@@ -16,7 +16,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_11">
+  <layout class="QGridLayout" name="gridLayout_13">
    <item row="0" column="0">
     <widget class="QGroupBox" name="groupBoxA">
      <property name="title">
@@ -60,7 +60,7 @@
      </layout>
     </widget>
    </item>
-   <item row="0" column="3" colspan="2">
+   <item row="0" column="4">
     <widget class="QGroupBox" name="groupBoxD">
      <property name="title">
       <string>Gruppe D</string>
@@ -140,6 +140,30 @@
      <layout class="QGridLayout" name="gridLayout_10">
       <item row="0" column="0">
        <widget class="QTableView" name="tableViewJ"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QGroupBox" name="groupBoxK">
+     <property name="title">
+      <string>Gruppe I</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_11">
+      <item row="0" column="0">
+       <widget class="QTableView" name="tableViewK"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="3" colspan="2">
+    <widget class="QGroupBox" name="groupBoxL">
+     <property name="title">
+      <string>Gruppe J</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_12">
+      <item row="0" column="0">
+       <widget class="QTableView" name="tableViewL"/>
       </item>
      </layout>
     </widget>

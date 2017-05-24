@@ -1,49 +1,31 @@
 #include "worker.h"
 
-QStringList Worker::qfTablesToClear = QStringList() << "vorrunde_spielplan"
-                                                    << "vorrunde_erg_gra" << "vorrunde_erg_grb"
-                                                    << "vorrunde_erg_grc" << "vorrunde_erg_grd"
-                                                    << "vorrunde_erg_gre" << "vorrunde_erg_grf"
-                                                    << "vorrunde_erg_grg" << "vorrunde_erg_grh"
-                                                    << "vorrunde_erg_gri" << "vorrunde_erg_grj";
-
-QStringList Worker::itTablesToClear = QStringList() << "zwischenrunde_spielplan"
-                                                    << "zwischenrunde_erg_gra" << "zwischenrunde_erg_grb"
-                                                    << "zwischenrunde_erg_grc" << "zwischenrunde_erg_grd"
-                                                    << "zwischenrunde_erg_gre" << "zwischenrunde_erg_grf"
-                                                    << "zwischenrunde_erg_grg" << "zwischenrunde_erg_grh"
-                                                    << "zwischenrunde_erg_gri" << "zwischenrunde_erg_grj";
-
-QStringList Worker::crTablesToClear = QStringList() << "kreuzspiele_spielplan";
-
-QStringList Worker::clTablesToClear = QStringList() << "platzspiele_spielplan" << "platzierungen";
-
-QStringList Worker::insertRows = QStringList() << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j) VALUES(0,'','','','','','','','','','')"
-                                               << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j) VALUES(1,'','','','','','','','','','')"
-                                               << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j) VALUES(2,'','','','','','','','','','')"
-                                               << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j) VALUES(3,'','','','','','','','','','')"
-                                               << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j) VALUES(4,'','','','','','','','','','')";
-
-QStringList Worker::grPrefix = QStringList() << "a"<< "b"<< "c"<< "d"<< "e"<< "f" << "g" << "h" << "i" << "j";
-
-QStringList Worker::headerPrefix = QStringList() << "A"<< "B"<< "C"<< "D"<< "E"<< "F" << "G" << "H" << "I" << "J";
-
-QString Worker::dbFile = QString("./resources/data.db");
-QString Worker::logFile = QString("./resources/volleyball.log");
-QString Worker::settingsFile = QString("./resources/config.ini");
-
-Worker::Worker(QObject *parent) : QObject(parent)
+Worker::Worker(QString *settingsFile, QString *dbFile, QString *logFile,
+               QStringList *qfTablesToClear, QStringList *itTablesToClear,
+               QStringList *crTablesToClear, QStringList *clTablesToClear,
+               QStringList *insertRows, QStringList *grPrefix, QStringList *headerPrefix, QObject *parent) : QObject(parent)
 {
+    this->settingsFile = settingsFile;
+    this->dbFile = dbFile;
+    this->logFile = logFile;
+    this->qfTablesToClear = qfTablesToClear;
+    this->itTablesToClear = itTablesToClear;
+    this->crTablesToClear = crTablesToClear;
+    this->clTablesToClear = clTablesToClear;
+    this->insertRows = insertRows;
+    this->grPrefix = grPrefix;
+    this->headerPrefix = headerPrefix;
+
     // create logging
-    logs = new Logging(logFile);
+    logs = new Logging(*logFile);
     connect(this, SIGNAL(log(QString)), logs, SLOT(write(QString)));
 
     // check database file
-    QFile dbF(dbFile);
+    QFile dbF(*dbFile);
     if(dbF.size() > 0)
     {
         // create database
-        db = new Database(dbFile);
+        db = new Database(*dbFile);
         connect(db, SIGNAL(log(QString)), logs, SLOT(write(QString)));
 
         // open database
@@ -76,14 +58,14 @@ void Worker::init()
     teamsCount = 0;
 
     // read settings for ftp login
-    QSettings settings(settingsFile, QSettings::IniFormat);
+    QSettings settings(*settingsFile, QSettings::IniFormat);
     emit logging("ftp config " + settings.value("ftpurl", "").toString() + ", "
                  + settings.value("ftpuser", "").toString() + ", "
                  + settings.value("ftppw", "").toString());
 
 	// create ftploader thread
 	logging("create ftp module");
-    ftpload = new FTPLoader(dbFile,
+    ftpload = new FTPLoader(*dbFile,
                             settings.value("ftpurl", "").toString(),
                             settings.value("ftpuser", "").toString(),
                             settings.value("ftppw", "").toString());
@@ -95,22 +77,22 @@ void Worker::init()
 
     // create qualifying games
 	logging("create qualifying module");
-    qf = new QualifyingGames(db, &grPrefix);
+    qf = new QualifyingGames(db, grPrefix);
     connect(qf, SIGNAL(logMessages(QString)), this, SLOT(logging(QString)));
 
     // create interim games
 	logging("create interim module");
-    im = new InterimGames(db, &grPrefix);
+    im = new InterimGames(db, grPrefix);
     connect(im, SIGNAL(logMessages(QString)), this, SLOT(logging(QString)));
 
     // create cross games
 	logging("create crossgame module");
-    cg = new CrossGames(db, &grPrefix);
+    cg = new CrossGames(db, grPrefix);
     connect(cg, SIGNAL(logMessages(QString)), this, SLOT(logging(QString)));
 
     // create classement games
 	logging("create classement module");
-    clg = new ClassementGames(db, &grPrefix);
+    clg = new ClassementGames(db, grPrefix);
     connect(clg, SIGNAL(logMessages(QString)), this, SLOT(logging(QString)));
 }
 
@@ -217,8 +199,8 @@ void Worker::resetTeams()
 {
     db->write("DELETE FROM mannschaften");
 
-    foreach(QString insertRow, insertRows)
-        db->write(insertRow);
+    for(int i = 0; i < insertRows->size(); i++)
+        db->write(insertRows->at(i));
 }
 
 // set ui controls with values from vars
@@ -234,16 +216,6 @@ void Worker::resetConfig()
 {
     // reset config with default parameters
     writeConfig(4, 1, "10:00", 0, 0, 0, 1, 10, 0, 1, 10, 0, 1, 10, 0, 1, 10, 15, 30);
-}
-
-QStringList* Worker::getPrefix()
-{
-    return &(this->grPrefix);
-}
-
-QStringList* Worker::getHeaderPrefix()
-{
-    return &(this->headerPrefix);
 }
 
 QSqlTableModel* Worker::createSqlTableModel(QString tableName, QStringList *columnName)
@@ -330,7 +302,7 @@ void Worker::generateQualifyingGames()
 
 void Worker::clearQualifyingGames()
 {
-    qf->clearAllData(Worker::qfTablesToClear);
+    qf->clearAllData(qfTablesToClear);
 }
 
 void Worker::calculateQualifyingGames()
@@ -376,7 +348,7 @@ bool Worker::generateInterimGames()
 
 void Worker::clearInterimGames()
 {
-    im->clearAllData(Worker::itTablesToClear);
+    im->clearAllData(itTablesToClear);
 }
 
 void Worker::calculateInterimGames()
@@ -418,7 +390,7 @@ void Worker::generateCrossGames()
 
 void Worker::clearCrossGames()
 {
-    cg->clearAllData(Worker::crTablesToClear);
+    cg->clearAllData(crTablesToClear);
 }
 
 void Worker::recalculateCrossGamesTimeSchedule(QTableView *qtv, QSqlTableModel *tm)
@@ -455,7 +427,7 @@ void Worker::generateClassementGames()
 
 void Worker::clearClassementGames()
 {
-    clg->clearAllData(Worker::clTablesToClear);
+    clg->clearAllData(clTablesToClear);
 }
 
 void Worker::recalculateClassementGamesTimeSchedule(QTableView *qtv, QSqlTableModel *tm)

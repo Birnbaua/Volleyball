@@ -8,7 +8,8 @@ QStringList MainWindow::colTableViewFields = QStringList() << "Feldnummer" << "F
 
 QStringList MainWindow::colTableViewTeams = QStringList() << "ID"
                                   << "Gruppe A" << "Gruppe B" << "Gruppe C" << "Gruppe D" << "Gruppe E"
-                                  << "Gruppe F" << "Gruppe G" << "Gruppe H" << "Gruppe I" << "Gruppe J";
+                                  << "Gruppe F" << "Gruppe G" << "Gruppe H" << "Gruppe I" << "Gruppe J"
+                                  << "Gruppe K" << "Gruppe L";
 
 QStringList MainWindow::colTableViewQualifying = QStringList() << "ID" << "Runde" << "Spiel" << "Zeit" << "Feldnr" << "Feldname"
                                        << "Mannschaft A" << "Mannschaft B" << "Schiedsgericht"
@@ -24,8 +25,40 @@ QStringList MainWindow::colTableViewClassement = QStringList() << "Platz" << "Ma
 
 QStringList MainWindow::colTableViewVrZwAllResults = QStringList() << "Mannschaft" << "Punkte" << "Spielpunkte" << "Intern" << "Extern";
 
-QString MainWindow::versionFileName = "./resources/version.txt";
+QStringList MainWindow::qfTablesToClear = QStringList() << "vorrunde_spielplan"
+                                                    << "vorrunde_erg_gra" << "vorrunde_erg_grb"
+                                                    << "vorrunde_erg_grc" << "vorrunde_erg_grd"
+                                                    << "vorrunde_erg_gre" << "vorrunde_erg_grf"
+                                                    << "vorrunde_erg_grg" << "vorrunde_erg_grh"
+                                                    << "vorrunde_erg_gri" << "vorrunde_erg_grj"
+                                                    << "vorrunde_erg_grk" << "vorrunde_erg_grl";
 
+QStringList MainWindow::itTablesToClear = QStringList() << "zwischenrunde_spielplan"
+                                                    << "zwischenrunde_erg_gra" << "zwischenrunde_erg_grb"
+                                                    << "zwischenrunde_erg_grc" << "zwischenrunde_erg_grd"
+                                                    << "zwischenrunde_erg_gre" << "zwischenrunde_erg_grf"
+                                                    << "zwischenrunde_erg_grg" << "zwischenrunde_erg_grh"
+                                                    << "zwischenrunde_erg_gri" << "zwischenrunde_erg_grj"
+                                                    << "zwischenrunde_erg_grk" << "zwischenrunde_erg_grl";
+
+QStringList MainWindow::crTablesToClear = QStringList() << "kreuzspiele_spielplan";
+
+QStringList MainWindow::clTablesToClear = QStringList() << "platzspiele_spielplan" << "platzierungen";
+
+QStringList MainWindow::insertRows = QStringList() << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j,k,l) VALUES(0,'','','','','','','','','','','','')"
+                                                   << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j,k,l) VALUES(1,'','','','','','','','','','','','')"
+                                                   << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j,k,l) VALUES(2,'','','','','','','','','','','','')"
+                                                   << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j,k,l) VALUES(3,'','','','','','','','','','','','')"
+                                                   << "INSERT INTO mannschaften (id,a,b,c,d,e,f,g,h,i,j,k,l) VALUES(4,'','','','','','','','','','','','')";
+
+QStringList MainWindow::grPrefix = QStringList() << "a"<< "b"<< "c"<< "d"<< "e"<< "f" << "g" << "h" << "i" << "j" << "k" << "l";
+
+QStringList MainWindow::headerPrefix = QStringList() << "A"<< "B"<< "C"<< "D"<< "E"<< "F" << "G" << "H" << "I" << "J" << "K" << "L";
+
+QString MainWindow::dbFile = QString("./resources/data.db");
+QString MainWindow::logFile = QString("./resources/volleyball.log");
+QString MainWindow::settingsFile = QString("./resources/config.ini");
+QString MainWindow::versionFileName = "./resources/version.txt";
 QString MainWindow::windowTitleVersion = "Volleyball Tournament Organizer v";
 
 // ****************************************************************************************************
@@ -99,17 +132,15 @@ void MainWindow::init()
     plChanged = false;
 
     // create worker
-    worker = new Worker();
+    worker = new Worker(&settingsFile, &dbFile, &logFile,
+                        &qfTablesToClear, &itTablesToClear, &crTablesToClear, &clTablesToClear,
+                        &insertRows, &grPrefix, &headerPrefix);
     connect(worker, SIGNAL(criticalMessage(QString)), this, SLOT(messageBoxCritical(QString)));
     connect(worker, SIGNAL(warningMessage(QString)), this, SLOT(messageBoxWarning(QString)));
     connect(worker,SIGNAL(infoMessage(QString)), this, SLOT(messageBoxInformation(QString)));
     connect(worker, SIGNAL(updateUi(Worker::dataUi*)), this, SLOT(updateUiData(Worker::dataUi*)));
     connect(this, SIGNAL(log(QString)), worker, SLOT(logging(QString)), Qt::DirectConnection);
     connect(this, SIGNAL(updateWorker(Worker::dataUi*)), worker, SLOT(updateWorkerData(Worker::dataUi*)));
-
-    // set prefixes
-    grPrefix = worker->getPrefix();
-    headerPrefix = worker->getHeaderPrefix();
 
     // create timer to update tournament time calculation
     timerUpdateTournamentTime = new QTimer(this);
@@ -637,9 +668,9 @@ void MainWindow::initTableViewQualifyingResults()
     if(viewQualifyingModels.size() > 0)
         viewQualifyingModels.clear();
 
-    for(int i = 0; i < grPrefix->size(); i++)
+    for(int i = 0; i < grPrefix.size(); i++)
     {
-        QSqlTableModel *tm = worker->createSqlTableModel("vorrunde_erg_gr" + grPrefix->at(i), &colTalbeViewDivisionResults);
+        QSqlTableModel *tm = worker->createSqlTableModel("vorrunde_erg_gr" + grPrefix.at(i), &colTalbeViewDivisionResults);
         tm->setEditStrategy(QSqlTableModel::OnFieldChange);
         tm->setFilter("1 ORDER BY punkte DESC, satz DESC, intern ASC");
         tm->select();
@@ -788,9 +819,9 @@ void MainWindow::initTableViewInterimResults()
     if(viewIntermModels.size() > 0)
         viewIntermModels.clear();
 
-    for(int i = 0; i < grPrefix->size(); i++)
+    for(int i = 0; i < grPrefix.size(); i++)
     {
-        QSqlTableModel *tm = worker->createSqlTableModel("zwischenrunde_erg_gr" + grPrefix->at(i), &colTalbeViewDivisionResults);
+        QSqlTableModel *tm = worker->createSqlTableModel("zwischenrunde_erg_gr" + grPrefix.at(i), &colTalbeViewDivisionResults);
         tm->setEditStrategy(QSqlTableModel::OnFieldChange);
         tm->setFilter("1 ORDER BY punkte DESC, satz DESC, intern ASC");
         tm->select();
