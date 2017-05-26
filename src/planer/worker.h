@@ -23,6 +23,7 @@ public:
         QString pdfPath;
         int anzFelder;
         int krSpiele;
+        int bettySpiele;
         QString startTurnier;
         int pauseVrZw;
         int pauseZwKr;
@@ -116,7 +117,7 @@ public slots:
 private:
     void init();
     void readConfig();
-    void writeConfig(int anzfelder, int kreuzspiele, QString startturnier, int pausevrzw, int pausezwkr, int pausekrpl,
+    void writeConfig(int anzfelder, int kreuzspiele, int bettyspiele, QString startturnier, int pausevrzw, int pausezwkr, int pausekrpl,
                      int satzvr, int minsatzvr, int pauseminvr, int satzzw, int minsatzzw, int pauseminzw, int satzkr,
                      int minsatzkr, int pauseminkr, int satzpl, int minsatzpl, int zeitfinale, int pauseplehrung);
 

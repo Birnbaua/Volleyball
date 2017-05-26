@@ -425,10 +425,24 @@
             <layout class="QGridLayout" name="gridLayout_5">
              <item row="0" column="0">
               <layout class="QGridLayout" name="gridLayout_4">
-               <item row="0" column="0">
-                <widget class="QLabel" name="label_anzahl_felder_2">
+               <item row="5" column="0" colspan="2">
+                <widget class="QPushButton" name="pushButtonConfigReset">
                  <property name="text">
-                  <string>Anzahl Spielfelder</string>
+                  <string>Konfiguration zurücksetzen</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0" colspan="2">
+                <widget class="QPushButton" name="pushButtonConfigRollback">
+                 <property name="text">
+                  <string>Änderungen verwerfen</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0" colspan="2">
+                <widget class="QPushButton" name="pushButtonConfigSave">
+                 <property name="text">
+                  <string>Änderungen speichern</string>
                  </property>
                 </widget>
                </item>
@@ -445,7 +459,14 @@
                  </property>
                 </widget>
                </item>
-               <item row="1" column="0">
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_anzahl_felder_2">
+                 <property name="text">
+                  <string>Anzahl Spielfelder</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0" colspan="2">
                 <widget class="QCheckBox" name="checkBoxKreuzspiele">
                  <property name="text">
                   <string>Kreuzspiele</string>
@@ -453,23 +474,9 @@
                 </widget>
                </item>
                <item row="2" column="0" colspan="2">
-                <widget class="QPushButton" name="pushButtonConfigSave">
+                <widget class="QCheckBox" name="checkBoxBettysPlan">
                  <property name="text">
-                  <string>Änderungen speichern</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="0" colspan="2">
-                <widget class="QPushButton" name="pushButtonConfigRollback">
-                 <property name="text">
-                  <string>Änderungen verwerfen</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="4" column="0" colspan="2">
-                <widget class="QPushButton" name="pushButtonConfigReset">
-                 <property name="text">
-                  <string>Konfiguration zurücksetzen</string>
+                  <string>Bettys Plan (50, 55 u. 60 teams)</string>
                  </property>
                 </widget>
                </item>

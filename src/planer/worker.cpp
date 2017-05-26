@@ -215,7 +215,7 @@ void Worker::updateUiData()
 void Worker::resetConfig()
 {
     // reset config with default parameters
-    writeConfig(4, 1, "10:00", 0, 0, 0, 1, 10, 0, 1, 10, 0, 1, 10, 0, 1, 10, 15, 30);
+    writeConfig(4, 1, 0, "10:00", 0, 0, 0, 1, 10, 0, 1, 10, 0, 1, 10, 0, 1, 10, 15, 30);
 }
 
 QSqlTableModel* Worker::createSqlTableModel(QString tableName, QStringList *columnName)
@@ -233,7 +233,7 @@ void Worker::updateWorkerData(Worker::dataUi *data)
     this->data = data;
 
     // write config to database
-    writeConfig(this->data->anzFelder, this->data->krSpiele, this->data->startTurnier, this->data->pauseVrZw,
+    writeConfig(this->data->anzFelder, this->data->krSpiele, this->data->bettySpiele, this->data->startTurnier, this->data->pauseVrZw,
         this->data->pauseZwKr, this->data->pauseKrPl, this->data->satzVr, this->data->minSatzVr,
         this->data->pauseMinVr, this->data->satzZw, this->data->minSatzZw, this->data->pauseMinZw,
         this->data->satzKr, this->data->minSatzKr, this->data->pauseMinKr, this->data->satzPl,
@@ -248,6 +248,7 @@ void Worker::readConfig()
     data->pdfPath = config->record(0).value("pdfpath").toString();
     data->anzFelder = config->record(0).value("anzfelder").toInt();
     data->krSpiele = config->record(0).value("kreuzspiele").toInt();
+    data->bettySpiele = config->record(0).value("bettyspiele").toInt();
     data->startTurnier = config->record(0).value("startturnier").toString();
     data->pauseVrZw = config->record(0).value("pausevrzw").toInt();
     data->pauseZwKr = config->record(0).value("pausezwkr").toInt();
@@ -268,12 +269,12 @@ void Worker::readConfig()
 }
 
 // write configuration to database
-void Worker::writeConfig(int anzfelder, int kreuzspiele, QString startturnier, int pausevrzw, int pausezwkr, int pausekrpl,
+void Worker::writeConfig(int anzfelder, int kreuzspiele, int bettyspiele, QString startturnier, int pausevrzw, int pausezwkr, int pausekrpl,
                          int satzvr, int minsatzvr, int pauseminvr, int satzzw, int minsatzzw, int pauseminzw, int satzkr,
                          int minsatzkr, int pauseminkr, int satzpl, int minsatzpl, int zeitfinale, int pauseplehrung)
 {
     db->write("UPDATE configuration SET anzfelder = " + QString::number(anzfelder)
-        + ", kreuzspiele = " + QString::number(kreuzspiele) + ", startturnier = '" + startturnier
+        + ", kreuzspiele = " + QString::number(kreuzspiele) + ", bettyspiele = " + QString::number(bettyspiele) + ", startturnier = '" + startturnier
         + "', pausevrzw = " + QString::number(pausevrzw) + ", pausezwkr = " + QString::number(pausezwkr)
         + ", pausekrpl = " + QString::number(pausekrpl) + ", satzvr = " + QString::number(satzvr)
         + ", minsatzvr = " + QString::number(minsatzvr) + ", pauseminvr = " + QString::number(pauseminvr)
@@ -338,7 +339,7 @@ void Worker::setParametersInterimGames()
 {
     QStringList params = db->read("SELECT runde, spiel, zeit FROM vorrunde_spielplan ORDER BY id DESC LIMIT 1").at(0);
     im->setParameters(params.at(2), data->pauseVrZw, data->satzZw, data->minSatzZw, data->pauseMinZw,
-                      data->anzFelder, this->teamsCount, &(this->fieldNames), params.at(0).toInt(), params.at(1).toInt());
+                      data->anzFelder, this->teamsCount, &(this->fieldNames), params.at(0).toInt(), params.at(1).toInt(), data->bettySpiele);
 }
 
 bool Worker::generateInterimGames()
@@ -380,7 +381,7 @@ void Worker::setParametersCrossGames()
     QStringList params = db->read("SELECT runde, spiel, zeit FROM zwischenrunde_spielplan ORDER BY id DESC LIMIT 1").at(0);
     cg->setParameters(params.at(2), ((data->satzZw * data->minSatzZw) + data->pauseMinZw), data->pauseZwKr, data->satzKr,
                       data->minSatzKr, data->pauseMinKr, data->anzFelder, this->teamsCount, &(this->fieldNames),
-                      params.at(0).toInt(), params.at(1).toInt());
+                      params.at(0).toInt(), params.at(1).toInt(), data->bettySpiele);
 }
 
 void Worker::generateCrossGames()

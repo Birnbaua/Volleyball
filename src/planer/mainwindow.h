@@ -97,6 +97,8 @@ private slots:
     void plValueChanged();
     void plValueChangedFinishEdit();
 
+    void on_checkBoxBettysPlan_clicked();
+
 private:
     void init();
     QList<QVariant> returnTime();

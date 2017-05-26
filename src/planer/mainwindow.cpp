@@ -291,14 +291,17 @@ void MainWindow::updateUiData(Worker::dataUi *data)
     this->data = data;
 
     ui->spinBoxAnzahlfelder->setValue(this->data->anzFelder);
+
     if(this->data->krSpiele == 1)
-    {
         ui->checkBoxKreuzspiele->setChecked(true);
-    }
     else
-    {
         ui->checkBoxKreuzspiele->setChecked(false);
-    }
+
+    if(this->data->bettySpiele == 1)
+        ui->checkBoxBettysPlan->setChecked(true);
+    else
+        ui->checkBoxBettysPlan->setChecked(false);
+
     ui->timeEditStartTurnier->setTime(QTime::fromString(this->data->startTurnier));
     ui->spinBoxPauseVrZw->setValue(this->data->pauseVrZw);
     ui->spinBoxPauseZwKr->setValue(this->data->pauseZwKr);
@@ -327,6 +330,11 @@ void MainWindow::updateWorkerData()
         data->krSpiele = 1;
     else
         data->krSpiele = 0;
+
+    if(ui->checkBoxBettysPlan->isChecked())
+        data->bettySpiele = 1;
+    else
+        data->bettySpiele = 0;
 
     data->pauseVrZw = ui->spinBoxPauseVrZw->value();
     data->pauseZwKr = ui->spinBoxPauseZwKr->value();
@@ -641,6 +649,11 @@ QList<QVariant> MainWindow::returnTime()
         return QList<QVariant>() << worker->getQualifyingGamesMaxTime() << 1;
 
     return QList<QVariant>() << "00:00" << 0;
+}
+
+void MainWindow::on_checkBoxBettysPlan_clicked()
+{
+
 }
 
 // ****************************************************************************************************
