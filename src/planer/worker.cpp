@@ -159,7 +159,7 @@ QStringList Worker::getFieldNames()
 int Worker::getTeamsCount()
 {
     int teamsCount = 0;
-    QList<QStringList> table = db->read("SELECT a, b, c, d, e, f, g, h, i, j FROM mannschaften");
+    QList<QStringList> table = db->read("SELECT a, b, c, d, e, f, g, h, i, j, k, l FROM mannschaften");
 
     foreach(QStringList row, table)
     {

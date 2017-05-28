@@ -210,6 +210,8 @@ QList<QStringList> InterimGames::generateNewDivisions()
     divisionsFourth = getDivisionsClassement(&resultDivisionsVr, 4);
     divisionsFifth = getDivisionsClassement(&resultDivisionsVr, 5);
 
+    emit logMessages("INFO: teams count=" + QString::number(teamsCount) + ", bettyspielplan=" + QString::number(bettyspiele));
+
     if(bettyspiele == 0)
     {
         switch(teamsCount)
@@ -1080,12 +1082,6 @@ QList<QStringList> InterimGames::generateNewDivisions()
                     return QList<QStringList>();
 
                 // make ranking of all divisions second teams
-                sortList(&divisionsThird);
-
-                if(checkListDoubleResults(&divisionsThird))
-                    return QList<QStringList>();
-
-                // make ranking of all divisions second teams
                 sortList(&divisionsFourth);
 
                 if(checkListDoubleResults(&divisionsFourth))
@@ -1108,73 +1104,73 @@ QList<QStringList> InterimGames::generateNewDivisions()
                 newDivisionsZw.append(QStringList()
                                         << divisionsFirstNames.at(0)
                                         << divisionsFirstNames.at(1)
-                                        << divisionsSecondNames.at(0)
-                                        << divisionsSecondNames.at(4)
-                                        << divisionsSecondNames.at(8));
+                                        << divisionsFirstNames.at(2)
+                                        << divisionsSecondNames.at(3)
+                                        << divisionsSecondNames.at(7));
 
                 newDivisionsZw.append(QStringList()
-                                        << divisionsFirstNames.at(2)
                                         << divisionsFirstNames.at(3)
                                         << divisionsFirstNames.at(4)
-                                        << divisionsSecondNames.at(1)
-                                        << divisionsSecondNames.at(5));
-
-                newDivisionsZw.append(QStringList()
                                         << divisionsFirstNames.at(5)
-                                        << divisionsFirstNames.at(6)
-                                        << divisionsFirstNames.at(7)
                                         << divisionsSecondNames.at(2)
                                         << divisionsSecondNames.at(6));
 
                 newDivisionsZw.append(QStringList()
+                                        << divisionsFirstNames.at(6)
+                                        << divisionsFirstNames.at(7)
                                         << divisionsFirstNames.at(8)
+                                        << divisionsSecondNames.at(1)
+                                        << divisionsSecondNames.at(5));
+
+                newDivisionsZw.append(QStringList()
                                         << divisionsFirstNames.at(9)
                                         << divisionsFirstNames.at(10)
-                                        << divisionsSecondNames.at(3)
-                                        << divisionsSecondNames.at(7));
+                                        << divisionsSecondNames.at(0)
+                                        << divisionsSecondNames.at(4)
+                                        << divisionsSecondNames.at(8));
 
                 // hobby a
                 newDivisionsZw.append(QStringList()
                                         << divisionsSecondNames.at(9)
-                                        << divisionsThirdNames.at(2)
                                         << divisionsThirdNames.at(6)
-                                        << divisionsFourthNames.at(0)
-                                        << divisionsFourthNames.at(1));
+                                        << divisionsThirdNames.at(7)
+                                        << divisionsThirdNames.at(8)
+                                        << divisionsFourthNames.at(6));
 
                 newDivisionsZw.append(QStringList()
                                         << divisionsSecondNames.at(10)
-                                        << divisionsThirdNames.at(3)
-                                        << divisionsThirdNames.at(7)
-                                        << divisionsFourthNames.at(2)
-                                        << divisionsFourthNames.at(3));
-
-                newDivisionsZw.append(QStringList()
-                                        << divisionsThirdNames.at(0)
-                                        << divisionsThirdNames.at(4)
-                                        << divisionsThirdNames.at(8)
-                                        << divisionsFourthNames.at(4)
+                                        << divisionsThirdNames.at(9)
+                                        << divisionsThirdNames.at(10)
+                                        << divisionsFourthNames.at(0)
                                         << divisionsFourthNames.at(5));
 
                 newDivisionsZw.append(QStringList()
+                                        << divisionsThirdNames.at(0)
                                         << divisionsThirdNames.at(1)
+                                        << divisionsThirdNames.at(2)
+                                        << divisionsFourthNames.at(1)
+                                        << divisionsFourthNames.at(4));
+
+                newDivisionsZw.append(QStringList()
+                                        << divisionsThirdNames.at(3)
+                                        << divisionsThirdNames.at(4)
                                         << divisionsThirdNames.at(5)
-                                        << divisionsThirdNames.at(9)
-                                        << divisionsThirdNames.at(10)
-                                        << divisionsFourthNames.at(6));
+                                        << divisionsFourthNames.at(2)
+                                        << divisionsFourthNames.at(3));
 
                 // hobby b
                 newDivisionsZw.append(QStringList()
                                         << divisionsFourthNames.at(7)
-                                        << divisionsFourthNames.at(9)
+                                        << divisionsFourthNames.at(10)
                                         << divisionsFifthNames.at(0)
-                                        << divisionsFifthNames.at(1)
-                                        << divisionsFifthNames.at(2));
+                                        << divisionsFifthNames.at(3)
+                                        << divisionsFifthNames.at(4));
 
                 newDivisionsZw.append(QStringList()
                                         << divisionsFourthNames.at(8)
-                                        << divisionsFourthNames.at(10)
-                                        << divisionsFifthNames.at(3)
-                                        << divisionsFifthNames.at(4)
+                                        << divisionsFourthNames.at(9)
+                                        << divisionsFifthNames.at(1)
+                                        << divisionsFifthNames.at(2)
                                         << divisionsFifthNames.at(5));
 
                 // hobby c
@@ -1213,28 +1209,28 @@ QList<QStringList> InterimGames::generateNewDivisions()
                                         << divisionsFirstNames.at(1)
                                         << divisionsFirstNames.at(2)
                                         << divisionsSecondNames.at(0)
-                                        << divisionsSecondNames.at(4));
+                                        << divisionsSecondNames.at(7));
 
                 newDivisionsZw.append(QStringList()
                                         << divisionsFirstNames.at(3)
                                         << divisionsFirstNames.at(4)
                                         << divisionsFirstNames.at(5)
                                         << divisionsSecondNames.at(1)
-                                        << divisionsSecondNames.at(5));
+                                        << divisionsSecondNames.at(6));
 
                 newDivisionsZw.append(QStringList()
                                         << divisionsFirstNames.at(6)
                                         << divisionsFirstNames.at(7)
                                         << divisionsFirstNames.at(8)
                                         << divisionsSecondNames.at(2)
-                                        << divisionsSecondNames.at(6));
+                                        << divisionsSecondNames.at(5));
 
                 newDivisionsZw.append(QStringList()
                                         << divisionsFirstNames.at(9)
                                         << divisionsFirstNames.at(10)
                                         << divisionsFirstNames.at(11)
                                         << divisionsSecondNames.at(3)
-                                        << divisionsSecondNames.at(7));
+                                        << divisionsSecondNames.at(4));
 
                 // hobby a
                 newDivisionsZw.append(QStringList()
@@ -1242,54 +1238,54 @@ QList<QStringList> InterimGames::generateNewDivisions()
                                         << divisionsThirdNames.at(0)
                                         << divisionsThirdNames.at(1)
                                         << divisionsThirdNames.at(2)
-                                        << divisionsFourthNames.at(0));
+                                        << divisionsFourthNames.at(3));
 
                 newDivisionsZw.append(QStringList()
                                         << divisionsSecondNames.at(9)
                                         << divisionsThirdNames.at(3)
                                         << divisionsThirdNames.at(4)
                                         << divisionsThirdNames.at(5)
-                                        << divisionsFourthNames.at(1));
+                                        << divisionsFourthNames.at(2));
 
                 newDivisionsZw.append(QStringList()
                                         << divisionsSecondNames.at(10)
                                         << divisionsThirdNames.at(6)
                                         << divisionsThirdNames.at(7)
                                         << divisionsThirdNames.at(8)
-                                        << divisionsFourthNames.at(2));
+                                        << divisionsFourthNames.at(1));
 
                 newDivisionsZw.append(QStringList()
                                         << divisionsSecondNames.at(11)
                                         << divisionsThirdNames.at(9)
                                         << divisionsThirdNames.at(10)
                                         << divisionsThirdNames.at(11)
-                                        << divisionsFourthNames.at(3));
+                                        << divisionsFourthNames.at(0));
 
                 // hobby b
                 newDivisionsZw.append(QStringList()
                                         << divisionsFourthNames.at(4)
-                                        << divisionsFourthNames.at(5)
+                                        << divisionsFourthNames.at(11)
                                         << divisionsFifthNames.at(0)
                                         << divisionsFifthNames.at(1)
                                         << divisionsFifthNames.at(2));
 
                 newDivisionsZw.append(QStringList()
-                                        << divisionsFourthNames.at(6)
-                                        << divisionsFourthNames.at(7)
+                                        << divisionsFourthNames.at(5)
+                                        << divisionsFourthNames.at(10)
                                         << divisionsFifthNames.at(3)
                                         << divisionsFifthNames.at(4)
                                         << divisionsFifthNames.at(5));
 
                 newDivisionsZw.append(QStringList()
-                                        << divisionsFourthNames.at(8)
+                                        << divisionsFourthNames.at(6)
                                         << divisionsFourthNames.at(9)
                                         << divisionsFifthNames.at(6)
                                         << divisionsFifthNames.at(7)
                                         << divisionsFifthNames.at(8));
 
                 newDivisionsZw.append(QStringList()
-                                        << divisionsFourthNames.at(10)
-                                        << divisionsFourthNames.at(11)
+                                        << divisionsFourthNames.at(7)
+                                        << divisionsFourthNames.at(8)
                                         << divisionsFifthNames.at(9)
                                         << divisionsFifthNames.at(10)
                                         << divisionsFifthNames.at(11));
