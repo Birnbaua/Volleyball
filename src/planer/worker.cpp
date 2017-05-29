@@ -158,19 +158,23 @@ QStringList Worker::getFieldNames()
 // get teams count
 int Worker::getTeamsCount()
 {
-    int teamsCount = 0;
-    QList<QStringList> table = db->read("SELECT a, b, c, d, e, f, g, h, i, j, k, l FROM mannschaften");
+    QList<QStringList> table = db->read("SELECT * FROM team_count_view");
+    int tCount = table.at(0).at(0).toInt();
 
-    foreach(QStringList row, table)
-    {
-        foreach(QString col, row)
-        {
-            if(col != "")
-                teamsCount++;
-        }
-    }
+    emit logging("GENERAL: teams count => " + QString::number(tCount));
 
-    return teamsCount;
+    return tCount;
+}
+
+// get teams count
+int Worker::getDivisionsCount()
+{
+    QList<QStringList> table = db->read("SELECT * FROM division_count_view");
+    int dCount = table.at(0).at(0).toInt();
+
+    emit logging("GENERAL: division count => " + QString::number(dCount));
+
+    return dCount;
 }
 
 void Worker::uploadFile()
@@ -293,6 +297,7 @@ void Worker::setParametersQualifyingGames()
 {
     this->fieldNames = getFieldNames();
     this->teamsCount = getTeamsCount();
+    this->divisionCount = getDivisionsCount();
     qf->setParameters(data->startTurnier, data->satzVr, data->minSatzVr, data->pauseMinVr, data->anzFelder, this->teamsCount, &(this->fieldNames));
 }
 
@@ -339,7 +344,7 @@ void Worker::setParametersInterimGames()
 {
     QStringList params = db->read("SELECT runde, spiel, zeit FROM vorrunde_spielplan ORDER BY id DESC LIMIT 1").at(0);
     im->setParameters(params.at(2), data->pauseVrZw, data->satzZw, data->minSatzZw, data->pauseMinZw,
-                      data->anzFelder, this->teamsCount, &(this->fieldNames), params.at(0).toInt(), params.at(1).toInt(), data->bettySpiele);
+                      data->anzFelder, this->teamsCount, this->divisionCount, &(this->fieldNames), params.at(0).toInt(), params.at(1).toInt(), data->bettySpiele);
 }
 
 bool Worker::generateInterimGames()

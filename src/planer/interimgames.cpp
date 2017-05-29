@@ -48,7 +48,7 @@ InterimGames::~InterimGames()
 
 // set vorrunde params
 void InterimGames::setParameters(QString startRound, int pauseVrZw, int countSatz, int minSatz, int minPause,
-                                 int fieldCount, int teamsCount, QStringList *fieldNames, int lastRoundNr, int lastGameNr,
+                                 int fieldCount, int teamsCount, int divisionCount, QStringList *fieldNames, int lastRoundNr, int lastGameNr,
                                  int bettyspiele)
 {
     emit logMessages("ZWISCHENRUNDE:: set zwischenrunde params");
@@ -58,6 +58,7 @@ void InterimGames::setParameters(QString startRound, int pauseVrZw, int countSat
     this->pause = minPause;
     this->fieldCount = fieldCount;
     this->teamsCount = teamsCount;
+    this->divisionCount = divisionCount;
     this->fieldNames = fieldNames;
     this->lastGameNr = lastGameNr;
     this->lastRoundNr = lastRoundNr;
@@ -201,7 +202,7 @@ QList<QStringList> InterimGames::generateNewDivisions()
     QList<QStringList> newDivisionsZw;
 
     // read divisional rank results and add to list
-    for(int i = 0; i < prefixCount; i++)
+    for(int i = 0; i < divisionCount; i++)
         resultDivisionsVr.append(dbRead("select ms, punkte, satz, intern, extern from vorrunde_erg_gr" + getPrefix(i) + " order by punkte desc, satz desc, intern asc"));
 
     divisionsFirst = getDivisionsClassement(&resultDivisionsVr, 1);

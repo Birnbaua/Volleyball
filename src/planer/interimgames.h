@@ -11,7 +11,7 @@ public:
     ~InterimGames();
 
     void setParameters(QString startRound, int pauseVrZw, int countSatz, int minSatz, int minPause,
-                       int fieldCount, int teamsCount, QStringList *fieldNames, int lastRoundNr, int lastGameNr, int bettyspiele);
+                       int fieldCount, int teamsCount, int divisionCount, QStringList *fieldNames, int lastRoundNr, int lastGameNr, int bettyspiele);
 
     bool generateGames();
 
@@ -29,7 +29,7 @@ private:
 
     QString startRound;
     bool first;
-    int prefixCount, fieldCount, teamsCount, gamesCount;
+    int prefixCount, fieldCount, teamsCount, gamesCount, divisionCount;
     int satz, min, pause, lastGameNr, lastRoundNr, bettyspiele;
     QStringList *grPrefix, *fieldNames;
     QList<QList<int> > firstFourMsDivision, fourMsDivision, fiveMsDivision;

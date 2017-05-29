@@ -29,7 +29,8 @@ SOURCES += main.cpp\
     about.cpp \
     viewclassement.cpp \
     viewdivisions.cpp \
-    viewallresults.cpp
+    viewallresults.cpp \
+    itemrowdelegate.cpp
 
 HEADERS  += mainwindow.h \
     database.h \
@@ -46,7 +47,8 @@ HEADERS  += mainwindow.h \
     about.h \
     viewclassement.h \
     viewdivisions.h \
-    viewallresults.h
+    viewallresults.h \
+    itemrowdelegate.h
 
 FORMS    += mainwindow.ui \
     about.ui \

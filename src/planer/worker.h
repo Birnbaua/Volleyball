@@ -52,6 +52,7 @@ public:
     bool checkDoubleTeamNames(QSqlTableModel *model);
     void resetTeams();
     int getTeamsCount();
+    int getDivisionsCount();
     void uploadFile();
 
     // fields
@@ -135,7 +136,7 @@ private:
     ClassementGames *clg;
     dataUi *data;
 
-    int teamsCount;
+    int teamsCount, divisionCount;
     QStringList fieldNames;
 };
 

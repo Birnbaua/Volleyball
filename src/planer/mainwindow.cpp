@@ -992,6 +992,7 @@ void MainWindow::on_pushButtonZwResult_clicked()
 
 void MainWindow::on_pushButtonZwAllResults_clicked()
 {
+    initTableViewInterimAllResults();
     allZwView->show();
 }
 

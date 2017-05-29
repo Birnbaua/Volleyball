@@ -8,6 +8,7 @@ ViewAllResults::ViewAllResults(QString windowTitle, QSqlTableModel *tm, QIcon ap
     ui->setupUi(this);
 
     ui->tableViewAllResults->setModel(tm);
+    ui->tableViewAllResults->setItemDelegate(NULL);
 
     this->setWindowTitle(windowTitle);
     this->setWindowIcon(appIcon);
