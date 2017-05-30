@@ -5,7 +5,7 @@
 #include <QObject>
 #include <itemdelegates.h>
 
-class ItemRowDelegate : public ItemDelegates
+class ItemRowDelegate : public QStyledItemDelegate
 {
     Q_OBJECT
 public:
@@ -13,9 +13,6 @@ public:
     ~ItemRowDelegate();
 
     void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
-
-private:
-    QColor getColor(int rC) const;
 };
 
 #endif // ITEMROWDELEGATE_H

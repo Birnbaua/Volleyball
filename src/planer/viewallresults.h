@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QTableView>
 #include <QSqlTableModel>
+#include "itemrowdelegate.h"
 
 namespace Ui {
 class ViewAllResults;
