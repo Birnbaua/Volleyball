@@ -10,7 +10,7 @@ public:
     explicit CrossGames(Database *db, QStringList *grPrefix);
     ~CrossGames();
 
-    void setParameters(QString startRound, int lastgameTime, int pauseZwKr, int countSatz, int minSatz, int minPause, int fieldCount, int teamsCount, QStringList *fieldNames, int lastRoundNr, int lastGameNr, int bettyspiele);
+    void setParameters(QString startRound, int lastgameTime, int pauseZwKr, int countSatz, int minSatz, int minPause, int fieldCount, int teamsCount, int divisionCount, QStringList *fieldNames, int lastRoundNr, int lastGameNr, int bettyspiele);
 
     void generateCrossGames();
 
@@ -19,7 +19,7 @@ private:
     QStringList generateGamePlan(QTime startRound);
 
     QString startRound;
-    int prefixCount, fieldCount, teamsCount, gamesCount, bettyspiele;
+    int prefixCount, fieldCount, teamsCount, divisionCount, gamesCount, bettyspiele;
     int satz, min, pause, lastGameNr, lastRoundNr;
     QStringList *grPrefix, *fieldNames;
 };

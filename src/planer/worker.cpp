@@ -385,7 +385,7 @@ void Worker::setParametersCrossGames()
 {
     QStringList params = db->read("SELECT runde, spiel, zeit FROM zwischenrunde_spielplan ORDER BY id DESC LIMIT 1").at(0);
     cg->setParameters(params.at(2), ((data->satzZw * data->minSatzZw) + data->pauseMinZw), data->pauseZwKr, data->satzKr,
-                      data->minSatzKr, data->pauseMinKr, data->anzFelder, this->teamsCount, &(this->fieldNames),
+                      data->minSatzKr, data->pauseMinKr, data->anzFelder, this->teamsCount, this->divisionCount, &(this->fieldNames),
                       params.at(0).toInt(), params.at(1).toInt(), data->bettySpiele);
 }
 

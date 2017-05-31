@@ -11,7 +11,7 @@ CrossGames::~CrossGames()
 
 // set kreuzspiele params
 void CrossGames::setParameters(QString startRound, int lastgameTime, int pauseZwKr, int countSatz, int minSatz, int minPause,
-                               int fieldCount, int teamsCount, QStringList *fieldNames, int lastRoundNr, int lastGameNr,
+                               int fieldCount, int teamsCount, int divisionCount, QStringList *fieldNames, int lastRoundNr, int lastGameNr,
                                int bettyspiele)
 {
     emit logMessages("KREUZSPIELE:: set kreuszpiele params");
@@ -21,6 +21,7 @@ void CrossGames::setParameters(QString startRound, int lastgameTime, int pauseZw
     this->pause = minPause;
     this->fieldCount = fieldCount;
     this->teamsCount = teamsCount;
+    this->divisionCount = divisionCount;
     this->fieldNames = fieldNames;
     this->lastGameNr = lastGameNr;
     this->lastRoundNr = lastRoundNr;
@@ -39,10 +40,12 @@ void CrossGames::generateCrossGames()
     QStringList execQuerys;
 
     prefixCount = getPrefixCount();
+    gamesCount = 0;
 
     execQuerys << generateGamePlan(QTime::fromString(startRound));
 
-    execQuerys << insertFieldNames("kreuzspiele_spielplan", fieldNames);
+    if(bettyspiele == 1)
+        execQuerys << insertFieldNames("kreuzspiele_spielplan", fieldNames);
 
     dbWrite(&execQuerys);
 }
@@ -85,9 +88,7 @@ QStringList CrossGames::generateGamePlan(QTime startRound)
     divisionI = getDivisionTeamNames(&(resultDivisionsZw.at(8)));
     divisionJ = getDivisionTeamNames(&(resultDivisionsZw.at(9)));
     divisionK = getDivisionTeamNames(&(resultDivisionsZw.at(10)));
-    divisionL = getDivisionTeamNames(&(resultDivisionsZw.at(11)));
-
-    finalDivisions.append(&divisionA);
+    divisionL = getDivisionTeamNames(&(resultDivisionsZw.at(11))); 
 
     lastRoundNr++;
 
@@ -302,46 +303,94 @@ QStringList CrossGames::generateGamePlan(QTime startRound)
     }
     else
     {
-        switch(teamsCount)
+        if(divisionA.count() > 0)
+            finalDivisions.append(&divisionA);
+
+        if(divisionB.count() > 0)
+            finalDivisions.append(&divisionB);
+
+        if(divisionC.count() > 0)
+            finalDivisions.append(&divisionC);
+
+        if(divisionD.count() > 0)
+            finalDivisions.append(&divisionD);
+
+        if(divisionE.count() > 0)
+            finalDivisions.append(&divisionE);
+
+        if(divisionF.count() > 0)
+            finalDivisions.append(&divisionF);
+
+        if(divisionG.count() > 0)
+            finalDivisions.append(&divisionG);
+
+        if(divisionH.count() > 0)
+            finalDivisions.append(&divisionH);
+
+        if(divisionI.count() > 0)
+            finalDivisions.append(&divisionI);
+
+        if(divisionJ.count() > 0)
+            finalDivisions.append(&divisionJ);
+
+        if(divisionK.count() > 0)
+            finalDivisions.append(&divisionK);
+
+        if(divisionL.count() > 0)
+            finalDivisions.append(&divisionL);
+
+        QList<QList<QStringList>> gameList;
+        for(int i = 0; i < divisionCount;)
         {
-            case 20:
-                lastGameNr++;
-                querys << "INSERT INTO kreuzspiele_spielplan VALUES(1," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',1,'','" + divisionA.at(0) + "','" + divisionB.at(0) + "','" + divisionA.at(1) + "',0,0,0,0,0,0)";
-                lastGameNr++;
-                querys << "INSERT INTO kreuzspiele_spielplan VALUES(2," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',2,'','" + divisionC.at(0) + "','" + divisionD.at(0) + "','" + divisionA.at(1) + "',0,0,0,0,0,0)";
+            if(i + 1 < finalDivisions.count())
+            {
+                int rest = (finalDivisions.at(i)->count() + finalDivisions.at(i + 1)->count()) % 2;
+                int count = (finalDivisions.at(i)->count() + finalDivisions.at(i + 1)->count() - rest) / 2;
+                QList<QStringList> games;
 
-                lastGameNr++;
-                querys << "INSERT INTO kreuzspiele_spielplan VALUES(3," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',3,'','" + divisionA.at(1) + "','" + divisionB.at(1) + "','" + divisionA.at(1) + "',0,0,0,0,0,0)";
-                lastGameNr++;
-                querys << "INSERT INTO kreuzspiele_spielplan VALUES(4," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',4,'','" + divisionC.at(1) + "','" + divisionD.at(1) + "','" + divisionA.at(1) + "',0,0,0,0,0,0)";
-
-                lastGameNr++;
-                querys << "INSERT INTO kreuzspiele_spielplan VALUES(5," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',4,'','" + divisionA.at(2) + "','" + divisionB.at(2) + "','" + divisionA.at(1) + "',0,0,0,0,0,0)";
-                lastGameNr++;
-                querys << "INSERT INTO kreuzspiele_spielplan VALUES(6," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',3,'','" + divisionC.at(2) + "','" + divisionD.at(2) + "','" + divisionA.at(1) + "',0,0,0,0,0,0)";
-
-                lastGameNr++;
-                querys << "INSERT INTO kreuzspiele_spielplan VALUES(7," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',2,'','" + divisionA.at(3) + "','" + divisionB.at(3) + "','" + divisionA.at(1) + "',0,0,0,0,0,0)";
-                lastGameNr++;
-                querys << "INSERT INTO kreuzspiele_spielplan VALUES(8," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',1,'','" + divisionC.at(3) + "','" + divisionD.at(3) + "','" + divisionA.at(1) + "',0,0,0,0,0,0)";
-
-                lastGameNr++;
-                querys << "INSERT INTO kreuzspiele_spielplan VALUES(9," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',1,'','" + divisionA.at(4) + "','" + divisionB.at(4) + "','" + divisionA.at(1) + "',0,0,0,0,0,0)";
-                lastGameNr++;
-                querys << "INSERT INTO kreuzspiele_spielplan VALUES(10," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',2,'','" + divisionC.at(4) + "','" + divisionD.at(4) + "','" + divisionA.at(1) + "',0,0,0,0,0,0)";
-                break;
-
-            case 30:
-            case 40:
-            case 50:
-            case 60:
-                for(int i = 0, x = 0; i < teamsCount/2; i++)
+                for(int x = 0; x < count; x++)
                 {
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(" + QString::number(i) + "," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',1,'','" + divisionA.at(x) + "','" + divisionB.at(x) + "','" + divisionA.at(1) + "',0,0,0,0,0,0)";
+                    games.append(QStringList() << finalDivisions.at(i)->at(x) << finalDivisions.at(i + 1)->at(x) << "XXX");
+                    gamesCount++;
                 }
 
+                gameList.append(games);
+                i = i + 2;
+            }
+            else
+            {
                 break;
+            }
+        }
+
+        lastGameNr++;
+        for(int count = 0, fCount = 1, y = 0, rowCount = 1, dataRow = 0; count < gamesCount; rowCount++, lastGameNr++, count++)
+        {
+            querys << "INSERT INTO kreuzspiele_spielplan VALUES("
+                      + string(rowCount) + "," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "', " + string(fCount) + ",'','"
+                      + gameList.at(y).at(dataRow).at(0) + "','" + gameList.at(y).at(dataRow).at(1) + "','" + gameList.at(y).at(dataRow).at(2)
+                      + "',0,0,0,0,0,0)";
+
+            if(fCount >= fieldCount)
+            {
+                fCount = 1;
+                lastRoundNr++;
+                startRound = startRound.addSecs(addzeit);
+            }
+            else
+            {
+                fCount++;
+            }
+
+            if(dataRow + 1 >= gameList.at(y).count())
+            {
+                dataRow = 0;
+                y++;
+            }
+            else
+            {
+                dataRow++;
+            }
         }
     }
 
