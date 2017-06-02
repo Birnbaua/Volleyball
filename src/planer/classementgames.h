@@ -11,7 +11,7 @@ public:
     explicit ClassementGames(Database *db, QStringList *grPrefix);
     ~ClassementGames();
 
-    void setParameters(QString startRound, int lastgameTime, int pauseKrPl, int countSatz, int minSatz, int fieldCount, int teamsCount, QStringList *fieldNames, int lastRoundNr, int lastGameNr);
+    void setParameters(QString startRound, int lastgameTime, int pauseKrPl, int countSatz, int minSatz, int fieldCount, int teamsCount, int divisionCount, QStringList *fieldNames, int lastRoundNr, int lastGameNr, int bettyspiele);
 
     void generateClassementGames();
 
@@ -23,7 +23,7 @@ private:
 
     QList<int> classements;
     QString startRound;
-    int prefixCount, fieldCount, teamsCount, gamesCount;
+    int prefixCount, fieldCount, teamsCount, gamesCount, divisionCount, bettyspiele;
     int satz, min, pause, lastGameNr, lastRoundNr;
     QStringList *grPrefix, *fieldNames;
 };
