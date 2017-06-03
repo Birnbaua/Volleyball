@@ -695,7 +695,7 @@ QStringList ClassementGames::generateGamePlan(QTime startRound, QList<QStringLis
     }
     else
     {
-        for(int i = 0, id = 1, fCount = 1; (i + 5) < krGameResults->count(); i++, id++, lastGameNr++)
+        for(int i = 0, id = 1, fCount = 1; (i + 5) < krGameResults->count(); id++, lastGameNr++)
         {
             QStringList result1 = CalculateResults::getResultsKrPl(krGameResults->at(i));
             QStringList result2 = CalculateResults::getResultsKrPl(krGameResults->at(i + 5));
@@ -731,6 +731,11 @@ QStringList ClassementGames::generateGamePlan(QTime startRound, QList<QStringLis
             {
                 fCount++;
             }
+
+            if(i >= 4)
+                i = i + 5;
+            else
+                i++;
         }
     }
 
