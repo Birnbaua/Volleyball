@@ -182,7 +182,6 @@ void MainWindow::init()
     tmPl = NULL;
     clView = NULL;
     allVrView = NULL;
-    allZwView = NULL;
 
     // set app icon
     appIcon = QIcon("./resources/mikasa.jpg");
@@ -846,16 +845,6 @@ void MainWindow::initTableViewInterimResults()
     imView->setAttribute(Qt::WA_DeleteOnClose);
 }
 
-void MainWindow::initTableViewInterimAllResults()
-{
-    viewAllZwResults = NULL;
-    viewAllZwResults = worker->createSqlTableModel("zwischenrunde_all_view", &colTableViewVrZwAllResults);
-
-    allZwView = NULL;
-    allZwView = new ViewAllResults("Zwischenrunde Ergebnisse alle Mannschaften", viewAllZwResults, appIcon);
-    allZwView->setAttribute(Qt::WA_DeleteOnClose);
-}
-
 void MainWindow::copyZwTableView()
 {
     copyEvent(ui->tableViewZwischenrunde);
@@ -988,12 +977,6 @@ void MainWindow::on_pushButtonZwResult_clicked()
 {
     initTableViewInterimResults();
     imView->show();
-}
-
-void MainWindow::on_pushButtonZwAllResults_clicked()
-{
-    initTableViewInterimAllResults();
-    allZwView->show();
 }
 
 // ****************************************************************************************************

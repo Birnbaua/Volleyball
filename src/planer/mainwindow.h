@@ -74,7 +74,6 @@ private slots:
     void pasteZwTableView();
     void zwValueChanged();
     void zwValueChangedFinishEdit();
-    void on_pushButtonZwAllResults_clicked();
 
     void on_pushButtonKrGenerate_clicked();
     void on_pushButtonKrSave_clicked();
@@ -137,7 +136,7 @@ private:
     ViewAllResults *allVrView, *allZwView;
 
     QList<QSqlTableModel*> viewQualifyingModels, viewIntermModels;
-    QSqlTableModel *tmFields, *tmTeams, *tmVr, *tmZw, *tmKr, *tmPl, *tmPlatz, *viewClassementResults, *viewAllVrResults, *viewAllZwResults;
+    QSqlTableModel *tmFields, *tmTeams, *tmVr, *tmZw, *tmKr, *tmPl, *tmPlatz, *viewClassementResults, *viewAllVrResults;
     ItemDelegates *idQualifyingGames, *idInterimGames, *idCrossGames, *idClassement;
     bool msChanged, configChanged, vrChanged, zwChanged, krChanged, plChanged;
 };
