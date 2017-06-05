@@ -364,7 +364,8 @@ QStringList CrossGames::generateGamePlan(QTime startRound)
         }
 
         lastGameNr++;
-        for(int count = 0, fCount = 1, y = 0, rowCount = 1, dataRow = 0; count < gamesCount; rowCount++, lastGameNr++, count++)
+        // generate round stating with last group and last game (worst two teams)
+        for(int count = 0, fCount = 1, y = (gameList.count() - 1), rowCount = 1, dataRow = gameList.at((gameList.count() - 1)).count() - 1; count < gamesCount; rowCount++, lastGameNr++, count++)
         {
             querys << "INSERT INTO kreuzspiele_spielplan VALUES("
                       + string(rowCount) + "," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "', " + string(fCount) + ",'','"
@@ -382,14 +383,14 @@ QStringList CrossGames::generateGamePlan(QTime startRound)
                 fCount++;
             }
 
-            if(dataRow + 1 >= gameList.at(y).count())
+            if(dataRow < 1)
             {
-                dataRow = 0;
-                y++;
+                dataRow = gameList.at(y).count() - 1;
+                y--;
             }
             else
             {
-                dataRow++;
+                dataRow--;
             }
         }
     }

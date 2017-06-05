@@ -674,16 +674,16 @@ QStringList ClassementGames::generateGamePlan(QTime startRound, QList<QStringLis
                 lastRoundNr++;
                 // spiel um platz 11
                 lastGameNr++;
-                querys << "INSERT INTO platzspiele_spielplan VALUES(17," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',1,'','" + krGameResults->at(2).at(1) + "','" + krGameResults->at(10).at(1) + "','" + divisionA->at(3) + "',0,0,0,0,0,0)";
+                querys << "INSERT INTO platzspiele_spielplan VALUES(17," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',1,'','" + krGameResults->at(2).at(1) + "','" + krGameResults->at(10).at(1) + "','" + divisionI->at(3) + "',0,0,0,0,0,0)";
                 // spiel um platz 21
                 lastGameNr++;
-                querys << "INSERT INTO platzspiele_spielplan VALUES(18," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',2,'','" + krGameResults->at(4).at(1) + "','" + krGameResults->at(12).at(1) + "','" + divisionB->at(3) + "',0,0,0,0,0,0)";
+                querys << "INSERT INTO platzspiele_spielplan VALUES(18," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',2,'','" + krGameResults->at(4).at(1) + "','" + krGameResults->at(12).at(1) + "','" + divisionJ->at(3) + "',0,0,0,0,0,0)";
                 // spiel um platz 31
                 lastGameNr++;
-                querys << "INSERT INTO platzspiele_spielplan VALUES(19," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',3,'','" + krGameResults->at(6).at(1) + "','" + krGameResults->at(14).at(1) + "','" + divisionC->at(3) + "',0,0,0,0,0,0)";
+                querys << "INSERT INTO platzspiele_spielplan VALUES(19," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',3,'','" + krGameResults->at(6).at(1) + "','" + krGameResults->at(14).at(1) + "','" + divisionK->at(3) + "',0,0,0,0,0,0)";
                 // spiel um platz 41
                 lastGameNr++;
-                querys << "INSERT INTO platzspiele_spielplan VALUES(20," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',4,'','" + krGameResults->at(6).at(1) + "','" + krGameResults->at(14).at(1) + "','" + divisionC->at(3) + "',0,0,0,0,0,0)";
+                querys << "INSERT INTO platzspiele_spielplan VALUES(20," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',4,'','" + krGameResults->at(6).at(1) + "','" + krGameResults->at(14).at(1) + "','" + divisionL->at(3) + "',0,0,0,0,0,0)";
 
                 startRound = startRound.addSecs(addzeit);
                 lastRoundNr++;
@@ -695,14 +695,19 @@ QStringList ClassementGames::generateGamePlan(QTime startRound, QList<QStringLis
     }
     else
     {
-        for(int i = 0, id = 1, fCount = 1; (i + 5) < krGameResults->count(); id++, lastGameNr++)
+        for(int i = 0, x = resultDivisionsZw.count() - 1, y = ((resultDivisionsZw.at(x).count()
+                            + resultDivisionsZw.at(x - 1).count()) / 2) - 1,
+            id = 1, fCount = 1; (i + 5) < krGameResults->count(); id++, lastGameNr++)
         {
-            QStringList result1 = CalculateResults::getResultsKrPl(krGameResults->at(i));
-            QStringList result2 = CalculateResults::getResultsKrPl(krGameResults->at(i + 5));
+            QString winner1 = krGameResults->at(i).at(1);
+            QString looser1 = krGameResults->at(i).at(2);
+
+            QString winner2 = krGameResults->at(i + 5).at(1);
+            QString looser2 = krGameResults->at(i + 5).at(2);
 
             querys << "INSERT INTO platzspiele_spielplan VALUES(" + string(id) + "," + string(lastRoundNr) + "," + string(lastGameNr) + ",'"
                       + startRound.toString("hh:mm") + "'," + string(fCount) + ",'','"
-                      + result1.at(1) + "','" + result2.at(1) + "','',0,0,0,0,0,0)";
+                      + looser1 + "','" + looser2 + "','',0,0,0,0,0,0)";
 
             if(fCount >= fieldCount)
             {
@@ -719,7 +724,7 @@ QStringList ClassementGames::generateGamePlan(QTime startRound, QList<QStringLis
 
             querys << "INSERT INTO platzspiele_spielplan VALUES(" + string(id) + "," + string(lastRoundNr) + "," + string(lastGameNr) + ",'"
                       + startRound.toString("hh:mm") + "'," + string(fCount) + ",'','"
-                      + result1.at(2) + "','" + result2.at(2) + "','',0,0,0,0,0,0)";
+                      + winner1 + "','" + winner2 + "','',0,0,0,0,0,0)";
 
             if(fCount >= fieldCount)
             {
@@ -732,10 +737,18 @@ QStringList ClassementGames::generateGamePlan(QTime startRound, QList<QStringLis
                 fCount++;
             }
 
-            if(i >= 4)
-                i = i + 5;
-            else
+            if(i < y)
+            {
                 i++;
+            }
+            else
+            {
+                x = x - 2;
+                int toAdd = resultDivisionsZw.at(x).count() + resultDivisionsZw.at(x - 1).count();
+                y = y + toAdd;
+                i = i + (toAdd / 2);
+                i++;
+            }
         }
     }
 
