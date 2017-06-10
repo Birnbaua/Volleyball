@@ -225,8 +225,10 @@ QStringList CrossGames::generateGamePlan(QTime startRound)
                 querys << "INSERT INTO kreuzspiele_spielplan VALUES(9," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',9,'','" + divisionI.at(0) + "','" + divisionJ.at(1) + "','" + divisionI.at(1) + "',0,0,0,0,0,0)";
                 lastGameNr++;
                 querys << "INSERT INTO kreuzspiele_spielplan VALUES(10," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',10,'','" + divisionI.at(2) + "','" + divisionJ.at(3) + "','" + divisionI.at(3) + "',0,0,0,0,0,0)";
+
                 startRound = startRound.addSecs(addzeit);
                 lastRoundNr++; lastGameNr++;
+
                 querys << "INSERT INTO kreuzspiele_spielplan VALUES(11," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',10,'','" + divisionA.at(1) + "','" + divisionB.at(0) + "','" + divisionB.at(1) + "',0,0,0,0,0,0)";
                 lastGameNr++;
                 querys << "INSERT INTO kreuzspiele_spielplan VALUES(12," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',9,'','" + divisionA.at(3) + "','" + divisionB.at(2) + "','" + divisionB.at(3) + "',0,0,0,0,0,0)";
@@ -270,11 +272,13 @@ QStringList CrossGames::generateGamePlan(QTime startRound)
                 lastGameNr++;
                 querys << "INSERT INTO kreuzspiele_spielplan VALUES(10," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',10,'','" + divisionI.at(2) + "','" + divisionJ.at(3) + "','" + divisionI.at(3) + "',0,0,0,0,0,0)";
                 lastGameNr++;
-                querys << "INSERT INTO kreuzspiele_spielplan VALUES(11," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',11,'','" + divisionI.at(2) + "','" + divisionJ.at(3) + "','" + divisionI.at(3) + "',0,0,0,0,0,0)";
+                querys << "INSERT INTO kreuzspiele_spielplan VALUES(11," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',11,'','" + divisionK.at(2) + "','" + divisionL.at(3) + "','" + divisionK.at(3) + "',0,0,0,0,0,0)";
                 lastGameNr++;
-                querys << "INSERT INTO kreuzspiele_spielplan VALUES(12," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',12,'','" + divisionI.at(2) + "','" + divisionJ.at(3) + "','" + divisionI.at(3) + "',0,0,0,0,0,0)";
+                querys << "INSERT INTO kreuzspiele_spielplan VALUES(12," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',12,'','" + divisionK.at(2) + "','" + divisionL.at(3) + "','" + divisionK.at(3) + "',0,0,0,0,0,0)";
+
                 startRound = startRound.addSecs(addzeit);
                 lastRoundNr++; lastGameNr++;
+
                 querys << "INSERT INTO kreuzspiele_spielplan VALUES(13," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',12,'','" + divisionA.at(1) + "','" + divisionB.at(0) + "','" + divisionB.at(1) + "',0,0,0,0,0,0)";
                 lastGameNr++;
                 querys << "INSERT INTO kreuzspiele_spielplan VALUES(14," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',11,'','" + divisionA.at(3) + "','" + divisionB.at(2) + "','" + divisionB.at(3) + "',0,0,0,0,0,0)";
@@ -291,13 +295,13 @@ QStringList CrossGames::generateGamePlan(QTime startRound)
                 lastGameNr++;
                 querys << "INSERT INTO kreuzspiele_spielplan VALUES(20," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',5,'','" + divisionG.at(3) + "','" + divisionH.at(2) + "','" + divisionH.at(3) + "',0,0,0,0,0,0)";
                 lastGameNr++;
-                querys << "INSERT INTO kreuzspiele_spielplan VALUES(21," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',4,'','" + divisionI.at(1) + "','" + divisionJ.at(0) + "','" + divisionI.at(1) + "',0,0,0,0,0,0)";
+                querys << "INSERT INTO kreuzspiele_spielplan VALUES(21," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',4,'','" + divisionI.at(1) + "','" + divisionJ.at(0) + "','" + divisionJ.at(1) + "',0,0,0,0,0,0)";
                 lastGameNr++;
-                querys << "INSERT INTO kreuzspiele_spielplan VALUES(22," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',3,'','" + divisionI.at(3) + "','" + divisionJ.at(2) + "','" + divisionI.at(3) + "',0,0,0,0,0,0)";
+                querys << "INSERT INTO kreuzspiele_spielplan VALUES(22," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',3,'','" + divisionI.at(3) + "','" + divisionJ.at(2) + "','" + divisionJ.at(3) + "',0,0,0,0,0,0)";
                 lastGameNr++;
-                querys << "INSERT INTO kreuzspiele_spielplan VALUES(23," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',2,'','" + divisionI.at(1) + "','" + divisionJ.at(0) + "','" + divisionI.at(1) + "',0,0,0,0,0,0)";
+                querys << "INSERT INTO kreuzspiele_spielplan VALUES(23," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',2,'','" + divisionK.at(1) + "','" + divisionL.at(0) + "','" + divisionL.at(1) + "',0,0,0,0,0,0)";
                 lastGameNr++;
-                querys << "INSERT INTO kreuzspiele_spielplan VALUES(24," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',1,'','" + divisionI.at(3) + "','" + divisionJ.at(2) + "','" + divisionI.at(3) + "',0,0,0,0,0,0)";
+                querys << "INSERT INTO kreuzspiele_spielplan VALUES(24," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',1,'','" + divisionK.at(3) + "','" + divisionL.at(2) + "','" + divisionL.at(3) + "',0,0,0,0,0,0)";
                 break;
         }
     }
@@ -340,6 +344,10 @@ QStringList CrossGames::generateGamePlan(QTime startRound)
             finalDivisions.append(&divisionL);
 
         QList<QList<QStringList>> gameList;
+        QStringList refereeList;
+        lastGameNr++;
+
+        // create game list
         for(int i = 0; i < divisionCount;)
         {
             if(i + 1 < finalDivisions.count())
@@ -350,7 +358,7 @@ QStringList CrossGames::generateGamePlan(QTime startRound)
 
                 for(int x = 0; x < count; x++)
                 {
-                    games.append(QStringList() << finalDivisions.at(i)->at(x) << finalDivisions.at(i + 1)->at(x) << "XXX");
+                    games.append(QStringList() << finalDivisions.at(i)->at(x) << finalDivisions.at(i + 1)->at(x));
                     gamesCount++;
                 }
 
@@ -363,14 +371,31 @@ QStringList CrossGames::generateGamePlan(QTime startRound)
             }
         }
 
-        lastGameNr++;
-        // generate round stating with last group and last game (worst two teams)
-        for(int count = 0, fCount = 1, y = (gameList.count() - 1), rowCount = 1, dataRow = gameList.at((gameList.count() - 1)).count() - 1; count < gamesCount; rowCount++, lastGameNr++, count++)
+        for(int i = 0; i < gameList.count() && i < fieldCount; i++)
         {
+            QList<QStringList> refList = gameList.at(i);
+            for(int j = 0; j < refList.count(); j++)
+            {
+                refereeList.append(refList.at(j).at(0));
+                refereeList.append(refList.at(j).at(1));
+            }
+        }
+
+        // generate round starting with last group and last game (worst two teams)
+        for(int count = 0, fCount = 1, y = (gameList.count() - 1), startingReferee = 0,
+            rowCount = 1, dataRow = gameList.at((gameList.count() - 1)).count() - 1;
+            count < gamesCount; rowCount++, lastGameNr++, count++, startingReferee++)
+        {
+            QString referee = "";
+            if(startingReferee < fieldCount)
+                referee = refereeList.at(startingReferee);
+
             querys << "INSERT INTO kreuzspiele_spielplan VALUES("
                       + string(rowCount) + "," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "', " + string(fCount) + ",'','"
-                      + gameList.at(y).at(dataRow).at(0) + "','" + gameList.at(y).at(dataRow).at(1) + "','" + gameList.at(y).at(dataRow).at(2)
-                      + "',0,0,0,0,0,0)";
+                      + gameList.at(y).at(dataRow).at(0) + "','"
+                      + gameList.at(y).at(dataRow).at(1) + "','"
+                      + referee + "',"
+                      + "0,0,0,0,0,0)";
 
             if(fCount >= fieldCount)
             {

@@ -697,8 +697,16 @@ QStringList ClassementGames::generateGamePlan(QTime startRound, QList<QStringLis
     {
         for(int i = 0, x = resultDivisionsZw.count() - 1, y = ((resultDivisionsZw.at(x).count()
                             + resultDivisionsZw.at(x - 1).count()) / 2) - 1,
-            id = 1, fCount = 1; (i + 5) < krGameResults->count(); id++, lastGameNr++)
+            startingReferee = 0, startFromEnd = krGameResults->count() - 1,
+            id = 1, fCount = 1; (i + 5) < krGameResults->count(); id++, lastGameNr++, startingReferee++, startFromEnd--)
         {
+            QString referee1 = "", referee2 = "";
+            if(startingReferee < fieldCount / 2)
+            {
+                referee1 = krGameResults->at(startFromEnd).at(1);
+                referee2 = krGameResults->at(startFromEnd).at(2);
+            }
+
             QString winner1 = krGameResults->at(i).at(1);
             QString looser1 = krGameResults->at(i).at(2);
 
@@ -707,7 +715,7 @@ QStringList ClassementGames::generateGamePlan(QTime startRound, QList<QStringLis
 
             querys << "INSERT INTO platzspiele_spielplan VALUES(" + string(id) + "," + string(lastRoundNr) + "," + string(lastGameNr) + ",'"
                       + startRound.toString("hh:mm") + "'," + string(fCount) + ",'','"
-                      + looser1 + "','" + looser2 + "','',0,0,0,0,0,0)";
+                      + looser1 + "','" + looser2 + "','" + referee1 + "',0,0,0,0,0,0)";
 
             if(fCount >= fieldCount)
             {
@@ -724,7 +732,7 @@ QStringList ClassementGames::generateGamePlan(QTime startRound, QList<QStringLis
 
             querys << "INSERT INTO platzspiele_spielplan VALUES(" + string(id) + "," + string(lastRoundNr) + "," + string(lastGameNr) + ",'"
                       + startRound.toString("hh:mm") + "'," + string(fCount) + ",'','"
-                      + winner1 + "','" + winner2 + "','',0,0,0,0,0,0)";
+                      + winner1 + "','" + winner2 + "','" + referee2 + "',0,0,0,0,0,0)";
 
             if(fCount >= fieldCount)
             {
