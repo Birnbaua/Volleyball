@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>TSV 4222 Beachturnier</title>
+		<title>9. TSV 4222 Beachturnier</title>
 		<link rel="stylesheet" href="./css/jquery.mobile.icons.min.css" />
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
 		<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.0/css/jquery.dataTables.css">
@@ -88,6 +88,9 @@
 			var grg = null;
 			var grh = null;
 			var gri = null;
+			var grj = null;
+			var grk = null;
+			var grl = null;
 			var pls = null;
 			window.setInterval(uhrzeit,1000);
 			var running = null;
@@ -274,6 +277,42 @@
 								tabledata[i].satz
 							]).draw();
 						}
+						
+						grj.rows().remove().draw();
+						tabledata = readDB("SELECT ms, punkte, satz FROM "+runde+"_erg_grj ORDER BY punkte DESC, satz DESC");
+						for(var i = 0; i < tabledata.length; i++)
+						{
+							grj.row.add([
+								i+1,
+								tabledata[i].ms,
+								tabledata[i].punkte,
+								tabledata[i].satz
+							]).draw();
+						}
+						
+						grk.rows().remove().draw();
+						tabledata = readDB("SELECT ms, punkte, satz FROM "+runde+"_erg_grk ORDER BY punkte DESC, satz DESC");
+						for(var i = 0; i < tabledata.length; i++)
+						{
+							grk.row.add([
+								i+1,
+								tabledata[i].ms,
+								tabledata[i].punkte,
+								tabledata[i].satz
+							]).draw();
+						}
+						
+						grl.rows().remove().draw();
+						tabledata = readDB("SELECT ms, punkte, satz FROM "+runde+"_erg_grl ORDER BY punkte DESC, satz DESC");
+						for(var i = 0; i < tabledata.length; i++)
+						{
+							grl.row.add([
+								i+1,
+								tabledata[i].ms,
+								tabledata[i].punkte,
+								tabledata[i].satz
+							]).draw();
+						}
 					}
 				}
 				else
@@ -417,6 +456,7 @@
 									+"</table>"
 								+"</td>"
 							+"</tr>"
+							+"<tr><td><br></td></tr>"
 							+"<tr>"
 								+"<td>"
 									+"<table id=\"grc\" class=\"display\">"
@@ -451,6 +491,7 @@
 									+"</table>"
 								+"</td>"
 							+"</tr>"
+							+"<tr><td><br></td></tr>"
 							+"<tr>"
 								+"<td>"
 									+"<table id=\"gre\" class=\"display\">"
@@ -485,6 +526,7 @@
 									+"</table>"
 								+"</td>"
 							+"</tr>"
+							+"<tr><td><br></td></tr>"
 							+"<tr>"
 								+"<td>"
 									+"<table id=\"grg\" class=\"display\">"
@@ -519,12 +561,64 @@
 									+"</table>"
 								+"</td>"
 							+"</tr>"
+							+"<tr><td><br></td></tr>"
 							+"<tr>"
 								+"<td>"
 									+"<table id=\"gri\" class=\"display\">"
 										+"<thead>"
 											+"<tr>"
 												+"<strong>Gruppe I</strong>"
+											+"</tr>"
+											+"<tr>"
+											+"<th>Platz</th>"
+												+"<th>Mannschaft</th>"
+												+"<th>Punkte</th>"
+												+"<th>Spielpunkte</th>"
+											+"</tr>"
+										+"</thead>"
+										+"<tbody></tbody>"
+									+"</table>"
+								+"</td>"
+								+"<td>"
+									+"<table id=\"grj\" class=\"display\">"
+										+"<thead>"
+											+"<tr>"
+												+"<strong>Gruppe J</strong>"
+											+"</tr>"
+											+"<tr>"
+											+"<th>Platz</th>"
+												+"<th>Mannschaft</th>"
+												+"<th>Punkte</th>"
+												+"<th>Spielpunkte</th>"
+											+"</tr>"
+										+"</thead>"
+										+"<tbody></tbody>"
+									+"</table>"
+								+"</td>"
+							+"</tr>"
+							+"<tr><td><br></td></tr>"
+							+"<tr>"
+								+"<td>"
+									+"<table id=\"grk\" class=\"display\">"
+										+"<thead>"
+											+"<tr>"
+												+"<strong>Gruppe K</strong>"
+											+"</tr>"
+											+"<tr>"
+											+"<th>Platz</th>"
+												+"<th>Mannschaft</th>"
+												+"<th>Punkte</th>"
+												+"<th>Spielpunkte</th>"
+											+"</tr>"
+										+"</thead>"
+										+"<tbody></tbody>"
+									+"</table>"
+								+"</td>"
+								+"<td>"
+									+"<table id=\"grl\" class=\"display\">"
+										+"<thead>"
+											+"<tr>"
+												+"<strong>Gruppe L</strong>"
 											+"</tr>"
 											+"<tr>"
 											+"<th>Platz</th>"
@@ -677,6 +771,51 @@
 					info : false
 				});
 				gri = $('#gri').DataTable({
+					"language": {
+						"sEmptyTable": "Keine Daten in der Tabelle vorhanden",
+						"sInfoPostFix": "",
+						"sInfoThousands": ".",
+						"sLengthMenu": "_MENU_ Eintr&auml;ge anzeigen",
+						"sLoadingRecords": "Wird geladen...",
+						"sProcessing": "Bitte warten...",
+						"sZeroRecords": "Keine Eintr&auml;ge vorhanden."
+					},
+					ordering : false,
+					paging : false,
+					searching : false,
+					info : false
+				});
+				grj = $('#grj').DataTable({
+					"language": {
+						"sEmptyTable": "Keine Daten in der Tabelle vorhanden",
+						"sInfoPostFix": "",
+						"sInfoThousands": ".",
+						"sLengthMenu": "_MENU_ Eintr&auml;ge anzeigen",
+						"sLoadingRecords": "Wird geladen...",
+						"sProcessing": "Bitte warten...",
+						"sZeroRecords": "Keine Eintr&auml;ge vorhanden."
+					},
+					ordering : false,
+					paging : false,
+					searching : false,
+					info : false
+				});
+				grk = $('#grk').DataTable({
+					"language": {
+						"sEmptyTable": "Keine Daten in der Tabelle vorhanden",
+						"sInfoPostFix": "",
+						"sInfoThousands": ".",
+						"sLengthMenu": "_MENU_ Eintr&auml;ge anzeigen",
+						"sLoadingRecords": "Wird geladen...",
+						"sProcessing": "Bitte warten...",
+						"sZeroRecords": "Keine Eintr&auml;ge vorhanden."
+					},
+					ordering : false,
+					paging : false,
+					searching : false,
+					info : false
+				});
+				grl = $('#grl').DataTable({
 					"language": {
 						"sEmptyTable": "Keine Daten in der Tabelle vorhanden",
 						"sInfoPostFix": "",
