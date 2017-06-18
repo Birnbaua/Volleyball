@@ -695,7 +695,20 @@ QStringList ClassementGames::generateGamePlan(QTime startRound, QList<QStringLis
     }
     else
     {
-        for(int i = 0, x = resultDivisionsZw.count() - 1, y = ((resultDivisionsZw.at(x).count()
+        int resultDivisionsZwcorrigiert = resultDivisionsZw.count();
+
+        if(teamsCount == 55)
+        {
+            krGameResults->removeFirst();
+            krGameResults->removeFirst();
+            krGameResults->removeFirst();
+            krGameResults->removeFirst();
+            krGameResults->removeFirst();
+
+            resultDivisionsZwcorrigiert--;
+        }
+
+        for(int i = 0, x = resultDivisionsZwcorrigiert - 1, y = ((resultDivisionsZw.at(x).count()
                             + resultDivisionsZw.at(x - 1).count()) / 2) - 1,
             startingReferee = 0, startFromEnd = krGameResults->count() - 1,
             id = 1, fCount = 1; (i + 5) < krGameResults->count(); id++, lastGameNr++, startingReferee++, startFromEnd--)

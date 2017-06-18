@@ -3,6 +3,7 @@ organize volleyball tournaments up to 45 teams, Copyright(C) 2010 - 2017, cfr
 
 ###Version 12
 add/change
+- new game plan by betty => 50 to 60 teams
 
 ###Version 11
 add/change
