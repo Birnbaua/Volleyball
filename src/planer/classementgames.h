@@ -18,9 +18,10 @@ public:
     void finalTournamentResults();
 
 private:
-    QStringList generateGamePlan(QTime startRound, QList<QStringList> *krGameResults);
-    QStringList createClassement(QList<QStringList> *plGameResults);
+    QStringList generateGamePlan(QTime startRound);
+    QStringList createClassement();
 
+    QList<QStringList> krGameResults, plGameResults;
     QList<int> classements;
     QString startRound;
     int prefixCount, fieldCount, teamsCount, gamesCount, divisionCount, bettyspiele;
