@@ -318,7 +318,7 @@
 				else
 				{
           			pls.rows().remove().draw();
-					var ergdata = readDB("SELECT platz,ms FROM platzspiele_erg ORDER BY platz ASC");
+					var ergdata = readDB("SELECT platz, ms FROM platzierungen_view ORDER BY platz ASC");
 					if(ergdata.length > 0)
 					{
 						for(var i = 0; i < ergdata.length; i++)
