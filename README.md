@@ -1,9 +1,11 @@
 # Volleyball
-organize volleyball tournaments up to 45 teams, Copyright(C) 2010 - 2017, cfr
+organize volleyball tournaments up to 60 teams, Copyright(C) 2010 - 2017, cfr
 
 ###Version 12
 add/change
-- new game plan by betty => 50 to 60 teams
+- add new game plan for 55 and 60 teams, bettys spielplan
+- add views and tables for group j
+- add view for total result overview vorrunde_all_view, zwischenrunde_all_view
 
 ###Version 11
 add/change
