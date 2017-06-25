@@ -162,7 +162,18 @@ QStringList ClassementGames::generateGamePlan(QTime startRound)
     QList<QStringList> resultDivisionsZw;
 
     // help lists
-    const QStringList *divisionA, *divisionB, *divisionC, *divisionD, *divisionE, *divisionF, *divisionG, *divisionH, *divisionI, *divisionJ, *divisionK, *divisionL;
+    const QStringList *divisionA = NULL,
+            *divisionB = NULL,
+            *divisionC = NULL,
+            *divisionD = NULL,
+            *divisionE = NULL,
+            *divisionF = NULL,
+            *divisionG = NULL,
+            *divisionH = NULL,
+            *divisionI = NULL,
+            *divisionJ = NULL,
+            *divisionK = NULL,
+            *divisionL = NULL;
 
     // read divisional rank results and add to list
     for(int i = 0; i < prefixCount; i++)

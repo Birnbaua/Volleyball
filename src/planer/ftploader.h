@@ -2,6 +2,7 @@
 #define FTPLOADER_H
 
 #include <QObject>
+#include <QtNetwork>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
@@ -22,10 +23,9 @@ signals:
     void logMessages(QString);
 
 private:
-	QNetworkAccessManager *nam;
+    QNetworkAccessManager *nam;
 	QFile *uploadFile;
 	QString fileName, ftpurl, ftpuser, ftppw, uploadName;
-    bool uploadactive;
 };
 
 #endif // FTPLOADER_H
