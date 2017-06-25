@@ -18,7 +18,7 @@ public:
     void write(QString query);
     QList<QStringList> read(QString query);
     QSqlQueryModel* createSqlQueryModel(QString query);
-    QSqlTableModel* createSqlTableModel(QString tableName, QStringList columnName);
+    QSqlTableModel* createSqlTableModel(QString tableName, QStringList *columnName);
     bool commitSqlTableModel(QSqlTableModel *model);
 
 signals:

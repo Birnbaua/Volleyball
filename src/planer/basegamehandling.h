@@ -15,7 +15,7 @@ public:
     explicit BaseGameHandling(Database *db, QStringList *grPrefix);
     ~BaseGameHandling();
 
-    void clearAllData(QStringList tables);
+    void clearAllData(QStringList *tables);
 
     QStringList insertFieldNr(QString round, int gameCount, int fieldCount);
 

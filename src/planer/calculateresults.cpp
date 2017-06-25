@@ -242,7 +242,26 @@ QStringList CalculateResults::getResultsKrPl(QStringList rowToCalculate)
     }
 
     if(m1.sets > m2.sets)
+    {
         return QStringList() << spiel << m1.teamName << m2.teamName;
-    else
+    }
+    else if(m1.sets < m2.sets)
+    {
         return QStringList() << spiel << m2.teamName << m1.teamName;
+    }
+    else
+    {
+        if(m1.points > m2.points)
+        {
+            return QStringList() << spiel << m1.teamName << m2.teamName;
+        }
+        else if(m1.points < m2.points)
+        {
+            return QStringList() << spiel << m2.teamName << m1.teamName;
+        }
+        else
+        {
+            return QStringList() << spiel << m1.teamName << m2.teamName;
+        }
+    }
 }

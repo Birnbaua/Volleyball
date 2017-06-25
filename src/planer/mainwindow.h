@@ -12,6 +12,7 @@
 #include "itemdelegates.h"
 #include "viewdivisions.h"
 #include "viewclassement.h"
+#include "viewallresults.h"
 #include "about.h"
 
 namespace Ui {
@@ -61,6 +62,7 @@ private slots:
     void pasteVrTableView();
     void vrValueChanged();
     void vrValueChangedFinishEdit();
+    void on_pushButtonVrAllResults_clicked();
 
     void on_pushButtonZwGenerate_clicked();
     void on_pushButtonZwSave_clicked();
@@ -94,18 +96,24 @@ private slots:
     void plValueChanged();
     void plValueChangedFinishEdit();
 
+    void on_checkBoxBettysPlan_clicked();
+
 private:
     void init();
-    void setViews();
     QList<QVariant> returnTime();
     void initTableViewFields();
     void initTableViewTeams();
     void hideTableViewColumns(int hideCol, QTableView *qtv);
-    void initTableViewVorrunde(int hideCol);
-    void initTableViewZwischenrunde(int hideCol);
-    void initTableViewKreuzspiele(int hideCol);
-    void setKreuzspieleParams();
-    void initTableViewPlatzspiele(int hideCol);
+    void initTableViewQualifying(int hideCol);
+    void initTableViewQualifyingResults();
+    void initTableViewQualifyingAllResults();
+    void initTableViewInterim(int hideCol);
+    void initTableViewInterimResults();
+    void initTableViewInterimAllResults();
+    void initTableViewCrossGames(int hideCol);
+    void setCrossGamesParams();
+    void initTableViewClassement(int hideCol);
+    void initTableViewClassementResults();
     void copyEvent(QTableView *tv);
     void pasteEvent(QTableView *tv, QSqlTableModel *model);
 
@@ -117,17 +125,19 @@ private:
     QDir dir;
     QTimer *timerUpdateTournamentTime;
 
-    static QStringList colTableViewFields, colTableViewTeams, colTableViewQualifying, colTalbeViewDivisionResults, colTableViewClassement;
-    static QString windowTitleVersion, versionFileName;
+    static QStringList colTableViewFields, colTableViewTeams, colTableViewQualifying, colTalbeViewDivisionResults,
+        colTableViewClassement, colTableViewVrZwAllResults, qfTablesToClear, itTablesToClear, crTablesToClear, clTablesToClear,
+        insertRows, grPrefix, headerPrefix;
+    static QString windowTitleVersion, versionFileName, settingsFile, dbFile, logFile;
 
     ViewDivisions *qfView, *imView;
     ViewClassement *clView;
     About *abView;
+    ViewAllResults *allVrView, *allZwView;
 
     QList<QSqlTableModel*> viewQualifyingModels, viewIntermModels;
-    QSqlTableModel *tmFields, *tmTeams, *tmVr, *tmZw, *tmKr, *tmPl, *tmPlatz, *viewClassementResults;
+    QSqlTableModel *tmFields, *tmTeams, *tmVr, *tmZw, *tmKr, *tmPl, *tmPlatz, *viewClassementResults, *viewAllVrResults;
     ItemDelegates *idQualifyingGames, *idInterimGames, *idCrossGames, *idClassement;
-    QStringList *grPrefix, *headerPrefix;
     bool msChanged, configChanged, vrChanged, zwChanged, krChanged, plChanged;
 };
 

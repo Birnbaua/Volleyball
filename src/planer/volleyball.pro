@@ -28,7 +28,9 @@ SOURCES += main.cpp\
     basegamehandling.cpp \
     about.cpp \
     viewclassement.cpp \
-    viewdivisions.cpp
+    viewdivisions.cpp \
+    viewallresults.cpp \
+    itemrowdelegate.cpp
 
 HEADERS  += mainwindow.h \
     database.h \
@@ -44,12 +46,15 @@ HEADERS  += mainwindow.h \
     basegamehandling.h \
     about.h \
     viewclassement.h \
-    viewdivisions.h
+    viewdivisions.h \
+    viewallresults.h \
+    itemrowdelegate.h
 
 FORMS    += mainwindow.ui \
     about.ui \
     viewclassement.ui \
-    viewdivisions.ui
+    viewdivisions.ui \
+    viewallresults.ui
 
 DISTFILES += \
     resources/config.ini \

@@ -7,11 +7,7 @@ FTPLoader::FTPLoader(QString fileName, QString ftpurl, QString ftpuser, QString 
 	this->ftppw = ftppw;
 	this->ftpurl = ftpurl;
 
-    uploadactive = false;
 	uploadName = "./upload/data.db";
-
-    nam = new QNetworkAccessManager(this);
-	connect(nam, SIGNAL(finished(QNetworkReply*)), this, SLOT(uploadFinished(QNetworkReply*)));
 }
 
 FTPLoader::~FTPLoader()
@@ -20,25 +16,26 @@ FTPLoader::~FTPLoader()
 
 void FTPLoader::startUpload()
 {
-	QFile::remove(uploadName);
-	QFile::copy(fileName, uploadName);
+    QFile::remove(uploadName);
+    QFile::copy(fileName, uploadName);
     uploadFile = new QFile(uploadName);
-	
-    if(uploadFile->open(QIODevice::ReadOnly) && uploadactive == false)
-	{
-        uploadactive = true;
 
-		emit logMessages("INFO: start uploading to " + ftpurl + ", " + ftpuser + ", " + ftppw);
-		QUrl url(ftpurl);
-		url.setUserName(ftpuser);
-		url.setPassword(ftppw);
+    if(uploadFile->open(QIODevice::ReadOnly))
+    {
+        nam = new QNetworkAccessManager(this);
+        connect(nam, SIGNAL(finished(QNetworkReply*)), this, SLOT(uploadFinished(QNetworkReply*)));
 
-    	nam->put(QNetworkRequest(url), uploadFile);
-	}
-	else
-	{
-		emit logMessages("ERROR: could not open " + uploadName);
-	}
+        emit logMessages("INFO: start uploading to " + ftpurl + ", " + ftpuser + ", " + ftppw);
+        QUrl url(ftpurl);
+        url.setUserName(ftpuser);
+        url.setPassword(ftppw);
+
+        nam->put(QNetworkRequest(url), uploadFile);
+    }
+    else
+    {
+        emit logMessages("ERROR: could not open " + uploadName);
+    }
 }
 
 void FTPLoader::uploadFinished(QNetworkReply* reply)
@@ -50,5 +47,4 @@ void FTPLoader::uploadFinished(QNetworkReply* reply)
 
 	uploadFile->close();
 	reply->deleteLater();
-    uploadactive = false;
 }

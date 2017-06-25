@@ -171,7 +171,7 @@ QStringList QualifyingGames::generateGamePlan(QList<QList<QStringList> > *divisi
         if(dataRow < divisionsGameList->at(divisionCount).count())
         {
             QList<QStringList> divisionGameList = divisionsGameList->at(divisionCount);
-            querys << "INSERT INTO vorrunde_spielplan VALUES(" + QString::number(rowCount) + "," + QString::number(roundCount) + "," + QString::number(rowCount) + ",'" + tournamentStart.toString("hh:mm") + "',0,'','" + divisionGameList.at(dataRow).at(0) + "','" + divisionGameList.at(dataRow).at(1) + "','" + divisionGameList.at(dataRow).at(2) + "',0,0,0,0,0,0)";
+            querys << "INSERT INTO vorrunde_spielplan VALUES(" + string(rowCount) + "," + string(roundCount) + "," + string(rowCount) + ",'" + tournamentStart.toString("hh:mm") + "',0,'','" + divisionGameList.at(dataRow).at(0) + "','" + divisionGameList.at(dataRow).at(1) + "','" + divisionGameList.at(dataRow).at(2) + "',0,0,0,0,0,0)";
             rowCount++;
         }
     }

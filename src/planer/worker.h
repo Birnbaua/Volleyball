@@ -23,6 +23,7 @@ public:
         QString pdfPath;
         int anzFelder;
         int krSpiele;
+        int bettySpiele;
         QString startTurnier;
         int pauseVrZw;
         int pauseZwKr;
@@ -42,12 +43,16 @@ public:
         int pausePlEhrung;
     } dataUi;
 
-    explicit Worker(QObject *parent = 0);
+    explicit Worker(QString *settingsFile, QString *dbFile, QString *logFile,
+                    QStringList *qfTablesToClear, QStringList *itTablesToClear,
+                    QStringList *crTablesToClear, QStringList *clTablesToClear,
+                    QStringList *insertRows, QStringList *grPrefix, QStringList *headerPrefix, QObject *parent = 0);
 
     // teams
     bool checkDoubleTeamNames(QSqlTableModel *model);
     void resetTeams();
     int getTeamsCount();
+    int getDivisionsCount();
     void uploadFile();
 
     // fields
@@ -57,12 +62,10 @@ public:
     // data ui <=> worker
     void updateUiData();
     void resetConfig();
-    QStringList* getPrefix();
-    QStringList* getHeaderPrefix();
 
     // db
     QSqlQueryModel* createSqlQueryModel(QString query);
-    QSqlTableModel* createSqlTableModel(QString tableName, QStringList columnName);
+    QSqlTableModel* createSqlTableModel(QString tableName, QStringList *columnName);
     bool commitSqlTableModel(QSqlTableModel *model);
 
     // qualifying games
@@ -115,14 +118,13 @@ public slots:
 private:
     void init();
     void readConfig();
-    void writeConfig(int anzfelder, int kreuzspiele, QString startturnier, int pausevrzw, int pausezwkr, int pausekrpl,
+    void writeConfig(int anzfelder, int kreuzspiele, int bettyspiele, QString startturnier, int pausevrzw, int pausezwkr, int pausekrpl,
                      int satzvr, int minsatzvr, int pauseminvr, int satzzw, int minsatzzw, int pauseminzw, int satzkr,
                      int minsatzkr, int pauseminkr, int satzpl, int minsatzpl, int zeitfinale, int pauseplehrung);
 
-    static QStringList qfTablesToClear, itTablesToClear, crTablesToClear, clTablesToClear;
-    static QStringList insertRows;
-    static QStringList grPrefix, headerPrefix;
-    static QString settingsFile, dbFile, logFile;
+    QStringList *qfTablesToClear, *itTablesToClear, *crTablesToClear, *clTablesToClear;
+    QStringList *insertRows, *grPrefix, *headerPrefix;
+    QString *settingsFile, *dbFile, *logFile;
 
     Logging *logs;
     Database *db;
@@ -134,7 +136,7 @@ private:
     ClassementGames *clg;
     dataUi *data;
 
-    int teamsCount;
+    int teamsCount, divisionCount;
     QStringList fieldNames;
 };
 
