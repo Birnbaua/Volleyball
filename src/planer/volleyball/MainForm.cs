@@ -88,7 +88,7 @@ namespace volleyball
 												  "Mannschaft B", "Schiedsgericht", "Satz 1 A", "Satz 1 B",
 												  "Satz 2 A", "Satz 2 B", "Satz 3 A", "Satz 3 B" };
 		
-			headerResult = new List<String>() { "Mannschaft" << "Punkte" << "Spielpunkte" << "Intern" << "Extern" };
+			headerResult = new List<String>() { "Mannschaft", "Punkte", "Spielpunkte", "Intern", "Extern" };
 			
 			using (var streamReader = new StreamReader(new FileStream(ConfigurationManager.AppSettings["Version"], FileMode.Open, FileAccess.Read), Encoding.UTF8))
 				versioninfo = streamReader.ReadToEnd();
@@ -100,7 +100,7 @@ namespace volleyball
 			
 			about = new About(this.Text + " " + ConfigurationManager.AppSettings["About"], versioninfo);
 			
-			divisionresults = new DivisonResults(db, grPrefix);
+			divisionresults = new DivisonResults(db);
 			
 			numericUpDownFieldCount.Value = app.Default.AnzFelder;
 		}
@@ -300,8 +300,6 @@ namespace volleyball
 		
 		void ButtonQfGenerateClick(object sender, EventArgs e)
 		{
-			
-
 		    if(dtQualifying.Rows.Count > 0)
 		    {
 		    	messageboxWarning("Runde wurde bereits generiert!\nGenerieren abgebrochen!");
@@ -373,6 +371,7 @@ namespace volleyball
 		
 		void ButtonQfResultsClick(object sender, EventArgs e)
 		{
+			divisionresults.setParameters("vorrunde");
 			divisionresults.Show();
 		}
 		

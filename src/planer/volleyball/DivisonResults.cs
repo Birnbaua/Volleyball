@@ -6,6 +6,7 @@
   */
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SQLite;
 using System.Windows.Forms;
@@ -15,9 +16,12 @@ namespace volleyball
 	public partial class DivisonResults : Form
 	{
 		#region
-		SQLiteDataAdapter daA, daB, daC, daD, daE, daF, daG, daH, daI, daJ, daK, daL;
-		DataTable dtA, dtB, dtC, dtD, dtE, dtF, dtG, dtH, dtI, dtJ, dtK, dtL;
+		SQLiteDataAdapter daA = null, daB = null, daC = null, daD = null, daE = null, daF = null, daG = null, daH = null, daI = null, daJ = null, daK = null, daL = null;
+		DataTable dtA = null, dtB = null, dtC = null, dtD = null, dtE = null, dtF = null, dtG = null, dtH = null, dtI = null, dtJ = null, dtK = null, dtL = null;
 		Database db;
+		List<DataTable> dtList;
+		List<SQLiteDataAdapter> daList;
+		List<DataGridView> dgvList;
 		#endregion
 		
 		public DivisonResults(Database db)
@@ -25,17 +29,36 @@ namespace volleyball
 			InitializeComponent();
 			
 			this.db = db;
-
+			
+			dtList = new List<DataTable>();
+			daList = new List<SQLiteDataAdapter>();
+			dgvList = new List<DataGridView>();
+			
+			dtList.Add(dtA); daList.Add(daA); dgvList.Add(dataGridViewA);
+			dtList.Add(dtB); daList.Add(daB); dgvList.Add(dataGridViewB);
+			dtList.Add(dtC); daList.Add(daC); dgvList.Add(dataGridViewC);
+			dtList.Add(dtD); daList.Add(daD); dgvList.Add(dataGridViewD);
+			dtList.Add(dtE); daList.Add(daE); dgvList.Add(dataGridViewE);
+			dtList.Add(dtF); daList.Add(daF); dgvList.Add(dataGridViewF);
+			dtList.Add(dtG); daList.Add(daG); dgvList.Add(dataGridViewG);
+			dtList.Add(dtH); daList.Add(daH); dgvList.Add(dataGridViewH);
+			dtList.Add(dtI); daList.Add(daI); dgvList.Add(dataGridViewI);
+			dtList.Add(dtJ); daList.Add(daJ); dgvList.Add(dataGridViewJ);
+			dtList.Add(dtK); daList.Add(daK); dgvList.Add(dataGridViewK);
+			dtList.Add(dtL); daList.Add(daL); dgvList.Add(dataGridViewL);
 		}
 		
 		void init(String round, DataGridView dgv, SQLiteDataAdapter da, DataTable dt)
 		{
 			Logging.write("INFO: init datatable interim");
 			
+			String query = ConfigurationManager.AppSettings["SelectResults"];
+			query = query.Replace("@RUNDE", round);
+			
 			if(da != null)
 				da.Dispose();
 			
-			da = new SQLiteDataAdapter(round, db.DBCONNECTION);
+			da = new SQLiteDataAdapter(query, db.DBCONNECTION);
 			
 			if(dt != null)
 				dt.Dispose();
@@ -46,13 +69,16 @@ namespace volleyball
 			
 			dgv.DataSource = dt.DefaultView;
 									
+			dgv.Columns[0].Visible = false;
+			
 			for(int i = 0; i < MainForm.headerResult.Count; i++)
 				dgv.Columns[i].HeaderText = MainForm.headerResult[i];
 		}
 		
 		public void setParameters(String round)
 		{
-			
+			for(int i = 0; i < MainForm.grPrefix.Count; i++)
+				init(round + "_erg_gr" + MainForm.grPrefix[i], dgvList[i], daList[i], dtList[i]);
 		}
 		
 		void DivisonResultsResize(object sender, EventArgs e)
