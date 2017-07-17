@@ -22,6 +22,7 @@ namespace volleyball
 		List<DataTable> dtList;
 		List<SQLiteDataAdapter> daList;
 		List<DataGridView> dgvList;
+		bool valueChanged = false;
 		#endregion
 		
 		public DivisonResults(Database db)
@@ -86,8 +87,12 @@ namespace volleyball
 			int panelTW = panelT.Width;
 			int panelMW = panelM.Width;
 			int panelBW = panelB.Width;
-			int height = Height;
+			int height = (Height / 3) - 25;
 						
+			panelT.Height = height;
+			panelM.Height = height;
+			panelB.Height = height;
+			
 			foreach(GroupBox gb in panelT.Controls)
 				gb.Width = panelTW / 4;
 			
@@ -95,11 +100,23 @@ namespace volleyball
 				gb.Width = panelMW / 4;
 			
 			foreach(GroupBox gb in panelB.Controls)
-				gb.Width = panelBW / 4;
-			
-			panelT.Height = Height / 3;
-			panelM.Height = Height / 3;
-			panelB.Height = Height / 3;
+				gb.Width = panelBW / 4;			
+		}
+		
+		void DataGridViewCellValueChanged(object sender, DataGridViewCellEventArgs e)
+		{
+			valueChanged = true;
+		}
+		
+		void DivisonResultsFormClosing(object sender, FormClosingEventArgs e)
+		{
+			if(valueChanged)
+			{
+				bool ok = MainForm.userButtonCheck("Achtung, noch ungespeicherte Daten vorhanden! Fenster wirklich schließen?!");
+				
+				if(!ok)
+					e.Cancel = true;
+			}
 		}
 	}
 }

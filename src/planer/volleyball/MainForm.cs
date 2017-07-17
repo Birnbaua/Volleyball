@@ -100,27 +100,25 @@ namespace volleyball
 			
 			about = new About(this.Text + " " + ConfigurationManager.AppSettings["About"], versioninfo);
 			
-			divisionresults = new DivisonResults(db);
-			
 			numericUpDownFieldCount.Value = app.Default.AnzFelder;
 		}
 		
-		void messageboxInfo(String msg)
+		public static void messageboxInfo(String msg)
 		{
 			MessageBox.Show(msg, "Info", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 		}
 		
-		void messageboxWarning(String msg)
+		public static void messageboxWarning(String msg)
 		{
 			MessageBox.Show(msg, "Warnung", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 		}
 		
-		void messageboxError(String msg)
+		public static void messageboxError(String msg)
 		{
 			MessageBox.Show(msg, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
 		
-		bool userButtonCheck(String msg)
+		public static bool userButtonCheck(String msg)
 		{
 			DialogResult result = MessageBox.Show(msg, "Warnung", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 			
@@ -371,6 +369,7 @@ namespace volleyball
 		
 		void ButtonQfResultsClick(object sender, EventArgs e)
 		{
+			divisionresults = new DivisonResults(db);
 			divisionresults.setParameters("vorrunde");
 			divisionresults.Show();
 		}
