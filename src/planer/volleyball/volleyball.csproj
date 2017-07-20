@@ -67,9 +67,9 @@
     <Compile Include="BaseGameHandling.cs" />
     <Compile Include="CalculateResults.cs" />
     <Compile Include="ClassementGames.cs" />
-    <Compile Include="DivisonResults.cs" />
-    <Compile Include="DivisonResults.Designer.cs">
-      <DependentUpon>DivisonResults.cs</DependentUpon>
+    <Compile Include="DivisionResults.cs" />
+    <Compile Include="DivisionResults.Designer.cs">
+      <DependentUpon>DivisionResults.cs</DependentUpon>
     </Compile>
     <Compile Include="InterimGames.cs" />
     <Compile Include="Logging.cs" />
@@ -95,8 +95,8 @@
     <EmbeddedResource Include="About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DivisonResults.resx">
-      <DependentUpon>DivisonResults.cs</DependentUpon>
+    <EmbeddedResource Include="DivisionResults.resx">
+      <DependentUpon>DivisionResults.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

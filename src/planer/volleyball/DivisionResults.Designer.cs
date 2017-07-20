@@ -8,7 +8,7 @@
  */
 namespace volleyball
 {
-	partial class DivisonResults
+	partial class DivisionResults
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
@@ -341,6 +341,7 @@ namespace volleyball
 			this.buttonSave.TabIndex = 16;
 			this.buttonSave.Text = "Speichern";
 			this.buttonSave.UseVisualStyleBackColor = true;
+			this.buttonSave.Click += new System.EventHandler(this.ButtonSaveClick);
 			// 
 			// panelB
 			// 
@@ -447,7 +448,7 @@ namespace volleyball
 			this.dataGridViewI.TabIndex = 0;
 			this.dataGridViewI.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewCellValueChanged);
 			// 
-			// DivisonResults
+			// DivisionResults
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -456,11 +457,11 @@ namespace volleyball
 			this.Controls.Add(this.buttonSave);
 			this.Controls.Add(this.panelM);
 			this.Controls.Add(this.panelT);
-			this.Name = "DivisonResults";
+			this.Name = "DivisionResults";
 			this.Padding = new System.Windows.Forms.Padding(5);
-			this.Text = "DivisonResults";
-			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DivisonResultsFormClosing);
-			this.Resize += new System.EventHandler(this.DivisonResultsResize);
+			this.Text = "DivisionResults";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DivisionResultsFormClosing);
+			this.Resize += new System.EventHandler(this.DivisionResultsResize);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewA)).EndInit();
 			this.groupBoxA.ResumeLayout(false);
 			this.groupBoxE.ResumeLayout(false);

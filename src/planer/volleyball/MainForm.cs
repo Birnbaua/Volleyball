@@ -26,7 +26,6 @@ namespace volleyball
 								   itTablesToClear, pcTablesToClear, clTablesToClear, headerResult;
 		About about;
 		String versioninfo;
-		DivisonResults divisionresults;
 		#endregion
 						
 		public MainForm()
@@ -362,6 +361,15 @@ namespace volleyball
 		    messageboxInfo("Zurücksetzen von Vorrundespielplan und Ergebnissen abgebrochen!");
 		}
 		
+		void DataGridViewQualifyingCellValueChanged(object sender, DataGridViewCellEventArgs e)
+		{
+			int column = dataGridViewQualifying.CurrentCell.ColumnIndex;
+			int row = dataGridViewQualifying.CurrentCell.RowIndex;
+			
+			if(column == 3)
+				baseFunctions.recalculateQualifyingGamesTimeSchedule(row, column, dtQualifying);
+		}
+		
 		void ButtonQfPrintClick(object sender, EventArgs e)
 		{
 	
@@ -369,9 +377,9 @@ namespace volleyball
 		
 		void ButtonQfResultsClick(object sender, EventArgs e)
 		{
-			divisionresults = new DivisonResults(db);
-			divisionresults.setParameters("vorrunde");
-			divisionresults.Show();
+			DivisionResults dr = new DivisionResults(db);
+			dr.setParameters("vorrunde_erg_gr");
+			dr.Show();
 		}
 		
 		void ButtonQfOverallResultsClick(object sender, EventArgs e)
@@ -519,6 +527,15 @@ namespace volleyball
 		    messageboxInfo("Zurücksetzen von Zwischenrundespielplan und Ergebnissen abgebrochen!");
 		}
 		
+		void DataGridViewInterimCellValueChanged(object sender, DataGridViewCellEventArgs e)
+		{
+			int column = dataGridViewInterim.CurrentCell.ColumnIndex;
+			int row = dataGridViewInterim.CurrentCell.RowIndex;
+			
+			if(column == 3)
+				baseFunctions.recalculateInterimGamesTimeSchedule(row, column, dtInterim);
+		}
+		
 		void ButtonInPrintClick(object sender, EventArgs e)
 		{
 	
@@ -526,7 +543,9 @@ namespace volleyball
 		
 		void ButtonInResultsClick(object sender, EventArgs e)
 		{
-	
+			DivisionResults dr = new DivisionResults(db);
+			dr.setParameters("zwischenrunde_erg_gr");
+			dr.Show();
 		}
 		
 		void initPreClassement(int hideCol)
@@ -662,6 +681,15 @@ namespace volleyball
 		    messageboxInfo("Zurücksetzen von Kreuzspielespielplan abgebrochen!");
 		}
 		
+		void DataGridViewPreClassementCellValueChanged(object sender, DataGridViewCellEventArgs e)
+		{
+			int column = dataGridViewPreClassement.CurrentCell.ColumnIndex;
+			int row = dataGridViewPreClassement.CurrentCell.RowIndex;
+			
+			if(column == 3)
+				baseFunctions.recalculatePreClassementTimeSchedule(row, column, dtPreClassement);
+		}
+				
 		void ButtonPreClPrintClick(object sender, EventArgs e)
 		{
 	
@@ -721,6 +749,15 @@ namespace volleyball
 		void ButtonClDeleteClick(object sender, EventArgs e)
 		{
 	
+		}
+		
+		void DataGridViewClassementCellValueChanged(object sender, DataGridViewCellEventArgs e)
+		{
+			int column = dataGridViewClassement.CurrentCell.ColumnIndex;
+			int row = dataGridViewClassement.CurrentCell.RowIndex;
+			
+			if(column == 3)
+				baseFunctions.recalculateClassementGamesTimeSchedule(row, column, dtClassement);
 		}
 		
 		void ButtonClPrintClick(object sender, EventArgs e)

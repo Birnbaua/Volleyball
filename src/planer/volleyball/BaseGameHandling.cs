@@ -82,22 +82,22 @@ namespace volleyball
 		    }
 		}
 		
-		public virtual void recalculateTimeSchedule(DataTable dt)
+		public virtual void recalculateTimeSchedule(int row, int col, DataTable dt)
 		{
-		    /*DateTime zeit = qtv->currentIndex().data().toTime();
+			DateTime zeit = DateTime.Parse(dt.Rows[row][col].ToString());
+			int runde = Int32.Parse(dt.Rows[row][1].ToString());
 		    int addzeit = ((satz * min) + pause) * 60;
-		    int runde = model->data(model->index(qtv->currentIndex().row(), 1)).toInt();
-		
-		    for(int i = qtv->currentIndex().row(); i <= model->rowCount(); i++)
+		    		
+		    for(int i = row; i <= dt.Rows.Count; i++)
 		    {
-		        if(runde != model->data(model->index(i, 1)).toInt())
+		    	if(runde != Int32.Parse(dt.Rows[i][1].ToString()))
 		        {
 		            zeit = zeit.AddSeconds(addzeit);
 		            runde++;
 		        }
-		        model->setData(model->index(i, 3), zeit.ToString("hh:mm"));
+		    	
+		    	dt.Rows[i][3] = zeit.ToString("hh:mm");
 		    }
-		    */
 		}
 
 		public virtual List<String> insertFieldNr(String round)

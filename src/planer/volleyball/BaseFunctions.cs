@@ -262,9 +262,9 @@ namespace volleyball
 		    qf.calculateResult("vorrunde_spielplan", "vorrunde_erg_gr");
 		}
 		
-		public void recalculateQualifyingGamesTimeSchedule(DataTable dt)
+		public void recalculateQualifyingGamesTimeSchedule(int row, int col, DataTable dt)
 		{
-		    //qf.recalculateTimeSchedule(qtv, tm);
+		    qf.recalculateTimeSchedule(row, col, dt);
 		}
 		
 		public int getQualifyingGamesCount()
@@ -305,9 +305,9 @@ namespace volleyball
 		    im.calculateResult("zwischenrunde_spielplan", "zwischenrunde_erg_gr");
 		}
 		
-		public void recalculateInterimGamesTimeSchedule(DataTable dt)
+		public void recalculateInterimGamesTimeSchedule(int row, int col, DataTable dt)
 		{
-		    //im->recalculateTimeSchedule(qtv, tm);
+		    im.recalculateTimeSchedule(row, col, dt);
 		}
 		
 		public int getInterimGamesCount()
@@ -338,9 +338,9 @@ namespace volleyball
 		    pcg.clearAllData(MainForm.pcTablesToClear);
 		}
 		
-		public void recalculatePreClassementTimeSchedule(DataTable dt)
+		public void recalculatePreClassementTimeSchedule(int row, int col, DataTable dt)
 		{
-		    //cg->recalculateTimeSchedule(qtv, tm);
+		    pcg.recalculateTimeSchedule(row, col, dt);
 		}
 		
 		public int getPreClassementCount()
@@ -371,9 +371,9 @@ namespace volleyball
 		    clg.clearAllData(MainForm.clTablesToClear);
 		}
 		
-		public void recalculateClassementGamesTimeSchedule(DataTable dt)
+		public void recalculateClassementGamesTimeSchedule(int row, int col, DataTable dt)
 		{
-		    //clg->recalculateTimeSchedule(qtv, tm);
+		    clg.recalculateTimeSchedule(row, col, dt);
 		}
 		
 		public int getClassementGamesCount()

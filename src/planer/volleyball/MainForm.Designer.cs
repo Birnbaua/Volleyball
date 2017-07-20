@@ -392,6 +392,7 @@ namespace volleyball
 			this.dataGridViewQualifying.Name = "dataGridViewQualifying";
 			this.dataGridViewQualifying.Size = new System.Drawing.Size(1150, 659);
 			this.dataGridViewQualifying.TabIndex = 2;
+			this.dataGridViewQualifying.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewQualifyingCellValueChanged);
 			// 
 			// tabPageInterim
 			// 
@@ -472,6 +473,7 @@ namespace volleyball
 			this.dataGridViewInterim.Name = "dataGridViewInterim";
 			this.dataGridViewInterim.Size = new System.Drawing.Size(1150, 659);
 			this.dataGridViewInterim.TabIndex = 9;
+			this.dataGridViewInterim.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewInterimCellValueChanged);
 			// 
 			// tabPageCrossgames
 			// 
@@ -538,6 +540,7 @@ namespace volleyball
 			this.dataGridViewPreClassement.Name = "dataGridViewPreClassement";
 			this.dataGridViewPreClassement.Size = new System.Drawing.Size(1150, 658);
 			this.dataGridViewPreClassement.TabIndex = 9;
+			this.dataGridViewPreClassement.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewPreClassementCellValueChanged);
 			// 
 			// tabPageClassement
 			// 
@@ -613,6 +616,7 @@ namespace volleyball
 			this.dataGridViewClassement.Name = "dataGridViewClassement";
 			this.dataGridViewClassement.Size = new System.Drawing.Size(1150, 658);
 			this.dataGridViewClassement.TabIndex = 9;
+			this.dataGridViewClassement.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewClassementCellValueChanged);
 			// 
 			// menuStrip
 			// 

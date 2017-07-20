@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace volleyball
 {
-	public partial class DivisonResults : Form
+	public partial class DivisionResults : Form
 	{
 		#region
 		SQLiteDataAdapter daA = null, daB = null, daC = null, daD = null, daE = null, daF = null, daG = null, daH = null, daI = null, daJ = null, daK = null, daL = null;
@@ -23,9 +23,10 @@ namespace volleyball
 		List<SQLiteDataAdapter> daList;
 		List<DataGridView> dgvList;
 		bool valueChanged = false;
+		String round = null;
 		#endregion
 		
-		public DivisonResults(Database db)
+		public DivisionResults(Database db)
 		{
 			InitializeComponent();
 			
@@ -49,40 +50,55 @@ namespace volleyball
 			dtList.Add(dtL); daList.Add(daL); dgvList.Add(dataGridViewL);
 		}
 		
-		void init(String round, DataGridView dgv, SQLiteDataAdapter da, DataTable dt)
+		void saveChanges(String table, DataTable dt, String query)
 		{
-			Logging.write("INFO: init datatable interim");
-			
-			String query = ConfigurationManager.AppSettings["SelectResults"];
-			query = query.Replace("@RUNDE", round);
-			
-			if(da != null)
-				da.Dispose();
-			
-			da = new SQLiteDataAdapter(query, db.DBCONNECTION);
-			
-			if(dt != null)
-				dt.Dispose();
-			
-			dt = new DataTable();
-			
-			da.Fill(dt);
-			
-			dgv.DataSource = dt.DefaultView;
-									
-			dgv.Columns[0].Visible = false;
-			
-			for(int i = 0; i < MainForm.headerResult.Count; i++)
-				dgv.Columns[i].HeaderText = MainForm.headerResult[i];
+			foreach(DataRow dr in dt.Rows)
+			{
+				query = query.Replace("@RUNDE", table);
+				SQLiteCommand cmd = db.createCommand(query);
+				cmd.Parameters.AddWithValue("@ID", Int32.Parse(dr[0].ToString()));
+				cmd.Parameters.AddWithValue("@MS", dr[1].ToString());
+				cmd.Parameters.AddWithValue("@PUNKTE", dr[2].ToString());
+				cmd.Parameters.AddWithValue("@SATZ", dr[3].ToString());
+				cmd.Parameters.AddWithValue("@INTERN", dr[4].ToString());
+				cmd.Parameters.AddWithValue("@EXTERN", dr[5].ToString());
+				cmd.ExecuteNonQuery();
+			}
 		}
 		
 		public void setParameters(String round)
 		{
 			for(int i = 0; i < MainForm.grPrefix.Count; i++)
-				init(round + "_erg_gr" + MainForm.grPrefix[i], dgvList[i], daList[i], dtList[i]);
+			{
+				this.round = round;
+				String newRound = this.round + MainForm.grPrefix[i];
+				Logging.write("INFO: init datatable " + newRound);
+			
+				String query = ConfigurationManager.AppSettings["SelectResults"];
+				query = query.Replace("@RUNDE", newRound);
+				
+				if(daList[i] != null)
+					daList[i].Dispose();
+				
+				daList[i] = new SQLiteDataAdapter(query, db.DBCONNECTION);
+				
+				if(dtList[i] != null)
+					dtList[i].Dispose();
+				
+				dtList[i] = new DataTable();
+				
+				daList[i].Fill(dtList[i]);
+				
+				dgvList[i].DataSource = dtList[i].DefaultView;
+										
+				dgvList[i].Columns[0].Visible = false;
+				
+				for(int x = 0; x < MainForm.headerResult.Count; x++)
+					dgvList[i].Columns[x].HeaderText = MainForm.headerResult[x];
+			}
 		}
 		
-		void DivisonResultsResize(object sender, EventArgs e)
+		void DivisionResultsResize(object sender, EventArgs e)
 		{
 			int panelTW = panelT.Width;
 			int panelMW = panelM.Width;
@@ -108,7 +124,7 @@ namespace volleyball
 			valueChanged = true;
 		}
 		
-		void DivisonResultsFormClosing(object sender, FormClosingEventArgs e)
+		void DivisionResultsFormClosing(object sender, FormClosingEventArgs e)
 		{
 			if(valueChanged)
 			{
@@ -117,6 +133,19 @@ namespace volleyball
 				if(!ok)
 					e.Cancel = true;
 			}
+		}
+		
+		void ButtonSaveClick(object sender, EventArgs e)
+		{
+			foreach(DataGridView dgv in dgvList)
+				dgv.EndEdit();
+					
+			for(int i = 0; i < MainForm.grPrefix.Count; i++)
+				saveChanges(this.round + MainForm.grPrefix[i], dtList[i], ConfigurationManager.AppSettings["UpdateResults"]);
+				
+			MainForm.messageboxInfo("Änderungen wurden gespeichert");
+			
+			valueChanged = false;
 		}
 	}
 }

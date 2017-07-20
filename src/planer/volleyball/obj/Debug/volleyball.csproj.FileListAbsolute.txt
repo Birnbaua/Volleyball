@@ -17,8 +17,8 @@ C:\appl\Downloads\repos\Volleyball\src\planer\volleyball\bin\Debug\System.Data.S
 C:\appl\Downloads\repos\Volleyball\src\planer\volleyball\bin\Debug\System.Data.SQLite.xml
 C:\appl\Downloads\repos\Volleyball\src\planer\volleyball\obj\Debug\volleyball.csprojResolveAssemblyReference.cache
 C:\appl\Downloads\repos\Volleyball\src\planer\volleyball\obj\Debug\volleyball.About.resources
-C:\appl\Downloads\repos\Volleyball\src\planer\volleyball\obj\Debug\volleyball.DivisonResults.resources
 C:\appl\Downloads\repos\Volleyball\src\planer\volleyball\obj\Debug\volleyball.MainForm.resources
 C:\appl\Downloads\repos\Volleyball\src\planer\volleyball\obj\Debug\volleyball.csproj.GenerateResource.Cache
 C:\appl\Downloads\repos\Volleyball\src\planer\volleyball\obj\Debug\volleyball.exe
 C:\appl\Downloads\repos\Volleyball\src\planer\volleyball\obj\Debug\volleyball.pdb
+C:\appl\Downloads\repos\Volleyball\src\planer\volleyball\obj\Debug\volleyball.DivisionResults.resources
