@@ -26,6 +26,7 @@ namespace volleyball
 								   itTablesToClear, pcTablesToClear, clTablesToClear, headerResult;
 		About about;
 		String versioninfo;
+		static bool loadingFinished = false;
 		#endregion
 						
 		public MainForm()
@@ -51,6 +52,8 @@ namespace volleyball
 				initPreClassement(app.Default.Satzkr);
 				
 				initClassement(app.Default.Satzpl);
+				
+				setLoadingFinished(true);
 			}
 			else
 			{
@@ -100,6 +103,11 @@ namespace volleyball
 			about = new About(this.Text + " " + ConfigurationManager.AppSettings["About"], versioninfo);
 			
 			numericUpDownFieldCount.Value = app.Default.AnzFelder;
+		}
+		
+		static void setLoadingFinished(bool finished)
+		{
+			loadingFinished = finished;
 		}
 		
 		public static void messageboxInfo(String msg)
@@ -305,6 +313,8 @@ namespace volleyball
 		    
 		    Logging.write("INFO: generate qualifying games");
 		    
+		    setLoadingFinished(false);
+		    
 		    baseFunctions.setParametersQualifyingGames();
 			    
 			baseFunctions.generateQualifyingGames();
@@ -314,6 +324,8 @@ namespace volleyball
 			messageboxInfo("Vorrunde wurde generiert");
 			    
 			ButtonQfSaveClick(null, null);
+			
+			setLoadingFinished(true);
 		}
 		
 		void ButtonQfSaveClick(object sender, EventArgs e)
@@ -363,11 +375,14 @@ namespace volleyball
 		
 		void DataGridViewQualifyingCellValueChanged(object sender, DataGridViewCellEventArgs e)
 		{
-			int column = dataGridViewQualifying.CurrentCell.ColumnIndex;
-			int row = dataGridViewQualifying.CurrentCell.RowIndex;
-			
-			if(column == 3)
-				baseFunctions.recalculateQualifyingGamesTimeSchedule(row, column, dtQualifying);
+			if(loadingFinished)
+			{
+				int column = dataGridViewQualifying.CurrentCell.ColumnIndex;
+				int row = dataGridViewQualifying.CurrentCell.RowIndex;
+				
+				if(column == 3)
+					baseFunctions.recalculateQualifyingGamesTimeSchedule(row, column, dtQualifying);
+			}
 		}
 		
 		void ButtonQfPrintClick(object sender, EventArgs e)
@@ -423,6 +438,8 @@ namespace volleyball
 			
 			Logging.write("INFO: generate interim round");
 		
+			setLoadingFinished(false);
+			
 		    List<String> equalDivisionResults = baseFunctions.checkEqualDivisionResults();
 		
 		    if(equalDivisionResults.Count > 0)
@@ -479,6 +496,8 @@ namespace volleyball
 		    messageboxInfo("Zwischenrunde wurde generiert");
 		    
 		    ButtonInSaveClick(null, null);
+		    
+		    setLoadingFinished(true);
 		}
 		
 		void ButtonInSaveClick(object sender, EventArgs e)
@@ -530,11 +549,14 @@ namespace volleyball
 		
 		void DataGridViewInterimCellValueChanged(object sender, DataGridViewCellEventArgs e)
 		{
-			int column = dataGridViewInterim.CurrentCell.ColumnIndex;
-			int row = dataGridViewInterim.CurrentCell.RowIndex;
-			
-			if(column == 3)
-				baseFunctions.recalculateInterimGamesTimeSchedule(row, column, dtInterim);
+			if(loadingFinished)
+			{
+				int column = dataGridViewInterim.CurrentCell.ColumnIndex;
+				int row = dataGridViewInterim.CurrentCell.RowIndex;
+				
+				if(column == 3)
+					baseFunctions.recalculateInterimGamesTimeSchedule(row, column, dtInterim);
+			}
 		}
 		
 		void ButtonInPrintClick(object sender, EventArgs e)
@@ -583,6 +605,8 @@ namespace volleyball
 		    }
 		
 			Logging.write("INFO: generate preclassement round");
+			
+			setLoadingFinished(false);
 			
 		    List<String> equalDivisionResults = baseFunctions.checkEqualDivisionResults();
 
@@ -635,6 +659,8 @@ namespace volleyball
 		    messageboxInfo("Kreuzspiele wurden generiert");
 		    
 		    ButtonPreClSaveClick(null, null);
+		    
+		    setLoadingFinished(true);
 		}
 		
 		void ButtonPreClSaveClick(object sender, EventArgs e)
@@ -684,11 +710,14 @@ namespace volleyball
 		
 		void DataGridViewPreClassementCellValueChanged(object sender, DataGridViewCellEventArgs e)
 		{
-			int column = dataGridViewPreClassement.CurrentCell.ColumnIndex;
-			int row = dataGridViewPreClassement.CurrentCell.RowIndex;
+			if(loadingFinished)
+			{
+				int column = dataGridViewPreClassement.CurrentCell.ColumnIndex;
+				int row = dataGridViewPreClassement.CurrentCell.RowIndex;
 			
-			if(column == 3)
-				baseFunctions.recalculatePreClassementTimeSchedule(row, column, dtPreClassement);
+				if(column == 3)
+					baseFunctions.recalculatePreClassementTimeSchedule(row, column, dtPreClassement);
+			}
 		}
 				
 		void ButtonPreClPrintClick(object sender, EventArgs e)
@@ -731,6 +760,8 @@ namespace volleyball
 		    
 		 	Logging.write("INFO: generate preclassement");
 		    
+		 	setLoadingFinished(false);
+		 	
 		    baseFunctions.setParametersClassementGames();
 		    
 		    baseFunctions.generateClassementGames();
@@ -740,6 +771,8 @@ namespace volleyball
 		    messageboxInfo("Platzspiele wurden generiert");
 		    
 		    ButtonClSaveClick(null, null);
+		    
+		    setLoadingFinished(true);
 		}
 		
 		void ButtonClSaveClick(object sender, EventArgs e)
@@ -754,11 +787,14 @@ namespace volleyball
 		
 		void DataGridViewClassementCellValueChanged(object sender, DataGridViewCellEventArgs e)
 		{
+			if(loadingFinished)
+			{
 			int column = dataGridViewClassement.CurrentCell.ColumnIndex;
 			int row = dataGridViewClassement.CurrentCell.RowIndex;
 			
 			if(column == 3)
 				baseFunctions.recalculateClassementGamesTimeSchedule(row, column, dtClassement);
+			}
 		}
 		
 		void ButtonClPrintClick(object sender, EventArgs e)

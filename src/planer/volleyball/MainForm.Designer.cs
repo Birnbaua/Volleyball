@@ -61,6 +61,45 @@ namespace volleyball
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.NumericUpDown numericUpDownFieldCount;
 		private System.Windows.Forms.ToolStripMenuItem dokumentationToolStripMenuItem;
+		private System.Windows.Forms.GroupBox groupBoxTimeplanInterim;
+		private System.Windows.Forms.GroupBox groupBoxTimeplanQualifying;
+		private System.Windows.Forms.GroupBox groupBoxTimeplanPreClassement;
+		private System.Windows.Forms.GroupBox groupBoxTimeplanClassement;
+		private System.Windows.Forms.GroupBox groupBoxTournamentStartTimes;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.NumericUpDown numericUpDown3;
+		private System.Windows.Forms.NumericUpDown numericUpDown2;
+		private System.Windows.Forms.NumericUpDown numericUpDown1;
+		private System.Windows.Forms.DateTimePicker dateTimePicker1;
+		private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.Label label11;
+		private System.Windows.Forms.NumericUpDown numericUpDown7;
+		private System.Windows.Forms.NumericUpDown numericUpDown8;
+		private System.Windows.Forms.NumericUpDown numericUpDown9;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.NumericUpDown numericUpDown4;
+		private System.Windows.Forms.NumericUpDown numericUpDown5;
+		private System.Windows.Forms.NumericUpDown numericUpDown6;
+		private System.Windows.Forms.Label label12;
+		private System.Windows.Forms.Label label13;
+		private System.Windows.Forms.Label label14;
+		private System.Windows.Forms.NumericUpDown numericUpDown10;
+		private System.Windows.Forms.NumericUpDown numericUpDown11;
+		private System.Windows.Forms.NumericUpDown numericUpDown12;
+		private System.Windows.Forms.Label label18;
+		private System.Windows.Forms.NumericUpDown numericUpDown16;
+		private System.Windows.Forms.Label label15;
+		private System.Windows.Forms.Label label16;
+		private System.Windows.Forms.Label label17;
+		private System.Windows.Forms.NumericUpDown numericUpDown13;
+		private System.Windows.Forms.NumericUpDown numericUpDown14;
+		private System.Windows.Forms.NumericUpDown numericUpDown15;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -131,6 +170,45 @@ namespace volleyball
 			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.dokumentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.groupBoxTournamentStartTimes = new System.Windows.Forms.GroupBox();
+			this.groupBoxTimeplanClassement = new System.Windows.Forms.GroupBox();
+			this.groupBoxTimeplanPreClassement = new System.Windows.Forms.GroupBox();
+			this.groupBoxTimeplanQualifying = new System.Windows.Forms.GroupBox();
+			this.groupBoxTimeplanInterim = new System.Windows.Forms.GroupBox();
+			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+			this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+			this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+			this.label2 = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
+			this.label4 = new System.Windows.Forms.Label();
+			this.label5 = new System.Windows.Forms.Label();
+			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+			this.label6 = new System.Windows.Forms.Label();
+			this.label7 = new System.Windows.Forms.Label();
+			this.label8 = new System.Windows.Forms.Label();
+			this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
+			this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
+			this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
+			this.label9 = new System.Windows.Forms.Label();
+			this.label10 = new System.Windows.Forms.Label();
+			this.label11 = new System.Windows.Forms.Label();
+			this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
+			this.numericUpDown8 = new System.Windows.Forms.NumericUpDown();
+			this.numericUpDown9 = new System.Windows.Forms.NumericUpDown();
+			this.label12 = new System.Windows.Forms.Label();
+			this.label13 = new System.Windows.Forms.Label();
+			this.label14 = new System.Windows.Forms.Label();
+			this.numericUpDown10 = new System.Windows.Forms.NumericUpDown();
+			this.numericUpDown11 = new System.Windows.Forms.NumericUpDown();
+			this.numericUpDown12 = new System.Windows.Forms.NumericUpDown();
+			this.label15 = new System.Windows.Forms.Label();
+			this.label16 = new System.Windows.Forms.Label();
+			this.label17 = new System.Windows.Forms.Label();
+			this.numericUpDown13 = new System.Windows.Forms.NumericUpDown();
+			this.numericUpDown14 = new System.Windows.Forms.NumericUpDown();
+			this.numericUpDown15 = new System.Windows.Forms.NumericUpDown();
+			this.label18 = new System.Windows.Forms.Label();
+			this.numericUpDown16 = new System.Windows.Forms.NumericUpDown();
 			this.statusStripTournamentTime.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewTeams)).BeginInit();
 			this.tabControl.SuspendLayout();
@@ -148,6 +226,27 @@ namespace volleyball
 			this.tabPageClassement.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewClassement)).BeginInit();
 			this.menuStrip.SuspendLayout();
+			this.groupBoxTournamentStartTimes.SuspendLayout();
+			this.groupBoxTimeplanClassement.SuspendLayout();
+			this.groupBoxTimeplanPreClassement.SuspendLayout();
+			this.groupBoxTimeplanQualifying.SuspendLayout();
+			this.groupBoxTimeplanInterim.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown16)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// statusStripTournamentTime
@@ -157,7 +256,7 @@ namespace volleyball
 			this.toolStripStatusLabelZeit});
 			this.statusStripTournamentTime.Location = new System.Drawing.Point(0, 746);
 			this.statusStripTournamentTime.Name = "statusStripTournamentTime";
-			this.statusStripTournamentTime.Size = new System.Drawing.Size(1164, 22);
+			this.statusStripTournamentTime.Size = new System.Drawing.Size(1084, 22);
 			this.statusStripTournamentTime.TabIndex = 0;
 			this.statusStripTournamentTime.Text = "statusStrip1";
 			// 
@@ -184,7 +283,7 @@ namespace volleyball
 			this.dataGridViewTeams.Location = new System.Drawing.Point(6, 48);
 			this.dataGridViewTeams.MultiSelect = false;
 			this.dataGridViewTeams.Name = "dataGridViewTeams";
-			this.dataGridViewTeams.Size = new System.Drawing.Size(1138, 178);
+			this.dataGridViewTeams.Size = new System.Drawing.Size(1058, 178);
 			this.dataGridViewTeams.TabIndex = 1;
 			// 
 			// buttonSaveTeams
@@ -218,17 +317,22 @@ namespace volleyball
 			this.tabControl.Location = new System.Drawing.Point(0, 24);
 			this.tabControl.Name = "tabControl";
 			this.tabControl.SelectedIndex = 0;
-			this.tabControl.Size = new System.Drawing.Size(1164, 722);
+			this.tabControl.Size = new System.Drawing.Size(1084, 722);
 			this.tabControl.TabIndex = 4;
 			// 
 			// tabPageTeamsTime
 			// 
+			this.tabPageTeamsTime.Controls.Add(this.groupBoxTimeplanInterim);
+			this.tabPageTeamsTime.Controls.Add(this.groupBoxTimeplanQualifying);
+			this.tabPageTeamsTime.Controls.Add(this.groupBoxTimeplanPreClassement);
+			this.tabPageTeamsTime.Controls.Add(this.groupBoxTimeplanClassement);
+			this.tabPageTeamsTime.Controls.Add(this.groupBoxTournamentStartTimes);
 			this.tabPageTeamsTime.Controls.Add(this.groupBoxFields);
 			this.tabPageTeamsTime.Controls.Add(this.groupBoxTeams);
 			this.tabPageTeamsTime.Location = new System.Drawing.Point(4, 22);
 			this.tabPageTeamsTime.Name = "tabPageTeamsTime";
 			this.tabPageTeamsTime.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageTeamsTime.Size = new System.Drawing.Size(1156, 696);
+			this.tabPageTeamsTime.Size = new System.Drawing.Size(1076, 696);
 			this.tabPageTeamsTime.TabIndex = 0;
 			this.tabPageTeamsTime.Text = "Mannschaften/Zeitplan";
 			this.tabPageTeamsTime.UseVisualStyleBackColor = true;
@@ -239,7 +343,7 @@ namespace volleyball
 			this.groupBoxFields.Controls.Add(this.label1);
 			this.groupBoxFields.Controls.Add(this.dataGridViewFields);
 			this.groupBoxFields.Dock = System.Windows.Forms.DockStyle.Right;
-			this.groupBoxFields.Location = new System.Drawing.Point(853, 3);
+			this.groupBoxFields.Location = new System.Drawing.Point(773, 3);
 			this.groupBoxFields.Name = "groupBoxFields";
 			this.groupBoxFields.Size = new System.Drawing.Size(300, 458);
 			this.groupBoxFields.TabIndex = 5;
@@ -297,7 +401,7 @@ namespace volleyball
 			this.groupBoxTeams.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.groupBoxTeams.Location = new System.Drawing.Point(3, 461);
 			this.groupBoxTeams.Name = "groupBoxTeams";
-			this.groupBoxTeams.Size = new System.Drawing.Size(1150, 232);
+			this.groupBoxTeams.Size = new System.Drawing.Size(1070, 232);
 			this.groupBoxTeams.TabIndex = 4;
 			this.groupBoxTeams.TabStop = false;
 			this.groupBoxTeams.Text = "Teams";
@@ -625,7 +729,7 @@ namespace volleyball
 			this.helpToolStripMenuItem});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
-			this.menuStrip.Size = new System.Drawing.Size(1164, 24);
+			this.menuStrip.Size = new System.Drawing.Size(1084, 24);
 			this.menuStrip.TabIndex = 5;
 			this.menuStrip.Text = "menuStrip";
 			// 
@@ -666,11 +770,366 @@ namespace volleyball
 			this.aboutToolStripMenuItem.Text = "Über...";
 			this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItemClick);
 			// 
+			// groupBoxTournamentStartTimes
+			// 
+			this.groupBoxTournamentStartTimes.Controls.Add(this.dateTimePicker1);
+			this.groupBoxTournamentStartTimes.Controls.Add(this.label5);
+			this.groupBoxTournamentStartTimes.Controls.Add(this.label4);
+			this.groupBoxTournamentStartTimes.Controls.Add(this.label3);
+			this.groupBoxTournamentStartTimes.Controls.Add(this.label2);
+			this.groupBoxTournamentStartTimes.Controls.Add(this.numericUpDown3);
+			this.groupBoxTournamentStartTimes.Controls.Add(this.numericUpDown2);
+			this.groupBoxTournamentStartTimes.Controls.Add(this.numericUpDown1);
+			this.groupBoxTournamentStartTimes.Location = new System.Drawing.Point(3, 3);
+			this.groupBoxTournamentStartTimes.Name = "groupBoxTournamentStartTimes";
+			this.groupBoxTournamentStartTimes.Size = new System.Drawing.Size(765, 123);
+			this.groupBoxTournamentStartTimes.TabIndex = 6;
+			this.groupBoxTournamentStartTimes.TabStop = false;
+			this.groupBoxTournamentStartTimes.Text = "Turnierstart/Pausenzeiten";
+			// 
+			// groupBoxTimeplanClassement
+			// 
+			this.groupBoxTimeplanClassement.Controls.Add(this.label18);
+			this.groupBoxTimeplanClassement.Controls.Add(this.numericUpDown16);
+			this.groupBoxTimeplanClassement.Controls.Add(this.label15);
+			this.groupBoxTimeplanClassement.Controls.Add(this.label16);
+			this.groupBoxTimeplanClassement.Controls.Add(this.label17);
+			this.groupBoxTimeplanClassement.Controls.Add(this.numericUpDown13);
+			this.groupBoxTimeplanClassement.Controls.Add(this.numericUpDown14);
+			this.groupBoxTimeplanClassement.Controls.Add(this.numericUpDown15);
+			this.groupBoxTimeplanClassement.Location = new System.Drawing.Point(392, 239);
+			this.groupBoxTimeplanClassement.Name = "groupBoxTimeplanClassement";
+			this.groupBoxTimeplanClassement.Size = new System.Drawing.Size(365, 143);
+			this.groupBoxTimeplanClassement.TabIndex = 7;
+			this.groupBoxTimeplanClassement.TabStop = false;
+			this.groupBoxTimeplanClassement.Text = "Zeitplan Platzierungspiele/Finale";
+			// 
+			// groupBoxTimeplanPreClassement
+			// 
+			this.groupBoxTimeplanPreClassement.Controls.Add(this.label12);
+			this.groupBoxTimeplanPreClassement.Controls.Add(this.label13);
+			this.groupBoxTimeplanPreClassement.Controls.Add(this.label14);
+			this.groupBoxTimeplanPreClassement.Controls.Add(this.numericUpDown10);
+			this.groupBoxTimeplanPreClassement.Controls.Add(this.numericUpDown11);
+			this.groupBoxTimeplanPreClassement.Controls.Add(this.numericUpDown12);
+			this.groupBoxTimeplanPreClassement.Location = new System.Drawing.Point(3, 239);
+			this.groupBoxTimeplanPreClassement.Name = "groupBoxTimeplanPreClassement";
+			this.groupBoxTimeplanPreClassement.Size = new System.Drawing.Size(368, 102);
+			this.groupBoxTimeplanPreClassement.TabIndex = 8;
+			this.groupBoxTimeplanPreClassement.TabStop = false;
+			this.groupBoxTimeplanPreClassement.Text = "Zeitplanung Kreuzspiele";
+			// 
+			// groupBoxTimeplanQualifying
+			// 
+			this.groupBoxTimeplanQualifying.Controls.Add(this.label6);
+			this.groupBoxTimeplanQualifying.Controls.Add(this.label7);
+			this.groupBoxTimeplanQualifying.Controls.Add(this.label8);
+			this.groupBoxTimeplanQualifying.Controls.Add(this.numericUpDown4);
+			this.groupBoxTimeplanQualifying.Controls.Add(this.numericUpDown5);
+			this.groupBoxTimeplanQualifying.Controls.Add(this.numericUpDown6);
+			this.groupBoxTimeplanQualifying.Location = new System.Drawing.Point(3, 132);
+			this.groupBoxTimeplanQualifying.Name = "groupBoxTimeplanQualifying";
+			this.groupBoxTimeplanQualifying.Size = new System.Drawing.Size(368, 101);
+			this.groupBoxTimeplanQualifying.TabIndex = 9;
+			this.groupBoxTimeplanQualifying.TabStop = false;
+			this.groupBoxTimeplanQualifying.Text = "Zeitplanung Vorrunde";
+			// 
+			// groupBoxTimeplanInterim
+			// 
+			this.groupBoxTimeplanInterim.Controls.Add(this.label9);
+			this.groupBoxTimeplanInterim.Controls.Add(this.label10);
+			this.groupBoxTimeplanInterim.Controls.Add(this.label11);
+			this.groupBoxTimeplanInterim.Controls.Add(this.numericUpDown7);
+			this.groupBoxTimeplanInterim.Controls.Add(this.numericUpDown8);
+			this.groupBoxTimeplanInterim.Controls.Add(this.numericUpDown9);
+			this.groupBoxTimeplanInterim.Location = new System.Drawing.Point(392, 132);
+			this.groupBoxTimeplanInterim.Name = "groupBoxTimeplanInterim";
+			this.groupBoxTimeplanInterim.Size = new System.Drawing.Size(335, 101);
+			this.groupBoxTimeplanInterim.TabIndex = 10;
+			this.groupBoxTimeplanInterim.TabStop = false;
+			this.groupBoxTimeplanInterim.Text = "Zeitplanung Zwischenrunde";
+			// 
+			// numericUpDown1
+			// 
+			this.numericUpDown1.Location = new System.Drawing.Point(232, 41);
+			this.numericUpDown1.Name = "numericUpDown1";
+			this.numericUpDown1.Size = new System.Drawing.Size(75, 20);
+			this.numericUpDown1.TabIndex = 0;
+			// 
+			// numericUpDown2
+			// 
+			this.numericUpDown2.Location = new System.Drawing.Point(232, 66);
+			this.numericUpDown2.Name = "numericUpDown2";
+			this.numericUpDown2.Size = new System.Drawing.Size(75, 20);
+			this.numericUpDown2.TabIndex = 1;
+			// 
+			// numericUpDown3
+			// 
+			this.numericUpDown3.Location = new System.Drawing.Point(232, 91);
+			this.numericUpDown3.Name = "numericUpDown3";
+			this.numericUpDown3.Size = new System.Drawing.Size(75, 20);
+			this.numericUpDown3.TabIndex = 2;
+			// 
+			// label2
+			// 
+			this.label2.Location = new System.Drawing.Point(6, 16);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(220, 23);
+			this.label2.TabIndex = 4;
+			this.label2.Text = "Start Turnier (HH:mm)";
+			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// label3
+			// 
+			this.label3.Location = new System.Drawing.Point(6, 39);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(220, 23);
+			this.label3.TabIndex = 5;
+			this.label3.Text = "Pause zw. Vor- und Zwischenrunde";
+			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// label4
+			// 
+			this.label4.Location = new System.Drawing.Point(6, 63);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(220, 23);
+			this.label4.TabIndex = 6;
+			this.label4.Text = "Pause zw. Zwischenrunde und Kreuzspiele";
+			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// label5
+			// 
+			this.label5.Location = new System.Drawing.Point(6, 88);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(220, 23);
+			this.label5.TabIndex = 7;
+			this.label5.Text = "Pause zw. Kreuz - und Platzierungsspiele";
+			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// dateTimePicker1
+			// 
+			this.dateTimePicker1.CustomFormat = "HH:mm";
+			this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+			this.dateTimePicker1.Location = new System.Drawing.Point(232, 16);
+			this.dateTimePicker1.Name = "dateTimePicker1";
+			this.dateTimePicker1.ShowUpDown = true;
+			this.dateTimePicker1.Size = new System.Drawing.Size(75, 20);
+			this.dateTimePicker1.TabIndex = 8;
+			this.dateTimePicker1.Value = new System.DateTime(2017, 7, 21, 10, 42, 0, 0);
+			// 
+			// label6
+			// 
+			this.label6.Location = new System.Drawing.Point(6, 65);
+			this.label6.Name = "label6";
+			this.label6.Size = new System.Drawing.Size(220, 23);
+			this.label6.TabIndex = 13;
+			this.label6.Text = "Pause zw. Kreuz - und Platzierungsspiele";
+			this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// label7
+			// 
+			this.label7.Location = new System.Drawing.Point(6, 40);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(220, 23);
+			this.label7.TabIndex = 12;
+			this.label7.Text = "Pause zw. Zwischenrunde und Kreuzspiele";
+			this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// label8
+			// 
+			this.label8.Location = new System.Drawing.Point(6, 16);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(220, 23);
+			this.label8.TabIndex = 11;
+			this.label8.Text = "Pause zw. Vor- und Zwischenrunde";
+			this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// numericUpDown4
+			// 
+			this.numericUpDown4.Location = new System.Drawing.Point(232, 68);
+			this.numericUpDown4.Name = "numericUpDown4";
+			this.numericUpDown4.Size = new System.Drawing.Size(75, 20);
+			this.numericUpDown4.TabIndex = 10;
+			// 
+			// numericUpDown5
+			// 
+			this.numericUpDown5.Location = new System.Drawing.Point(232, 43);
+			this.numericUpDown5.Name = "numericUpDown5";
+			this.numericUpDown5.Size = new System.Drawing.Size(75, 20);
+			this.numericUpDown5.TabIndex = 9;
+			// 
+			// numericUpDown6
+			// 
+			this.numericUpDown6.Location = new System.Drawing.Point(232, 18);
+			this.numericUpDown6.Name = "numericUpDown6";
+			this.numericUpDown6.Size = new System.Drawing.Size(75, 20);
+			this.numericUpDown6.TabIndex = 8;
+			// 
+			// label9
+			// 
+			this.label9.Location = new System.Drawing.Point(6, 65);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(220, 23);
+			this.label9.TabIndex = 13;
+			this.label9.Text = "Pause zw. Kreuz - und Platzierungsspiele";
+			this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// label10
+			// 
+			this.label10.Location = new System.Drawing.Point(6, 40);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(220, 23);
+			this.label10.TabIndex = 12;
+			this.label10.Text = "Pause zw. Zwischenrunde und Kreuzspiele";
+			this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// label11
+			// 
+			this.label11.Location = new System.Drawing.Point(6, 16);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(220, 23);
+			this.label11.TabIndex = 11;
+			this.label11.Text = "Pause zw. Vor- und Zwischenrunde";
+			this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// numericUpDown7
+			// 
+			this.numericUpDown7.Location = new System.Drawing.Point(232, 68);
+			this.numericUpDown7.Name = "numericUpDown7";
+			this.numericUpDown7.Size = new System.Drawing.Size(75, 20);
+			this.numericUpDown7.TabIndex = 10;
+			// 
+			// numericUpDown8
+			// 
+			this.numericUpDown8.Location = new System.Drawing.Point(232, 43);
+			this.numericUpDown8.Name = "numericUpDown8";
+			this.numericUpDown8.Size = new System.Drawing.Size(75, 20);
+			this.numericUpDown8.TabIndex = 9;
+			// 
+			// numericUpDown9
+			// 
+			this.numericUpDown9.Location = new System.Drawing.Point(232, 18);
+			this.numericUpDown9.Name = "numericUpDown9";
+			this.numericUpDown9.Size = new System.Drawing.Size(75, 20);
+			this.numericUpDown9.TabIndex = 8;
+			// 
+			// label12
+			// 
+			this.label12.Location = new System.Drawing.Point(6, 65);
+			this.label12.Name = "label12";
+			this.label12.Size = new System.Drawing.Size(220, 23);
+			this.label12.TabIndex = 13;
+			this.label12.Text = "Pause zw. Kreuz - und Platzierungsspiele";
+			this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// label13
+			// 
+			this.label13.Location = new System.Drawing.Point(6, 40);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(220, 23);
+			this.label13.TabIndex = 12;
+			this.label13.Text = "Pause zw. Zwischenrunde und Kreuzspiele";
+			this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// label14
+			// 
+			this.label14.Location = new System.Drawing.Point(6, 16);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(220, 23);
+			this.label14.TabIndex = 11;
+			this.label14.Text = "Pause zw. Vor- und Zwischenrunde";
+			this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// numericUpDown10
+			// 
+			this.numericUpDown10.Location = new System.Drawing.Point(232, 68);
+			this.numericUpDown10.Name = "numericUpDown10";
+			this.numericUpDown10.Size = new System.Drawing.Size(75, 20);
+			this.numericUpDown10.TabIndex = 10;
+			// 
+			// numericUpDown11
+			// 
+			this.numericUpDown11.Location = new System.Drawing.Point(232, 43);
+			this.numericUpDown11.Name = "numericUpDown11";
+			this.numericUpDown11.Size = new System.Drawing.Size(75, 20);
+			this.numericUpDown11.TabIndex = 9;
+			// 
+			// numericUpDown12
+			// 
+			this.numericUpDown12.Location = new System.Drawing.Point(232, 18);
+			this.numericUpDown12.Name = "numericUpDown12";
+			this.numericUpDown12.Size = new System.Drawing.Size(75, 20);
+			this.numericUpDown12.TabIndex = 8;
+			// 
+			// label15
+			// 
+			this.label15.Location = new System.Drawing.Point(6, 67);
+			this.label15.Name = "label15";
+			this.label15.Size = new System.Drawing.Size(220, 23);
+			this.label15.TabIndex = 13;
+			this.label15.Text = "Pause zw. Kreuz - und Platzierungsspiele";
+			this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// label16
+			// 
+			this.label16.Location = new System.Drawing.Point(6, 42);
+			this.label16.Name = "label16";
+			this.label16.Size = new System.Drawing.Size(220, 23);
+			this.label16.TabIndex = 12;
+			this.label16.Text = "Pause zw. Zwischenrunde und Kreuzspiele";
+			this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// label17
+			// 
+			this.label17.Location = new System.Drawing.Point(6, 18);
+			this.label17.Name = "label17";
+			this.label17.Size = new System.Drawing.Size(220, 23);
+			this.label17.TabIndex = 11;
+			this.label17.Text = "Pause zw. Vor- und Zwischenrunde";
+			this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// numericUpDown13
+			// 
+			this.numericUpDown13.Location = new System.Drawing.Point(232, 70);
+			this.numericUpDown13.Name = "numericUpDown13";
+			this.numericUpDown13.Size = new System.Drawing.Size(75, 20);
+			this.numericUpDown13.TabIndex = 10;
+			// 
+			// numericUpDown14
+			// 
+			this.numericUpDown14.Location = new System.Drawing.Point(232, 45);
+			this.numericUpDown14.Name = "numericUpDown14";
+			this.numericUpDown14.Size = new System.Drawing.Size(75, 20);
+			this.numericUpDown14.TabIndex = 9;
+			// 
+			// numericUpDown15
+			// 
+			this.numericUpDown15.Location = new System.Drawing.Point(232, 20);
+			this.numericUpDown15.Name = "numericUpDown15";
+			this.numericUpDown15.Size = new System.Drawing.Size(75, 20);
+			this.numericUpDown15.TabIndex = 8;
+			// 
+			// label18
+			// 
+			this.label18.Location = new System.Drawing.Point(6, 92);
+			this.label18.Name = "label18";
+			this.label18.Size = new System.Drawing.Size(220, 23);
+			this.label18.TabIndex = 15;
+			this.label18.Text = "Pause zw. Kreuz - und Platzierungsspiele";
+			this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// numericUpDown16
+			// 
+			this.numericUpDown16.Location = new System.Drawing.Point(232, 95);
+			this.numericUpDown16.Name = "numericUpDown16";
+			this.numericUpDown16.Size = new System.Drawing.Size(75, 20);
+			this.numericUpDown16.TabIndex = 14;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1164, 768);
+			this.ClientSize = new System.Drawing.Size(1084, 768);
 			this.Controls.Add(this.tabControl);
 			this.Controls.Add(this.statusStripTournamentTime);
 			this.Controls.Add(this.menuStrip);
@@ -697,6 +1156,27 @@ namespace volleyball
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewClassement)).EndInit();
 			this.menuStrip.ResumeLayout(false);
 			this.menuStrip.PerformLayout();
+			this.groupBoxTournamentStartTimes.ResumeLayout(false);
+			this.groupBoxTimeplanClassement.ResumeLayout(false);
+			this.groupBoxTimeplanPreClassement.ResumeLayout(false);
+			this.groupBoxTimeplanQualifying.ResumeLayout(false);
+			this.groupBoxTimeplanInterim.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDown16)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
