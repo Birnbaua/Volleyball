@@ -384,7 +384,8 @@ namespace volleyball
 		
 		void ButtonQfOverallResultsClick(object sender, EventArgs e)
 		{
-	
+			AllDivisionResults avr = new AllDivisionResults(db, "vorrunde_all_view");
+			avr.Show();
 		}
 		
 		void initInterim(int hideCol)

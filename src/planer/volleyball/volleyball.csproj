@@ -59,6 +59,10 @@
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="AllDivisionResults.cs" />
+    <Compile Include="AllDivisionResults.Designer.cs">
+      <DependentUpon>AllDivisionResults.cs</DependentUpon>
+    </Compile>
     <Compile Include="app.Designer.cs">
       <DependentUpon>app.settings</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -94,6 +98,9 @@
   <ItemGroup>
     <EmbeddedResource Include="About.resx">
       <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AllDivisionResults.resx">
+      <DependentUpon>AllDivisionResults.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DivisionResults.resx">
       <DependentUpon>DivisionResults.cs</DependentUpon>
