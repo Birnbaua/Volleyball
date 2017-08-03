@@ -64,34 +64,6 @@ namespace volleyball
 			}
 		}
 		
-		public void writeConfig(int anzfelder, bool kreuzspiele, bool vorplatzspiele, String startturnier, int pausevrzw, 
-		                        int pausezwkr, int pausekrpl, int satzvr, int minsatzvr, int pauseminvr, int satzzw, 
-		                        int minsatzzw, int pauseminzw, int satzkr, int minsatzkr, int pauseminkr, int satzpl, 
-		                        int minsatzpl, int zeitfinale, int pauseplehrung)
-		{
-			app.Default.AnzFelder = anzfelder;
-			app.Default.Kreuzspiele = kreuzspiele;
-			app.Default.Vorplatzspiele = vorplatzspiele;
-			app.Default.Startturnier = startturnier;
-			app.Default.Pausevrzw = pausevrzw;
-			app.Default.Pausezwkr = pausezwkr;
-			app.Default.Pausekrpl = pausekrpl;
-			app.Default.Satzvr = satzvr;
-			app.Default.Minsatzvr = minsatzvr;
-			app.Default.Pauseminvr = pauseminvr;
-			app.Default.Satzzw = satzzw;
-			app.Default.Minsatzzw = minsatzzw;
-			app.Default.Pauseminzw = pauseminzw;
-			app.Default.Satzkr = satzkr;
-			app.Default.Minsatzkr = minsatzkr;
-			app.Default.Pauseminkr = pauseminkr;
-			app.Default.Satzpl = satzpl;
-			app.Default.Minsatzpl = minsatzpl;
-			app.Default.Zeitfinale = zeitfinale;
-			app.Default.Pauseplehrung = pauseplehrung;
-			app.Default.Save();
-		}
-		
 		public void saveTeamChanges(DataTable dt, String query)
 		{
 			foreach(DataRow dr in dt.Rows)
@@ -138,11 +110,6 @@ namespace volleyball
 				
 				cmd.ExecuteNonQuery();
 			}
-		}
-		
-		public void resetConfig()
-		{
-			writeConfig(4, true, false, "10:00", 0, 0, 0, 1, 10, 0, 1, 10, 0, 1, 10, 0, 1, 10, 15, 30);
 		}
 		
 		public List<String> getFieldNames()

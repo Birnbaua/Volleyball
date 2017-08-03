@@ -64,6 +64,7 @@ namespace volleyball
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DivisionResults));
 			this.dataGridViewA = new System.Windows.Forms.DataGridView();
 			this.groupBoxA = new System.Windows.Forms.GroupBox();
 			this.groupBoxE = new System.Windows.Forms.GroupBox();
@@ -123,6 +124,8 @@ namespace volleyball
 			// 
 			// dataGridViewA
 			// 
+			this.dataGridViewA.AllowUserToAddRows = false;
+			this.dataGridViewA.AllowUserToDeleteRows = false;
 			this.dataGridViewA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewA.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridViewA.Location = new System.Drawing.Point(5, 18);
@@ -158,6 +161,8 @@ namespace volleyball
 			// 
 			// dataGridViewE
 			// 
+			this.dataGridViewE.AllowUserToAddRows = false;
+			this.dataGridViewE.AllowUserToDeleteRows = false;
 			this.dataGridViewE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewE.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridViewE.Location = new System.Drawing.Point(5, 18);
@@ -181,6 +186,8 @@ namespace volleyball
 			// 
 			// dataGridViewF
 			// 
+			this.dataGridViewF.AllowUserToAddRows = false;
+			this.dataGridViewF.AllowUserToDeleteRows = false;
 			this.dataGridViewF.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewF.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridViewF.Location = new System.Drawing.Point(5, 18);
@@ -204,6 +211,8 @@ namespace volleyball
 			// 
 			// dataGridViewB
 			// 
+			this.dataGridViewB.AllowUserToAddRows = false;
+			this.dataGridViewB.AllowUserToDeleteRows = false;
 			this.dataGridViewB.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewB.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridViewB.Location = new System.Drawing.Point(5, 18);
@@ -227,6 +236,8 @@ namespace volleyball
 			// 
 			// dataGridViewG
 			// 
+			this.dataGridViewG.AllowUserToAddRows = false;
+			this.dataGridViewG.AllowUserToDeleteRows = false;
 			this.dataGridViewG.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewG.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridViewG.Location = new System.Drawing.Point(5, 18);
@@ -250,6 +261,8 @@ namespace volleyball
 			// 
 			// dataGridViewC
 			// 
+			this.dataGridViewC.AllowUserToAddRows = false;
+			this.dataGridViewC.AllowUserToDeleteRows = false;
 			this.dataGridViewC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewC.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridViewC.Location = new System.Drawing.Point(5, 18);
@@ -273,6 +286,8 @@ namespace volleyball
 			// 
 			// dataGridViewH
 			// 
+			this.dataGridViewH.AllowUserToAddRows = false;
+			this.dataGridViewH.AllowUserToDeleteRows = false;
 			this.dataGridViewH.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewH.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridViewH.Location = new System.Drawing.Point(5, 18);
@@ -296,6 +311,8 @@ namespace volleyball
 			// 
 			// dataGridViewD
 			// 
+			this.dataGridViewD.AllowUserToAddRows = false;
+			this.dataGridViewD.AllowUserToDeleteRows = false;
 			this.dataGridViewD.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewD.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridViewD.Location = new System.Drawing.Point(5, 18);
@@ -370,6 +387,8 @@ namespace volleyball
 			// 
 			// dataGridViewL
 			// 
+			this.dataGridViewL.AllowUserToAddRows = false;
+			this.dataGridViewL.AllowUserToDeleteRows = false;
 			this.dataGridViewL.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewL.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridViewL.Location = new System.Drawing.Point(5, 18);
@@ -393,6 +412,8 @@ namespace volleyball
 			// 
 			// dataGridViewK
 			// 
+			this.dataGridViewK.AllowUserToAddRows = false;
+			this.dataGridViewK.AllowUserToDeleteRows = false;
 			this.dataGridViewK.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewK.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridViewK.Location = new System.Drawing.Point(5, 18);
@@ -416,6 +437,8 @@ namespace volleyball
 			// 
 			// dataGridViewJ
 			// 
+			this.dataGridViewJ.AllowUserToAddRows = false;
+			this.dataGridViewJ.AllowUserToDeleteRows = false;
 			this.dataGridViewJ.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewJ.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridViewJ.Location = new System.Drawing.Point(5, 18);
@@ -439,6 +462,8 @@ namespace volleyball
 			// 
 			// dataGridViewI
 			// 
+			this.dataGridViewI.AllowUserToAddRows = false;
+			this.dataGridViewI.AllowUserToDeleteRows = false;
 			this.dataGridViewI.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewI.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridViewI.Location = new System.Drawing.Point(5, 18);
@@ -457,6 +482,7 @@ namespace volleyball
 			this.Controls.Add(this.buttonSave);
 			this.Controls.Add(this.panelM);
 			this.Controls.Add(this.panelT);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "DivisionResults";
 			this.Padding = new System.Windows.Forms.Padding(5);
 			this.Text = "DivisionResults";

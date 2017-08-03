@@ -42,12 +42,10 @@ namespace volleyball
 			
 			da.Fill(dt);
 			
-			dataGridView.DataSource = dt.DefaultView;
-									
-			dataGridView.Columns[0].Visible = false;
-			
-			for(int x = 0; x < MainForm.headerResult.Count; x++)
-				dataGridView.Columns[x].HeaderText = MainForm.headerResult[x];
+			dataGridView.DataSource = dt.DefaultView;		
+						
+			for(int x = 0; x < MainForm.headerAllResult.Count; x++)
+				dataGridView.Columns[x].HeaderText = MainForm.headerAllResult[x];
 		}
 	}
 }

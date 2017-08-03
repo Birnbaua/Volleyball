@@ -23,7 +23,7 @@ namespace volleyball
 		SQLiteDataAdapter daTeams, daFields, daQualifying, daInterim, daPreClassement, daClassement;
 		BaseFunctions baseFunctions;
 		public static List<String> grPrefix, headerPrefix, headerGameplan, insertRows, qfTablesToClear, 
-								   itTablesToClear, pcTablesToClear, clTablesToClear, headerResult;
+								   itTablesToClear, pcTablesToClear, clTablesToClear, headerResult, headerAllResult;
 		About about;
 		String versioninfo;
 		static bool loadingFinished = false;
@@ -52,6 +52,8 @@ namespace volleyball
 				initPreClassement(app.Default.Satzkr);
 				
 				initClassement(app.Default.Satzpl);
+				
+				readConfig();
 				
 				setLoadingFinished(true);
 			}
@@ -90,7 +92,9 @@ namespace volleyball
 												  "Mannschaft B", "Schiedsgericht", "Satz 1 A", "Satz 1 B",
 												  "Satz 2 A", "Satz 2 B", "Satz 3 A", "Satz 3 B" };
 		
-			headerResult = new List<String>() { "Mannschaft", "Punkte", "Spielpunkte", "Intern", "Extern" };
+			headerResult = new List<String>() { "Id", "Mannschaft", "Punkte", "Spielpunkte", "Intern", "Extern" };
+			
+			headerAllResult = new List<String>() { "Mannschaft", "Punkte", "Spielpunkte", "Intern", "Extern" };
 			
 			using (var streamReader = new StreamReader(new FileStream(ConfigurationManager.AppSettings["Version"], FileMode.Open, FileAccess.Read), Encoding.UTF8))
 				versioninfo = streamReader.ReadToEnd();
@@ -108,6 +112,119 @@ namespace volleyball
 		static void setLoadingFinished(bool finished)
 		{
 			loadingFinished = finished;
+		}
+		
+		public void writeConfig(int anzfelder, bool kreuzspiele, bool vorplatzspiele, String startturnier, int pausevrzw, 
+		                        int pausezwkr, int pausekrpl, int satzvr, int minsatzvr, int pauseminvr, int satzzw, 
+		                        int minsatzzw, int pauseminzw, int satzkr, int minsatzkr, int pauseminkr, int satzpl, 
+		                        int minsatzpl, int zeitfinale, int pauseplehrung)
+		{
+			app.Default.AnzFelder = anzfelder;
+			app.Default.Kreuzspiele = kreuzspiele;
+			app.Default.Vorplatzspiele = vorplatzspiele;
+			app.Default.Startturnier = startturnier;
+			app.Default.Pausevrzw = pausevrzw;
+			app.Default.Pausezwkr = pausezwkr;
+			app.Default.Pausekrpl = pausekrpl;
+			app.Default.Satzvr = satzvr;
+			app.Default.Minsatzvr = minsatzvr;
+			app.Default.Pauseminvr = pauseminvr;
+			app.Default.Satzzw = satzzw;
+			app.Default.Minsatzzw = minsatzzw;
+			app.Default.Pauseminzw = pauseminzw;
+			app.Default.Satzkr = satzkr;
+			app.Default.Minsatzkr = minsatzkr;
+			app.Default.Pauseminkr = pauseminkr;
+			app.Default.Satzpl = satzpl;
+			app.Default.Minsatzpl = minsatzpl;
+			app.Default.Zeitfinale = zeitfinale;
+			app.Default.Pauseplehrung = pauseplehrung;
+			app.Default.Save();
+		}
+		
+		public void readConfig()
+		{
+			numericUpDownFieldCount.Value = app.Default.AnzFelder;
+			checkBoxCrossgames.Checked = app.Default.Kreuzspiele;
+			checkBoxPreClassementGames.Checked = app.Default.Vorplatzspiele;
+			
+			dateTimePickerTournamentStartTime.Value = DateTime.Parse(app.Default.Startturnier);
+			numericUpDownBreakQualifyingInterim.Value = app.Default.Pausevrzw;
+			numericUpDownBreakInterimCrossgames.Value = app.Default.Pausezwkr;
+			numericUpDownBreakPreClassementClassement.Value = app.Default.Pausekrpl;
+			
+			numericUpDownQfGames.Value = app.Default.Satzvr;
+			numericUpDownQfMinPerGame.Value = app.Default.Minsatzvr;
+			numericUpDownQfBreakPerRound.Value = app.Default.Pauseminvr;
+			 
+			numericUpDownItGames.Value = app.Default.Satzzw;
+			numericUpDownItMinPerGame.Value = app.Default.Minsatzzw;
+			numericUpDownItBreakPerRound.Value = app.Default.Pauseminzw;
+			 
+			numericUpDownPreClGames.Value = app.Default.Satzkr;
+			numericUpDownPreClMinPerGame.Value = app.Default.Minsatzkr;
+			numericUpDownPreClBreakPerRound.Value = app.Default.Pauseminkr;
+			 
+			numericUpDownClGames.Value = app.Default.Satzpl;
+			numericUpDownClMinPerGame.Value = app.Default.Minsatzpl;
+			numericUpDownTimeFinalGame.Value = app.Default.Zeitfinale;
+			numericUpDownTimeForHonor.Value = app.Default.Pauseplehrung;
+		}
+		
+		public void resetConfig()
+		{
+			writeConfig(4, true, false, "03.08.2017 10:00", 0, 0, 0, 1, 10, 0, 1, 10, 0, 1, 10, 0, 1, 10, 15, 30);
+		}
+		
+		void ButtonSaveChangesClick(object sender, EventArgs e)
+		{
+			if(userButtonCheck("Bitte bestätigen um die Turniereinstellungen zu speichern!"))
+			{
+				Logging.write("INFO: save configuration");
+				
+				writeConfig(Int32.Parse(numericUpDownFieldCount.Value.ToString()), checkBoxCrossgames.Checked, checkBoxPreClassementGames.Checked, 
+				            dateTimePickerTournamentStartTime.Value.ToString(), Int32.Parse(numericUpDownBreakQualifyingInterim.Value.ToString()),
+				            Int32.Parse(numericUpDownBreakInterimCrossgames.Value.ToString()), Int32.Parse(numericUpDownBreakPreClassementClassement.Value.ToString()),
+				            Int32.Parse(numericUpDownQfGames.Value.ToString()), Int32.Parse(numericUpDownQfMinPerGame.Value.ToString()),
+				            Int32.Parse(numericUpDownQfBreakPerRound.Value.ToString()), Int32.Parse(numericUpDownItGames.Value.ToString()), 
+				            Int32.Parse(numericUpDownItMinPerGame.Value.ToString()), Int32.Parse(numericUpDownItBreakPerRound.Value.ToString()),
+				            Int32.Parse(numericUpDownPreClGames.Value.ToString()), Int32.Parse(numericUpDownPreClMinPerGame.Value.ToString()),
+				            Int32.Parse(numericUpDownPreClBreakPerRound.Value.ToString()), Int32.Parse(numericUpDownClGames.Value.ToString()),
+				            Int32.Parse(numericUpDownClMinPerGame.Value.ToString()), Int32.Parse(numericUpDownTimeFinalGame.Value.ToString()),
+				            Int32.Parse(numericUpDownTimeForHonor.Value.ToString()));
+				
+				messageboxInfo("Turniereinstellungen gespeichert");
+			}
+		}
+		
+		void ButtonCancelChangesClick(object sender, EventArgs e)
+		{
+			if(userButtonCheck("Bitte bestätigen um die Änderungen in der Konfiguration zu verwerfen!"))
+			{
+				Logging.write("INFO: rollback configuration");
+				              
+				readConfig();
+				
+				initFields();
+				
+				messageboxInfo("Änderungen in der Konfiguration wurden verworfen!");
+			}
+		}
+		
+		void ButtonDefaultConfigurationClick(object sender, EventArgs e)
+		{
+			if(userButtonCheck("Bitte bestätigen um die Default Turniereinstellungen zu laden!"))
+    		{
+				Logging.write("INFO: load default configuration");
+				
+				resetConfig();
+				
+				readConfig();
+				
+				initFields();
+				
+				messageboxInfo("Default Turniereinstellungen geladen!");
+			}
 		}
 		
 		public static void messageboxInfo(String msg)
