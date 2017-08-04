@@ -100,7 +100,7 @@ namespace volleyball
 				versioninfo = streamReader.ReadToEnd();
 		}
 		
-		void initGUIModules()
+		static void initGUIModules()
 		{
 			this.Text = ConfigurationManager.AppSettings["Title"] + ConfigurationManager.AppSettings["Versionnr"];
 			
@@ -114,7 +114,7 @@ namespace volleyball
 			loadingFinished = finished;
 		}
 		
-		public void writeConfig(int anzfelder, bool kreuzspiele, bool vorplatzspiele, String startturnier, int pausevrzw, 
+		static void writeConfig(int anzfelder, bool kreuzspiele, bool vorplatzspiele, String startturnier, int pausevrzw, 
 		                        int pausezwkr, int pausekrpl, int satzvr, int minsatzvr, int pauseminvr, int satzzw, 
 		                        int minsatzzw, int pauseminzw, int satzkr, int minsatzkr, int pauseminkr, int satzpl, 
 		                        int minsatzpl, int zeitfinale, int pauseplehrung)
@@ -142,7 +142,7 @@ namespace volleyball
 			app.Default.Save();
 		}
 		
-		public void readConfig()
+		static void readConfig()
 		{
 			numericUpDownFieldCount.Value = app.Default.AnzFelder;
 			checkBoxCrossgames.Checked = app.Default.Kreuzspiele;
@@ -171,7 +171,7 @@ namespace volleyball
 			numericUpDownTimeForHonor.Value = app.Default.Pauseplehrung;
 		}
 		
-		public void resetConfig()
+		static void resetConfig()
 		{
 			writeConfig(4, true, false, "03.08.2017 10:00", 0, 0, 0, 1, 10, 0, 1, 10, 0, 1, 10, 0, 1, 10, 15, 30);
 		}
