@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SettingsFile CurrentProfile="(Default)" GeneratedClassNamespace="volleyball" GeneratedClassName="app" xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings>
+    <Setting Name="AnzFelder" Type="System.Int32" Scope="User" Roaming="false">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="FTPPw" Type="System.String" Scope="User" Roaming="false">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="FTPUrl" Type="System.String" Scope="User" Roaming="false">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="FTPUser" Type="System.String" Scope="User" Roaming="false">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Kreuzspiele" Type="System.Boolean" Scope="User" Roaming="false">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Minsatzkr" Type="System.Int32" Scope="User" Roaming="false">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Minsatzpl" Type="System.Int32" Scope="User" Roaming="false">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Minsatzvr" Type="System.Int32" Scope="User" Roaming="false">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Minsatzzw" Type="System.Int32" Scope="User" Roaming="false">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Pausekrpl" Type="System.Int32" Scope="User" Roaming="false">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Pauseminkr" Type="System.Int32" Scope="User" Roaming="false">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Pauseminvr" Type="System.Int32" Scope="User" Roaming="false">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Pauseminzw" Type="System.Int32" Scope="User" Roaming="false">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Pauseplehrung" Type="System.Int32" Scope="User" Roaming="false">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Pausevrzw" Type="System.Int32" Scope="User" Roaming="false">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Pausezwkr" Type="System.Int32" Scope="User" Roaming="false">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Pdfpath" Type="System.String" Scope="User" Roaming="false">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Satzkr" Type="System.Int32" Scope="User" Roaming="false">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Satzpl" Type="System.Int32" Scope="User" Roaming="false">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Satzvr" Type="System.Int32" Scope="User" Roaming="false">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Satzzw" Type="System.Int32" Scope="User" Roaming="false">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Startturnier" Type="System.String" Scope="User" Roaming="false">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Vorplatzspiele" Type="System.Boolean" Scope="User" Roaming="false">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Zeitfinale" Type="System.Int32" Scope="User" Roaming="false">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
