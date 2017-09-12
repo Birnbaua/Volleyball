@@ -3,14 +3,16 @@ package base;
 public class Team
 {
 	private String name;
-	private int pointsFirstRound;
-	private int pointsSecondRound;
-	private int gamePointsFirstRound;
-	private int gamePointsSecondRound;
-	
+	private int pointsQualifying;
+	private int gamePointsQualifying;
+	private int pointsInterim;
+	private int gamePointsInterim;
+	private int pointsPreClassement;
+	private int gamePointsPreClassement;
+		
 	public Team(String str)
 	{
-		this.name=str;
+		this.name = str;
 	}
 
 	public String getName()
@@ -23,63 +25,93 @@ public class Team
 		this.name = name;
 	}
 
-	public int getPointsFirstRound() 
+	public int getPointsQualifying() 
 	{
-		return pointsFirstRound;
+		return pointsQualifying;
 	}
 
-	public void setPointsFirstRound(int pointsFirstRound) 
+	public void setPointsQualifying(int pointsQualifying) 
 	{
-		this.pointsFirstRound = pointsFirstRound;
+		this.pointsQualifying = pointsQualifying;
 	}
 	
-	public void addPointsFirstRound(int pointsFirstRound) 
+	public void addPointsQualifying(int pointsQualifying) 
 	{
-		this.pointsFirstRound += pointsFirstRound;
-	}
-
-	public int getPointsSecondRound()
-	{
-		return pointsSecondRound;
-	}
-
-	public void setPointsSecondRound(int pointsSecondRound) 
-	{
-		this.pointsSecondRound = pointsSecondRound;
+		this.pointsQualifying += pointsQualifying;
 	}
 	
-	public void addPointsSecondRound(int pointsSecondRound)
+	public int getGamePointsQualifying() 
 	{
-		this.pointsSecondRound += pointsSecondRound;
-	}
-
-	public int getGamePointsFirstRound() 
-	{
-		return gamePointsFirstRound;
-	}
-
-	public void setGamePointsFirstRound(int gamePointsFirstRound)
-	{
-		this.gamePointsFirstRound = gamePointsFirstRound;
+		return gamePointsQualifying;
 	}
 	
-	public void addGamePointsFirstRound(int gamePointsFirstRound)
+	public void setGamePointsQualifying(int gamePointsQualifying)
 	{
-		this.gamePointsFirstRound += gamePointsFirstRound;
-	}
-
-	public int getGamePointsSecondRound() 
-	{
-		return gamePointsSecondRound;
-	}
-
-	public void setGamePointsSecondRound(int gamePointsSecondRound)
-	{
-		this.gamePointsSecondRound = gamePointsSecondRound;
+		this.gamePointsQualifying = gamePointsQualifying;
 	}
 	
-	public void addGamePointsSecondRound(int gamePointsSecondRound) 
+	public void addGamePointsQualifying(int gamePointsQualifying)
 	{
-		this.gamePointsSecondRound = gamePointsSecondRound;
+		this.gamePointsQualifying += gamePointsQualifying;
+	}
+
+	public int getPointsInterim()
+	{
+		return pointsInterim;
+	}
+
+	public void setPointsInterim(int pointsInterim) 
+	{
+		this.pointsInterim = pointsInterim;
+	}
+	
+	public void addPointsInterim(int pointsInterim)
+	{
+		this.pointsInterim += pointsInterim;
+	}
+
+	public int getGamePointsInterim() 
+	{
+		return gamePointsInterim;
+	}
+
+	public void setGamePointsInterim(int gamePointsInterim)
+	{
+		this.gamePointsInterim = gamePointsInterim;
+	}
+	
+	public void addGamePointsInterim(int gamePointsInterim) 
+	{
+		this.gamePointsInterim = gamePointsInterim;
+	}
+	
+	public int getPointsPreClassement()
+	{
+		return pointsPreClassement;
+	}
+
+	public void setPointsPreClassement(int pointsPreClassement) 
+	{
+		this.pointsPreClassement = pointsPreClassement;
+	}
+	
+	public void addPointsPreClassement(int pointsPreClassement)
+	{
+		this.pointsPreClassement += pointsPreClassement;
+	}
+
+	public int getGamePointsPreClassement() 
+	{
+		return gamePointsPreClassement;
+	}
+
+	public void setGamePointsPreClassement(int gamePointsPreClassement)
+	{
+		this.gamePointsPreClassement = gamePointsPreClassement;
+	}
+	
+	public void addGamePointsPreClassement(int gamePointsPreClassement) 
+	{
+		this.gamePointsPreClassement = gamePointsPreClassement;
 	}
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -17,13 +18,16 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
+
 import system.DataHandling;
 import system.Logging;
+import base.Team;
+import base.TeamsList;
 
 public class AppController implements Initializable
 {
 	private static PrintWriter pw;
-	private List<String[]> teamsGroupList;
+	private TeamsList teamsList;
 	
 	public void initialize(URL arg0, ResourceBundle arg1)
 	{
@@ -60,6 +64,8 @@ public class AppController implements Initializable
 		Logging.write("clear teams");
 		
 		teamsGroupList = DataHandling.clearTeams();
+		
+		DataHandling.writeTeams(teamsGroupList);
 	}
 		
 	private void loadTeams() throws IOException
@@ -78,8 +84,8 @@ public class AppController implements Initializable
 			ObservableList<String> row = FXCollections.observableArrayList();
             row.clear();
             
-            for(int ii = 0; ii < teamsGroupList.get(i).length; ii++) 
-                row.add(teamsGroupList.get(i)[ii]);
+            for(int ii = 0; ii < teamsGroupList.get(i).size(); ii++) 
+                row.add(teamsGroupList.get(i).get(ii));
             
             data.add(row);
 		}
@@ -91,18 +97,18 @@ public class AppController implements Initializable
 	{
 		Logging.write("save teams");
 		
+		/*
 		for(int i = 0; i < DataHandling.getGroupSize(); i++)
 		{
 			for(int ii = 1; ii < DataHandling.Prefixes.length; ii++)
 			{
-				TableColumn col = (TableColumn)viewTeams.getColumns().get(ii);
-				teamsGroupList.get(i)[ii] = (String)col.getCellObservableValue(i).getValue();
+				viewTeams.getColumns().get(ii);
+				
 			}
 		}
-
-		DataHandling.writeTeams(teamsGroupList);
+		*/
 		
-		loadTeams();
+		//DataHandling.writeTeams(teamsGroupList);
 	}
 	
 	// **************************************************************************
@@ -111,6 +117,18 @@ public class AppController implements Initializable
 	@FXML private MenuItem ExitApplication, ShowDocumentation, ShowAbout;
 	@FXML private TableView viewTeams;
 		
+	@FXML
+	private void loadFiles(ActionEvent event)
+	{
+		
+	}
+	
+	@FXML
+	private void clearAllFiles(ActionEvent event)
+	{
+	
+	}
+	
 	@FXML
 	private void exitApplication(ActionEvent event)
 	{
@@ -139,8 +157,6 @@ public class AppController implements Initializable
 	private void cleanTeams(ActionEvent event) throws IOException
 	{
 		resetTeams();
-		
-		saveTeams();
 	}
 	
 	@FXML

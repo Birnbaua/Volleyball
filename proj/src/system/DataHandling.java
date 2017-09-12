@@ -6,7 +6,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+
+import base.TeamsList;
 
 public class DataHandling
 {
@@ -31,7 +33,7 @@ public class DataHandling
 		return GroupSize;
 	}
 	
-	public static void writeTeams(List<String[]> teams) throws IOException
+	public static void writeTeams(TeamsList teams) throws IOException
 	{
 		Logging.write("write teams");
 		
@@ -41,8 +43,8 @@ public class DataHandling
 		{
 			String row = "";
 			
-			for(int ii = 0; ii < teams.get(i).length; ii++)
-				row += teams.get(i)[ii] + ";";
+			for(int ii = 0; ii < teams.get(i).size(); ii++)
+				row += teams.get(i).get(ii) + ";";
 		
 			row = row.substring(0, row.length() - 1); // remove last ';'
 			
@@ -54,10 +56,10 @@ public class DataHandling
 		out.close();
 	}
 	
-	public static List<String[]> readTeams() throws IOException
+	public static TeamsList readTeams() throws IOException
 	{
 		String line;
-		List<String[]> teams = new ArrayList<String[]>();
+		ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
 		
 		if(!new File(Teams).exists())
 			return null;
@@ -70,20 +72,30 @@ public class DataHandling
 			
 			String[] row = line.split(";");
 			
-			teams.add(row);
+			list.add(new ArrayList<String>(Arrays.asList(row)));
 		}
 		
 		br.close();
 		
-		return teams;
+		list.trimToSize();
+		
+		return list;
 	}
 	
-	public static List<String[]> clearTeams() throws IOException
+	public static ArrayList<ArrayList<String>> clearTeams() throws IOException
 	{
-		List<String[]> list = new ArrayList<String[]>(GroupSize);
+		ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
 						
 		for(int i = 0; i < GroupSize; i++)
-			list.add(new String[] { String.valueOf(i), " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " " });
+		{
+			String[] emptyArray = new String[] { String.valueOf(i), " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " " };
+			
+			ArrayList<String> emptyArrayList = new ArrayList<String>(Arrays.asList(emptyArray));
+			
+			list.add(emptyArrayList);
+		}
+		
+		list.trimToSize();
 				
 		return list;
 	}

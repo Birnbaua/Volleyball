@@ -18,6 +18,8 @@
       <menus>
         <Menu mnemonicParsing="false" text="Datei">
           <items>
+            <MenuItem fx:id="loadFiles" mnemonicParsing="false" onAction="#loadFiles" text="Load All (-.txt)" />
+            <MenuItem fx:id="clearAllFiles" mnemonicParsing="false" onAction="#clearAllFiles" text="Clear  All" />
             <MenuItem fx:id="exitApplication" mnemonicParsing="false" onAction="#exitApplication" text="Beenden" />
           </items>
         </Menu>
