@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>9. TSV 4222 Beachturnier</title>
+		<link rel="stylesheet" href="./css/jquery.mobile.icons.min.css" />
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+		<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.0/css/jquery.dataTables.css">
+		<script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+		<script type="text/html" charset="utf8" src="//cdn.datatables.net/plug-ins/e9421181788/i18n/German.json"></script>
+	</head>
+	<body style="text-align:center;">
+		<div id="content" data-role="page" data-theme="a">
+			<div data-role="panel" id="runde" data-position="left" data-display="overlay">
+				<ul data-role="listview">
+					<li id="vr" value="test"><a>Vorrunde</a></li>
+					<li id="zw"><a>Zwischenrunde</a></li>
+					<li id="kr"><a>Kreuzspiele</a></li>
+					<li id="pl"><a>Platzierungspiele</a></li>
+					<li id="erg"><a>Platzierung</a></li>
+				</ul>
+			</div>
+			<div data-role="header" style="overflow:hidden;">
+				<a href="#runde" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-bars">Runde</a>
+				<h1>TSV 4222 Beachvolleyballturnier</h1>
+				<a class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-icon-bars">
+					<span id="uhr"></span>
+				</a>
+			</div>
+			<div data-role="tabs" id="tabs">
+				<div data-role="navbar" id="navbar">
+					<ul>
+						<li><a href="#tab1" class="ui-btn-active">Spiele</a></li>
+						<li><a href="#tab2" >Ergebnisse</a></li>
+					</ul>
+				</div>
+				<div id="tab1" class="ui-body-d ui-content">
+					<table id="spiele" class="display">
+						<thead>
+							<tr>
+								<th>Spiel</th>
+								<th>Zeit</th>
+								<th>Feldnr.</th>
+								<th>Feldn.</th>
+								<th>MS-A</th>
+								<th>MS-B</th>
+								<th>SR</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
+				<div id="tab2" class="ui-body-d ui-content">
+					
+				</div>
+			</div>
+			<div data-role="footer" style="overflow:hidden;">
+				<div data-role="navbar">
+					<ul>
+						<li></li>
+						<li></li>
+						<li>
+							<fieldset data-role="controlgroup">
+							   <input type="checkbox" id="autochange" class="custom ui-left" />
+							   <label for="autochange">auto. Tabwechsel</label>
+							</fieldset>
+						</li>
+						<li>
+							<fieldset data-role="controlgroup">
+							   <input type="checkbox" id="autorefresh" class="custom ui-right" />
+							   <label for="autorefresh">auto. Aktualisierung</label>
+							</fieldset>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script>
+			var runde = "vorrunde";
+			var table = null;
+			var gra = null;
+			var grb = null;
+			var grc = null;
+			var grd = null;
+			var gre = null;
+			var grf = null;
+			var grg = null;
+			var grh = null;
+			var gri = null;
+			var grj = null;
+			var grk = null;
+			var grl = null;
+			var pls = null;
+			window.setInterval(uhrzeit,1000);
+			var running = null;
+			var changing = null;
+			
+			$('#autorefresh').click(function(){
+				if ($(this).is(':checked')) {
+					running = window.setInterval(filltable, 30000);
+				}
+				else
+				{
+					window.clearInterval(running);
+				}
+			});
+			
+			$('#autochange').click(function(){
+				if ($(this).is(':checked')) {
+					changing = window.setInterval(changetabs, 30000);
+				}
+				else
+				{
+					window.clearInterval(changing);
+				}
+			});
+			
+			function changetabs()
+			{
+				if(runde != "kreuzspiele" && runde != "platzspiele" && runde != "platzierung")
+				{
+					var active = $('#tabs').tabs("option","active");
+					if(active == 0)
+					{
+						$('#navbar a').removeClass('ui-btn-active');
+						$('#navbar a[href="#tab2"]').addClass('ui-btn-active');
+						$('#tabs').tabs("option","active",1 );
+					}
+					else
+					{
+						$('#navbar a').removeClass('ui-btn-active');
+						$('#navbar a[href="#tab1"]').addClass('ui-btn-active');
+						$('#tabs').tabs("option","active", 0 );
+					}
+				}
+			}
+			
+			function uhrzeit()
+			{
+				d = new Date();
+				h = (d.getHours () < 10 ? '0' + d.getHours () : d.getHours ());
+				m = (d.getMinutes () < 10 ? '0' + d.getMinutes () : d.getMinutes ());
+				s = (d.getSeconds () < 10 ? '0' + d.getSeconds () : d.getSeconds ());
+				$('#uhr').text('Uhrzeit: '+ h + ':' + m + ':' + s);
+			}
+			
+			function filltable()
+			{
+				table.rows().remove().draw();
+				if(runde != 'platzierung')
+				{
+					var tabledata = readDB("SELECT spiel, zeit, feldnummer, feldname, ms_a, ms_b, sr FROM "+runde+"_spielplan WHERE satz1a == 0 and satz1b == 0 AND ms_a != '---'");
+				
+					if(tabledata.length > 0)
+					{
+						for(var i = 0; i < tabledata.length; i++)
+						{
+							table.row.add([
+								tabledata[i].spiel,
+								tabledata[i].zeit,
+								tabledata[i].feldnummer,
+								tabledata[i].feldname,
+								tabledata[i].ms_a,
+								tabledata[i].ms_b,
+								tabledata[i].sr
+							]).draw();
+						}
+					}
+				
+					if(runde == 'vorrunde' || runde == 'zwischenrunde')
+					{
+						gra.rows().remove().draw();
+						tabledata = readDB("SELECT ms, punkte, satz FROM "+runde+"_erg_gra ORDER BY punkte DESC, satz DESC");
+						for(var i = 0; i < tabledata.length; i++)
+						{
+							gra.row.add([
+								i+1,
+								tabledata[i].ms,
+								tabledata[i].punkte,
+								tabledata[i].satz
+							]).draw();
+						}
+						
+						grb.rows().remove().draw();
+						tabledata = readDB("SELECT ms, punkte, satz FROM "+runde+"_erg_grb ORDER BY punkte DESC, satz DESC");
+						for(var i = 0; i < tabledata.length; i++)
+						{
+							grb.row.add([
+								i+1,
+								tabledata[i].ms,
+								tabledata[i].punkte,
+								tabledata[i].satz
+							]).draw();
+						}
+						
+						grc.rows().remove().draw();
+						tabledata = readDB("SELECT ms, punkte, satz FROM "+runde+"_erg_grc ORDER BY punkte DESC, satz DESC");
+						for(var i = 0; i < tabledata.length; i++)
+						{
+							grc.row.add([
+								i+1,
+								tabledata[i].ms,
+								tabledata[i].punkte,
+								tabledata[i].satz
+							]).draw();
+						}
+						
+						grd.rows().remove().draw();
+						tabledata = readDB("SELECT ms, punkte, satz FROM "+runde+"_erg_grd ORDER BY punkte DESC, satz DESC");
+						for(var i = 0; i < tabledata.length; i++)
+						{
+							grd.row.add([
+								i+1,
+								tabledata[i].ms,
+								tabledata[i].punkte,
+								tabledata[i].satz
+							]).draw();
+						}
+						
+						gre.rows().remove().draw();
+						tabledata = readDB("SELECT ms, punkte, satz FROM "+runde+"_erg_gre ORDER BY punkte DESC, satz DESC");
+						for(var i = 0; i < tabledata.length; i++)
+						{
+							gre.row.add([
+								i+1,
+								tabledata[i].ms,
+								tabledata[i].punkte,
+								tabledata[i].satz
+							]).draw();
+						}
+						
+						grf.rows().remove().draw();
+						tabledata = readDB("SELECT ms, punkte, satz FROM "+runde+"_erg_grf ORDER BY punkte DESC, satz DESC");
+						for(var i = 0; i < tabledata.length; i++)
+						{
+							grf.row.add([
+								i+1,
+								tabledata[i].ms,
+								tabledata[i].punkte,
+								tabledata[i].satz
+							]).draw();
+						}
+
+						grg.rows().remove().draw();
+						tabledata = readDB("SELECT ms, punkte, satz FROM "+runde+"_erg_grg ORDER BY punkte DESC, satz DESC");
+						for(var i = 0; i < tabledata.length; i++)
+						{
+							grg.row.add([
+								i+1,
+								tabledata[i].ms,
+								tabledata[i].punkte,
+								tabledata[i].satz
+							]).draw();
+						}
+
+						grh.rows().remove().draw();
+						tabledata = readDB("SELECT ms, punkte, satz FROM "+runde+"_erg_grh ORDER BY punkte DESC, satz DESC");
+						for(var i = 0; i < tabledata.length; i++)
+						{
+							grh.row.add([
+								i+1,
+								tabledata[i].ms,
+								tabledata[i].punkte,
+								tabledata[i].satz
+							]).draw();
+						}
+
+						gri.rows().remove().draw();
+						tabledata = readDB("SELECT ms, punkte, satz FROM "+runde+"_erg_gri ORDER BY punkte DESC, satz DESC");
+						for(var i = 0; i < tabledata.length; i++)
+						{
+							gri.row.add([
+								i+1,
+								tabledata[i].ms,
+								tabledata[i].punkte,
+								tabledata[i].satz
+							]).draw();
+						}
+						
+						grj.rows().remove().draw();
+						tabledata = readDB("SELECT ms, punkte, satz FROM "+runde+"_erg_grj ORDER BY punkte DESC, satz DESC");
+						for(var i = 0; i < tabledata.length; i++)
+						{
+							grj.row.add([
+								i+1,
+								tabledata[i].ms,
+								tabledata[i].punkte,
+								tabledata[i].satz
+							]).draw();
+						}
+						
+						grk.rows().remove().draw();
+						tabledata = readDB("SELECT ms, punkte, satz FROM "+runde+"_erg_grk ORDER BY punkte DESC, satz DESC");
+						for(var i = 0; i < tabledata.length; i++)
+						{
+							grk.row.add([
+								i+1,
+								tabledata[i].ms,
+								tabledata[i].punkte,
+								tabledata[i].satz
+							]).draw();
+						}
+						
+						grl.rows().remove().draw();
+						tabledata = readDB("SELECT ms, punkte, satz FROM "+runde+"_erg_grl ORDER BY punkte DESC, satz DESC");
+						for(var i = 0; i < tabledata.length; i++)
+						{
+							grl.row.add([
+								i+1,
+								tabledata[i].ms,
+								tabledata[i].punkte,
+								tabledata[i].satz
+							]).draw();
+						}
+					}
+				}
+				else
+				{
+          			pls.rows().remove().draw();
+					var ergdata = readDB("SELECT platz, ms FROM platzierungen_view ORDER BY platz ASC");
+					if(ergdata.length > 0)
+					{
+						for(var i = 0; i < ergdata.length; i++)
+						{
+							pls.row.add([
+								ergdata[i].platz,
+								ergdata[i].ms
+							]).draw();
+						}
+					}
+				}
+			}
+						
+			$('#vr').click(function()
+			{
+				runde = "vorrunde";
+				resultsorpl();
+				setergtables();
+				$('#runde').panel('close');
+				filltable();
+        		$('#navbar a').removeClass('ui-disabled');
+        		$('#navbar a').removeClass('ui-btn-active');
+				$('#navbar a[href="#tab1"]').addClass('ui-btn-active');
+        		$('#tabs').tabs("option","active", 0 );
+			});
+			
+			$('#zw').click(function()
+			{
+				runde = "zwischenrunde";
+				resultsorpl();
+				setergtables();
+				$('#runde').panel('close');
+				filltable();
+        		$('#navbar a').removeClass('ui-disabled');
+        		$('#navbar a').removeClass('ui-btn-active');
+				$('#navbar a[href="#tab1"]').addClass('ui-btn-active');
+        		$('#tabs').tabs("option","active", 0 );
+			});
+			
+			$('#kr').click(function()
+			{
+				runde = "kreuzspiele";
+				resultsorpl();
+				setergtables();
+				$('#runde').panel('close');
+				filltable();
+        		$('#navbar a').removeClass('ui-disabled');
+        		$('#navbar a[href="#tab2"]').addClass('ui-disabled');
+        		$('#navbar a').removeClass('ui-btn-active');
+				$('#navbar a[href="#tab1"]').addClass('ui-btn-active');
+				$('#tabs').tabs("option","active", 0 );
+			});
+			
+			$('#pl').click(function()
+			{
+				runde = "platzspiele";
+				resultsorpl();
+				setergtables();
+				$('#runde').panel('close');
+				filltable();
+        		$('#navbar a').removeClass('ui-disabled');
+        		$('#navbar a[href="#tab2"]').addClass('ui-disabled');
+        		$('#navbar a').removeClass('ui-btn-active');
+				$('#navbar a[href="#tab1"]').addClass('ui-btn-active');
+				$('#tabs').tabs("option","active", 0 );
+			});
+			
+			$('#erg').click(function()
+			{
+				runde = "platzierung";
+				resultsorpl();
+				setergtables();
+				$('#runde').panel('close');
+				filltable();
+				$('#navbar a').removeClass('ui-disabled');
+				$('#navbar a[href="#tab1"]').addClass('ui-disabled');
+        		$('#navbar a').removeClass('ui-btn-active');
+				$('#navbar a[href="#tab2"]').addClass('ui-btn-active');
+				$('#tabs').tabs("option","active",1 );
+			});
+			
+            function readDB(sqlquery)
+            {
+                var result = null;
+                var scriptUrl = "dbio.php?query=" + sqlquery;
+                $.ajax({
+					url: scriptUrl,
+					type: 'get',
+					dataType: 'json',
+					async: false,
+					success: function(data) {
+						result = data;
+                    }
+				});
+				return result;
+			}
+		
+			function resultsorpl()
+			{
+				if(runde != "platzierung")
+				{
+					$('#tab2').html(
+						"<table id=\"ergebnis\" class=\"display\" style=\"width:100%; border-collapse: separate;border-spacing: 10px 5px;\">"
+							+"<tr>"
+								+"<td>"
+									+"<table id=\"gra\" class=\"display\">"
+										+"<thead>"
+											+"<tr>"
+												+"<strong>Gruppe A</strong>"
+											+"</tr>"
+											+"<tr>"
+												+"<th>Platz</th>"
+												+"<th>Mannschaft</th>"
+												+"<th>Punkte</th>"
+												+"<th>Spielpunkte</th>"
+											+"</tr>"
+										+"</thead>"
+										+"<tbody></tbody>"
+									+"</table>"
+								+"</td>"
+								+"<td>"
+									+"<table id=\"grb\" class=\"display\">"
+										+"<thead>"
+											+"<tr>"
+												+"<strong>Gruppe B</strong>"
+											+"</tr>"
+											+"<tr>"
+												+"<th>Platz</th>"
+												+"<th>Mannschaft</th>"
+												+"<th>Punkte</th>"
+												+"<th>Spielpunkte</th>"
+											+"</tr>"
+										+"</thead>"
+										+"<tbody></tbody>"
+									+"</table>"
+								+"</td>"
+							+"</tr>"
+							+"<tr><td><br></td></tr>"
+							+"<tr>"
+								+"<td>"
+									+"<table id=\"grc\" class=\"display\">"
+										+"<thead>"
+											+"<tr>"
+												+"<strong>Gruppe C</strong>"
+											+"</tr>"
+											+"<tr>"
+												+"<th>Platz</th>"
+												+"<th>Mannschaft</th>"
+												+"<th>Punkte</th>"
+												+"<th>Spielpunkte</th>"
+											+"</tr>"
+										+"</thead>"
+										+"<tbody></tbody>"
+									+"</table>"
+								+"</td>"
+								+"<td>"
+									+"<table id=\"grd\" class=\"display\">"
+										+"<thead>"
+											+"<tr>"
+												+"<strong>Gruppe D</strong>"
+											+"</tr>"
+											+"<tr>"
+												+"<th>Platz</th>"
+												+"<th>Mannschaft</th>"
+												+"<th>Punkte</th>"
+												+"<th>Spielpunkte</th>"
+											+"</tr>"
+										+"</thead>"
+										+"<tbody></tbody>"
+									+"</table>"
+								+"</td>"
+							+"</tr>"
+							+"<tr><td><br></td></tr>"
+							+"<tr>"
+								+"<td>"
+									+"<table id=\"gre\" class=\"display\">"
+										+"<thead>"
+											+"<tr>"
+												+"<strong>Gruppe E</strong>"
+											+"</tr>"
+											+"<tr>"
+												+"<th>Platz</th>"
+												+"<th>Mannschaft</th>"
+												+"<th>Punkte</th>"
+												+"<th>Spielpunkte</th>"
+											+"</tr>"
+										+"</thead>"
+										+"<tbody></tbody>"
+									+"</table>"
+								+"</td>"
+								+"<td>"
+									+"<table id=\"grf\" class=\"display\">"
+										+"<thead>"
+											+"<tr>"
+												+"<strong>Gruppe F</strong>"
+											+"</tr>"
+											+"<tr>"
+											+"<th>Platz</th>"
+												+"<th>Mannschaft</th>"
+												+"<th>Punkte</th>"
+												+"<th>Spielpunkte</th>"
+											+"</tr>"
+										+"</thead>"
+										+"<tbody></tbody>"
+									+"</table>"
+								+"</td>"
+							+"</tr>"
+							+"<tr><td><br></td></tr>"
+							+"<tr>"
+								+"<td>"
+									+"<table id=\"grg\" class=\"display\">"
+										+"<thead>"
+											+"<tr>"
+												+"<strong>Gruppe G</strong>"
+											+"</tr>"
+											+"<tr>"
+											+"<th>Platz</th>"
+												+"<th>Mannschaft</th>"
+												+"<th>Punkte</th>"
+												+"<th>Spielpunkte</th>"
+											+"</tr>"
+										+"</thead>"
+										+"<tbody></tbody>"
+									+"</table>"
+								+"</td>"
+								+"<td>"
+									+"<table id=\"grh\" class=\"display\">"
+										+"<thead>"
+											+"<tr>"
+												+"<strong>Gruppe H</strong>"
+											+"</tr>"
+											+"<tr>"
+											+"<th>Platz</th>"
+												+"<th>Mannschaft</th>"
+												+"<th>Punkte</th>"
+												+"<th>Spielpunkte</th>"
+											+"</tr>"
+										+"</thead>"
+										+"<tbody></tbody>"
+									+"</table>"
+								+"</td>"
+							+"</tr>"
+							+"<tr><td><br></td></tr>"
+							+"<tr>"
+								+"<td>"
+									+"<table id=\"gri\" class=\"display\">"
+										+"<thead>"
+											+"<tr>"
+												+"<strong>Gruppe I</strong>"
+											+"</tr>"
+											+"<tr>"
+											+"<th>Platz</th>"
+												+"<th>Mannschaft</th>"
+												+"<th>Punkte</th>"
+												+"<th>Spielpunkte</th>"
+											+"</tr>"
+										+"</thead>"
+										+"<tbody></tbody>"
+									+"</table>"
+								+"</td>"
+								+"<td>"
+									+"<table id=\"grj\" class=\"display\">"
+										+"<thead>"
+											+"<tr>"
+												+"<strong>Gruppe J</strong>"
+											+"</tr>"
+											+"<tr>"
+											+"<th>Platz</th>"
+												+"<th>Mannschaft</th>"
+												+"<th>Punkte</th>"
+												+"<th>Spielpunkte</th>"
+											+"</tr>"
+										+"</thead>"
+										+"<tbody></tbody>"
+									+"</table>"
+								+"</td>"
+							+"</tr>"
+							+"<tr><td><br></td></tr>"
+							+"<tr>"
+								+"<td>"
+									+"<table id=\"grk\" class=\"display\">"
+										+"<thead>"
+											+"<tr>"
+												+"<strong>Gruppe K</strong>"
+											+"</tr>"
+											+"<tr>"
+											+"<th>Platz</th>"
+												+"<th>Mannschaft</th>"
+												+"<th>Punkte</th>"
+												+"<th>Spielpunkte</th>"
+											+"</tr>"
+										+"</thead>"
+										+"<tbody></tbody>"
+									+"</table>"
+								+"</td>"
+								+"<td>"
+									+"<table id=\"grl\" class=\"display\">"
+										+"<thead>"
+											+"<tr>"
+												+"<strong>Gruppe L</strong>"
+											+"</tr>"
+											+"<tr>"
+											+"<th>Platz</th>"
+												+"<th>Mannschaft</th>"
+												+"<th>Punkte</th>"
+												+"<th>Spielpunkte</th>"
+											+"</tr>"
+										+"</thead>"
+										+"<tbody></tbody>"
+									+"</table>"
+								+"</td>"
+							+"</tr>"
+						+"</table>");
+				}
+				else
+				{
+					$('#tab2').html(
+						"<table id=\"pls\" class=\"display\">"
+							+"<thead>"
+								+"<tr>"
+									+"<th>Platz</th>"
+									+"<th>Mannschaft</th>"
+								+"</tr>"
+							+"</thead>"
+							+"<tbody></tbody>"
+						+"</table>");
+				}
+			}
+			
+			function setergtables()
+			{
+				gra = $('#gra').DataTable({
+					"language": {
+						"sEmptyTable": "Keine Daten in der Tabelle vorhanden",
+						"sInfoPostFix": "",
+						"sInfoThousands": ".",
+						"sLengthMenu": "_MENU_ Eintr&auml;ge anzeigen",
+						"sLoadingRecords": "Wird geladen...",
+						"sProcessing": "Bitte warten...",
+						"sZeroRecords": "Keine Eintr&auml;ge vorhanden."
+          },
+					ordering : false,
+					paging : false,
+					searching : false,
+					info : false
+				});
+				grb = $('#grb').DataTable({
+					"language": {
+						"sEmptyTable": "Keine Daten in der Tabelle vorhanden",
+						"sInfoPostFix": "",
+						"sInfoThousands": ".",
+						"sLengthMenu": "_MENU_ Eintr&auml;ge anzeigen",
+						"sLoadingRecords": "Wird geladen...",
+						"sProcessing": "Bitte warten...",
+						"sZeroRecords": "Keine Eintr&auml;ge vorhanden."
+					},
+					ordering : false,
+					paging : false,
+					searching : false,
+					info : false
+				});
+				grc = $('#grc').DataTable({
+					"language": {
+						"sEmptyTable": "Keine Daten in der Tabelle vorhanden",
+						"sInfoPostFix": "",
+						"sInfoThousands": ".",
+						"sLengthMenu": "_MENU_ Eintr&auml;ge anzeigen",
+						"sLoadingRecords": "Wird geladen...",
+						"sProcessing": "Bitte warten...",
+						"sZeroRecords": "Keine Eintr&auml;ge vorhanden."
+					},
+					ordering : false,
+					paging : false,
+					searching : false,
+					info : false
+				});
+				grd = $('#grd').DataTable({
+					"language": {
+						"sEmptyTable": "Keine Daten in der Tabelle vorhanden",
+						"sInfoPostFix": "",
+						"sInfoThousands": ".",
+						"sLengthMenu": "_MENU_ Eintr&auml;ge anzeigen",
+						"sLoadingRecords": "Wird geladen...",
+						"sProcessing": "Bitte warten...",
+						"sZeroRecords": "Keine Eintr&auml;ge vorhanden."
+					},
+					ordering : false,
+					paging : false,
+					searching : false,
+					info : false
+				});
+				gre = $('#gre').DataTable({
+					"language": {
+						"sEmptyTable": "Keine Daten in der Tabelle vorhanden",
+						"sInfoPostFix": "",
+						"sInfoThousands": ".",
+						"sLengthMenu": "_MENU_ Eintr&auml;ge anzeigen",
+						"sLoadingRecords": "Wird geladen...",
+						"sProcessing": "Bitte warten...",
+						"sZeroRecords": "Keine Eintr&auml;ge vorhanden."
+					},
+					ordering : false,
+					paging : false,
+					searching : false,
+					info : false
+				});
+				grf = $('#grf').DataTable({
+					"language": {
+						"sEmptyTable": "Keine Daten in der Tabelle vorhanden",
+						"sInfoPostFix": "",
+						"sInfoThousands": ".",
+						"sLengthMenu": "_MENU_ Eintr&auml;ge anzeigen",
+						"sLoadingRecords": "Wird geladen...",
+						"sProcessing": "Bitte warten...",
+						"sZeroRecords": "Keine Eintr&auml;ge vorhanden."
+					},
+					ordering : false,
+					paging : false,
+					searching : false,
+					info : false
+				});
+				grg = $('#grg').DataTable({
+					"language": {
+						"sEmptyTable": "Keine Daten in der Tabelle vorhanden",
+						"sInfoPostFix": "",
+						"sInfoThousands": ".",
+						"sLengthMenu": "_MENU_ Eintr&auml;ge anzeigen",
+						"sLoadingRecords": "Wird geladen...",
+						"sProcessing": "Bitte warten...",
+						"sZeroRecords": "Keine Eintr&auml;ge vorhanden."
+					},
+					ordering : false,
+					paging : false,
+					searching : false,
+					info : false
+				});
+				grh = $('#grh').DataTable({
+					"language": {
+						"sEmptyTable": "Keine Daten in der Tabelle vorhanden",
+						"sInfoPostFix": "",
+						"sInfoThousands": ".",
+						"sLengthMenu": "_MENU_ Eintr&auml;ge anzeigen",
+						"sLoadingRecords": "Wird geladen...",
+						"sProcessing": "Bitte warten...",
+						"sZeroRecords": "Keine Eintr&auml;ge vorhanden."
+					},
+					ordering : false,
+					paging : false,
+					searching : false,
+					info : false
+				});
+				gri = $('#gri').DataTable({
+					"language": {
+						"sEmptyTable": "Keine Daten in der Tabelle vorhanden",
+						"sInfoPostFix": "",
+						"sInfoThousands": ".",
+						"sLengthMenu": "_MENU_ Eintr&auml;ge anzeigen",
+						"sLoadingRecords": "Wird geladen...",
+						"sProcessing": "Bitte warten...",
+						"sZeroRecords": "Keine Eintr&auml;ge vorhanden."
+					},
+					ordering : false,
+					paging : false,
+					searching : false,
+					info : false
+				});
+				grj = $('#grj').DataTable({
+					"language": {
+						"sEmptyTable": "Keine Daten in der Tabelle vorhanden",
+						"sInfoPostFix": "",
+						"sInfoThousands": ".",
+						"sLengthMenu": "_MENU_ Eintr&auml;ge anzeigen",
+						"sLoadingRecords": "Wird geladen...",
+						"sProcessing": "Bitte warten...",
+						"sZeroRecords": "Keine Eintr&auml;ge vorhanden."
+					},
+					ordering : false,
+					paging : false,
+					searching : false,
+					info : false
+				});
+				grk = $('#grk').DataTable({
+					"language": {
+						"sEmptyTable": "Keine Daten in der Tabelle vorhanden",
+						"sInfoPostFix": "",
+						"sInfoThousands": ".",
+						"sLengthMenu": "_MENU_ Eintr&auml;ge anzeigen",
+						"sLoadingRecords": "Wird geladen...",
+						"sProcessing": "Bitte warten...",
+						"sZeroRecords": "Keine Eintr&auml;ge vorhanden."
+					},
+					ordering : false,
+					paging : false,
+					searching : false,
+					info : false
+				});
+				grl = $('#grl').DataTable({
+					"language": {
+						"sEmptyTable": "Keine Daten in der Tabelle vorhanden",
+						"sInfoPostFix": "",
+						"sInfoThousands": ".",
+						"sLengthMenu": "_MENU_ Eintr&auml;ge anzeigen",
+						"sLoadingRecords": "Wird geladen...",
+						"sProcessing": "Bitte warten...",
+						"sZeroRecords": "Keine Eintr&auml;ge vorhanden."
+					},
+					ordering : false,
+					paging : false,
+					searching : false,
+					info : false
+				});
+				pls = $('#pls').DataTable({
+					"language": {
+						"sEmptyTable": "Keine Daten in der Tabelle vorhanden",
+						"sInfoPostFix": "",
+						"sInfoThousands": ".",
+						"sLengthMenu": "_MENU_ Eintr&auml;ge anzeigen",
+						"sLoadingRecords": "Wird geladen...",
+						"sProcessing": "Bitte warten...",
+						"sZeroRecords": "Keine Eintr&auml;ge vorhanden."
+					},
+					ordering : false,
+					paging : false,
+					searching : false,
+					info : false
+				});
+			}
+			
+			$(document).ready(function()
+            {
+				table = $('#spiele').DataTable({
+					"language": {
+						"sEmptyTable": "Keine Daten in der Tabelle vorhanden",
+						"sInfo": "_START_ bis _END_ von _TOTAL_ Eintr&auml;gen",
+						"sInfoEmpty": "0 bis 0 von 0 Eintr&auml;gen",
+						"sInfoFiltered": "(gefiltert von _MAX_  Eintr&auml;gen)",
+						"sInfoPostFix": "",
+						"sInfoThousands": ".",
+						"sLengthMenu": "_MENU_ Eintr&auml;ge anzeigen",
+						"sLoadingRecords": "Wird geladen...",
+						"sProcessing": "Bitte warten...",
+						"sSearch": "Suchen:",
+						"sZeroRecords": "Keine Eintr&auml;ge vorhanden.",
+						"oPaginate": {
+							"sFirst": "Erste",
+							"sPrevious": "Zur&uuml;ck",
+							"sNext": "N&auml;chste",
+							"sLast": "Letzte"
+						}
+					},
+					ordering : false
+				});
+        
+				runde = "vorrunde";
+        		resultsorpl();
+				setergtables();
+				filltable();
+				$('#tabs').tabs({ active: 0 });
+            });
+		</script>
+    </body>
+</html>
