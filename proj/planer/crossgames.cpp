@@ -75,7 +75,7 @@ QStringList CrossGames::generateGamePlan(QTime startRound)
 
     // read divisional rank results and add to list
     for(int i = 0; i < prefixCount; i++)
-        resultDivisionsZw.append(dbRead("select ms, punkte, satz from zwischenrunde_erg_gr" + getPrefix(i) + " order by punkte desc, satz desc"));
+        resultDivisionsZw.append(dbRead("select ms, punkte, satz from zwischenrunde_erg_gr" + getPrefix(i) + " order by intern asc, punkte desc, satz desc"));
 
     divisionA = getDivisionTeamNames(&(resultDivisionsZw.at(0)));
     divisionB = getDivisionTeamNames(&(resultDivisionsZw.at(1)));

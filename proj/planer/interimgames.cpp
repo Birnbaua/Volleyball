@@ -203,7 +203,7 @@ QList<QStringList> InterimGames::generateNewDivisions()
 
     // read divisional rank results and add to list
     for(int i = 0; i < divisionCount; i++)
-        resultDivisionsVr.append(dbRead("select ms, punkte, satz, intern, extern from vorrunde_erg_gr" + getPrefix(i) + " order by punkte desc, satz desc, intern asc"));
+        resultDivisionsVr.append(dbRead("select ms, punkte, satz, intern, extern from vorrunde_erg_gr" + getPrefix(i) + " order by intern asc, punkte desc, satz desc"));
 
     divisionsFirst = getDivisionsClassement(&resultDivisionsVr, 1);
     divisionsSecond = getDivisionsClassement(&resultDivisionsVr, 2);
