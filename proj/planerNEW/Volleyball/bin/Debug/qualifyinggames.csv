@@ -1,0 +1,110 @@
+1;1;20.02.2019 09:10:00;1;Feld1;Schmettbos;Eisen;Foi am Sand;18;12;0;0;0;0
+2;1;20.02.2019 09:10:00;2;Feld2;Namenlose Qualitaet;Wuedsaubande;Stieglitz;20;9;0;0;0;0
+3;1;20.02.2019 09:10:00;3;Feld3;Du WerRegenZone;Sandviper;Scharf aber out;8;22;0;0;0;0
+4;1;20.02.2019 09:10:00;4;Feld4;Carpe Noctem;Netninjas;Truthtrain;20;10;0;0;0;0
+5;1;20.02.2019 09:10:00;5;Feld5;Die Wuerstel sind fertig;Black Cat Volleyteam;1 Meter no;26;8;0;0;0;0
+6;1;20.02.2019 09:10:00;6;Feld6;20 zwequschte Zwetschken;Haribus;SK Lation;22;11;0;0;0;0
+7;1;20.02.2019 09:10:00;7;Feld7;Springginkerl;Die vier Fragezeichen;Superkalefragelistigexoialigestis;12;19;0;0;0;0
+8;1;20.02.2019 09:10:00;8;Feld8;Waterlemons;Unblockable;LeitWollHofRyll;14;15;0;0;0;0
+9;1;20.02.2019 09:10:00;9;Feld9;Freibier auf Feld 1;Pritsch Perfekt;Barfuss Bethlehem;8;26;0;0;0;0
+10;1;20.02.2019 09:10:00;10;Feld10;Hello Kitty;Ned wirklich;Springmaeuse;20;9;0;0;0;0
+11;1;20.02.2019 09:10:00;11;Feld11;Bananablue;Melli und die starken Maenner;5010 HW Einsatz;9;16;0;0;0;0
+12;2;20.02.2019 09:20:00;2;Feld2;The Best Losers;Foi am Sand;Die Beachboys;17;16;0;0;0;0
+13;2;20.02.2019 09:20:00;3;Feld3;Ratsherrn Allstarts;Stieglitz;Ich und die 3 Hansln;17;16;0;0;0;0
+14;2;20.02.2019 09:20:00;4;Feld4;Pancakesmashers;Scharf aber out;Die supercoolsten Megacoolen;11;19;0;0;0;0
+15;2;20.02.2019 09:20:00;5;Feld5;Die gestiefelten Muskelkater;Truthtrain;Schluckspecht GmbH;10;27;0;0;0;0
+16;2;20.02.2019 09:20:00;6;Feld6;Volleybaerenbande;1 Meter no;Auf Ex;28;9;0;0;0;0
+17;2;20.02.2019 09:20:00;7;Feld7;Moes Hoes;SK Lation;Die TSVour;18;21;0;0;0;0
+18;2;20.02.2019 09:20:00;8;Feld8;Winterzauber 4.0;Superkalefragelistigexoialigestis;Bombig Beerig;11;16;0;0;0;0
+19;2;20.02.2019 09:20:00;9;Feld9;Kimbo und die Bimbos;LeitWollHofRyll;Nimm na du i hob na fix;8;24;0;0;0;0
+20;2;20.02.2019 09:20:00;10;Feld10;Okipoki;Barfuss Bethlehem;In Team;15;12;0;0;0;0
+21;2;20.02.2019 09:20:00;11;Feld11;Gegen Gegen Gegen;Springmaeuse;Beachrockers;9;28;0;0;0;0
+22;2;20.02.2019 09:20:00;1;Feld1;LAG BVB;5010 HW Einsatz;Mir is wuascht;25;9;0;0;0;0
+23;3;20.02.2019 09:30:00;3;Feld3;Eisen;Die Beachboys;The Best Losers;16;16;0;0;0;0
+24;3;20.02.2019 09:30:00;4;Feld4;Wuedsaubande;Ich und die 3 Hansln;Ratsherrn Allstarts;7;23;0;0;0;0
+25;3;20.02.2019 09:30:00;5;Feld5;Sandviper;Die supercoolsten Megacoolen;Pancakesmashers;20;12;0;0;0;0
+26;3;20.02.2019 09:30:00;6;Feld6;Netninjas;Schluckspecht GmbH;Die gestiefelten Muskelkater;8;25;0;0;0;0
+27;3;20.02.2019 09:30:00;7;Feld7;Black Cat Volleyteam;Auf Ex;Volleybaerenbande;10;27;0;0;0;0
+28;3;20.02.2019 09:30:00;8;Feld8;Haribus;Die TSVour;Moes Hoes;22;12;0;0;0;0
+29;3;20.02.2019 09:30:00;9;Feld9;Die vier Fragezeichen;Bombig Beerig;Winterzauber 4.0;19;10;0;0;0;0
+30;3;20.02.2019 09:30:00;10;Feld10;Unblockable;Nimm na du i hob na fix;Kimbo und die Bimbos;23;8;0;0;0;0
+31;3;20.02.2019 09:30:00;11;Feld11;Pritsch Perfekt;In Team;Okipoki;11;15;0;0;0;0
+32;3;20.02.2019 09:30:00;1;Feld1;Ned wirklich;Beachrockers;Gegen Gegen Gegen;16;13;0;0;0;0
+33;3;20.02.2019 09:30:00;2;Feld2;Melli und die starken Maenner;Mir is wuascht;LAG BVB;19;8;0;0;0;0
+34;4;20.02.2019 09:40:00;4;Feld4;Schmettbos;Foi am Sand;Eisen;15;10;0;0;0;0
+35;4;20.02.2019 09:40:00;5;Feld5;Namenlose Qualitaet;Stieglitz;Wuedsaubande;19;12;0;0;0;0
+36;4;20.02.2019 09:40:00;6;Feld6;Du WerRegenZone;Scharf aber out;Sandviper;12;16;0;0;0;0
+37;4;20.02.2019 09:40:00;7;Feld7;Carpe Noctem;Truthtrain;Netninjas;19;10;0;0;0;0
+38;4;20.02.2019 09:40:00;8;Feld8;Die Wuerstel sind fertig;1 Meter no;Black Cat Volleyteam;22;9;0;0;0;0
+39;4;20.02.2019 09:40:00;9;Feld9;20 zwequschte Zwetschken;SK Lation;Haribus;23;11;0;0;0;0
+40;4;20.02.2019 09:40:00;10;Feld10;Springginkerl;Superkalefragelistigexoialigestis;Die vier Fragezeichen;16;14;0;0;0;0
+41;4;20.02.2019 09:40:00;11;Feld11;Waterlemons;LeitWollHofRyll;Unblockable;10;21;0;0;0;0
+42;4;20.02.2019 09:40:00;1;Feld1;Freibier auf Feld 1;Barfuss Bethlehem;Pritsch Perfekt;13;14;0;0;0;0
+43;4;20.02.2019 09:40:00;2;Feld2;Hello Kitty;Springmaeuse;Ned wirklich;28;6;0;0;0;0
+44;4;20.02.2019 09:40:00;3;Feld3;Bananablue;5010 HW Einsatz;Melli und die starken Maenner;21;14;0;0;0;0
+45;5;20.02.2019 09:50:00;5;Feld5;The Best Losers;Die Beachboys;Schmettbos;9;23;0;0;0;0
+46;5;20.02.2019 09:50:00;6;Feld6;Ratsherrn Allstarts;Ich und die 3 Hansln;Namenlose Qualitaet;11;16;0;0;0;0
+47;5;20.02.2019 09:50:00;7;Feld7;Pancakesmashers;Die supercoolsten Megacoolen;Du WerRegenZone;18;17;0;0;0;0
+48;5;20.02.2019 09:50:00;8;Feld8;Die gestiefelten Muskelkater;Schluckspecht GmbH;Carpe Noctem;10;18;0;0;0;0
+49;5;20.02.2019 09:50:00;9;Feld9;Volleybaerenbande;Auf Ex;Die Wuerstel sind fertig;16;16;0;0;0;0
+50;5;20.02.2019 09:50:00;10;Feld10;Moes Hoes;Die TSVour;20 zwequschte Zwetschken;9;21;0;0;0;0
+51;5;20.02.2019 09:50:00;11;Feld11;Winterzauber 4.0;Bombig Beerig;Springginkerl;10;22;0;0;0;0
+52;5;20.02.2019 09:50:00;1;Feld1;Kimbo und die Bimbos;Nimm na du i hob na fix;Waterlemons;21;10;0;0;0;0
+53;5;20.02.2019 09:50:00;2;Feld2;Okipoki;In Team;Freibier auf Feld 1;8;23;0;0;0;0
+54;5;20.02.2019 09:50:00;3;Feld3;Gegen Gegen Gegen;Beachrockers;Hello Kitty;5;30;0;0;0;0
+55;5;20.02.2019 09:50:00;4;Feld4;LAG BVB;Mir is wuascht;Bananablue;16;11;0;0;0;0
+56;6;20.02.2019 10:00:00;6;Feld6;Eisen;Foi am Sand;The Best Losers;12;18;0;0;0;0
+57;6;20.02.2019 10:00:00;7;Feld7;Wuedsaubande;Stieglitz;Ratsherrn Allstarts;13;17;0;0;0;0
+58;6;20.02.2019 10:00:00;8;Feld8;Sandviper;Scharf aber out;Pancakesmashers;11;14;0;0;0;0
+59;6;20.02.2019 10:00:00;9;Feld9;Netninjas;Truthtrain;Die gestiefelten Muskelkater;13;20;0;0;0;0
+60;6;20.02.2019 10:00:00;10;Feld10;Black Cat Volleyteam;1 Meter no;Volleybaerenbande;16;14;0;0;0;0
+61;6;20.02.2019 10:00:00;11;Feld11;Haribus;SK Lation;Moes Hoes;17;17;0;0;0;0
+62;6;20.02.2019 10:00:00;1;Feld1;Die vier Fragezeichen;Superkalefragelistigexoialigestis;Winterzauber 4.0;18;11;0;0;0;0
+63;6;20.02.2019 10:00:00;2;Feld2;Unblockable;LeitWollHofRyll;Kimbo und die Bimbos;12;14;0;0;0;0
+64;6;20.02.2019 10:00:00;3;Feld3;Pritsch Perfekt;Barfuss Bethlehem;Okipoki;20;10;0;0;0;0
+65;6;20.02.2019 10:00:00;4;Feld4;Ned wirklich;Springmaeuse;Gegen Gegen Gegen;25;7;0;0;0;0
+66;6;20.02.2019 10:00:00;5;Feld5;Melli und die starken Maenner;5010 HW Einsatz;LAG BVB;17;9;0;0;0;0
+67;7;20.02.2019 10:10:00;7;Feld7;Schmettbos;Die Beachboys;Foi am Sand;12;19;0;0;0;0
+68;7;20.02.2019 10:10:00;8;Feld8;Namenlose Qualitaet;Ich und die 3 Hansln;Stieglitz;5;20;0;0;0;0
+69;7;20.02.2019 10:10:00;9;Feld9;Du WerRegenZone;Die supercoolsten Megacoolen;Scharf aber out;22;11;0;0;0;0
+70;7;20.02.2019 10:10:00;10;Feld10;Carpe Noctem;Schluckspecht GmbH;Truthtrain;21;7;0;0;0;0
+71;7;20.02.2019 10:10:00;11;Feld11;Die Wuerstel sind fertig;Auf Ex;1 Meter no;13;13;0;0;0;0
+72;7;20.02.2019 10:10:00;1;Feld1;20 zwequschte Zwetschken;Die TSVour;SK Lation;12;18;0;0;0;0
+73;7;20.02.2019 10:10:00;2;Feld2;Springginkerl;Bombig Beerig;Superkalefragelistigexoialigestis;18;12;0;0;0;0
+74;7;20.02.2019 10:10:00;3;Feld3;Waterlemons;Nimm na du i hob na fix;LeitWollHofRyll;23;13;0;0;0;0
+75;7;20.02.2019 10:10:00;4;Feld4;Freibier auf Feld 1;In Team;Barfuss Bethlehem;14;17;0;0;0;0
+76;7;20.02.2019 10:10:00;5;Feld5;Hello Kitty;Beachrockers;Springmaeuse;19;11;0;0;0;0
+77;7;20.02.2019 10:10:00;6;Feld6;Bananablue;Mir is wuascht;5010 HW Einsatz;22;10;0;0;0;0
+78;8;20.02.2019 10:20:00;8;Feld8;The Best Losers;Eisen;Schmettbos;11;9;0;0;0;0
+79;8;20.02.2019 10:20:00;9;Feld9;Ratsherrn Allstarts;Wuedsaubande;Namenlose Qualitaet;17;14;0;0;0;0
+80;8;20.02.2019 10:20:00;10;Feld10;Pancakesmashers;Sandviper;Du WerRegenZone;6;18;0;0;0;0
+81;8;20.02.2019 10:20:00;11;Feld11;Die gestiefelten Muskelkater;Netninjas;Carpe Noctem;18;16;0;0;0;0
+82;8;20.02.2019 10:20:00;1;Feld1;Volleybaerenbande;Black Cat Volleyteam;Die Wuerstel sind fertig;24;13;0;0;0;0
+83;8;20.02.2019 10:20:00;2;Feld2;Moes Hoes;Haribus;20 zwequschte Zwetschken;11;18;0;0;0;0
+84;8;20.02.2019 10:20:00;3;Feld3;Winterzauber 4.0;Die vier Fragezeichen;Springginkerl;8;21;0;0;0;0
+85;8;20.02.2019 10:20:00;4;Feld4;Kimbo und die Bimbos;Unblockable;Waterlemons;7;20;0;0;0;0
+86;8;20.02.2019 10:20:00;5;Feld5;Okipoki;Pritsch Perfekt;Freibier auf Feld 1;10;16;0;0;0;0
+87;8;20.02.2019 10:20:00;6;Feld6;Gegen Gegen Gegen;Ned wirklich;Hello Kitty;6;33;0;0;0;0
+88;8;20.02.2019 10:20:00;7;Feld7;LAG BVB;Melli und die starken Maenner;Bananablue;9;20;0;0;0;0
+89;9;20.02.2019 10:30:00;9;Feld9;Foi am Sand;Die Beachboys;Schmettbos;13;14;0;0;0;0
+90;9;20.02.2019 10:30:00;10;Feld10;Stieglitz;Ich und die 3 Hansln;Namenlose Qualitaet;8;19;0;0;0;0
+91;9;20.02.2019 10:30:00;11;Feld11;Scharf aber out;Die supercoolsten Megacoolen;Du WerRegenZone;23;7;0;0;0;0
+92;9;20.02.2019 10:30:00;1;Feld1;Truthtrain;Schluckspecht GmbH;Carpe Noctem;16;13;0;0;0;0
+93;9;20.02.2019 10:30:00;2;Feld2;1 Meter no;Auf Ex;Die Wuerstel sind fertig;23;12;0;0;0;0
+94;9;20.02.2019 10:30:00;3;Feld3;SK Lation;Die TSVour;20 zwequschte Zwetschken;19;17;0;0;0;0
+95;9;20.02.2019 10:30:00;4;Feld4;Superkalefragelistigexoialigestis;Bombig Beerig;Springginkerl;11;19;0;0;0;0
+96;9;20.02.2019 10:30:00;5;Feld5;LeitWollHofRyll;Nimm na du i hob na fix;Waterlemons;20;8;0;0;0;0
+97;9;20.02.2019 10:30:00;6;Feld6;Barfuss Bethlehem;In Team;Freibier auf Feld 1;8;26;0;0;0;0
+98;9;20.02.2019 10:30:00;7;Feld7;Springmaeuse;Beachrockers;Hello Kitty;11;25;0;0;0;0
+99;9;20.02.2019 10:30:00;8;Feld8;5010 HW Einsatz;Mir is wuascht;Bananablue;18;12;0;0;0;0
+100;10;20.02.2019 10:40:00;10;Feld10;Schmettbos;The Best Losers;Die Beachboys;25;7;0;0;0;0
+101;10;20.02.2019 10:40:00;11;Feld11;Namenlose Qualitaet;Ratsherrn Allstarts;Ich und die 3 Hansln;11;18;0;0;0;0
+102;10;20.02.2019 10:40:00;1;Feld1;Du WerRegenZone;Pancakesmashers;Die supercoolsten Megacoolen;20;12;0;0;0;0
+103;10;20.02.2019 10:40:00;2;Feld2;Carpe Noctem;Die gestiefelten Muskelkater;Schluckspecht GmbH;23;9;0;0;0;0
+104;10;20.02.2019 10:40:00;3;Feld3;Die Wuerstel sind fertig;Volleybaerenbande;Auf Ex;11;18;0;0;0;0
+105;10;20.02.2019 10:40:00;4;Feld4;20 zwequschte Zwetschken;Moes Hoes;Die TSVour;17;17;0;0;0;0
+106;10;20.02.2019 10:40:00;5;Feld5;Springginkerl;Winterzauber 4.0;Bombig Beerig;17;14;0;0;0;0
+107;10;20.02.2019 10:40:00;6;Feld6;Waterlemons;Kimbo und die Bimbos;Nimm na du i hob na fix;18;12;0;0;0;0
+108;10;20.02.2019 10:40:00;7;Feld7;Freibier auf Feld 1;Okipoki;In Team;15;18;0;0;0;0
+109;10;20.02.2019 10:40:00;8;Feld8;Hello Kitty;Gegen Gegen Gegen;Beachrockers;25;7;0;0;0;0
+110;10;20.02.2019 10:40:00;9;Feld9;Bananablue;LAG BVB;Mir is wuascht;18;10;0;0;0;0

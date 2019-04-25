@@ -1,0 +1,11 @@
+C:\appl\Downloads\repos\newvb\Volleyball\Volleyball\obj\Debug\Volleyball.csprojAssemblyReference.cache
+C:\appl\Downloads\repos\newvb\Volleyball\Volleyball\obj\Debug\Volleyball.FormMain.resources
+C:\appl\Downloads\repos\newvb\Volleyball\Volleyball\obj\Debug\Volleyball.Properties.Resources.resources
+C:\appl\Downloads\repos\newvb\Volleyball\Volleyball\obj\Debug\Volleyball.csproj.GenerateResource.cache
+C:\appl\Downloads\repos\newvb\Volleyball\Volleyball\obj\Debug\Volleyball.csproj.CoreCompileInputs.cache
+C:\appl\Downloads\repos\newvb\Volleyball\Volleyball\bin\Debug\Volleyball.exe.config
+C:\appl\Downloads\repos\newvb\Volleyball\Volleyball\bin\Debug\Volleyball.exe
+C:\appl\Downloads\repos\newvb\Volleyball\Volleyball\bin\Debug\Volleyball.pdb
+C:\appl\Downloads\repos\newvb\Volleyball\Volleyball\obj\Debug\Volleyball.exe
+C:\appl\Downloads\repos\newvb\Volleyball\Volleyball\obj\Debug\Volleyball.pdb
+C:\appl\Downloads\repos\newvb\Volleyball\Volleyball\obj\Debug\Volleyball.Results.resources
