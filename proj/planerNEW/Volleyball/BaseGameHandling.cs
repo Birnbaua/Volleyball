@@ -118,9 +118,9 @@ namespace Volleyball
                 matchData[i].Game = i + 1;
         }
 
-        public void insertRoundNumber(int teamsCount, int fieldCount)
+        public void insertRoundNumber(int beginRound, int fieldCount)
         {
-            for (int i = 0, ii = 1, round = 1; i < matchData.Count; i++)
+            for (int i = 0, ii = 1, round = beginRound; i < matchData.Count; i++)
             {
                 matchData[i].Round = round;
 

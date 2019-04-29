@@ -91,6 +91,12 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelEstimatedTournamentTime = new System.Windows.Forms.ToolStripStatusLabel();
+            this.dataGridViewInterimRound = new System.Windows.Forms.DataGridView();
+            this.buttonResultsInterim = new System.Windows.Forms.Button();
+            this.buttonPrintInterim = new System.Windows.Forms.Button();
+            this.buttonClearInterim = new System.Windows.Forms.Button();
+            this.buttonSaveInterim = new System.Windows.Forms.Button();
+            this.buttonGenerateInterim = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPageConfiguration.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -117,7 +123,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTeams)).BeginInit();
             this.tabPageQualifying.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewQualifyingRound)).BeginInit();
+            this.tabPageInterim.SuspendLayout();
             this.statusStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInterimRound)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -834,6 +842,12 @@
             // 
             // tabPageInterim
             // 
+            this.tabPageInterim.Controls.Add(this.dataGridViewInterimRound);
+            this.tabPageInterim.Controls.Add(this.buttonResultsInterim);
+            this.tabPageInterim.Controls.Add(this.buttonPrintInterim);
+            this.tabPageInterim.Controls.Add(this.buttonClearInterim);
+            this.tabPageInterim.Controls.Add(this.buttonSaveInterim);
+            this.tabPageInterim.Controls.Add(this.buttonGenerateInterim);
             this.tabPageInterim.Location = new System.Drawing.Point(4, 29);
             this.tabPageInterim.Name = "tabPageInterim";
             this.tabPageInterim.Padding = new System.Windows.Forms.Padding(3);
@@ -867,16 +881,16 @@
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.toolStripStatusLabelEstimatedTournamentTime});
-            this.statusStrip.Location = new System.Drawing.Point(0, 665);
+            this.statusStrip.Location = new System.Drawing.Point(0, 676);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(1084, 22);
+            this.statusStrip.Size = new System.Drawing.Size(1092, 22);
             this.statusStrip.TabIndex = 8;
             this.statusStrip.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(141, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(132, 17);
             this.toolStripStatusLabel1.Text = "berechnetes Turnierende:";
             // 
             // toolStripStatusLabelEstimatedTournamentTime
@@ -884,9 +898,78 @@
             this.toolStripStatusLabelEstimatedTournamentTime.Name = "toolStripStatusLabelEstimatedTournamentTime";
             this.toolStripStatusLabelEstimatedTournamentTime.Size = new System.Drawing.Size(0, 17);
             // 
+            // dataGridViewInterimRound
+            // 
+            this.dataGridViewInterimRound.AllowUserToAddRows = false;
+            this.dataGridViewInterimRound.AllowUserToDeleteRows = false;
+            this.dataGridViewInterimRound.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewInterimRound.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewInterimRound.Location = new System.Drawing.Point(7, 43);
+            this.dataGridViewInterimRound.Name = "dataGridViewInterimRound";
+            this.dataGridViewInterimRound.Size = new System.Drawing.Size(1062, 579);
+            this.dataGridViewInterimRound.TabIndex = 20;
+            this.dataGridViewInterimRound.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewInterimRound_CellValueChanged);
+            // 
+            // buttonResultsInterim
+            // 
+            this.buttonResultsInterim.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonResultsInterim.Location = new System.Drawing.Point(471, 7);
+            this.buttonResultsInterim.Name = "buttonResultsInterim";
+            this.buttonResultsInterim.Size = new System.Drawing.Size(110, 30);
+            this.buttonResultsInterim.TabIndex = 19;
+            this.buttonResultsInterim.Text = "Ergebnisse";
+            this.buttonResultsInterim.UseVisualStyleBackColor = true;
+            this.buttonResultsInterim.Click += new System.EventHandler(this.buttonResultsInterim_Click);
+            // 
+            // buttonPrintInterim
+            // 
+            this.buttonPrintInterim.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonPrintInterim.Location = new System.Drawing.Point(355, 7);
+            this.buttonPrintInterim.Name = "buttonPrintInterim";
+            this.buttonPrintInterim.Size = new System.Drawing.Size(110, 30);
+            this.buttonPrintInterim.TabIndex = 18;
+            this.buttonPrintInterim.Text = "Drucken";
+            this.buttonPrintInterim.UseVisualStyleBackColor = true;
+            this.buttonPrintInterim.Click += new System.EventHandler(this.buttonPrintInterim_Click);
+            // 
+            // buttonClearInterim
+            // 
+            this.buttonClearInterim.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonClearInterim.Location = new System.Drawing.Point(239, 7);
+            this.buttonClearInterim.Name = "buttonClearInterim";
+            this.buttonClearInterim.Size = new System.Drawing.Size(110, 30);
+            this.buttonClearInterim.TabIndex = 17;
+            this.buttonClearInterim.Text = "Löschen";
+            this.buttonClearInterim.UseVisualStyleBackColor = true;
+            this.buttonClearInterim.Click += new System.EventHandler(this.buttonClearInterim_Click);
+            // 
+            // buttonSaveInterim
+            // 
+            this.buttonSaveInterim.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSaveInterim.Location = new System.Drawing.Point(123, 7);
+            this.buttonSaveInterim.Name = "buttonSaveInterim";
+            this.buttonSaveInterim.Size = new System.Drawing.Size(110, 30);
+            this.buttonSaveInterim.TabIndex = 16;
+            this.buttonSaveInterim.Text = "Speichern";
+            this.buttonSaveInterim.UseVisualStyleBackColor = true;
+            this.buttonSaveInterim.Click += new System.EventHandler(this.buttonSaveInterim_Click);
+            // 
+            // buttonGenerateInterim
+            // 
+            this.buttonGenerateInterim.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonGenerateInterim.Location = new System.Drawing.Point(7, 7);
+            this.buttonGenerateInterim.Name = "buttonGenerateInterim";
+            this.buttonGenerateInterim.Size = new System.Drawing.Size(110, 30);
+            this.buttonGenerateInterim.TabIndex = 15;
+            this.buttonGenerateInterim.Text = "Generieren";
+            this.buttonGenerateInterim.UseVisualStyleBackColor = true;
+            this.buttonGenerateInterim.Click += new System.EventHandler(this.buttonGenerateInterim_Click);
+            // 
             // FormMain
             // 
-            this.ClientSize = new System.Drawing.Size(1084, 687);
+            this.ClientSize = new System.Drawing.Size(1092, 698);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.tabControl);
             this.MinimumSize = new System.Drawing.Size(1100, 725);
@@ -919,8 +1002,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTeams)).EndInit();
             this.tabPageQualifying.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewQualifyingRound)).EndInit();
+            this.tabPageInterim.ResumeLayout(false);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInterimRound)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -990,6 +1075,12 @@
         private System.Windows.Forms.Button buttonPrintTeams;
         private System.Windows.Forms.Button buttonClearTeams;
         private System.Windows.Forms.DateTimePicker dateTimePickerTournamentstart;
+        private System.Windows.Forms.DataGridView dataGridViewInterimRound;
+        private System.Windows.Forms.Button buttonResultsInterim;
+        private System.Windows.Forms.Button buttonPrintInterim;
+        private System.Windows.Forms.Button buttonClearInterim;
+        private System.Windows.Forms.Button buttonSaveInterim;
+        private System.Windows.Forms.Button buttonGenerateInterim;
     }
 }
 

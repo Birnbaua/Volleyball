@@ -15,15 +15,16 @@ namespace Volleyball
         static readonly String fieldsFileName = "fields.csv";
         static readonly String teamsFileName = "teams.csv";
         static readonly String qualifyingFileName = "qualifyinggames.csv", qualifyingResultFileName = "qualifying_result";
-        static readonly String interimFileName = "interimgames.csv";
+        static readonly String interimFileName = "interimgames.csv", interimResultFileName = "interim_results";
         static readonly String crossgamesFileName = "crossgames.csv";
         static readonly String classementgamesFileName = "classementgames.csv";
         static readonly List<String> prefix = new List<String>() { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L" };
         static bool lockAction = false;
         static readonly List<Color> rowColors = new List<Color>() { Color.Yellow, Color.LightGray, Color.Cyan, Color.Magenta };
         Settings settings;
-        DataTable dtFields, dtTeams, dtQualifying;
+        DataTable dtFields, dtTeams, dtQualifying, dtInterim;
         QualifyingGames qg;
+        InterimGames ig;
         Logging log;
         List<List<String>> divisionsList;
         List<String> fieldNames;
@@ -132,6 +133,45 @@ namespace Volleyball
 
             return rdList;
         }
+
+        #region general ui methods
+        void setRowColorsForEachRound(DataGridView dgv)
+        {
+            int lastRound = 0;
+            int newColor = 0;
+
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                int roundValue = Convert.ToInt32(row.Cells["Runde"].Value);
+
+                if (lastRound < roundValue)
+                {
+                    lastRound = roundValue;
+
+                    newColor++;
+
+                    if (newColor >= rowColors.Count)
+                        newColor = 0;
+                }
+
+                row.DefaultCellStyle.BackColor = rowColors[newColor];
+            }
+        }
+
+        private void tabControl_Click(object sender, EventArgs e)
+        {
+            String tabName = this.tabControl.SelectedTab.Name;
+
+            if(tabName == "tabPageQualifying")
+            {
+                setRowColorsForEachRound(dataGridViewQualifyingRound);
+            }
+            else if(tabName == "tabPageInterim")
+            {
+                setRowColorsForEachRound(dataGridViewQualifyingRound);
+            }
+        }
+        #endregion
 
         #region settings
         void initSettings()
@@ -698,29 +738,6 @@ namespace Volleyball
         #endregion
 
         #region form actions
-        void setRowColorsForEachRound()
-        {
-            int lastRound = 0;
-            int newColor = 0;
-
-            foreach (DataGridViewRow row in dataGridViewQualifyingRound.Rows)
-            {
-                int roundValue = Convert.ToInt32(row.Cells["Runde"].Value);
-
-                if (lastRound < roundValue)
-                {
-                    lastRound = roundValue;
-
-                    newColor++;
-
-                    if (newColor >= rowColors.Count)
-                        newColor = 0;
-                }
-
-                row.DefaultCellStyle.BackColor = rowColors[newColor];
-            }
-        }
-
         private void dataGridViewQualifyingRound_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (!lockAction)
@@ -792,7 +809,7 @@ namespace Volleyball
 
                 saveQualifying();
 
-                setRowColorsForEachRound();
+                setRowColorsForEachRound(dataGridViewQualifyingRound);
             }
 
             lockAction = false;
@@ -830,10 +847,234 @@ namespace Volleyball
             rs.saveChangesEvent += saveQualifying;
             rs.ShowDialog();
         }
+        #endregion
+        #endregion
 
-        private void tabControl_Click(object sender, EventArgs e)
+        #region interim games
+        #region data actions
+        void initDataTableInterim()
         {
-            setRowColorsForEachRound();
+            dtInterim = new DataTable("dtInterim");
+            dtInterim.Columns.Add("Spiel");
+            dtInterim.Columns.Add("Runde");
+            dtInterim.Columns.Add("Zeit");
+            dtInterim.Columns.Add("Feldnr.");
+            dtInterim.Columns.Add("Feldname");
+            dtInterim.Columns.Add("Team A");
+            dtInterim.Columns.Add("Team B");
+            dtInterim.Columns.Add("Schiedsrichter");
+            dtInterim.Columns.Add("Satz 1 A");
+            dtInterim.Columns.Add("Satz 1 B");
+            dtInterim.Columns.Add("Satz 2 A");
+            dtInterim.Columns.Add("Satz 2 B");
+            dtInterim.Columns.Add("Satz 3 A");
+            dtInterim.Columns.Add("Satz 3 B");
+
+            typeof(DataGridView).InvokeMember("DoubleBuffered",
+                                                BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.SetProperty,
+                                                null,
+                                                dataGridViewInterimRound,
+                                                new object[] { true });
+
+            dataGridViewInterimRound.DataSource = dtInterim;
+
+            ig = new InterimGames(log);
+
+            loadDataInterimFromFile();
+
+            loadInterim();
+        }
+
+        void loadDataInterimFromFile()
+        {
+            ig.matchData.Clear();
+
+            ig.matchData = LoadMatchDataFromFile(interimFileName);
+
+            ig.setParameters(divisionsList,
+                                gamePlan,
+                                qg.matchData[qg.matchData.Count].Time,
+                                settings.PauseBetweenQualifyingInterim,
+                                settings.SetsInterim,
+                                settings.MinutesPerSetInterim,
+                                settings.PausePerSetInterim,
+                                fieldNames.Count,
+                                countTeams(),
+                                fieldNames,
+                                qg.matchData[qg.matchData.Count].Round + 1,
+                                qg.matchData[qg.matchData.Count].Game + 1,
+                                true); //TODO!!!
+
+            ig.resultData.Clear();
+
+            for (int i = 0; i < prefix.Count; i++)
+                ig.resultData.Add(LoadResultDataFromFile(interimResultFileName + "_" + prefix[i] + ".csv"));
+        }
+
+        void loadInterim()
+        {
+            if (ig != null)
+            {
+                if (ig.matchData.Count > 0)
+                {
+                    foreach (MatchData md in ig.matchData)
+                    {
+                        dtInterim.Rows.Add(new object[] { md.Game,
+                                                            md.Round,
+                                                            md.Time.ToString("HH:mm"),
+                                                            md.FieldNumber,
+                                                            md.FieldName,
+                                                            md.TeamA,
+                                                            md.TeamB,
+                                                            md.Referee,
+                                                            md.PointsMatch1TeamA,
+                                                            md.PointsMatch1TeamB,
+                                                            md.PointsMatch2TeamA,
+                                                            md.PointsMatch2TeamB,
+                                                            md.PointsMatch3TeamA,
+                                                            md.PointsMatch3TeamB });
+                    }
+
+                    if (ig.resultData.Count > 0 && qg.resultData[0].Count == 0)
+                        ig.fillResultLists(divisionsList);
+                }
+            }
+        }
+
+        void saveInterim()
+        {
+            if (ig != null)
+            {
+                log.write("calculating interim results");
+
+                ig.calculateResults();
+
+                ig.sortResults();
+
+                SaveMatchDataToFile(interimFileName, ig.matchData);
+
+                for (int i = 0; i < ig.resultData.Count; i++)
+                {
+                    if (ig.resultData[i].Count > 0)
+                        SaveResultDataToFile(interimResultFileName + "_" + prefix[i] + ".csv", ig.resultData[i]);
+                }
+            }
+        }
+        #endregion
+
+        #region form actions
+        private void dataGridViewInterimRound_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (!lockAction)
+            {
+                switch (e.ColumnIndex)
+                {
+                    case 2:
+                        DateTime gameTime = DateTime.Parse(dtInterim.Rows[e.RowIndex][2].ToString());
+
+                        ig.recalculateTimeSchedule(e.RowIndex, gameTime);
+
+                        for (int i = 0; i < ig.matchData.Count; i++)
+                            dtInterim.Rows[i][2] = ig.matchData[i].Time.ToString("HH:mm");
+
+                        break;
+
+                    case 8:
+                        ig.matchData[e.RowIndex].PointsMatch1TeamA = int.Parse(dtInterim.Rows[e.RowIndex][8].ToString());
+                        break;
+
+                    case 9:
+                        ig.matchData[e.RowIndex].PointsMatch1TeamB = int.Parse(dtInterim.Rows[e.RowIndex][9].ToString());
+                        break;
+
+                    case 10:
+                        ig.matchData[e.RowIndex].PointsMatch2TeamA = int.Parse(dtInterim.Rows[e.RowIndex][10].ToString());
+                        break;
+
+                    case 11:
+                        ig.matchData[e.RowIndex].PointsMatch2TeamB = int.Parse(dtInterim.Rows[e.RowIndex][11].ToString());
+                        break;
+
+                    case 12:
+                        ig.matchData[e.RowIndex].PointsMatch3TeamA = int.Parse(dtInterim.Rows[e.RowIndex][12].ToString());
+                        break;
+
+                    case 13:
+                        ig.matchData[e.RowIndex].PointsMatch3TeamB = int.Parse(dtInterim.Rows[e.RowIndex][13].ToString());
+                        break;
+                }
+            }
+        }
+
+        private void buttonGenerateInterim_Click(object sender, EventArgs e)
+        {
+            lockAction = true;
+
+            if (ig != null)
+            {
+                log.write("generate interim games");
+
+                extractFieldnames();
+
+                extractTeams();
+
+                ig.setParameters(divisionsList,
+                                gamePlan,
+                                qg.matchData[qg.matchData.Count].Time,
+                                settings.PauseBetweenQualifyingInterim,
+                                settings.SetsInterim,
+                                settings.MinutesPerSetInterim,
+                                settings.PausePerSetInterim,
+                                fieldNames.Count,
+                                countTeams(),
+                                fieldNames,
+                                qg.matchData[qg.matchData.Count].Round + 1,
+                                qg.matchData[qg.matchData.Count].Game + 1,
+                                true); //TODO!!!);
+
+                ig.generateGames();
+
+                loadInterim();
+
+                saveInterim();
+
+                setRowColorsForEachRound(dataGridViewInterimRound);
+            }
+
+            lockAction = false;
+        }
+
+        private void buttonSaveInterim_Click(object sender, EventArgs e)
+        {
+            saveInterim();
+        }
+
+        private void buttonClearInterim_Click(object sender, EventArgs e)
+        {
+            if (ig != null)
+            {
+                ig.matchData.Clear();
+
+                ig.resultData.Clear();
+
+                dtInterim.Clear();
+
+                loadInterim();
+            }
+        }
+
+        private void buttonPrintInterim_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonResultsInterim_Click(object sender, EventArgs e)
+        {
+            saveInterim();
+
+            Results rs = new Results(ig);
+            rs.saveChangesEvent += saveInterim;
+            rs.ShowDialog();
         }
         #endregion
         #endregion

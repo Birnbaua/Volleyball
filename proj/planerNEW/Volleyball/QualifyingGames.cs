@@ -23,7 +23,8 @@ namespace Volleyball
             this.log = log; 
         }
 
-        public void setParameters(List<List<String>> divisionsList, List<int[]> gamePlan, DateTime startTournament, int setCounter, int minutesSet, int minutesPause, int fieldCount, int teamsCount, List<String> fieldNames)
+        public void setParameters(List<List<String>> divisionsList, List<int[]> gamePlan, DateTime startTournament, 
+            int setCounter, int minutesSet, int minutesPause, int fieldCount, int teamsCount, List<String> fieldNames)
         {
             this.divisionsList = divisionsList;
             this.gamePlan = gamePlan;
@@ -45,7 +46,7 @@ namespace Volleyball
             {                
                 insertGameNumber();
 
-                insertRoundNumber(teamsCount, fieldCount);
+                insertRoundNumber(1, fieldCount);
 
                 insertGameTime(startTournament);
 
