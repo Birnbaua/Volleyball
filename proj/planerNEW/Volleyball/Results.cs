@@ -13,6 +13,9 @@ namespace Volleyball
         List<DataTable> resultTables = new List<DataTable>();
         List<DataGridView> resultViews = new List<DataGridView>();
         Object roundObject;
+
+        public delegate void SaveChanges();
+        public event SaveChanges saveChangesEvent;
         #endregion
 
         public Results(Object roundObject)
@@ -91,29 +94,55 @@ namespace Volleyball
                 {
                     switch (e.ColumnIndex)
                     {
-                        case 2:
-                            int internalRank = int.Parse(resultTables[i].Rows[e.RowIndex].ToString());
+                        case 4:
+                            int internalRank = int.Parse(resultTables[i].Rows[e.RowIndex][4].ToString());
 
                             if(roundObject is QualifyingGames)
                             {
                                 QualifyingGames qg = (QualifyingGames)roundObject;
 
                                 qg.resultData[i][e.RowIndex].InternalRank = internalRank;
+
+                                saveChangesEvent?.Invoke();
                             }
                             break;
 
-                        case 3:
-                            int externalRank = int.Parse(resultTables[i].Rows[e.RowIndex].ToString());
+                        case 5:
+                            int externalRank = int.Parse(resultTables[i].Rows[e.RowIndex][5].ToString());
 
                             if (roundObject is QualifyingGames)
                             {
                                 QualifyingGames qg = (QualifyingGames)roundObject;
 
                                 qg.resultData[i][e.RowIndex].ExternalRank = externalRank;
+
+                                saveChangesEvent?.Invoke();
                             }
                             break;
                     }
                     break;
+                }
+            }
+        }
+
+        private void Results_Resize(object sender, EventArgs e)
+        {
+            int formHeightDrittel = ( this.Size.Height - 30 ) / 3;
+
+            foreach(Object obj in this.Controls)
+            {
+                if( obj is Panel )
+                {
+                    Panel pan = (Panel)obj;
+                    pan.Height = formHeightDrittel;
+
+                    int panWidthDrittel = pan.Size.Width / 3;
+
+                    foreach (Object subObj in pan.Controls)
+                    {
+                        if( subObj is GroupBox )
+                            ((GroupBox)subObj).Width = panWidthDrittel;
+                    }
                 }
             }
         }

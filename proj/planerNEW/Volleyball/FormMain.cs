@@ -827,6 +827,7 @@ namespace Volleyball
             saveQualifying();
 
             Results rs = new Results(qg);
+            rs.saveChangesEvent += saveQualifying;
             rs.ShowDialog();
         }
 
