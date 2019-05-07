@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseGameHandling.cs" />
+    <Compile Include="InterimGames.cs" />
     <Compile Include="MatchData.cs" />
     <Compile Include="CalculateResults.cs" />
     <Compile Include="Database.cs" />
