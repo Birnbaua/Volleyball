@@ -30,6 +30,7 @@ namespace Volleyball
             int pauseBetweenQualifyingInterim, int setCounter, int minutesSet, int minutesPause,
             int fieldCount, int teamsCount, List<String> fieldNames, int lastRoundNr, int lastGameNr, bool useSecondGamePlaning)
         {
+            this.divisionsList = divisionsList;
             this.startRound = startRound;
             this.setCounter = setCounter;
             this.minutesSet = minutesSet;
@@ -114,11 +115,11 @@ namespace Volleyball
         }
 
         // generate new divisions
-        QList<QStringList> generateNewDivisions()
+        List<List<String>> generateNewDivisions()
         {
             // help lists
-            QList<QStringList> divisionsFirst, divisionsSecond, divisionsThird, divisionsFourth, divisionsFifth;
-            QStringList divisionsFirstNames, divisionsSecondNames, divisionsThirdNames, divisionsFourthNames, divisionsFifthNames;
+            List<List<String>> divisionsFirst, divisionsSecond, divisionsThird, divisionsFourth, divisionsFifth;
+            List<String> divisionsFirstNames, divisionsSecondNames, divisionsThirdNames, divisionsFourthNames, divisionsFifthNames;
 
             // get list current ranking results
             QList<QList<QStringList>> resultDivisionsVr;
@@ -126,6 +127,11 @@ namespace Volleyball
             // new list for new divisions by rank result
             QList<QStringList> newDivisionsZw;
 
+            for(int i = 0; i < divisionsList.Count; i++)
+            {
+
+            }
+            
             // read divisional rank results and add to list
             for (int i = 0; i < divisionCount; i++)
                 resultDivisionsVr.append(dbRead("select ms, punkte, satz, intern, extern from vorrunde_erg_gr" + getPrefix(i) + " order by intern asc, punkte desc, satz desc"));
