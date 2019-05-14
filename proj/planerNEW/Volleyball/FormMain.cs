@@ -26,7 +26,7 @@ namespace Volleyball
         QualifyingGames qg;
         InterimGames ig;
         Logging log;
-        List<List<String>> divisionsList;
+        List<List<String>> divisionsTeamList;
         List<String> fieldNames;
         List<int[]> gamePlan = new List<int[]>() { new int[]{ 0, 2, 3 },
                                                    new int[]{ 1, 3, 4 },
@@ -53,13 +53,15 @@ namespace Volleyball
 
             initSettings();
 
-            divisionsList = new List<List<String>>();
+            divisionsTeamList = new List<List<String>>();
 
             initDataTableFields();
 
             initDataTableTeams();
 
             initDataTableQualifying();
+
+            initDataTableInterim();
 
             checkBoxUseCrossgames_CheckedChanged(checkBoxUseCrossgames, EventArgs.Empty);
         }
@@ -560,7 +562,7 @@ namespace Volleyball
 
         void extractTeams()
         {
-            divisionsList.Clear();
+            divisionsTeamList.Clear();
 
             for(int i = 0; i < dtTeams.Columns.Count; i++)
             {
@@ -573,7 +575,7 @@ namespace Volleyball
                 }
 
                 if(group.Count > 0)
-                    divisionsList.Add(group);
+                    divisionsTeamList.Add(group);
             }
         }
 
@@ -603,8 +605,8 @@ namespace Volleyball
             DialogResult dialogResult = MessageBox.Show("Mannschaften löschen?!", "Daten löschen", MessageBoxButtons.OKCancel);
             if (dialogResult == DialogResult.OK)
             {
-                if (divisionsList != null)
-                    divisionsList.Clear();
+                if (divisionsTeamList != null)
+                    divisionsTeamList.Clear();
 
                 if (dtTeams != null)
                 {
@@ -670,7 +672,7 @@ namespace Volleyball
 
             qg.matchData = LoadMatchDataFromFile(qualifyingFileName);
 
-            qg.setParameters(divisionsList,
+            qg.setParameters(divisionsTeamList,
                                 gamePlan,
                                 settings.StartTournament,
                                 settings.SetsQualifying,
@@ -711,7 +713,7 @@ namespace Volleyball
                     }
 
                     if(qg.resultData.Count > 0 && qg.resultData[0].Count == 0)
-                        qg.fillResultLists(divisionsList);
+                        qg.fillResultLists(divisionsTeamList);
                 }
             }
         }
@@ -793,7 +795,7 @@ namespace Volleyball
 
                 extractTeams();
 
-                qg.setParameters(divisionsList, 
+                qg.setParameters(divisionsTeamList, 
                                 gamePlan,
                                 settings.StartTournament,
                                 settings.SetsQualifying,
@@ -891,7 +893,7 @@ namespace Volleyball
 
             ig.matchData = LoadMatchDataFromFile(interimFileName);
 
-            ig.setParameters(divisionsList,
+            ig.setParameters(qg.resultData,
                                 gamePlan,
                                 qg.matchData[qg.matchData.Count].Time,
                                 settings.PauseBetweenQualifyingInterim,
@@ -934,9 +936,6 @@ namespace Volleyball
                                                             md.PointsMatch3TeamA,
                                                             md.PointsMatch3TeamB });
                     }
-
-                    if (ig.resultData.Count > 0 && qg.resultData[0].Count == 0)
-                        ig.fillResultLists(divisionsList);
                 }
             }
         }
@@ -1014,11 +1013,7 @@ namespace Volleyball
             {
                 log.write("generate interim games");
 
-                extractFieldnames();
-
-                extractTeams();
-
-                ig.setParameters(divisionsList,
+                ig.setParameters(qg.resultData,
                                 gamePlan,
                                 qg.matchData[qg.matchData.Count].Time,
                                 settings.PauseBetweenQualifyingInterim,
@@ -1030,7 +1025,7 @@ namespace Volleyball
                                 fieldNames,
                                 qg.matchData[qg.matchData.Count].Round + 1,
                                 qg.matchData[qg.matchData.Count].Game + 1,
-                                true); //TODO!!!);
+                                true); //TODO!!! => welcher spielplan wird gewählt mit 50+ teams
 
                 ig.generateGames();
 

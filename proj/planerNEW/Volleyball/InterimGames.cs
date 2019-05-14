@@ -17,7 +17,8 @@ namespace Volleyball
         int lastRoundNr;
         bool useSecondGamePlaning;
         List<String> fieldNames;
-        List<List<String>> divisionsList;
+        List<List<ResultData>> divisionsQualifyingList;
+        List<List<string>> divisionsList;
         List<int[]> gamePlan;
         #endregion
 
@@ -26,11 +27,11 @@ namespace Volleyball
             this.log = log;
         }
 
-        public void setParameters(List<List<String>> divisionsList, List< int[] > gamePlan, DateTime startRound, 
+        public void setParameters(List<List<ResultData>> divisionsQualifyingList, List< int[] > gamePlan, DateTime startRound, 
             int pauseBetweenQualifyingInterim, int setCounter, int minutesSet, int minutesPause,
             int fieldCount, int teamsCount, List<String> fieldNames, int lastRoundNr, int lastGameNr, bool useSecondGamePlaning)
         {
-            this.divisionsList = divisionsList;
+            this.divisionsQualifyingList = divisionsQualifyingList;
             this.startRound = startRound;
             this.setCounter = setCounter;
             this.minutesSet = minutesSet;
@@ -118,31 +119,22 @@ namespace Volleyball
         List<List<String>> generateNewDivisions()
         {
             // help lists
-            List<List<String>> divisionsFirst, divisionsSecond, divisionsThird, divisionsFourth, divisionsFifth;
-            List<String> divisionsFirstNames, divisionsSecondNames, divisionsThirdNames, divisionsFourthNames, divisionsFifthNames;
-
-            // get list current ranking results
-            QList<QList<QStringList>> resultDivisionsVr;
-
-            // new list for new divisions by rank result
-            QList<QStringList> newDivisionsZw;
-
-            for(int i = 0; i < divisionsList.Count; i++)
+            List<List<ResultData>> divisionRanksFirstToFifth = new List<List<ResultData>>();
+            
+            for (int i = 0; i < 5; i++)
             {
+                List<ResultData> nextRank = new List<ResultData>();
 
+                foreach (List<ResultData> rdList in divisionsQualifyingList)
+                {
+                    if(rdList.Count > i)
+                        nextRank.Add(rdList[i]);
+                }
+
+                divisionRanksFirstToFifth.Add(nextRank);
             }
             
-            // read divisional rank results and add to list
-            for (int i = 0; i < divisionCount; i++)
-                resultDivisionsVr.append(dbRead("select ms, punkte, satz, intern, extern from vorrunde_erg_gr" + getPrefix(i) + " order by intern asc, punkte desc, satz desc"));
-
-            divisionsFirst = getDivisionsClassement(&resultDivisionsVr, 1);
-            divisionsSecond = getDivisionsClassement(&resultDivisionsVr, 2);
-            divisionsThird = getDivisionsClassement(&resultDivisionsVr, 3);
-            divisionsFourth = getDivisionsClassement(&resultDivisionsVr, 4);
-            divisionsFifth = getDivisionsClassement(&resultDivisionsVr, 5);
-
-            log.write("teams count = " + teamsCount + ", useSecondGamePlaning = " + useSecondGamePlaning);
+            log.write("teams count for new interim divisions = " + divisionsQualifyingList.Count + ", useSecondGamePlaning = " + useSecondGamePlaning);
 
             if (useSecondGamePlaning)
             {
