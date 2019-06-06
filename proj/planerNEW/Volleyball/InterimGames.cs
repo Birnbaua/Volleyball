@@ -18,7 +18,7 @@ namespace Volleyball
         bool useSecondGamePlaning;
         List<String> fieldNames;
         List<List<ResultData>> divisionsQualifyingList;
-        List<List<string>> divisionsList;
+        List<List<String>> divisionsList;
         List<int[]> gamePlan;
         #endregion
 
@@ -27,7 +27,7 @@ namespace Volleyball
             this.log = log;
         }
 
-        public void setParameters(List<List<ResultData>> divisionsQualifyingList, List< int[] > gamePlan, DateTime startRound, 
+        public void setParameters(List<List<ResultData>> divisionsQualifyingList, List<int[]> gamePlan, DateTime startRound, 
             int pauseBetweenQualifyingInterim, int setCounter, int minutesSet, int minutesPause,
             int fieldCount, int teamsCount, List<String> fieldNames, int lastRoundNr, int lastGameNr, bool useSecondGamePlaning)
         {
@@ -41,6 +41,7 @@ namespace Volleyball
             this.fieldNames = fieldNames;
             this.lastGameNr = lastGameNr;
             this.lastRoundNr = lastRoundNr;
+            this.gamePlan = gamePlan;
             this.useSecondGamePlaning = useSecondGamePlaning;
 
             setTimeParameters(setCounter, minutesSet, minutesPause);
@@ -50,8 +51,10 @@ namespace Volleyball
 
         public void generateGames()
         {
+            divisionsList = generateNewDivisions();
+
             // generate game plan over all divisonal games
-            if (generateGamePlan())
+            if (divisionsList.Count > 0 && generateGamePlan())
             {
                 insertGameNumber();
 
@@ -172,7 +175,8 @@ namespace Volleyball
             
             log.write("teams count for new interim divisions = " + divisionsQualifyingList.Count + ", useSecondGamePlaning = " + useSecondGamePlaning);
 
-            if (useSecondGamePlaning)
+            // there is a second set of game plans for 50 or more teams, can be choosen in gui => game configuration
+            if (!useSecondGamePlaning)
             {
                 if (teamsCount == 20)
                 {
@@ -613,580 +617,431 @@ namespace Volleyball
                 }
                 else if (teamsCount == 50)
                 {
-                    List<String> newTeamList = new List<String>();
+                    // group A
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[0][0].Team,
+                            divisionRanksFirstToFifth[0][1].Team,
+                            divisionRanksFirstToFifth[0][2].Team,
+                            divisionRanksFirstToFifth[0][3].Team,
+                            divisionRanksFirstToFifth[0][4].Team
+                        });
 
-                    for (int i = 0; i < divisionRanksFirstToFifth.Count; i++)
-                    {
-                        for (int ii = 0; ii < divisionRanksFirstToFifth[i].Count; i++)
-                        {
-                            if (newTeamList.Count % 5 == 0)
-                            {
-                                newDivisionList.Add(newTeamList);
+                    // group B
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[0][5].Team,
+                            divisionRanksFirstToFifth[0][6].Team,
+                            divisionRanksFirstToFifth[0][7].Team,
+                            divisionRanksFirstToFifth[0][8].Team,
+                            divisionRanksFirstToFifth[0][9].Team
+                        });
 
-                                newTeamList.Clear();
-                            }
+                    // group C
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[1][0].Team,
+                            divisionRanksFirstToFifth[1][1].Team,
+                            divisionRanksFirstToFifth[1][2].Team,
+                            divisionRanksFirstToFifth[1][3].Team,
+                            divisionRanksFirstToFifth[1][4].Team
+                        });
 
-                            newTeamList.Add(divisionRanksFirstToFifth[i][ii].Team);
-                        }
+                    // group D
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[1][5].Team,
+                            divisionRanksFirstToFifth[1][6].Team,
+                            divisionRanksFirstToFifth[1][7].Team,
+                            divisionRanksFirstToFifth[1][8].Team,
+                            divisionRanksFirstToFifth[1][9].Team
+                        });
 
-                        newDivisionList.Add(newTeamList);
-                    }
-                }
-                else if (teamsCount == 55)
-                {
-                    // make ranking of all divisions second teams
-                    sortList(&divisionsFirst);
+                    // group E
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[2][0].Team,
+                            divisionRanksFirstToFifth[2][1].Team,
+                            divisionRanksFirstToFifth[2][2].Team,
+                            divisionRanksFirstToFifth[2][3].Team,
+                            divisionRanksFirstToFifth[2][4].Team
+                        });
 
-                    if (checkListDoubleResults(&divisionsFirst))
-                        return QList<QStringList>();
+                    // group F
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[2][5].Team,
+                            divisionRanksFirstToFifth[2][6].Team,
+                            divisionRanksFirstToFifth[2][7].Team,
+                            divisionRanksFirstToFifth[2][8].Team,
+                            divisionRanksFirstToFifth[2][9].Team
+                        });
 
-                    // make ranking of all divisions second teams
-                    sortList(&divisionsSecond);
+                    // group G
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[3][0].Team,
+                            divisionRanksFirstToFifth[3][1].Team,
+                            divisionRanksFirstToFifth[3][2].Team,
+                            divisionRanksFirstToFifth[3][3].Team,
+                            divisionRanksFirstToFifth[3][4].Team
+                        });
 
-                    if (checkListDoubleResults(&divisionsSecond))
-                        return QList<QStringList>();
+                    // group H
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[3][5].Team,
+                            divisionRanksFirstToFifth[3][6].Team,
+                            divisionRanksFirstToFifth[3][7].Team,
+                            divisionRanksFirstToFifth[3][8].Team,
+                            divisionRanksFirstToFifth[3][9].Team
+                        });
 
-                    // make ranking of all divisions third teams
-                    sortList(&divisionsThird);
+                    // group I
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[4][0].Team,
+                            divisionRanksFirstToFifth[4][1].Team,
+                            divisionRanksFirstToFifth[4][2].Team,
+                            divisionRanksFirstToFifth[4][3].Team,
+                            divisionRanksFirstToFifth[4][4].Team
+                        });
 
-                    if (checkListDoubleResults(&divisionsThird))
-                        return QList<QStringList>();
-
-                    // make ranking of all divisions fourth teams
-                    sortList(&divisionsFourth);
-
-                    if (checkListDoubleResults(&divisionsFourth))
-                        return QList<QStringList>();
-
-                    // make ranking of all divisions fifth teams
-                    sortList(&divisionsFifth);
-
-                    if (checkListDoubleResults(&divisionsFifth))
-                        return QList<QStringList>();
-
-                    // get team names from divisions
-                    divisionsFirstNames = getTeamList(&divisionsFirst);
-                    divisionsSecondNames = getTeamList(&divisionsSecond);
-                    divisionsThirdNames = getTeamList(&divisionsThird);
-                    divisionsFourthNames = getTeamList(&divisionsFourth);
-                    divisionsFifthNames = getTeamList(&divisionsFifth);
-
-                    // profi
-                    newDivisionsZw.append(QStringList()
-                                            << divisionsFirstNames.at(0)
-                                            << divisionsFirstNames.at(2)
-                                            << divisionsFirstNames.at(4)
-                                            << divisionsFirstNames.at(6)
-                                            << divisionsFirstNames.at(8));
-
-                    newDivisionsZw.append(QStringList()
-                                            << divisionsFirstNames.at(1)
-                                            << divisionsFirstNames.at(3)
-                                            << divisionsFirstNames.at(5)
-                                            << divisionsFirstNames.at(7)
-                                            << divisionsFirstNames.at(9));
-
-                    // hobby a
-                    newDivisionsZw.append(QStringList()
-                                            << divisionsFirstNames.at(10)
-                                            << divisionsSecondNames.at(0)
-                                            << divisionsSecondNames.at(2)
-                                            << divisionsSecondNames.at(4)
-                                            << divisionsSecondNames.at(6));
-
-                    newDivisionsZw.append(QStringList()
-                                            << divisionsSecondNames.at(1)
-                                            << divisionsSecondNames.at(3)
-                                            << divisionsSecondNames.at(5)
-                                            << divisionsSecondNames.at(7)
-                                            << divisionsSecondNames.at(8));
-
-                    // hobby b
-                    newDivisionsZw.append(QStringList()
-                                            << divisionsSecondNames.at(9)
-                                            << divisionsThirdNames.at(0)
-                                            << divisionsThirdNames.at(2)
-                                            << divisionsThirdNames.at(4)
-                                            << divisionsThirdNames.at(6));
-
-                    newDivisionsZw.append(QStringList()
-                                            << divisionsSecondNames.at(10)
-                                            << divisionsThirdNames.at(1)
-                                            << divisionsThirdNames.at(3)
-                                            << divisionsThirdNames.at(5)
-                                            << divisionsThirdNames.at(7));
-
-                    // hobby c
-                    newDivisionsZw.append(QStringList()
-                                            << divisionsThirdNames.at(8)
-                                            << divisionsThirdNames.at(10)
-                                            << divisionsFourthNames.at(0)
-                                            << divisionsFourthNames.at(2)
-                                            << divisionsFourthNames.at(4));
-
-                    newDivisionsZw.append(QStringList()
-                                            << divisionsThirdNames.at(9)
-                                            << divisionsFourthNames.at(1)
-                                            << divisionsFourthNames.at(3)
-                                            << divisionsFourthNames.at(5)
-                                            << divisionsFourthNames.at(6));
-
-                    // hobby d
-                    newDivisionsZw.append(QStringList()
-                                            << divisionsFourthNames.at(8)
-                                            << divisionsFourthNames.at(10)
-                                            << divisionsFifthNames.at(0)
-                                            << divisionsFifthNames.at(2)
-                                            << divisionsFifthNames.at(4));
-
-                    newDivisionsZw.append(QStringList()
-                                            << divisionsFourthNames.at(7)
-                                            << divisionsFourthNames.at(9)
-                                            << divisionsFifthNames.at(1)
-                                            << divisionsFifthNames.at(3)
-                                            << divisionsFifthNames.at(5));
-
-                    newDivisionsZw.append(QStringList()
-                                            << divisionsFifthNames.at(6)
-                                            << divisionsFifthNames.at(7)
-                                            << divisionsFifthNames.at(8)
-                                            << divisionsFifthNames.at(9)
-                                            << divisionsFifthNames.at(10));
-                }
-
-                    case 60:
-                        // make ranking of all divisions second teams
-                        sortList(&divisionsSecond);
-
-                        if (checkListDoubleResults(&divisionsSecond))
-                            return QList<QStringList>();
-
-                        // make ranking of all divisions third teams
-                        sortList(&divisionsThird);
-
-                        if (checkListDoubleResults(&divisionsThird))
-                            return QList<QStringList>();
-
-                        // make ranking of all divisions fourth teams
-                        sortList(&divisionsFourth);
-
-                        if (checkListDoubleResults(&divisionsFourth))
-                            return QList<QStringList>();
-
-                        // make ranking of all divisions fifth teams
-                        sortList(&divisionsFifth);
-
-                        if (checkListDoubleResults(&divisionsFifth))
-                            return QList<QStringList>();
-
-                        // get team names from divisions
-                        divisionsFirstNames = getTeamList(&divisionsFirst);
-                        divisionsSecondNames = getTeamList(&divisionsSecond);
-                        divisionsThirdNames = getTeamList(&divisionsThird);
-                        divisionsFourthNames = getTeamList(&divisionsFourth);
-                        divisionsFifthNames = getTeamList(&divisionsFifth);
-
-                        // profi
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFirstNames.at(0)
-                                                << divisionsFirstNames.at(1)
-                                                << divisionsFirstNames.at(2)
-                                                << divisionsFirstNames.at(3)
-                                                << divisionsFirstNames.at(4));
-
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFirstNames.at(5)
-                                                << divisionsFirstNames.at(6)
-                                                << divisionsFirstNames.at(7)
-                                                << divisionsFirstNames.at(8)
-                                                << divisionsFirstNames.at(9));
-
-                        // hobby a
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsSecondNames.at(10)
-                                                << divisionsSecondNames.at(0)
-                                                << divisionsSecondNames.at(1)
-                                                << divisionsSecondNames.at(2)
-                                                << divisionsSecondNames.at(3));
-
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsSecondNames.at(11)
-                                                << divisionsSecondNames.at(4)
-                                                << divisionsSecondNames.at(5)
-                                                << divisionsSecondNames.at(6)
-                                                << divisionsSecondNames.at(7));
-
-                        // hobby b
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsSecondNames.at(8)
-                                                << divisionsSecondNames.at(9)
-                                                << divisionsThirdNames.at(0)
-                                                << divisionsThirdNames.at(2)
-                                                << divisionsThirdNames.at(4));
-
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsSecondNames.at(10)
-                                                << divisionsSecondNames.at(11)
-                                                << divisionsThirdNames.at(1)
-                                                << divisionsThirdNames.at(3)
-                                                << divisionsThirdNames.at(5));
-
-                        // hobby c
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsThirdNames.at(6)
-                                                << divisionsThirdNames.at(8)
-                                                << divisionsThirdNames.at(10)
-                                                << divisionsFourthNames.at(0)
-                                                << divisionsFourthNames.at(1));
-
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsThirdNames.at(7)
-                                                << divisionsThirdNames.at(9)
-                                                << divisionsThirdNames.at(11)
-                                                << divisionsFourthNames.at(2)
-                                                << divisionsFourthNames.at(3));
-
-                        // hobby d
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFourthNames.at(4)
-                                                << divisionsFourthNames.at(6)
-                                                << divisionsFourthNames.at(8)
-                                                << divisionsFourthNames.at(10)
-                                                << divisionsFifthNames.at(0));
-
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFourthNames.at(5)
-                                                << divisionsFourthNames.at(7)
-                                                << divisionsFourthNames.at(9)
-                                                << divisionsFourthNames.at(11)
-                                                << divisionsFifthNames.at(1));
-
-                        // hobby e
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFifthNames.at(2)
-                                                << divisionsFifthNames.at(4)
-                                                << divisionsFifthNames.at(6)
-                                                << divisionsFifthNames.at(8)
-                                                << divisionsFifthNames.at(10));
-
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFifthNames.at(3)
-                                                << divisionsFifthNames.at(5)
-                                                << divisionsFifthNames.at(7)
-                                                << divisionsFifthNames.at(9)
-                                                << divisionsFifthNames.at(11));
-
-                        break;
-
-                    default:
-                        log.write("interim team count not correct");
-                        break;
+                    // group J
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[4][5].Team,
+                            divisionRanksFirstToFifth[4][6].Team,
+                            divisionRanksFirstToFifth[4][7].Team,
+                            divisionRanksFirstToFifth[4][8].Team,
+                            divisionRanksFirstToFifth[4][9].Team
+                        });
                 }
             }
             else
             {
-                switch (teamsCount)
+                if(teamsCount == 50)
                 {
-                    case 50:
-                        // get team names from divisions
-                        divisionsFirstNames = getTeamList(&divisionsFirst);
-                        divisionsSecondNames = getTeamList(&divisionsSecond);
-                        divisionsThirdNames = getTeamList(&divisionsThird);
-                        divisionsFourthNames = getTeamList(&divisionsFourth);
-                        divisionsFifthNames = getTeamList(&divisionsFifth);
+                    # region profi
+                    // group A
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[0][0].Team,
+                            divisionRanksFirstToFifth[0][1].Team,
+                            divisionRanksFirstToFifth[1][2].Team,
+                            divisionRanksFirstToFifth[1][3].Team,
+                            divisionRanksFirstToFifth[1][4].Team
+                        });
 
-                        // profi
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFirstNames.at(0)
-                                                << divisionsFirstNames.at(1)
-                                                << divisionsSecondNames.at(2)
-                                                << divisionsSecondNames.at(3)
-                                                << divisionsSecondNames.at(4));
+                    // group B
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[0][2].Team,
+                            divisionRanksFirstToFifth[0][3].Team,
+                            divisionRanksFirstToFifth[1][5].Team,
+                            divisionRanksFirstToFifth[1][6].Team,
+                            divisionRanksFirstToFifth[1][7].Team
+                        });
 
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFirstNames.at(2)
-                                                << divisionsFirstNames.at(3)
-                                                << divisionsSecondNames.at(5)
-                                                << divisionsSecondNames.at(6)
-                                                << divisionsSecondNames.at(7));
+                    // group C
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[0][4].Team,
+                            divisionRanksFirstToFifth[0][5].Team,
+                            divisionRanksFirstToFifth[0][6].Team,
+                            divisionRanksFirstToFifth[1][8].Team,
+                            divisionRanksFirstToFifth[1][9].Team
+                        });
 
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFirstNames.at(4)
-                                                << divisionsFirstNames.at(5)
-                                                << divisionsFirstNames.at(6)
-                                                << divisionsSecondNames.at(8)
-                                                << divisionsSecondNames.at(9));
+                    // group D
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[0][7].Team,
+                            divisionRanksFirstToFifth[0][8].Team,
+                            divisionRanksFirstToFifth[0][9].Team,
+                            divisionRanksFirstToFifth[1][0].Team,
+                            divisionRanksFirstToFifth[1][1].Team
+                        });
+                    #endregion
 
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFirstNames.at(7)
-                                                << divisionsFirstNames.at(8)
-                                                << divisionsFirstNames.at(9)
-                                                << divisionsSecondNames.at(0)
-                                                << divisionsSecondNames.at(1));
+                    #region hobby a
+                    // group A
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[2][0].Team,
+                            divisionRanksFirstToFifth[2][1].Team,
+                            divisionRanksFirstToFifth[3][2].Team,
+                            divisionRanksFirstToFifth[3][3].Team,
+                            divisionRanksFirstToFifth[3][4].Team
+                        });
 
-                        // hobby a
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsThirdNames.at(0)
-                                                << divisionsThirdNames.at(1)
-                                                << divisionsFourthNames.at(2)
-                                                << divisionsFourthNames.at(3)
-                                                << divisionsFourthNames.at(4));
+                    // group B
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[2][2].Team,
+                            divisionRanksFirstToFifth[2][3].Team,
+                            divisionRanksFirstToFifth[3][5].Team,
+                            divisionRanksFirstToFifth[3][6].Team,
+                            divisionRanksFirstToFifth[3][7].Team
+                        });
 
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsThirdNames.at(2)
-                                                << divisionsThirdNames.at(3)
-                                                << divisionsFourthNames.at(5)
-                                                << divisionsFourthNames.at(6)
-                                                << divisionsFourthNames.at(7));
+                    // group C
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[2][4].Team,
+                            divisionRanksFirstToFifth[2][5].Team,
+                            divisionRanksFirstToFifth[2][6].Team,
+                            divisionRanksFirstToFifth[3][8].Team,
+                            divisionRanksFirstToFifth[3][9].Team
+                        });
 
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsThirdNames.at(4)
-                                                << divisionsThirdNames.at(5)
-                                                << divisionsThirdNames.at(6)
-                                                << divisionsFourthNames.at(8)
-                                                << divisionsFourthNames.at(9));
+                    // group D
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[2][7].Team,
+                            divisionRanksFirstToFifth[2][8].Team,
+                            divisionRanksFirstToFifth[2][9].Team,
+                            divisionRanksFirstToFifth[3][0].Team,
+                            divisionRanksFirstToFifth[3][1].Team
+                        });
+                    #endregion
 
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsThirdNames.at(7)
-                                                << divisionsThirdNames.at(8)
-                                                << divisionsThirdNames.at(9)
-                                                << divisionsFourthNames.at(0)
-                                                << divisionsFourthNames.at(1));
+                    #region hobby b
+                    // group A
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[4][0].Team,
+                            divisionRanksFirstToFifth[4][1].Team,
+                            divisionRanksFirstToFifth[4][2].Team,
+                            divisionRanksFirstToFifth[4][3].Team,
+                            divisionRanksFirstToFifth[4][4].Team
+                        });
 
-                        // hobby b
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFifthNames.at(0)
-                                                << divisionsFifthNames.at(1)
-                                                << divisionsFifthNames.at(2)
-                                                << divisionsFifthNames.at(3)
-                                                << divisionsFifthNames.at(4));
+                    // group B
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[4][5].Team,
+                            divisionRanksFirstToFifth[4][6].Team,
+                            divisionRanksFirstToFifth[4][7].Team,
+                            divisionRanksFirstToFifth[4][8].Team,
+                            divisionRanksFirstToFifth[4][9].Team
+                        });
+                    #endregion
+                }
+                else if(teamsCount == 55)
+                {
+                    // make ranking of all divisions second teams
+                    divisionRanksFirstToFifth[1] = giveMeSort(divisionRanksFirstToFifth[1]);
 
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFifthNames.at(5)
-                                                << divisionsFifthNames.at(6)
-                                                << divisionsFifthNames.at(7)
-                                                << divisionsFifthNames.at(8)
-                                                << divisionsFifthNames.at(9));
-                        break;
+                    // make ranking of all divisions fourth teams
+                    divisionRanksFirstToFifth[3] = giveMeSort(divisionRanksFirstToFifth[3]);
 
-                    case 55:
-                        // make ranking of all divisions second teams
-                        sortList(&divisionsSecond);
+                    // make ranking of all divisions fifth teams
+                    divisionRanksFirstToFifth[4] = giveMeSort(divisionRanksFirstToFifth[4]);
 
-                        if (checkListDoubleResults(&divisionsSecond))
-                            return QList<QStringList>();
+                    # region profi
+                    // group A
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[0][0].Team,
+                            divisionRanksFirstToFifth[0][1].Team,
+                            divisionRanksFirstToFifth[0][2].Team,
+                            divisionRanksFirstToFifth[1][3].Team,
+                            divisionRanksFirstToFifth[1][7].Team
+                        });
 
-                        // make ranking of all divisions second teams
-                        sortList(&divisionsFourth);
+                    // group B
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[0][3].Team,
+                            divisionRanksFirstToFifth[0][4].Team,
+                            divisionRanksFirstToFifth[0][5].Team,
+                            divisionRanksFirstToFifth[1][2].Team,
+                            divisionRanksFirstToFifth[1][6].Team
+                        });
 
-                        if (checkListDoubleResults(&divisionsFourth))
-                            return QList<QStringList>();
+                    // group C
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[0][6].Team,
+                            divisionRanksFirstToFifth[0][7].Team,
+                            divisionRanksFirstToFifth[0][8].Team,
+                            divisionRanksFirstToFifth[1][1].Team,
+                            divisionRanksFirstToFifth[1][5].Team
+                        });
 
-                        // make ranking of all divisions second teams
-                        sortList(&divisionsFifth);
+                    // group D
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[0][9].Team,
+                            divisionRanksFirstToFifth[0][10].Team,
+                            divisionRanksFirstToFifth[1][0].Team,
+                            divisionRanksFirstToFifth[1][4].Team,
+                            divisionRanksFirstToFifth[1][8].Team
+                        });
+                    #endregion
 
-                        if (checkListDoubleResults(&divisionsFifth))
-                            return QList<QStringList>();
+                    #region hobby a
+                    // group A
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[1][9].Team,
+                            divisionRanksFirstToFifth[2][6].Team,
+                            divisionRanksFirstToFifth[2][7].Team,
+                            divisionRanksFirstToFifth[2][8].Team,
+                            divisionRanksFirstToFifth[3][6].Team
+                        });
 
-                        // get team names from divisions
-                        divisionsFirstNames = getTeamList(&divisionsFirst);
-                        divisionsSecondNames = getTeamList(&divisionsSecond);
-                        divisionsThirdNames = getTeamList(&divisionsThird);
-                        divisionsFourthNames = getTeamList(&divisionsFourth);
-                        divisionsFifthNames = getTeamList(&divisionsFifth);
+                    // group B
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[1][10].Team,
+                            divisionRanksFirstToFifth[2][9].Team,
+                            divisionRanksFirstToFifth[2][10].Team,
+                            divisionRanksFirstToFifth[3][0].Team,
+                            divisionRanksFirstToFifth[3][5].Team
+                        });
 
-                        // profi
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFirstNames.at(0)
-                                                << divisionsFirstNames.at(1)
-                                                << divisionsFirstNames.at(2)
-                                                << divisionsSecondNames.at(3)
-                                                << divisionsSecondNames.at(7));
+                    // group C
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[2][0].Team,
+                            divisionRanksFirstToFifth[2][1].Team,
+                            divisionRanksFirstToFifth[2][2].Team,
+                            divisionRanksFirstToFifth[3][1].Team,
+                            divisionRanksFirstToFifth[3][4].Team
+                        });
 
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFirstNames.at(3)
-                                                << divisionsFirstNames.at(4)
-                                                << divisionsFirstNames.at(5)
-                                                << divisionsSecondNames.at(2)
-                                                << divisionsSecondNames.at(6));
+                    // group D
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[2][3].Team,
+                            divisionRanksFirstToFifth[2][4].Team,
+                            divisionRanksFirstToFifth[2][5].Team,
+                            divisionRanksFirstToFifth[3][2].Team,
+                            divisionRanksFirstToFifth[3][3].Team
+                        });
+                    #endregion
 
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFirstNames.at(6)
-                                                << divisionsFirstNames.at(7)
-                                                << divisionsFirstNames.at(8)
-                                                << divisionsSecondNames.at(1)
-                                                << divisionsSecondNames.at(5));
+                    #region hobby b
+                    // group A
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[3][7].Team,
+                            divisionRanksFirstToFifth[3][10].Team,
+                            divisionRanksFirstToFifth[4][0].Team,
+                            divisionRanksFirstToFifth[4][3].Team,
+                            divisionRanksFirstToFifth[4][4].Team
+                        });
 
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFirstNames.at(9)
-                                                << divisionsFirstNames.at(10)
-                                                << divisionsSecondNames.at(0)
-                                                << divisionsSecondNames.at(4)
-                                                << divisionsSecondNames.at(8));
+                    // group B
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[3][8].Team,
+                            divisionRanksFirstToFifth[3][9].Team,
+                            divisionRanksFirstToFifth[4][1].Team,
+                            divisionRanksFirstToFifth[4][2].Team,
+                            divisionRanksFirstToFifth[4][5].Team
+                        });
 
-                        // hobby a
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsSecondNames.at(9)
-                                                << divisionsThirdNames.at(6)
-                                                << divisionsThirdNames.at(7)
-                                                << divisionsThirdNames.at(8)
-                                                << divisionsFourthNames.at(6));
+                    // group C
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[4][6].Team,
+                            divisionRanksFirstToFifth[4][7].Team,
+                            divisionRanksFirstToFifth[4][8].Team,
+                            divisionRanksFirstToFifth[4][9].Team,
+                            divisionRanksFirstToFifth[4][10].Team
+                        });
+                    #endregion
+                }
+                else if (teamsCount == 60)
+                {
+                    // make ranking of all divisions second teams
+                    divisionRanksFirstToFifth[1] = giveMeSort(divisionRanksFirstToFifth[1]);
 
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsSecondNames.at(10)
-                                                << divisionsThirdNames.at(9)
-                                                << divisionsThirdNames.at(10)
-                                                << divisionsFourthNames.at(0)
-                                                << divisionsFourthNames.at(5));
+                    // make ranking of all divisions fourth teams
+                    divisionRanksFirstToFifth[3] = giveMeSort(divisionRanksFirstToFifth[3]);
 
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsThirdNames.at(0)
-                                                << divisionsThirdNames.at(1)
-                                                << divisionsThirdNames.at(2)
-                                                << divisionsFourthNames.at(1)
-                                                << divisionsFourthNames.at(4));
+                    # region profi
+                    // group A
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[0][0].Team,
+                            divisionRanksFirstToFifth[0][1].Team,
+                            divisionRanksFirstToFifth[0][2].Team,
+                            divisionRanksFirstToFifth[1][0].Team,
+                            divisionRanksFirstToFifth[1][7].Team
+                        });
 
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsThirdNames.at(3)
-                                                << divisionsThirdNames.at(4)
-                                                << divisionsThirdNames.at(5)
-                                                << divisionsFourthNames.at(2)
-                                                << divisionsFourthNames.at(3));
+                    // group B
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[0][3].Team,
+                            divisionRanksFirstToFifth[0][4].Team,
+                            divisionRanksFirstToFifth[0][5].Team,
+                            divisionRanksFirstToFifth[1][1].Team,
+                            divisionRanksFirstToFifth[1][6].Team
+                        });
 
-                        // hobby b
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFourthNames.at(7)
-                                                << divisionsFourthNames.at(10)
-                                                << divisionsFifthNames.at(0)
-                                                << divisionsFifthNames.at(3)
-                                                << divisionsFifthNames.at(4));
+                    // group C
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[0][6].Team,
+                            divisionRanksFirstToFifth[0][7].Team,
+                            divisionRanksFirstToFifth[0][8].Team,
+                            divisionRanksFirstToFifth[1][2].Team,
+                            divisionRanksFirstToFifth[1][5].Team
+                        });
 
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFourthNames.at(8)
-                                                << divisionsFourthNames.at(9)
-                                                << divisionsFifthNames.at(1)
-                                                << divisionsFifthNames.at(2)
-                                                << divisionsFifthNames.at(5));
+                    // group D
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[0][9].Team,
+                            divisionRanksFirstToFifth[0][10].Team,
+                            divisionRanksFirstToFifth[0][11].Team,
+                            divisionRanksFirstToFifth[1][3].Team,
+                            divisionRanksFirstToFifth[1][4].Team
+                        });
+                    #endregion
 
-                        // hobby c
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFifthNames.at(6)
-                                                << divisionsFifthNames.at(7)
-                                                << divisionsFifthNames.at(8)
-                                                << divisionsFifthNames.at(9)
-                                                << divisionsFifthNames.at(10));
+                    # region hobby a
+                    // group A
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[1][8].Team,
+                            divisionRanksFirstToFifth[2][0].Team,
+                            divisionRanksFirstToFifth[2][1].Team,
+                            divisionRanksFirstToFifth[2][2].Team,
+                            divisionRanksFirstToFifth[3][3].Team
+                        });
 
-                        break;
+                    // group B
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[1][9].Team,
+                            divisionRanksFirstToFifth[2][3].Team,
+                            divisionRanksFirstToFifth[2][4].Team,
+                            divisionRanksFirstToFifth[2][5].Team,
+                            divisionRanksFirstToFifth[3][2].Team
+                        });
 
-                    case 60:
-                        // make ranking of all divisions second teams
-                        sortList(&divisionsSecond);
+                    // group C
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[1][10].Team,
+                            divisionRanksFirstToFifth[2][6].Team,
+                            divisionRanksFirstToFifth[2][7].Team,
+                            divisionRanksFirstToFifth[2][8].Team,
+                            divisionRanksFirstToFifth[3][1].Team
+                        });
 
-                        if (checkListDoubleResults(&divisionsSecond))
-                            return QList<QStringList>();
+                    // group D
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[1][11].Team,
+                            divisionRanksFirstToFifth[2][9].Team,
+                            divisionRanksFirstToFifth[2][10].Team,
+                            divisionRanksFirstToFifth[2][11].Team,
+                            divisionRanksFirstToFifth[3][0].Team
+                        });
+                    #endregion
 
-                        // make ranking of all divisions second teams
-                        sortList(&divisionsFourth);
+                    #region hobby b
+                    // group A
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[3][4].Team,
+                            divisionRanksFirstToFifth[3][11].Team,
+                            divisionRanksFirstToFifth[4][0].Team,
+                            divisionRanksFirstToFifth[4][1].Team,
+                            divisionRanksFirstToFifth[4][2].Team
+                        });
 
-                        if (checkListDoubleResults(&divisionsFourth))
-                            return QList<QStringList>();
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[3][5].Team,
+                            divisionRanksFirstToFifth[3][10].Team,
+                            divisionRanksFirstToFifth[4][3].Team,
+                            divisionRanksFirstToFifth[4][4].Team,
+                            divisionRanksFirstToFifth[4][5].Team
+                        });
 
-                        // get team names from divisions
-                        divisionsFirstNames = getTeamList(&divisionsFirst);
-                        divisionsSecondNames = getTeamList(&divisionsSecond);
-                        divisionsThirdNames = getTeamList(&divisionsThird);
-                        divisionsFourthNames = getTeamList(&divisionsFourth);
-                        divisionsFifthNames = getTeamList(&divisionsFifth);
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[3][6].Team,
+                            divisionRanksFirstToFifth[3][9].Team,
+                            divisionRanksFirstToFifth[4][6].Team,
+                            divisionRanksFirstToFifth[4][7].Team,
+                            divisionRanksFirstToFifth[4][8].Team
+                        });
 
-                        // profi
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFirstNames.at(0)
-                                                << divisionsFirstNames.at(1)
-                                                << divisionsFirstNames.at(2)
-                                                << divisionsSecondNames.at(0)
-                                                << divisionsSecondNames.at(7));
-
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFirstNames.at(3)
-                                                << divisionsFirstNames.at(4)
-                                                << divisionsFirstNames.at(5)
-                                                << divisionsSecondNames.at(1)
-                                                << divisionsSecondNames.at(6));
-
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFirstNames.at(6)
-                                                << divisionsFirstNames.at(7)
-                                                << divisionsFirstNames.at(8)
-                                                << divisionsSecondNames.at(2)
-                                                << divisionsSecondNames.at(5));
-
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFirstNames.at(9)
-                                                << divisionsFirstNames.at(10)
-                                                << divisionsFirstNames.at(11)
-                                                << divisionsSecondNames.at(3)
-                                                << divisionsSecondNames.at(4));
-
-                        // hobby a
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsSecondNames.at(8)
-                                                << divisionsThirdNames.at(0)
-                                                << divisionsThirdNames.at(1)
-                                                << divisionsThirdNames.at(2)
-                                                << divisionsFourthNames.at(3));
-
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsSecondNames.at(9)
-                                                << divisionsThirdNames.at(3)
-                                                << divisionsThirdNames.at(4)
-                                                << divisionsThirdNames.at(5)
-                                                << divisionsFourthNames.at(2));
-
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsSecondNames.at(10)
-                                                << divisionsThirdNames.at(6)
-                                                << divisionsThirdNames.at(7)
-                                                << divisionsThirdNames.at(8)
-                                                << divisionsFourthNames.at(1));
-
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsSecondNames.at(11)
-                                                << divisionsThirdNames.at(9)
-                                                << divisionsThirdNames.at(10)
-                                                << divisionsThirdNames.at(11)
-                                                << divisionsFourthNames.at(0));
-
-                        // hobby b
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFourthNames.at(4)
-                                                << divisionsFourthNames.at(11)
-                                                << divisionsFifthNames.at(0)
-                                                << divisionsFifthNames.at(1)
-                                                << divisionsFifthNames.at(2));
-
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFourthNames.at(5)
-                                                << divisionsFourthNames.at(10)
-                                                << divisionsFifthNames.at(3)
-                                                << divisionsFifthNames.at(4)
-                                                << divisionsFifthNames.at(5));
-
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFourthNames.at(6)
-                                                << divisionsFourthNames.at(9)
-                                                << divisionsFifthNames.at(6)
-                                                << divisionsFifthNames.at(7)
-                                                << divisionsFifthNames.at(8));
-
-                        newDivisionsZw.append(QStringList()
-                                                << divisionsFourthNames.at(7)
-                                                << divisionsFourthNames.at(8)
-                                                << divisionsFifthNames.at(9)
-                                                << divisionsFifthNames.at(10)
-                                                << divisionsFifthNames.at(11));
-                        break;
-
-                    default: logMessages("ZWISCHENRUNDE_ERROR:: team count not correct");
+                    newDivisionList.Add(new List<string>() {
+                            divisionRanksFirstToFifth[3][7].Team,
+                            divisionRanksFirstToFifth[3][8].Team,
+                            divisionRanksFirstToFifth[4][9].Team,
+                            divisionRanksFirstToFifth[4][10].Team,
+                            divisionRanksFirstToFifth[4][11].Team
+                        });
+                    #endregion
                 }
             }
 

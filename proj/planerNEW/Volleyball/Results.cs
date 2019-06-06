@@ -127,14 +127,14 @@ namespace Volleyball
 
         private void Results_Resize(object sender, EventArgs e)
         {
-            int formHeightDrittel = ( this.Size.Height - 30 ) / 3;
+            int formHeightViertel = ( this.Size.Height - 30 ) / 4;
 
             foreach(Object obj in this.Controls)
             {
                 if( obj is Panel )
                 {
                     Panel pan = (Panel)obj;
-                    pan.Height = formHeightDrittel;
+                    pan.Height = formHeightViertel;
 
                     int panWidthDrittel = pan.Size.Width / 3;
 

@@ -55,6 +55,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.groupBoxA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewA)).BeginInit();
             this.groupBoxB.SuspendLayout();
@@ -82,6 +83,7 @@
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxA
@@ -160,9 +162,9 @@
             // 
             this.groupBoxD.Controls.Add(this.dataGridViewD);
             this.groupBoxD.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBoxD.Location = new System.Drawing.Point(900, 0);
+            this.groupBoxD.Location = new System.Drawing.Point(600, 0);
             this.groupBoxD.Name = "groupBoxD";
-            this.groupBoxD.Size = new System.Drawing.Size(300, 100);
+            this.groupBoxD.Size = new System.Drawing.Size(300, 134);
             this.groupBoxD.TabIndex = 3;
             this.groupBoxD.TabStop = false;
             this.groupBoxD.Text = "Gruppe D";
@@ -176,7 +178,7 @@
             this.dataGridViewD.Location = new System.Drawing.Point(3, 16);
             this.dataGridViewD.Name = "dataGridViewD";
             this.dataGridViewD.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridViewD.Size = new System.Drawing.Size(294, 81);
+            this.dataGridViewD.Size = new System.Drawing.Size(294, 115);
             this.dataGridViewD.TabIndex = 0;
             this.dataGridViewD.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViews_CellValueChanged);
             // 
@@ -186,7 +188,7 @@
             this.groupBoxE.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBoxE.Location = new System.Drawing.Point(0, 0);
             this.groupBoxE.Name = "groupBoxE";
-            this.groupBoxE.Size = new System.Drawing.Size(300, 100);
+            this.groupBoxE.Size = new System.Drawing.Size(300, 134);
             this.groupBoxE.TabIndex = 4;
             this.groupBoxE.TabStop = false;
             this.groupBoxE.Text = "Gruppe E";
@@ -200,7 +202,7 @@
             this.dataGridViewE.Location = new System.Drawing.Point(3, 16);
             this.dataGridViewE.Name = "dataGridViewE";
             this.dataGridViewE.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridViewE.Size = new System.Drawing.Size(294, 81);
+            this.dataGridViewE.Size = new System.Drawing.Size(294, 115);
             this.dataGridViewE.TabIndex = 0;
             this.dataGridViewE.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViews_CellValueChanged);
             // 
@@ -210,7 +212,7 @@
             this.groupBoxF.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBoxF.Location = new System.Drawing.Point(300, 0);
             this.groupBoxF.Name = "groupBoxF";
-            this.groupBoxF.Size = new System.Drawing.Size(300, 100);
+            this.groupBoxF.Size = new System.Drawing.Size(300, 134);
             this.groupBoxF.TabIndex = 5;
             this.groupBoxF.TabStop = false;
             this.groupBoxF.Text = "Gruppe F";
@@ -224,7 +226,7 @@
             this.dataGridViewF.Location = new System.Drawing.Point(3, 16);
             this.dataGridViewF.Name = "dataGridViewF";
             this.dataGridViewF.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridViewF.Size = new System.Drawing.Size(294, 81);
+            this.dataGridViewF.Size = new System.Drawing.Size(294, 115);
             this.dataGridViewF.TabIndex = 0;
             this.dataGridViewF.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViews_CellValueChanged);
             // 
@@ -234,7 +236,7 @@
             this.groupBoxG.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBoxG.Location = new System.Drawing.Point(600, 0);
             this.groupBoxG.Name = "groupBoxG";
-            this.groupBoxG.Size = new System.Drawing.Size(300, 100);
+            this.groupBoxG.Size = new System.Drawing.Size(300, 147);
             this.groupBoxG.TabIndex = 6;
             this.groupBoxG.TabStop = false;
             this.groupBoxG.Text = "Gruppe G";
@@ -248,7 +250,7 @@
             this.dataGridViewG.Location = new System.Drawing.Point(3, 16);
             this.dataGridViewG.Name = "dataGridViewG";
             this.dataGridViewG.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridViewG.Size = new System.Drawing.Size(294, 81);
+            this.dataGridViewG.Size = new System.Drawing.Size(294, 128);
             this.dataGridViewG.TabIndex = 0;
             this.dataGridViewG.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViews_CellValueChanged);
             // 
@@ -256,9 +258,9 @@
             // 
             this.groupBoxH.Controls.Add(this.dataGridViewH);
             this.groupBoxH.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBoxH.Location = new System.Drawing.Point(900, 0);
+            this.groupBoxH.Location = new System.Drawing.Point(300, 0);
             this.groupBoxH.Name = "groupBoxH";
-            this.groupBoxH.Size = new System.Drawing.Size(300, 100);
+            this.groupBoxH.Size = new System.Drawing.Size(300, 147);
             this.groupBoxH.TabIndex = 7;
             this.groupBoxH.TabStop = false;
             this.groupBoxH.Text = "Gruppe H";
@@ -272,7 +274,7 @@
             this.dataGridViewH.Location = new System.Drawing.Point(3, 16);
             this.dataGridViewH.Name = "dataGridViewH";
             this.dataGridViewH.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridViewH.Size = new System.Drawing.Size(294, 81);
+            this.dataGridViewH.Size = new System.Drawing.Size(294, 128);
             this.dataGridViewH.TabIndex = 0;
             this.dataGridViewH.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViews_CellValueChanged);
             // 
@@ -282,7 +284,7 @@
             this.groupBoxI.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBoxI.Location = new System.Drawing.Point(0, 0);
             this.groupBoxI.Name = "groupBoxI";
-            this.groupBoxI.Size = new System.Drawing.Size(300, 100);
+            this.groupBoxI.Size = new System.Drawing.Size(300, 147);
             this.groupBoxI.TabIndex = 8;
             this.groupBoxI.TabStop = false;
             this.groupBoxI.Text = "Gruppe I";
@@ -296,7 +298,7 @@
             this.dataGridViewI.Location = new System.Drawing.Point(3, 16);
             this.dataGridViewI.Name = "dataGridViewI";
             this.dataGridViewI.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridViewI.Size = new System.Drawing.Size(294, 81);
+            this.dataGridViewI.Size = new System.Drawing.Size(294, 128);
             this.dataGridViewI.TabIndex = 0;
             this.dataGridViewI.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViews_CellValueChanged);
             // 
@@ -304,9 +306,9 @@
             // 
             this.groupBoxJ.Controls.Add(this.dataGridViewJ);
             this.groupBoxJ.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBoxJ.Location = new System.Drawing.Point(300, 0);
+            this.groupBoxJ.Location = new System.Drawing.Point(0, 0);
             this.groupBoxJ.Name = "groupBoxJ";
-            this.groupBoxJ.Size = new System.Drawing.Size(300, 100);
+            this.groupBoxJ.Size = new System.Drawing.Size(300, 140);
             this.groupBoxJ.TabIndex = 9;
             this.groupBoxJ.TabStop = false;
             this.groupBoxJ.Text = "Gruppe J";
@@ -320,7 +322,7 @@
             this.dataGridViewJ.Location = new System.Drawing.Point(3, 16);
             this.dataGridViewJ.Name = "dataGridViewJ";
             this.dataGridViewJ.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridViewJ.Size = new System.Drawing.Size(294, 81);
+            this.dataGridViewJ.Size = new System.Drawing.Size(294, 121);
             this.dataGridViewJ.TabIndex = 0;
             this.dataGridViewJ.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViews_CellValueChanged);
             // 
@@ -328,9 +330,9 @@
             // 
             this.groupBoxK.Controls.Add(this.dataGridViewK);
             this.groupBoxK.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBoxK.Location = new System.Drawing.Point(600, 0);
+            this.groupBoxK.Location = new System.Drawing.Point(300, 0);
             this.groupBoxK.Name = "groupBoxK";
-            this.groupBoxK.Size = new System.Drawing.Size(300, 100);
+            this.groupBoxK.Size = new System.Drawing.Size(300, 140);
             this.groupBoxK.TabIndex = 10;
             this.groupBoxK.TabStop = false;
             this.groupBoxK.Text = "Gruppe K";
@@ -344,7 +346,7 @@
             this.dataGridViewK.Location = new System.Drawing.Point(3, 16);
             this.dataGridViewK.Name = "dataGridViewK";
             this.dataGridViewK.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridViewK.Size = new System.Drawing.Size(294, 81);
+            this.dataGridViewK.Size = new System.Drawing.Size(294, 121);
             this.dataGridViewK.TabIndex = 0;
             this.dataGridViewK.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViews_CellValueChanged);
             // 
@@ -352,9 +354,9 @@
             // 
             this.groupBoxL.Controls.Add(this.dataGridViewL);
             this.groupBoxL.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBoxL.Location = new System.Drawing.Point(900, 0);
+            this.groupBoxL.Location = new System.Drawing.Point(600, 0);
             this.groupBoxL.Name = "groupBoxL";
-            this.groupBoxL.Size = new System.Drawing.Size(300, 100);
+            this.groupBoxL.Size = new System.Drawing.Size(300, 140);
             this.groupBoxL.TabIndex = 11;
             this.groupBoxL.TabStop = false;
             this.groupBoxL.Text = "Gruppe L";
@@ -368,51 +370,60 @@
             this.dataGridViewL.Location = new System.Drawing.Point(3, 16);
             this.dataGridViewL.Name = "dataGridViewL";
             this.dataGridViewL.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridViewL.Size = new System.Drawing.Size(294, 81);
+            this.dataGridViewL.Size = new System.Drawing.Size(294, 121);
             this.dataGridViewL.TabIndex = 0;
             this.dataGridViewL.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViews_CellValueChanged);
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.groupBoxD);
             this.panel1.Controls.Add(this.groupBoxC);
             this.panel1.Controls.Add(this.groupBoxB);
             this.panel1.Controls.Add(this.groupBoxA);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1224, 100);
+            this.panel1.Size = new System.Drawing.Size(930, 100);
             this.panel1.TabIndex = 12;
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.groupBoxH);
-            this.panel2.Controls.Add(this.groupBoxG);
+            this.panel2.Controls.Add(this.groupBoxD);
             this.panel2.Controls.Add(this.groupBoxF);
             this.panel2.Controls.Add(this.groupBoxE);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 100);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1224, 100);
+            this.panel2.Size = new System.Drawing.Size(930, 134);
             this.panel2.TabIndex = 13;
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.groupBoxL);
-            this.panel3.Controls.Add(this.groupBoxK);
-            this.panel3.Controls.Add(this.groupBoxJ);
+            this.panel3.Controls.Add(this.groupBoxG);
+            this.panel3.Controls.Add(this.groupBoxH);
             this.panel3.Controls.Add(this.groupBoxI);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 200);
+            this.panel3.Location = new System.Drawing.Point(0, 234);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1224, 100);
+            this.panel3.Size = new System.Drawing.Size(930, 147);
             this.panel3.TabIndex = 14;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.groupBoxL);
+            this.panel4.Controls.Add(this.groupBoxK);
+            this.panel4.Controls.Add(this.groupBoxJ);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 381);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(930, 140);
+            this.panel4.TabIndex = 15;
             // 
             // Results
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1224, 306);
+            this.ClientSize = new System.Drawing.Size(930, 540);
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -446,6 +457,7 @@
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -479,5 +491,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
     }
 }

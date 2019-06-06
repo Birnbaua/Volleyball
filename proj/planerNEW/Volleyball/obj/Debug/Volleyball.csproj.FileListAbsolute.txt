@@ -20,3 +20,14 @@ C:\appl\github\Volleyball\proj\planerNEW\Volleyball\obj\Debug\Volleyball.csproj.
 C:\appl\github\Volleyball\proj\planerNEW\Volleyball\obj\Debug\Volleyball.csproj.CoreCompileInputs.cache
 C:\appl\github\Volleyball\proj\planerNEW\Volleyball\obj\Debug\Volleyball.exe
 C:\appl\github\Volleyball\proj\planerNEW\Volleyball\obj\Debug\Volleyball.pdb
+C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\bin\Debug\Volleyball.exe.config
+C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\obj\Debug\Volleyball.exe
+C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\obj\Debug\Volleyball.pdb
+C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\obj\Debug\Volleyball.FormMain.resources
+C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\obj\Debug\Volleyball.Properties.Resources.resources
+C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\obj\Debug\Volleyball.Results.resources
+C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\obj\Debug\Volleyball.csproj.GenerateResource.Cache
+C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\bin\Debug\Volleyball.exe
+C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\bin\Debug\Volleyball.pdb
+C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\obj\Debug\Volleyball.csprojAssemblyReference.cache
+C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\obj\Debug\Volleyball.csproj.CoreCompileInputs.cache

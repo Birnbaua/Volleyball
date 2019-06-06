@@ -22,9 +22,10 @@ namespace Volleyball
         static bool lockAction = false;
         static readonly List<Color> rowColors = new List<Color>() { Color.Yellow, Color.LightGray, Color.Cyan, Color.Magenta };
         Settings settings;
-        DataTable dtFields, dtTeams, dtQualifying, dtInterim;
+        DataTable dtFields, dtTeams, dtQualifying, dtInterim, dtCrossgames;
         QualifyingGames qg;
         InterimGames ig;
+        CrossGames cg;
         Logging log;
         List<List<String>> divisionsTeamList;
         List<String> fieldNames;
@@ -849,6 +850,16 @@ namespace Volleyball
             rs.saveChangesEvent += saveQualifying;
             rs.ShowDialog();
         }
+
+        private void TextBoxQualifyingFilter_TextChanged(object sender, EventArgs e)
+        {
+            (dataGridViewQualifyingRound.DataSource as DataTable).DefaultView.RowFilter = string.Format("[Team A] LIKE '{0}%' OR [Team B] LIKE '{0}%' OR Schiedsrichter LIKE '{0}%'", textBoxQualifyingFilter.Text);
+
+            if ((dataGridViewQualifyingRound.DataSource as DataTable).DefaultView.Count == qg.matchData.Count)
+            {
+                setRowColorsForEachRound(dataGridViewQualifyingRound);
+            }
+        }
         #endregion
         #endregion
 
@@ -895,7 +906,7 @@ namespace Volleyball
 
             ig.setParameters(qg.resultData,
                                 gamePlan,
-                                qg.matchData[qg.matchData.Count].Time,
+                                qg.matchData[qg.matchData.Count - 1].Time,
                                 settings.PauseBetweenQualifyingInterim,
                                 settings.SetsInterim,
                                 settings.MinutesPerSetInterim,
@@ -903,8 +914,8 @@ namespace Volleyball
                                 fieldNames.Count,
                                 countTeams(),
                                 fieldNames,
-                                qg.matchData[qg.matchData.Count].Round + 1,
-                                qg.matchData[qg.matchData.Count].Game + 1,
+                                qg.matchData[qg.matchData.Count - 1].Round + 1,
+                                qg.matchData[qg.matchData.Count - 1].Game + 1,
                                 true); //TODO!!!
 
             ig.resultData.Clear();
@@ -1009,7 +1020,9 @@ namespace Volleyball
         {
             lockAction = true;
 
-            if (ig != null)
+            List<String> doubleResults = qg.checkEqualDivisionResults();
+
+            if (doubleResults.Count == 0 && ig != null)
             {
                 log.write("generate interim games");
 
@@ -1034,6 +1047,11 @@ namespace Volleyball
                 saveInterim();
 
                 setRowColorsForEachRound(dataGridViewInterimRound);
+            }
+            else
+            {
+                MessageBox.Show("Achtung gleiche Punktestände gefunden! '" + doubleResults[0] + "' = '" + doubleResults[1] + "'! Zwischenrunde wird NICHT generiert!");
+                log.write("found double team results " + doubleResults[0] + " = " + doubleResults[1]);
             }
 
             lockAction = false;
@@ -1071,6 +1089,119 @@ namespace Volleyball
             rs.saveChangesEvent += saveInterim;
             rs.ShowDialog();
         }
+
+        private void TextBoxInterimFilter_TextChanged(object sender, EventArgs e)
+        {
+            (dataGridViewInterimRound.DataSource as DataTable).DefaultView.RowFilter = string.Format("[Team A] LIKE '{0}%' OR [Team B] LIKE '{0}%' OR Schiedsrichter LIKE '{0}%'", textBoxQualifyingFilter.Text);
+
+            if ((dataGridViewInterimRound.DataSource as DataTable).DefaultView.Count == ig.matchData.Count)
+            {
+                setRowColorsForEachRound(dataGridViewInterimRound);
+            }
+        }
+        #endregion
+        #endregion
+
+        #region crossgames
+        #region data actions
+        void initDataTableCrossgames()
+        {
+            dtCrossgames = new DataTable("dtCrossgames");
+            dtCrossgames.Columns.Add("Spiel");
+            dtCrossgames.Columns.Add("Runde");
+            dtCrossgames.Columns.Add("Zeit");
+            dtCrossgames.Columns.Add("Feldnr.");
+            dtCrossgames.Columns.Add("Feldname");
+            dtCrossgames.Columns.Add("Team A");
+            dtCrossgames.Columns.Add("Team B");
+            dtCrossgames.Columns.Add("Schiedsrichter");
+            dtCrossgames.Columns.Add("Satz 1 A");
+            dtCrossgames.Columns.Add("Satz 1 B");
+            dtCrossgames.Columns.Add("Satz 2 A");
+            dtCrossgames.Columns.Add("Satz 2 B");
+            dtCrossgames.Columns.Add("Satz 3 A");
+            dtCrossgames.Columns.Add("Satz 3 B");
+
+            typeof(DataGridView).InvokeMember("DoubleBuffered",
+                                                BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.SetProperty,
+                                                null,
+                                                dataGridViewCrossgamesRound,
+                                                new object[] { true });
+
+            dataGridViewCrossgamesRound.DataSource = dtInterim;
+
+            cg = new CrossGames(log);
+
+            loadDataCrossgamesFromFile();
+
+            loadCrossgames();
+        }
+
+        void loadDataCrossgamesFromFile()
+        {
+            cg.matchData.Clear();
+
+            cg.matchData = LoadMatchDataFromFile(crossgamesFileName);
+
+            cg.setParameters(ig.resultData,
+                                ig.matchData[ig.matchData.Count - 1].Time,
+                                settings.PauseBetweenInterimCrossgames,
+                                settings.SetsCrossgames,
+                                settings.MinutesPerSetCrossgame,
+                                settings.PausePerSetCrossgame,
+                                fieldNames.Count,
+                                countTeams(),
+                                fieldNames,
+                                ig.matchData[ig.matchData.Count - 1].Round + 1,
+                                ig.matchData[ig.matchData.Count - 1].Game + 1,
+                                true); //TODO!!!
+
+            cg.resultData.Clear();
+        }
+
+        void loadCrossgames()
+        {
+            if (cg != null)
+            {
+                if (cg.matchData.Count > 0)
+                {
+                    foreach (MatchData md in cg.matchData)
+                    {
+                        dtCrossgames.Rows.Add(new object[] { md.Game,
+                                                            md.Round,
+                                                            md.Time.ToString("HH:mm"),
+                                                            md.FieldNumber,
+                                                            md.FieldName,
+                                                            md.TeamA,
+                                                            md.TeamB,
+                                                            md.Referee,
+                                                            md.PointsMatch1TeamA,
+                                                            md.PointsMatch1TeamB,
+                                                            md.PointsMatch2TeamA,
+                                                            md.PointsMatch2TeamB,
+                                                            md.PointsMatch3TeamA,
+                                                            md.PointsMatch3TeamB });
+                    }
+                }
+            }
+        }
+
+        void saveCrossgames()
+        {
+            if (cg != null)
+            {
+                log.write("calculating crossgame results");
+
+                cg.calculateResults();
+
+                cg.sortResults();
+
+                SaveMatchDataToFile(crossgamesFileName, cg.matchData);
+            }
+        }
+        #endregion
+
+        #region form actions
         #endregion
         #endregion
     }

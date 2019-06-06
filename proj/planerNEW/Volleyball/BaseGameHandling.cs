@@ -178,42 +178,35 @@ namespace Volleyball
         // check equal division results
         public List<String> checkEqualDivisionResults()
         {
-            List<String> result = new List<String>();
+            // help lists
+            List<List<ResultData>> divisionRanksFirstToFifth = new List<List<ResultData>>();
 
-            for (int i = 0; i < resultData.Count; i++)
+            for (int i = 0; i < 5; i++)
             {
-                /*List<List<String>> getTeams = readDatabase("select distinct ms1.ms from " + resultTableName
-                                                           + prefix + " ms1, (select ms, satz, punkte, intern from " + resultTableName
-                                                           + prefix + ") ms2 where ms1.satz = ms2.satz and  ms1.punkte = ms2.punkte and ms1.intern = ms2.intern and ms1.ms != ms2.ms");
+                List<ResultData> nextRank = new List<ResultData>();
 
-                if (getTeams.Count == 2)
+                foreach (List<ResultData> rdList in resultData)
                 {
-                    List<String> team1 = getTeams[0];
-                    List<String> team2 = getTeams[1];
-                    String gamenumber = readDatabase("SELECT spiel from " + round + " where ms_a = '"
-                                                 + team1[0] + "' and ms_b = '" + team2[0] + "' or ms_a = '"
-                                                 + team2[0] + "' and ms_b = '" + team1[0] + "'")[0][0];
-
-                    result.Add("0");
-                    result.Add(gamenumber);
-                    result.Add(team1[0]);
-                    result.Add(team2[0]);
-                    return result;
+                    if (rdList.Count > i)
+                        nextRank.Add(rdList[i]);
                 }
-                else if (getTeams.Count > 2)
-                {
-                    List<String> teams = new List<String>();
 
-                    teams.Add("1");
-
-                    foreach (List<String> team in getTeams)
-                        teams.Add(team[0]);
-
-                    return teams;
-                }*/
+                divisionRanksFirstToFifth.Add(nextRank);
             }
 
-            return result;
+            foreach (List<ResultData> rdList in divisionRanksFirstToFifth)
+            {
+                for (int i = 1; i < rdList.Count; i++)
+                {
+                    if(rdList[i - 1].PointsSets == rdList[i].PointsSets
+                        && rdList[i - 1].PointsMatches == rdList[i].PointsMatches)
+                    {
+                        return new List<String>(){ rdList[i - 1].Team, rdList[i].Team };
+                    }
+                }
+            }
+
+            return null;
         }
 
         public void sortResults()
