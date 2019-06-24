@@ -51,14 +51,17 @@ namespace Volleyball
 
         public void generateGames()
         {
+            // clear matches if already existing
+            matchData.Clear();
+
             divisionsList = generateNewDivisions();
 
             // generate game plan over all divisonal games
             if (divisionsList.Count > 0 && generateGamePlan())
             {
-                insertGameNumber();
+                insertGameNumber(lastGameNr);
 
-                insertRoundNumber(teamsCount, fieldCount);
+                insertRoundNumber(lastRoundNr, fieldCount);
 
                 insertGameTime(startRound);
 
@@ -120,22 +123,34 @@ namespace Volleyball
 
         List<ResultData> giveMeSort(List<ResultData> divisionTeams)
         {
-            for(int i = 0; i < divisionTeams.Count; i++)
+            for (int i = divisionTeams.Count - 1; i > 0; i--)
             {
-                if(divisionTeams[i].PointsSets < divisionTeams[i + 1].PointsSets)
+                for (int ii = 0; ii < i; ii++)
                 {
-                    ResultData team = divisionTeams[i];
+                    if (divisionTeams[ii].PointsSets < divisionTeams[ii + 1].PointsSets)
+                    {
+                        ResultData team = divisionTeams[ii];
 
-                    divisionTeams[i] = divisionTeams[i + 1];
-                    divisionTeams[i + 1] = team;
-                }
-                else if(divisionTeams[i].PointsSets == divisionTeams[i + 1].PointsSets
-                    && divisionTeams[i].PointsMatches < divisionTeams[i + 1].PointsMatches)
-                {
-                    ResultData team = divisionTeams[i];
+                        divisionTeams[ii] = divisionTeams[ii + 1];
+                        divisionTeams[ii + 1] = team;
+                    }
+                    else if (divisionTeams[ii].PointsSets == divisionTeams[ii + 1].PointsSets
+                        && divisionTeams[ii].PointsMatches < divisionTeams[ii + 1].PointsMatches)
+                    {
+                        ResultData team = divisionTeams[ii];
 
-                    divisionTeams[i] = divisionTeams[i + 1];
-                    divisionTeams[i + 1] = team;
+                        divisionTeams[ii] = divisionTeams[ii + 1];
+                        divisionTeams[ii + 1] = team;
+                    }
+                    else if (divisionTeams[ii].PointsSets == divisionTeams[ii + 1].PointsSets
+                        && divisionTeams[ii].PointsMatches == divisionTeams[ii + 1].PointsMatches
+                        && divisionTeams[ii].ExternalRank < divisionTeams[ii + 1].ExternalRank)
+                    {
+                        ResultData team = divisionTeams[ii];
+
+                        divisionTeams[ii] = divisionTeams[ii + 1];
+                        divisionTeams[ii + 1] = team;
+                    }
                 }
             }
 

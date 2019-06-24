@@ -171,7 +171,11 @@ namespace Volleyball
             }
             else if(tabName == "tabPageInterim")
             {
-                setRowColorsForEachRound(dataGridViewQualifyingRound);
+                setRowColorsForEachRound(dataGridViewInterimRound);
+            }
+            else if (tabName == "tabPageCrossgames")
+            {
+                setRowColorsForEachRound(dataGridViewCrossgamesRound);
             }
         }
         #endregion
@@ -554,8 +558,11 @@ namespace Volleyball
 
             for(int i = 0; i < dtTeams.Rows.Count; i++)
             {
-                for(int ii = 0; ii < dtTeams.Columns.Count; ii++)
-                    count++;
+                for (int ii = 0; ii < dtTeams.Columns.Count; ii++)
+                {
+                    if(dtTeams.Rows[i][ii].ToString() != "")
+                        count++;
+                }
             }
 
             return count;
@@ -788,7 +795,7 @@ namespace Volleyball
         {
             lockAction = true;
 
-            if (qg != null)
+            if (qg != null && qg.matchData.Count == 0)
             {
                 log.write("generate qualifying games");
 
@@ -813,6 +820,10 @@ namespace Volleyball
                 saveQualifying();
 
                 setRowColorsForEachRound(dataGridViewQualifyingRound);
+            }
+            else
+            {
+                MessageBox.Show("Spiele sind schon vorhanden, generieren abgebrochen!", "Achtung!", MessageBoxButtons.OK);
             }
 
             lockAction = false;
@@ -1022,36 +1033,46 @@ namespace Volleyball
 
             List<String> doubleResults = qg.checkEqualDivisionResults();
 
-            if (doubleResults.Count == 0 && ig != null)
-            {
-                log.write("generate interim games");
-
-                ig.setParameters(qg.resultData,
-                                gamePlan,
-                                qg.matchData[qg.matchData.Count].Time,
-                                settings.PauseBetweenQualifyingInterim,
-                                settings.SetsInterim,
-                                settings.MinutesPerSetInterim,
-                                settings.PausePerSetInterim,
-                                fieldNames.Count,
-                                countTeams(),
-                                fieldNames,
-                                qg.matchData[qg.matchData.Count].Round + 1,
-                                qg.matchData[qg.matchData.Count].Game + 1,
-                                true); //TODO!!! => welcher spielplan wird gewählt mit 50+ teams
-
-                ig.generateGames();
-
-                loadInterim();
-
-                saveInterim();
-
-                setRowColorsForEachRound(dataGridViewInterimRound);
-            }
-            else
+            if (doubleResults.Count > 0)
             {
                 MessageBox.Show("Achtung gleiche Punktestände gefunden! '" + doubleResults[0] + "' = '" + doubleResults[1] + "'! Zwischenrunde wird NICHT generiert!");
                 log.write("found double team results " + doubleResults[0] + " = " + doubleResults[1]);
+            }
+            else
+            {
+
+                if (ig != null && ig.matchData.Count == 0)
+                {
+                    log.write("generate interim games");
+
+                    extractFieldnames();
+
+                    ig.setParameters(qg.resultData,
+                                    gamePlan,
+                                    qg.matchData[qg.matchData.Count - 1].Time,
+                                    settings.PauseBetweenQualifyingInterim,
+                                    settings.SetsInterim,
+                                    settings.MinutesPerSetInterim,
+                                    settings.PausePerSetInterim,
+                                    fieldNames.Count,
+                                    countTeams(),
+                                    fieldNames,
+                                    qg.matchData[qg.matchData.Count - 1].Round + 1,
+                                    qg.matchData[qg.matchData.Count - 1].Game + 1,
+                                    true); //TODO!!! => welcher spielplan wird gewählt mit 50+ teams
+
+                    ig.generateGames();
+
+                    loadInterim();
+
+                    saveInterim();
+
+                    setRowColorsForEachRound(dataGridViewInterimRound);
+                }
+                else
+                {
+                    MessageBox.Show("Spiele sind schon vorhanden, generieren abgebrochen!", "Achtung!", MessageBoxButtons.OK);
+                }
             }
 
             lockAction = false;
@@ -1072,7 +1093,7 @@ namespace Volleyball
 
                 dtInterim.Clear();
 
-                loadInterim();
+                saveInterim();
             }
         }
 
@@ -1092,7 +1113,7 @@ namespace Volleyball
 
         private void TextBoxInterimFilter_TextChanged(object sender, EventArgs e)
         {
-            (dataGridViewInterimRound.DataSource as DataTable).DefaultView.RowFilter = string.Format("[Team A] LIKE '{0}%' OR [Team B] LIKE '{0}%' OR Schiedsrichter LIKE '{0}%'", textBoxQualifyingFilter.Text);
+            (dataGridViewInterimRound.DataSource as DataTable).DefaultView.RowFilter = string.Format("[Team A] LIKE '{0}%' OR [Team B] LIKE '{0}%' OR Schiedsrichter LIKE '{0}%'", textBoxInterimFilter.Text);
 
             if ((dataGridViewInterimRound.DataSource as DataTable).DefaultView.Count == ig.matchData.Count)
             {

@@ -162,7 +162,7 @@
             // 
             this.groupBoxD.Controls.Add(this.dataGridViewD);
             this.groupBoxD.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBoxD.Location = new System.Drawing.Point(600, 0);
+            this.groupBoxD.Location = new System.Drawing.Point(0, 0);
             this.groupBoxD.Name = "groupBoxD";
             this.groupBoxD.Size = new System.Drawing.Size(300, 134);
             this.groupBoxD.TabIndex = 3;
@@ -186,7 +186,7 @@
             // 
             this.groupBoxE.Controls.Add(this.dataGridViewE);
             this.groupBoxE.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBoxE.Location = new System.Drawing.Point(0, 0);
+            this.groupBoxE.Location = new System.Drawing.Point(300, 0);
             this.groupBoxE.Name = "groupBoxE";
             this.groupBoxE.Size = new System.Drawing.Size(300, 134);
             this.groupBoxE.TabIndex = 4;
@@ -210,7 +210,7 @@
             // 
             this.groupBoxF.Controls.Add(this.dataGridViewF);
             this.groupBoxF.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBoxF.Location = new System.Drawing.Point(300, 0);
+            this.groupBoxF.Location = new System.Drawing.Point(600, 0);
             this.groupBoxF.Name = "groupBoxF";
             this.groupBoxF.Size = new System.Drawing.Size(300, 134);
             this.groupBoxF.TabIndex = 5;
@@ -234,7 +234,7 @@
             // 
             this.groupBoxG.Controls.Add(this.dataGridViewG);
             this.groupBoxG.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBoxG.Location = new System.Drawing.Point(600, 0);
+            this.groupBoxG.Location = new System.Drawing.Point(0, 0);
             this.groupBoxG.Name = "groupBoxG";
             this.groupBoxG.Size = new System.Drawing.Size(300, 147);
             this.groupBoxG.TabIndex = 6;
@@ -282,7 +282,7 @@
             // 
             this.groupBoxI.Controls.Add(this.dataGridViewI);
             this.groupBoxI.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBoxI.Location = new System.Drawing.Point(0, 0);
+            this.groupBoxI.Location = new System.Drawing.Point(600, 0);
             this.groupBoxI.Name = "groupBoxI";
             this.groupBoxI.Size = new System.Drawing.Size(300, 147);
             this.groupBoxI.TabIndex = 8;
@@ -387,9 +387,9 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.groupBoxD);
             this.panel2.Controls.Add(this.groupBoxF);
             this.panel2.Controls.Add(this.groupBoxE);
+            this.panel2.Controls.Add(this.groupBoxD);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 100);
             this.panel2.Name = "panel2";
@@ -398,9 +398,9 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.groupBoxG);
-            this.panel3.Controls.Add(this.groupBoxH);
             this.panel3.Controls.Add(this.groupBoxI);
+            this.panel3.Controls.Add(this.groupBoxH);
+            this.panel3.Controls.Add(this.groupBoxG);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 234);
             this.panel3.Name = "panel3";

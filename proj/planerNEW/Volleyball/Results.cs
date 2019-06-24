@@ -84,6 +84,26 @@ namespace Volleyball
                     }
                 }
             }
+
+            if (roundObject is InterimGames)
+            {
+                InterimGames ig = (InterimGames)roundObject;
+
+                for (int i = 0; i < ig.resultData.Count; i++)
+                {
+                    List<ResultData> rdList = ig.resultData[i];
+
+                    foreach (ResultData rd in rdList)
+                    {
+                        resultTables[i].Rows.Add(new object[] { rd.Rank,
+                                                            rd.Team,
+                                                            rd.PointsSets,
+                                                            rd.PointsMatches,
+                                                            rd.InternalRank,
+                                                            rd.ExternalRank });
+                    }
+                }
+            }
         }
 
         private void dataGridViews_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -105,6 +125,15 @@ namespace Volleyball
 
                                 saveChangesEvent?.Invoke();
                             }
+
+                            if (roundObject is InterimGames)
+                            {
+                                InterimGames ig = (InterimGames)roundObject;
+
+                                ig.resultData[i][e.RowIndex].InternalRank = internalRank;
+
+                                saveChangesEvent?.Invoke();
+                            }
                             break;
 
                         case 5:
@@ -115,6 +144,15 @@ namespace Volleyball
                                 QualifyingGames qg = (QualifyingGames)roundObject;
 
                                 qg.resultData[i][e.RowIndex].ExternalRank = externalRank;
+
+                                saveChangesEvent?.Invoke();
+                            }
+
+                            if (roundObject is InterimGames)
+                            {
+                                InterimGames ig = (InterimGames)roundObject;
+
+                                ig.resultData[i][e.RowIndex].ExternalRank = externalRank;
 
                                 saveChangesEvent?.Invoke();
                             }

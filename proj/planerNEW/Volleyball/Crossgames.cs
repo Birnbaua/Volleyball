@@ -21,11 +21,13 @@ namespace Volleyball
         bool useSecondGamePlaning;
         List<String> fieldNames;
         List<List<ResultData>> divisionsInterimList;
+        int gamesCount;
         #endregion
 
         public CrossGames(Logging log) : base(log)
         {
             this.log = log;
+            gamesCount = 0;
         }
 
         public void setParameters(List<List<ResultData>> divisionsInterimList, DateTime startRound,
@@ -51,6 +53,9 @@ namespace Volleyball
 
         public void generateGames()
         {
+            // clear matches if already existing
+            matchData.Clear();
+
             // generate game plan over all divisonal games
             generateGamePlan();
 
@@ -68,6 +73,7 @@ namespace Volleyball
         // generate game plan over all divisions
         void generateGamePlan()
         {
+            List<List<ResultData>> finalDivisions = new List<List<ResultData>>();
             int addzeit = ((setCounter * minutesSet) + minutesPause) * 60;
 
             // help lists
@@ -372,163 +378,336 @@ namespace Volleyball
                 }
                 else if (teamsCount == 50 || teamsCount == 55)
                 {
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(1," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',1,'','" + divisionA.at(0) + "','" + divisionB.at(1) + "','" + divisionA.at(1) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(2," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',2,'','" + divisionA.at(2) + "','" + divisionB.at(3) + "','" + divisionA.at(3) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(3," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',3,'','" + divisionC.at(0) + "','" + divisionD.at(1) + "','" + divisionC.at(1) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(4," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',4,'','" + divisionC.at(2) + "','" + divisionD.at(3) + "','" + divisionC.at(3) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(5," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',5,'','" + divisionE.at(0) + "','" + divisionF.at(1) + "','" + divisionE.at(1) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(6," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',6,'','" + divisionE.at(2) + "','" + divisionF.at(3) + "','" + divisionE.at(3) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(7," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',7,'','" + divisionG.at(0) + "','" + divisionH.at(1) + "','" + divisionG.at(1) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(8," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',8,'','" + divisionG.at(2) + "','" + divisionH.at(3) + "','" + divisionG.at(3) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(9," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',9,'','" + divisionI.at(0) + "','" + divisionJ.at(1) + "','" + divisionI.at(1) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(10," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',10,'','" + divisionI.at(2) + "','" + divisionJ.at(3) + "','" + divisionI.at(3) + "',0,0,0,0,0,0)";
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 1,
+                        TeamA   = divisionA[0].Team,
+                        TeamB   = divisionB[1].Team,
+                        Referee = divisionA[1].Team
+                    });
 
-                    startRound = startRound.addSecs(addzeit);
-                    lastRoundNr++; lastGameNr++;
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 2,
+                        TeamA   = divisionA[2].Team,
+                        TeamB   = divisionB[3].Team,
+                        Referee = divisionA[3].Team
+                    });
 
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(11," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',10,'','" + divisionA.at(1) + "','" + divisionB.at(0) + "','" + divisionB.at(1) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(12," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',9,'','" + divisionA.at(3) + "','" + divisionB.at(2) + "','" + divisionB.at(3) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(13," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',8,'','" + divisionC.at(1) + "','" + divisionD.at(0) + "','" + divisionD.at(1) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(14," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',7,'','" + divisionC.at(3) + "','" + divisionD.at(2) + "','" + divisionD.at(3) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(15," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',6,'','" + divisionE.at(1) + "','" + divisionF.at(0) + "','" + divisionF.at(1) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(16," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',5,'','" + divisionE.at(3) + "','" + divisionF.at(2) + "','" + divisionF.at(3) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(17," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',4,'','" + divisionG.at(1) + "','" + divisionH.at(0) + "','" + divisionH.at(1) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(18," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',3,'','" + divisionG.at(3) + "','" + divisionH.at(2) + "','" + divisionH.at(3) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(19," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',2,'','" + divisionI.at(1) + "','" + divisionJ.at(0) + "','" + divisionI.at(1) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(20," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',1,'','" + divisionI.at(3) + "','" + divisionJ.at(2) + "','" + divisionI.at(3) + "',0,0,0,0,0,0)";
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 3,
+                        TeamA   = divisionC[0].Team,
+                        TeamB   = divisionD[1].Team,
+                        Referee = divisionC[1].Team
+                    });
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 4,
+                        TeamA   = divisionC[2].Team,
+                        TeamB   = divisionD[3].Team,
+                        Referee = divisionC[3].Team
+                    });
+                    
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 5,
+                        TeamA   = divisionE[0].Team,
+                        TeamB   = divisionF[1].Team,
+                        Referee = divisionE[1].Team
+                    });
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 6,
+                        TeamA   = divisionE[2].Team,
+                        TeamB   = divisionF[3].Team,
+                        Referee = divisionE[3].Team
+                    });
+                    
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 7,
+                        TeamA   = divisionG[2].Team,
+                        TeamB   = divisionH[3].Team,
+                        Referee = divisionG[3].Team
+                    });
+                    
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 8,
+                        TeamA   = divisionG[2].Team,
+                        TeamB   = divisionH[3].Team,
+                        Referee = divisionG[3].Team
+                    });
+                    
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 9,
+                        TeamA   = divisionI[0].Team,
+                        TeamB   = divisionJ[1].Team,
+                        Referee = divisionI[1].Team
+                    });
+                    
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 10,
+                        TeamA   = divisionI[2].Team,
+                        TeamB   = divisionJ[3].Team,
+                        Referee = divisionI[3].Team
+                    });
+                    
+                    startRound = startRound.AddSeconds(addzeit);
+                    lastRoundNr++;
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 10,
+                        TeamA   = divisionA[1].Team,
+                        TeamB   = divisionB[0].Team,
+                        Referee = divisionA[1].Team
+                    });
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 9,
+                        TeamA   = divisionA[3].Team,
+                        TeamB   = divisionB[2].Team,
+                        Referee = divisionB[3].Team
+                    });
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 8,
+                        TeamA   = divisionC[1].Team,
+                        TeamB   = divisionD[0].Team,
+                        Referee = divisionD[1].Team
+                    });
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 7,
+                        TeamA   = divisionC[3].Team,
+                        TeamB   = divisionD[2].Team,
+                        Referee = divisionD[3].Team
+                    });
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 6,
+                        TeamA   = divisionE[1].Team,
+                        TeamB   = divisionF[0].Team,
+                        Referee = divisionF[1].Team
+                    });
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 5,
+                        TeamA   = divisionE[3].Team,
+                        TeamB   = divisionF[2].Team,
+                        Referee = divisionF[3].Team
+                    });
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 4,
+                        TeamA   = divisionG[1].Team,
+                        TeamB   = divisionH[0].Team,
+                        Referee = divisionH[1].Team
+                    });
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 3,
+                        TeamA   = divisionG[3].Team,
+                        TeamB   = divisionH[2].Team,
+                        Referee = divisionH[3].Team
+                    });
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 2,
+                        TeamA   = divisionI[1].Team,
+                        TeamB   = divisionJ[0].Team,
+                        Referee = divisionI[1].Team
+                    });
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 1,
+                        TeamA   = divisionI[3].Team,
+                        TeamB   = divisionJ[2].Team,
+                        Referee = divisionI[3].Team
+                    });
                 }
                 else if (teamsCount == 60)
                 {
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(1," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',1,'','" + divisionA.at(0) + "','" + divisionB.at(1) + "','" + divisionA.at(1) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(2," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',2,'','" + divisionA.at(2) + "','" + divisionB.at(3) + "','" + divisionA.at(3) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(3," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',3,'','" + divisionC.at(0) + "','" + divisionD.at(1) + "','" + divisionC.at(1) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(4," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',4,'','" + divisionC.at(2) + "','" + divisionD.at(3) + "','" + divisionC.at(3) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(5," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',5,'','" + divisionE.at(0) + "','" + divisionF.at(1) + "','" + divisionE.at(1) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(6," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',6,'','" + divisionE.at(2) + "','" + divisionF.at(3) + "','" + divisionE.at(3) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(7," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',7,'','" + divisionG.at(0) + "','" + divisionH.at(1) + "','" + divisionG.at(1) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(8," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',8,'','" + divisionG.at(2) + "','" + divisionH.at(3) + "','" + divisionG.at(3) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(9," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',9,'','" + divisionI.at(0) + "','" + divisionJ.at(1) + "','" + divisionI.at(1) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(10," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',10,'','" + divisionI.at(2) + "','" + divisionJ.at(3) + "','" + divisionI.at(3) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(11," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',11,'','" + divisionK.at(2) + "','" + divisionL.at(3) + "','" + divisionK.at(3) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(12," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',12,'','" + divisionK.at(2) + "','" + divisionL.at(3) + "','" + divisionK.at(3) + "',0,0,0,0,0,0)";
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 1,
+                        TeamA   = divisionA[0].Team,
+                        TeamB   = divisionB[1].Team,
+                        Referee = divisionA[1].Team
+                    });
 
-                    startRound = startRound.addSecs(addzeit);
-                    lastRoundNr++; lastGameNr++;
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 2,
+                        TeamA   = divisionA[2].Team,
+                        TeamB   = divisionB[3].Team,
+                        Referee = divisionA[3].Team
+                    });
 
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(13," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',12,'','" + divisionA.at(1) + "','" + divisionB.at(0) + "','" + divisionB.at(1) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(14," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',11,'','" + divisionA.at(3) + "','" + divisionB.at(2) + "','" + divisionB.at(3) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(15," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',10,'','" + divisionC.at(1) + "','" + divisionD.at(0) + "','" + divisionD.at(1) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(16," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',9,'','" + divisionC.at(3) + "','" + divisionD.at(2) + "','" + divisionD.at(3) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(17," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',8,'','" + divisionE.at(1) + "','" + divisionF.at(0) + "','" + divisionF.at(1) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(18," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',7,'','" + divisionE.at(3) + "','" + divisionF.at(2) + "','" + divisionF.at(3) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(19," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',6,'','" + divisionG.at(1) + "','" + divisionH.at(0) + "','" + divisionH.at(1) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(20," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',5,'','" + divisionG.at(3) + "','" + divisionH.at(2) + "','" + divisionH.at(3) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(21," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',4,'','" + divisionI.at(1) + "','" + divisionJ.at(0) + "','" + divisionJ.at(1) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(22," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',3,'','" + divisionI.at(3) + "','" + divisionJ.at(2) + "','" + divisionJ.at(3) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(23," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',2,'','" + divisionK.at(1) + "','" + divisionL.at(0) + "','" + divisionL.at(1) + "',0,0,0,0,0,0)";
-                    lastGameNr++;
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES(24," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "',1,'','" + divisionK.at(3) + "','" + divisionL.at(2) + "','" + divisionL.at(3) + "',0,0,0,0,0,0)";
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 3,
+                        TeamA   = divisionC[0].Team,
+                        TeamB   = divisionD[1].Team,
+                        Referee = divisionC[1].Team
+                    });
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 4,
+                        TeamA   = divisionC[2].Team,
+                        TeamB   = divisionD[3].Team,
+                        Referee = divisionC[3].Team
+                    });
+                    
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 5,
+                        TeamA   = divisionE[0].Team,
+                        TeamB   = divisionF[1].Team,
+                        Referee = divisionE[1].Team
+                    });
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 6,
+                        TeamA   = divisionE[2].Team,
+                        TeamB   = divisionF[3].Team,
+                        Referee = divisionE[3].Team
+                    });
+                    
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 7,
+                        TeamA   = divisionG[2].Team,
+                        TeamB   = divisionH[3].Team,
+                        Referee = divisionG[3].Team
+                    });
+                    
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 8,
+                        TeamA   = divisionG[2].Team,
+                        TeamB   = divisionH[3].Team,
+                        Referee = divisionG[3].Team
+                    });
+                    
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 9,
+                        TeamA   = divisionI[0].Team,
+                        TeamB   = divisionJ[1].Team,
+                        Referee = divisionI[1].Team
+                    });
+                    
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 10,
+                        TeamA   = divisionI[2].Team,
+                        TeamB   = divisionJ[3].Team,
+                        Referee = divisionI[3].Team
+                    });
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 11,
+                        TeamA   = divisionK[0].Team,
+                        TeamB   = divisionL[1].Team,
+                        Referee = divisionK[1].Team
+                    });
+                    
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 12,
+                        TeamA   = divisionK[2].Team,
+                        TeamB   = divisionL[3].Team,
+                        Referee = divisionK[3].Team
+                    });
+                    
+
+                    startRound = startRound.AddSeconds(addzeit);
+                    lastRoundNr++;
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 12,
+                        TeamA   = divisionA[1].Team,
+                        TeamB   = divisionB[0].Team,
+                        Referee = divisionA[1].Team
+                    });
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 11,
+                        TeamA   = divisionA[3].Team,
+                        TeamB   = divisionB[2].Team,
+                        Referee = divisionB[3].Team
+                    });
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 10,
+                        TeamA   = divisionC[1].Team,
+                        TeamB   = divisionD[0].Team,
+                        Referee = divisionD[1].Team
+                    });
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 9,
+                        TeamA   = divisionC[3].Team,
+                        TeamB   = divisionD[2].Team,
+                        Referee = divisionD[3].Team
+                    });
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 8,
+                        TeamA   = divisionE[1].Team,
+                        TeamB   = divisionF[0].Team,
+                        Referee = divisionF[1].Team
+                    });
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 7,
+                        TeamA   = divisionE[3].Team,
+                        TeamB   = divisionF[2].Team,
+                        Referee = divisionF[3].Team
+                    });
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 6,
+                        TeamA   = divisionG[1].Team,
+                        TeamB   = divisionH[0].Team,
+                        Referee = divisionH[1].Team
+                    });
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 5,
+                        TeamA   = divisionG[3].Team,
+                        TeamB   = divisionH[2].Team,
+                        Referee = divisionH[3].Team
+                    });
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 4,
+                        TeamA   = divisionI[1].Team,
+                        TeamB   = divisionJ[0].Team,
+                        Referee = divisionI[1].Team
+                    });
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 3,
+                        TeamA   = divisionI[3].Team,
+                        TeamB   = divisionJ[2].Team,
+                        Referee = divisionI[3].Team
+                    });
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 2,
+                        TeamA   = divisionK[1].Team,
+                        TeamB   = divisionL[0].Team,
+                        Referee = divisionL[1].Team
+                    });
+
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 1,
+                        TeamA   = divisionK[3].Team,
+                        TeamB   = divisionL[2].Team,
+                        Referee = divisionL[3].Team
+                    });
                 }
             }
             else
             {
-                if (divisionA.count() > 0)
-                    finalDivisions.append(&divisionA);
+                if (divisionA.Count > 0)
+                    finalDivisions.Add(divisionA);
 
-                if (divisionB.count() > 0)
-                    finalDivisions.append(&divisionB);
+                if (divisionB.Count > 0)
+                    finalDivisions.Add(divisionB);
 
-                if (divisionC.count() > 0)
-                    finalDivisions.append(&divisionC);
+                if (divisionC.Count > 0)
+                    finalDivisions.Add(divisionC);
 
-                if (divisionD.count() > 0)
-                    finalDivisions.append(&divisionD);
+                if (divisionD.Count > 0)
+                    finalDivisions.Add(divisionD);
 
-                if (divisionE.count() > 0)
-                    finalDivisions.append(&divisionE);
+                if (divisionE.Count > 0)
+                    finalDivisions.Add(divisionE);
 
-                if (divisionF.count() > 0)
-                    finalDivisions.append(&divisionF);
+                if (divisionF.Count > 0)
+                    finalDivisions.Add(divisionF);
 
-                if (divisionG.count() > 0)
-                    finalDivisions.append(&divisionG);
+                if (divisionG.Count > 0)
+                    finalDivisions.Add(divisionG);
 
-                if (divisionH.count() > 0)
-                    finalDivisions.append(&divisionH);
+                if (divisionH.Count > 0)
+                    finalDivisions.Add(divisionH);
 
-                if (divisionI.count() > 0)
-                    finalDivisions.append(&divisionI);
+                if (divisionI.Count > 0)
+                    finalDivisions.Add(divisionI);
 
-                if (divisionJ.count() > 0)
-                    finalDivisions.append(&divisionJ);
+                if (divisionJ.Count > 0)
+                    finalDivisions.Add(divisionJ);
 
-                if (divisionK.count() > 0)
-                    finalDivisions.append(&divisionK);
+                if (divisionK.Count > 0)
+                    finalDivisions.Add(divisionK);
 
-                if (divisionL.count() > 0)
-                    finalDivisions.append(&divisionL);
+                if (divisionL.Count > 0)
+                    finalDivisions.Add(divisionL);
 
-                QList<QList<QStringList>> gameList;
-                QStringList refereeList;
+                List<MatchData> gameList = new List<MatchData>();
+                List<String> refereeList = new List<String>();
                 lastGameNr++;
 
                 // create game list
-                for (int i = 0; i < divisionCount;)
+                for (int i = 0; i < finalDivisions.Count;)
                 {
-                    if (i + 1 < finalDivisions.count())
+                    if (i + 1 < finalDivisions.Count)
                     {
-                        int rest = (finalDivisions.at(i)->count() + finalDivisions.at(i + 1)->count()) % 2;
-                        int count = (finalDivisions.at(i)->count() + finalDivisions.at(i + 1)->count() - rest) / 2;
-                        QList<QStringList> games;
-
+                        int rest = (finalDivisions[i].Count + finalDivisions[i + 1].Count) % 2;
+                        int count = (finalDivisions[i].Count + finalDivisions[i + 1].Count - rest) / 2;
+                        
                         for (int x = 0; x < count; x++)
                         {
-                            games.append(QStringList() << finalDivisions.at(i)->at(x) << finalDivisions.at(i + 1)->at(x));
+                            gameList.Add(new MatchData() { TeamA = finalDivisions[i][x].Team, TeamB = finalDivisions[i + 1][x].Team });
                             gamesCount++;
                         }
 
-                        gameList.append(games);
                         i = i + 2;
                     }
                     else
@@ -537,51 +716,37 @@ namespace Volleyball
                     }
                 }
 
-                for (int i = 0; i < gameList.count() && i < fieldCount; i++)
+                for (int i = 0; i < gameList.Count && i < fieldCount; i++)
                 {
-                    QList<QStringList> refList = gameList.at(i);
-                    for (int j = 0; j < refList.count(); j++)
-                    {
-                        refereeList.append(refList.at(j).at(0));
-                        refereeList.append(refList.at(j).at(1));
-                    }
+                    MatchData refList = gameList[i];
+
+                    refereeList.Add(refList.TeamA);
+                    refereeList.Add(refList.TeamB);
                 }
 
                 // generate round starting with last group and last game (worst two teams)
-                for (int count = 0, fCount = 1, y = (gameList.count() - 1), startingReferee = 0,
-                    rowCount = 1, dataRow = gameList.at((gameList.count() - 1)).count() - 1;
-                    count < gamesCount; rowCount++, lastGameNr++, count++, startingReferee++)
+                for (int count = 0, fCount = 1, y = (gameList.Count - 1), startingReferee = 0;
+                    count < gamesCount; lastGameNr++, count++, startingReferee++)
                 {
-                    QString referee = "";
+                    String referee = "";
                     if (startingReferee < fieldCount)
-                        referee = refereeList.at(startingReferee);
+                        referee = refereeList[startingReferee];
 
-                    querys << "INSERT INTO kreuzspiele_spielplan VALUES("
-                              + string(rowCount) + "," + string(lastRoundNr) + "," + string(lastGameNr) + ",'" + startRound.toString("hh:mm") + "', " + string(fCount) + ",'','"
-                              + gameList.at(y).at(dataRow).at(0) + "','"
-                              + gameList.at(y).at(dataRow).at(1) + "','"
-                              + referee + "',"
-                              + "0,0,0,0,0,0)";
+                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr, Time = startRound, FieldNumber = fCount,
+                        TeamA = gameList[y].TeamA,
+                        TeamB = gameList[y].TeamB,
+                        Referee = referee
+                    });
 
                     if (fCount >= fieldCount)
                     {
                         fCount = 1;
                         lastRoundNr++;
-                        startRound = startRound.addSecs(addzeit);
+                        startRound = startRound.AddSeconds(addzeit);
                     }
                     else
                     {
                         fCount++;
-                    }
-
-                    if (dataRow < 1)
-                    {
-                        dataRow = gameList.at(y).count() - 1;
-                        y--;
-                    }
-                    else
-                    {
-                        dataRow--;
                     }
                 }
             }

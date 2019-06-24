@@ -41,10 +41,13 @@ namespace Volleyball
 
         public void generateGames()
         {
+            // clear matches if already existing
+            matchData.Clear();
+
             // generate game plan over all divisonal games
             if (generateGamePlan())
             {                
-                insertGameNumber();
+                insertGameNumber(1);
 
                 insertRoundNumber(1, fieldCount);
 

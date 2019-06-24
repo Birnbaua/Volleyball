@@ -112,10 +112,10 @@ namespace Volleyball
             }
         }
 
-        public void insertGameNumber()
+        public void insertGameNumber(int preset)
         {
             for (int i = 0; i < matchData.Count; i++)
-                matchData[i].Game = i + 1;
+                matchData[i].Game = i + preset;
         }
 
         public void insertRoundNumber(int beginRound, int fieldCount)
@@ -199,14 +199,16 @@ namespace Volleyball
                 for (int i = 1; i < rdList.Count; i++)
                 {
                     if(rdList[i - 1].PointsSets == rdList[i].PointsSets
-                        && rdList[i - 1].PointsMatches == rdList[i].PointsMatches)
+                        && rdList[i - 1].PointsMatches == rdList[i].PointsMatches
+                        && rdList[i - 1].InternalRank == rdList[i].InternalRank
+                        && rdList[i - 1].ExternalRank == rdList[i].ExternalRank)
                     {
                         return new List<String>(){ rdList[i - 1].Team, rdList[i].Team };
                     }
                 }
             }
 
-            return null;
+            return new List<String>();
         }
 
         public void sortResults()
