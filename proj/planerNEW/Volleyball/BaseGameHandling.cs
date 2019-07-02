@@ -158,7 +158,13 @@ namespace Volleyball
                     shiftRight(rotationArray);
                 }
             }
-        }       
+        }
+
+        public void insertFieldnames(List<String> fieldNames)
+        {
+            foreach (MatchData md in matchData)
+                md.FieldName = fieldNames[md.FieldNumber - 1];
+        }
 
         // generate divisions result lists
         public void fillResultLists(List<List<String>> divisionsList)
@@ -238,7 +244,7 @@ namespace Volleyball
                             }
                             else if (rd[ii].PointsSets == rd[ii + 1].PointsSets 
                                 && rd[ii].PointsMatches == rd[ii + 1].PointsMatches
-                                && rd[ii].InternalRank < rd[ii + 1].InternalRank)
+                                && rd[ii].InternalRank > rd[ii + 1].InternalRank)
                             {
                                 ResultData team = rd[ii];
 

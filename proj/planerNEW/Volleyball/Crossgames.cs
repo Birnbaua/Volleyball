@@ -20,7 +20,7 @@ namespace Volleyball
         int lastRoundNr;
         bool useSecondGamePlaning;
         List<String> fieldNames;
-        List<List<ResultData>> divisionsInterimList;
+        List<List<ResultData>> resultCrossgamesList;
         int gamesCount;
         #endregion
 
@@ -30,11 +30,11 @@ namespace Volleyball
             gamesCount = 0;
         }
 
-        public void setParameters(List<List<ResultData>> divisionsInterimList, DateTime startRound,
+        public void setParameters(List<List<ResultData>> resultCrossgamesList, DateTime startRound,
             int pauseBetweenInterimCrossgames, int setCounter, int minutesSet, int minutesPause,
             int fieldCount, int teamsCount, List<String> fieldNames, int lastRoundNr, int lastGameNr, bool useSecondGamePlaning)
         {
-            this.divisionsInterimList = divisionsInterimList;
+            this.resultCrossgamesList = resultCrossgamesList;
             this.startRound = startRound;
             this.setCounter = setCounter;
             this.minutesSet = minutesSet;
@@ -48,20 +48,25 @@ namespace Volleyball
 
             setTimeParameters(setCounter, minutesSet, minutesPause);
 
-            startRound = startRound.AddSeconds(pauseBetweenInterimCrossgames * 60);
+            this.startRound = this.startRound.AddSeconds(pauseBetweenInterimCrossgames * 60);
         }
 
         public void generateGames()
         {
             // clear matches if already existing
             matchData.Clear();
+            gamesCount = 0;
 
             // generate game plan over all divisonal games
             generateGamePlan();
 
             if (matchData.Count > 0)
             {
-                insertFieldnumbersAndFieldnames(fieldCount, fieldNames);
+                insertGameNumber(lastGameNr);
+
+                insertGameTime(startRound);
+
+                insertFieldnames(fieldNames);
             }
             else
             {
@@ -77,69 +82,68 @@ namespace Volleyball
             int addzeit = ((setCounter * minutesSet) + minutesPause) * 60;
 
             // help lists
-            List<ResultData> divisionA = divisionsInterimList[0];
-            List<ResultData> divisionB = divisionsInterimList[1];
-            List<ResultData> divisionC = divisionsInterimList[2];
-            List<ResultData> divisionD = divisionsInterimList[3];
-            List<ResultData> divisionE = divisionsInterimList[4];
-            List<ResultData> divisionF = divisionsInterimList[5];
-            List<ResultData> divisionG = divisionsInterimList[6];
-            List<ResultData> divisionH = divisionsInterimList[7];
-            List<ResultData> divisionI = divisionsInterimList[8];
-            List<ResultData> divisionJ = divisionsInterimList[9];
-            List<ResultData> divisionK = divisionsInterimList[10];
-            List<ResultData> divisionL = divisionsInterimList[11];
+            List<ResultData> divisionA = resultCrossgamesList[0];
+            List<ResultData> divisionB = resultCrossgamesList[1];
+            List<ResultData> divisionC = resultCrossgamesList[2];
+            List<ResultData> divisionD = resultCrossgamesList[3];
+            List<ResultData> divisionE = resultCrossgamesList[4];
+            List<ResultData> divisionF = resultCrossgamesList[5];
+            List<ResultData> divisionG = resultCrossgamesList[6];
+            List<ResultData> divisionH = resultCrossgamesList[7];
+            List<ResultData> divisionI = resultCrossgamesList[8];
+            List<ResultData> divisionJ = resultCrossgamesList[9];
+            List<ResultData> divisionK = resultCrossgamesList[10];
+            List<ResultData> divisionL = resultCrossgamesList[11];
 
             if (!useSecondGamePlaning)
             {
                 if (teamsCount == 20)
                 {
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr, Time = startRound, FieldNumber = 1,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 1,
                         TeamA   = divisionA[0].Team,
                         TeamB   = divisionB[1].Team,
                         Referee = divisionA[1].Team
                     });
                     
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 2,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 2,
                         TeamA   = divisionA[2].Team,
                         TeamB   = divisionB[3].Team,
                         Referee = divisionA[3].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 3,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 3,
                         TeamA   = divisionC[0].Team,
                         TeamB   = divisionD[1].Team,
                         Referee = divisionC[1].Team
                     });
                 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 4,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 4,
                         TeamA   = divisionC[2].Team,
                         TeamB   = divisionD[3].Team,
                         Referee = divisionC[3].Team
                     });
                     
-                    startRound = startRound.AddSeconds(addzeit);
                     lastRoundNr++; 
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 1,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 1,
                         TeamA   = divisionA[1].Team,
                         TeamB   = divisionB[0].Team,
                         Referee = divisionB[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 2,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 2,
                         TeamA   = divisionA[3].Team,
                         TeamB   = divisionB[2].Team,
                         Referee = divisionB[3].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 3,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 3,
                         TeamA   = divisionC[1].Team,
                         TeamB   = divisionD[0].Team,
                         Referee = divisionD[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 4,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 4,
                         TeamA   = divisionC[3].Team,
                         TeamB   = divisionD[2].Team,
                         Referee = divisionD[3].Team
@@ -147,52 +151,51 @@ namespace Volleyball
                 }
                 else if (teamsCount == 25)
                 {
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr, Time = startRound, FieldNumber = 1,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 1,
                         TeamA   = divisionA[0].Team,
                         TeamB   = divisionB[1].Team,
                         Referee = divisionA[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 2,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 2,
                         TeamA   = divisionA[2].Team,
                         TeamB   = divisionB[3].Team,
                         Referee = divisionA[3].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 3,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 3,
                         TeamA   = divisionC[0].Team,
                         TeamB   = divisionD[1].Team,
                         Referee = divisionC[1].Team
                     });
                     
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 4,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 4,
                         TeamA   = divisionC[2].Team,
                         TeamB   = divisionD[3].Team,
                         Referee = divisionC[3].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 5,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 5,
                         TeamA   = divisionA[1].Team,
                         TeamB   = divisionB[0].Team,
                         Referee = divisionB[1].Team
                     });
-
-                    startRound = startRound.AddSeconds(addzeit);
+                    
                     lastRoundNr++;
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 1,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 1,
                         TeamA   = divisionA[3].Team,
                         TeamB   = divisionB[2].Team,
                         Referee = divisionB[3].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 2,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 2,
                         TeamA   = divisionC[1].Team,
                         TeamB   = divisionD[0].Team,
                         Referee = divisionD[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 3,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 3,
                         TeamA   = divisionC[3].Team,
                         TeamB   = divisionD[2].Team,
                         Referee = divisionD[3].Team
@@ -200,76 +203,75 @@ namespace Volleyball
                 }
                 else if (teamsCount == 28 || teamsCount == 30 || teamsCount == 35)
                 {
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr, Time = startRound, FieldNumber = 1,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 1,
                         TeamA   = divisionA[0].Team,
                         TeamB   = divisionB[1].Team,
                         Referee = divisionA[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 2,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 2,
                         TeamA   = divisionA[2].Team,
                         TeamB   = divisionB[3].Team,
                         Referee = divisionA[3].Team
                     });
                     
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 3,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 3,
                         TeamA   = divisionC[0].Team,
                         TeamB   = divisionD[1].Team,
                         Referee = divisionC[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 4,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 4,
                         TeamA   = divisionC[2].Team,
                         TeamB   = divisionD[3].Team,
                         Referee = divisionC[3].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 5,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 5,
                         TeamA   = divisionE[0].Team,
                         TeamB   = divisionF[1].Team,
                         Referee = divisionE[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 6,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 6,
                         TeamA   = divisionE[2].Team,
                         TeamB   = divisionF[3].Team,
                         Referee = divisionE[3].Team
                     });
 
-                    startRound = startRound.AddSeconds(addzeit);
                     lastRoundNr++;
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 6,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 6,
                         TeamA   = divisionA[1].Team,
                         TeamB   = divisionB[0].Team,
                         Referee = divisionB[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 5,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 5,
                         TeamA   = divisionA[3].Team,
                         TeamB   = divisionB[2].Team,
                         Referee = divisionB[3].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 4,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 4,
                         TeamA   = divisionC[1].Team,
                         TeamB   = divisionD[0].Team,
                         Referee = divisionD[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 3,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 3,
                         TeamA   = divisionC[3].Team,
                         TeamB   = divisionD[2].Team,
                         Referee = divisionD[3].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 2,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 2,
                         TeamA   = divisionE[1].Team,
                         TeamB   = divisionF[0].Team,
                         Referee = divisionF[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 1,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 1,
                         TeamA   = divisionE[3].Team,
                         TeamB   = divisionF[2].Team,
                         Referee = divisionF[3].Team
@@ -277,100 +279,99 @@ namespace Volleyball
                 }
                 else if (teamsCount == 40 || teamsCount == 45)
                 {
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr, Time = startRound, FieldNumber = 1,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 1,
                         TeamA   = divisionA[0].Team,
                         TeamB   = divisionB[1].Team,
                         Referee = divisionA[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 2,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 2,
                         TeamA   = divisionA[2].Team,
                         TeamB   = divisionB[3].Team,
                         Referee = divisionA[3].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 3,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 3,
                         TeamA   = divisionC[0].Team,
                         TeamB   = divisionD[1].Team,
                         Referee = divisionC[1].Team
                     });
                     
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 4,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 4,
                         TeamA   = divisionC[2].Team,
                         TeamB   = divisionD[3].Team,
                         Referee = divisionC[3].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 5,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 5,
                         TeamA   = divisionE[0].Team,
                         TeamB   = divisionF[1].Team,
                         Referee = divisionE[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 6,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 6,
                         TeamA   = divisionE[2].Team,
                         TeamB   = divisionF[3].Team,
                         Referee = divisionE[3].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 7,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 7,
                         TeamA   = divisionG[0].Team,
                         TeamB   = divisionH[1].Team,
                         Referee = divisionG[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 8,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 8,
                         TeamA   = divisionG[2].Team,
                         TeamB   = divisionH[3].Team,
                         Referee = divisionG[3].Team
                     });
 
-                    startRound = startRound.AddSeconds(addzeit);
                     lastRoundNr++;
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 8,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 8,
                         TeamA   = divisionA[1].Team,
                         TeamB   = divisionB[0].Team,
                         Referee = divisionB[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 7,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 7,
                         TeamA   = divisionA[3].Team,
                         TeamB   = divisionB[2].Team,
                         Referee = divisionB[3].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 6,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 6,
                         TeamA   = divisionC[1].Team,
                         TeamB   = divisionD[0].Team,
                         Referee = divisionD[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 5,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 5,
                         TeamA   = divisionC[3].Team,
                         TeamB   = divisionD[2].Team,
                         Referee = divisionD[3].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 4,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 4,
                         TeamA   = divisionE[1].Team,
                         TeamB   = divisionF[0].Team,
                         Referee = divisionF[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 3,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 3,
                         TeamA   = divisionE[3].Team,
                         TeamB   = divisionF[2].Team,
                         Referee = divisionF[3].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 2,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 2,
                         TeamA   = divisionG[1].Team,
                         TeamB   = divisionH[0].Team,
                         Referee = divisionH[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 1,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 1,
                         TeamA   = divisionG[3].Team,
                         TeamB   = divisionH[2].Team,
                         Referee = divisionH[3].Team
@@ -378,124 +379,123 @@ namespace Volleyball
                 }
                 else if (teamsCount == 50 || teamsCount == 55)
                 {
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 1,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 1,
                         TeamA   = divisionA[0].Team,
                         TeamB   = divisionB[1].Team,
                         Referee = divisionA[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 2,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 2,
                         TeamA   = divisionA[2].Team,
                         TeamB   = divisionB[3].Team,
                         Referee = divisionA[3].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 3,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 3,
                         TeamA   = divisionC[0].Team,
                         TeamB   = divisionD[1].Team,
                         Referee = divisionC[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 4,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 4,
                         TeamA   = divisionC[2].Team,
                         TeamB   = divisionD[3].Team,
                         Referee = divisionC[3].Team
                     });
                     
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 5,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 5,
                         TeamA   = divisionE[0].Team,
                         TeamB   = divisionF[1].Team,
                         Referee = divisionE[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 6,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 6,
                         TeamA   = divisionE[2].Team,
                         TeamB   = divisionF[3].Team,
                         Referee = divisionE[3].Team
                     });
                     
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 7,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 7,
                         TeamA   = divisionG[2].Team,
                         TeamB   = divisionH[3].Team,
                         Referee = divisionG[3].Team
                     });
                     
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 8,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 8,
                         TeamA   = divisionG[2].Team,
                         TeamB   = divisionH[3].Team,
                         Referee = divisionG[3].Team
                     });
                     
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 9,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 9,
                         TeamA   = divisionI[0].Team,
                         TeamB   = divisionJ[1].Team,
                         Referee = divisionI[1].Team
                     });
                     
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 10,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 10,
                         TeamA   = divisionI[2].Team,
                         TeamB   = divisionJ[3].Team,
                         Referee = divisionI[3].Team
                     });
                     
-                    startRound = startRound.AddSeconds(addzeit);
                     lastRoundNr++;
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 10,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 10,
                         TeamA   = divisionA[1].Team,
                         TeamB   = divisionB[0].Team,
                         Referee = divisionA[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 9,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 9,
                         TeamA   = divisionA[3].Team,
                         TeamB   = divisionB[2].Team,
                         Referee = divisionB[3].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 8,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 8,
                         TeamA   = divisionC[1].Team,
                         TeamB   = divisionD[0].Team,
                         Referee = divisionD[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 7,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 7,
                         TeamA   = divisionC[3].Team,
                         TeamB   = divisionD[2].Team,
                         Referee = divisionD[3].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 6,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 6,
                         TeamA   = divisionE[1].Team,
                         TeamB   = divisionF[0].Team,
                         Referee = divisionF[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 5,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 5,
                         TeamA   = divisionE[3].Team,
                         TeamB   = divisionF[2].Team,
                         Referee = divisionF[3].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 4,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 4,
                         TeamA   = divisionG[1].Team,
                         TeamB   = divisionH[0].Team,
                         Referee = divisionH[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 3,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 3,
                         TeamA   = divisionG[3].Team,
                         TeamB   = divisionH[2].Team,
                         Referee = divisionH[3].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 2,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 2,
                         TeamA   = divisionI[1].Team,
                         TeamB   = divisionJ[0].Team,
                         Referee = divisionI[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 1,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 1,
                         TeamA   = divisionI[3].Team,
                         TeamB   = divisionJ[2].Team,
                         Referee = divisionI[3].Team
@@ -503,149 +503,147 @@ namespace Volleyball
                 }
                 else if (teamsCount == 60)
                 {
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 1,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 1,
                         TeamA   = divisionA[0].Team,
                         TeamB   = divisionB[1].Team,
                         Referee = divisionA[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 2,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 2,
                         TeamA   = divisionA[2].Team,
                         TeamB   = divisionB[3].Team,
                         Referee = divisionA[3].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 3,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 3,
                         TeamA   = divisionC[0].Team,
                         TeamB   = divisionD[1].Team,
                         Referee = divisionC[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 4,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 4,
                         TeamA   = divisionC[2].Team,
                         TeamB   = divisionD[3].Team,
                         Referee = divisionC[3].Team
                     });
                     
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 5,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 5,
                         TeamA   = divisionE[0].Team,
                         TeamB   = divisionF[1].Team,
                         Referee = divisionE[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 6,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 6,
                         TeamA   = divisionE[2].Team,
                         TeamB   = divisionF[3].Team,
                         Referee = divisionE[3].Team
                     });
                     
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 7,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 7,
                         TeamA   = divisionG[2].Team,
                         TeamB   = divisionH[3].Team,
                         Referee = divisionG[3].Team
                     });
                     
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 8,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 8,
                         TeamA   = divisionG[2].Team,
                         TeamB   = divisionH[3].Team,
                         Referee = divisionG[3].Team
                     });
                     
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 9,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 9,
                         TeamA   = divisionI[0].Team,
                         TeamB   = divisionJ[1].Team,
                         Referee = divisionI[1].Team
                     });
                     
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 10,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 10,
                         TeamA   = divisionI[2].Team,
                         TeamB   = divisionJ[3].Team,
                         Referee = divisionI[3].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 11,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 11,
                         TeamA   = divisionK[0].Team,
                         TeamB   = divisionL[1].Team,
                         Referee = divisionK[1].Team
                     });
                     
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 12,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 12,
                         TeamA   = divisionK[2].Team,
                         TeamB   = divisionL[3].Team,
                         Referee = divisionK[3].Team
                     });
-                    
 
-                    startRound = startRound.AddSeconds(addzeit);
                     lastRoundNr++;
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 12,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 12,
                         TeamA   = divisionA[1].Team,
                         TeamB   = divisionB[0].Team,
                         Referee = divisionA[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 11,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 11,
                         TeamA   = divisionA[3].Team,
                         TeamB   = divisionB[2].Team,
                         Referee = divisionB[3].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 10,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 10,
                         TeamA   = divisionC[1].Team,
                         TeamB   = divisionD[0].Team,
                         Referee = divisionD[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 9,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 9,
                         TeamA   = divisionC[3].Team,
                         TeamB   = divisionD[2].Team,
                         Referee = divisionD[3].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 8,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 8,
                         TeamA   = divisionE[1].Team,
                         TeamB   = divisionF[0].Team,
                         Referee = divisionF[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 7,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 7,
                         TeamA   = divisionE[3].Team,
                         TeamB   = divisionF[2].Team,
                         Referee = divisionF[3].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 6,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 6,
                         TeamA   = divisionG[1].Team,
                         TeamB   = divisionH[0].Team,
                         Referee = divisionH[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 5,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 5,
                         TeamA   = divisionG[3].Team,
                         TeamB   = divisionH[2].Team,
                         Referee = divisionH[3].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 4,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 4,
                         TeamA   = divisionI[1].Team,
                         TeamB   = divisionJ[0].Team,
                         Referee = divisionI[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 3,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 3,
                         TeamA   = divisionI[3].Team,
                         TeamB   = divisionJ[2].Team,
                         Referee = divisionI[3].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 2,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 2,
                         TeamA   = divisionK[1].Team,
                         TeamB   = divisionL[0].Team,
                         Referee = divisionL[1].Team
                     });
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr++, Time = startRound, FieldNumber = 1,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = 1,
                         TeamA   = divisionK[3].Team,
                         TeamB   = divisionL[2].Team,
                         Referee = divisionL[3].Team
@@ -692,7 +690,6 @@ namespace Volleyball
 
                 List<MatchData> gameList = new List<MatchData>();
                 List<String> refereeList = new List<String>();
-                lastGameNr++;
 
                 // create game list
                 for (int i = 0; i < finalDivisions.Count;)
@@ -726,13 +723,13 @@ namespace Volleyball
 
                 // generate round starting with last group and last game (worst two teams)
                 for (int count = 0, fCount = 1, y = (gameList.Count - 1), startingReferee = 0;
-                    count < gamesCount; lastGameNr++, count++, startingReferee++)
+                    count < gamesCount; count++, startingReferee++, y--)
                 {
                     String referee = "";
                     if (startingReferee < fieldCount)
                         referee = refereeList[startingReferee];
 
-                    matchData.Add(new MatchData() { Round = lastRoundNr, Game = lastGameNr, Time = startRound, FieldNumber = fCount,
+                    matchData.Add(new MatchData() { Round = lastRoundNr, FieldNumber = fCount,
                         TeamA = gameList[y].TeamA,
                         TeamB = gameList[y].TeamB,
                         Referee = referee
@@ -742,7 +739,6 @@ namespace Volleyball
                     {
                         fCount = 1;
                         lastRoundNr++;
-                        startRound = startRound.AddSeconds(addzeit);
                     }
                     else
                     {

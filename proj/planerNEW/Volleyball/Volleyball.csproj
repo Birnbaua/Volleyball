@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseGameHandling.cs" />
+    <Compile Include="ClassementGames.cs" />
     <Compile Include="Crossgames.cs" />
     <Compile Include="InterimGames.cs" />
     <Compile Include="MatchData.cs" />

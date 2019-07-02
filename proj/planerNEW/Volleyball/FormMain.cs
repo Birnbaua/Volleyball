@@ -22,10 +22,11 @@ namespace Volleyball
         static bool lockAction = false;
         static readonly List<Color> rowColors = new List<Color>() { Color.Yellow, Color.LightGray, Color.Cyan, Color.Magenta };
         Settings settings;
-        DataTable dtFields, dtTeams, dtQualifying, dtInterim, dtCrossgames;
+        DataTable dtFields, dtTeams, dtQualifying, dtInterim, dtCrossgames, dtClassementgames;
         QualifyingGames qg;
         InterimGames ig;
         CrossGames cg;
+        ClassementGames clg;
         Logging log;
         List<List<String>> divisionsTeamList;
         List<String> fieldNames;
@@ -63,6 +64,10 @@ namespace Volleyball
             initDataTableQualifying();
 
             initDataTableInterim();
+
+            initDataTableCrossgames();
+
+            initDataTableClassementgames();
 
             checkBoxUseCrossgames_CheckedChanged(checkBoxUseCrossgames, EventArgs.Empty);
         }
@@ -1149,7 +1154,7 @@ namespace Volleyball
                                                 dataGridViewCrossgamesRound,
                                                 new object[] { true });
 
-            dataGridViewCrossgamesRound.DataSource = dtInterim;
+            dataGridViewCrossgamesRound.DataSource = dtCrossgames;
 
             cg = new CrossGames(log);
 
@@ -1213,16 +1218,350 @@ namespace Volleyball
             {
                 log.write("calculating crossgame results");
 
-                cg.calculateResults();
-
-                cg.sortResults();
-
                 SaveMatchDataToFile(crossgamesFileName, cg.matchData);
             }
         }
         #endregion
 
         #region form actions
+        private void dataGridViewCrossgamesRound_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (!lockAction)
+            {
+                switch (e.ColumnIndex)
+                {
+                    case 2:
+                        DateTime gameTime = DateTime.Parse(dtCrossgames.Rows[e.RowIndex][2].ToString());
+
+                        cg.recalculateTimeSchedule(e.RowIndex, gameTime);
+
+                        for (int i = 0; i < cg.matchData.Count; i++)
+                            dtCrossgames.Rows[i][2] = cg.matchData[i].Time.ToString("HH:mm");
+
+                        break;
+
+                    case 8:
+                        cg.matchData[e.RowIndex].PointsMatch1TeamA = int.Parse(dtCrossgames.Rows[e.RowIndex][8].ToString());
+                        break;
+
+                    case 9:
+                        cg.matchData[e.RowIndex].PointsMatch1TeamB = int.Parse(dtCrossgames.Rows[e.RowIndex][9].ToString());
+                        break;
+
+                    case 10:
+                        cg.matchData[e.RowIndex].PointsMatch2TeamA = int.Parse(dtCrossgames.Rows[e.RowIndex][10].ToString());
+                        break;
+
+                    case 11:
+                        cg.matchData[e.RowIndex].PointsMatch2TeamB = int.Parse(dtCrossgames.Rows[e.RowIndex][11].ToString());
+                        break;
+
+                    case 12:
+                        cg.matchData[e.RowIndex].PointsMatch3TeamA = int.Parse(dtCrossgames.Rows[e.RowIndex][12].ToString());
+                        break;
+
+                    case 13:
+                        cg.matchData[e.RowIndex].PointsMatch3TeamB = int.Parse(dtCrossgames.Rows[e.RowIndex][13].ToString());
+                        break;
+                }
+            }
+        }
+
+        private void buttonGenerateCrossgames_Click(object sender, EventArgs e)
+        {
+            lockAction = true;
+
+            List<String> doubleResults = ig.checkEqualDivisionResults();
+
+            if (doubleResults.Count > 0)
+            {
+                MessageBox.Show("Achtung gleiche Punktestände gefunden! '" + doubleResults[0] + "' = '" + doubleResults[1] + "'! Kreuzspiele werden NICHT generiert!");
+                log.write("found double team results " + doubleResults[0] + " = " + doubleResults[1]);
+            }
+            else
+            {
+
+                if (cg != null && cg.matchData.Count == 0)
+                {
+                    log.write("generate crossgames");
+
+                    extractFieldnames();
+
+                    cg.setParameters(ig.resultData,
+                                    ig.matchData[ig.matchData.Count - 1].Time,
+                                    settings.PauseBetweenInterimCrossgames,
+                                    settings.SetsCrossgames,
+                                    settings.MinutesPerSetCrossgame,
+                                    settings.PausePerSetCrossgame,
+                                    fieldNames.Count,
+                                    countTeams(),
+                                    fieldNames,
+                                    ig.matchData[ig.matchData.Count - 1].Round + 1,
+                                    ig.matchData[ig.matchData.Count - 1].Game + 1,
+                                    true); //TODO!!! => welcher spielplan wird gewählt mit 50+ teams
+
+                    cg.generateGames();
+
+                    loadCrossgames();
+
+                    saveCrossgames();
+
+                    setRowColorsForEachRound(dataGridViewCrossgamesRound);
+                }
+                else
+                {
+                    MessageBox.Show("Spiele sind schon vorhanden, generieren abgebrochen!", "Achtung!", MessageBoxButtons.OK);
+                }
+            }
+
+            lockAction = false;
+        }
+
+        private void buttonSaveCrossgames_Click(object sender, EventArgs e)
+        {
+            saveCrossgames();
+        }
+
+        private void buttonClearCrossgames_Click(object sender, EventArgs e)
+        {
+            if (cg != null)
+            {
+                cg.matchData.Clear();
+
+                dtCrossgames.Clear();
+
+                saveCrossgames();
+            }
+        }
+
+        private void buttonPrintCrossgames_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBoxCrossgames_TextChanged(object sender, EventArgs e)
+        {
+            (dataGridViewCrossgamesRound.DataSource as DataTable).DefaultView.RowFilter = string.Format("[Team A] LIKE '{0}%' OR [Team B] LIKE '{0}%' OR Schiedsrichter LIKE '{0}%'", textBoxCrossgamesFilter.Text);
+
+            if ((dataGridViewCrossgamesRound.DataSource as DataTable).DefaultView.Count == cg.matchData.Count)
+            {
+                setRowColorsForEachRound(dataGridViewCrossgamesRound);
+            }
+        }
+        #endregion
+        #endregion
+
+        #region classementgames
+        #region data actions
+        void initDataTableClassementgames()
+        {
+            dtClassementgames = new DataTable("dtClassementgames");
+            dtClassementgames.Columns.Add("Spiel");
+            dtClassementgames.Columns.Add("Runde");
+            dtClassementgames.Columns.Add("Zeit");
+            dtClassementgames.Columns.Add("Feldnr.");
+            dtClassementgames.Columns.Add("Feldname");
+            dtClassementgames.Columns.Add("Team A");
+            dtClassementgames.Columns.Add("Team B");
+            dtClassementgames.Columns.Add("Schiedsrichter");
+            dtClassementgames.Columns.Add("Satz 1 A");
+            dtClassementgames.Columns.Add("Satz 1 B");
+            dtClassementgames.Columns.Add("Satz 2 A");
+            dtClassementgames.Columns.Add("Satz 2 B");
+            dtClassementgames.Columns.Add("Satz 3 A");
+            dtClassementgames.Columns.Add("Satz 3 B");
+
+            typeof(DataGridView).InvokeMember("DoubleBuffered",
+                                                BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.SetProperty,
+                                                null,
+                                                dataGridViewClassementgamesRound,
+                                                new object[] { true });
+
+            dataGridViewClassementgamesRound.DataSource = dtClassementgames;
+
+            clg = new ClassementGames(log);
+
+            loadDataClassementgamesFromFile();
+
+            loadClassementgames();
+        }
+
+        void loadDataClassementgamesFromFile()
+        {
+            clg.matchData.Clear();
+
+            clg.matchData = LoadMatchDataFromFile(classementgamesFileName);
+
+            clg.setParameters(ig.resultData,
+                               cg.matchData,
+                                cg.matchData[cg.matchData.Count - 1].Time,
+                                settings.PauseBetweenCrossgamesClassement,
+                                settings.SetsClassement,
+                                settings.MinutesPerSetClassement,
+                                0,
+                                fieldNames.Count,
+                                countTeams(),
+                                fieldNames,
+                                cg.matchData[cg.matchData.Count - 1].Round + 1,
+                                cg.matchData[cg.matchData.Count - 1].Game + 1,
+                                true); //TODO!!!
+
+            clg.resultData.Clear();
+        }
+
+        void loadClassementgames()
+        {
+            if (clg != null)
+            {
+                if (clg.matchData.Count > 0)
+                {
+                    foreach (MatchData md in clg.matchData)
+                    {
+                        dtClassementgames.Rows.Add(new object[] { md.Game,
+                                                            md.Round,
+                                                            md.Time.ToString("HH:mm"),
+                                                            md.FieldNumber,
+                                                            md.FieldName,
+                                                            md.TeamA,
+                                                            md.TeamB,
+                                                            md.Referee,
+                                                            md.PointsMatch1TeamA,
+                                                            md.PointsMatch1TeamB,
+                                                            md.PointsMatch2TeamA,
+                                                            md.PointsMatch2TeamB,
+                                                            md.PointsMatch3TeamA,
+                                                            md.PointsMatch3TeamB });
+                    }
+                }
+            }
+        }
+
+        void saveClassementgames()
+        {
+            if (clg != null)
+            {
+                log.write("calculating classement results");
+
+                SaveMatchDataToFile(classementgamesFileName, clg.matchData);
+            }
+        }
+        #endregion
+
+        #region form actions
+        private void dataGridViewClassementgamesRound_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (!lockAction)
+            {
+                switch (e.ColumnIndex)
+                {
+                    case 2:
+                        DateTime gameTime = DateTime.Parse(dtClassementgames.Rows[e.RowIndex][2].ToString());
+
+                        clg.recalculateTimeSchedule(e.RowIndex, gameTime);
+
+                        for (int i = 0; i < clg.matchData.Count; i++)
+                            dtClassementgames.Rows[i][2] = clg.matchData[i].Time.ToString("HH:mm");
+
+                        break;
+
+                    case 8:
+                        clg.matchData[e.RowIndex].PointsMatch1TeamA = int.Parse(dtClassementgames.Rows[e.RowIndex][8].ToString());
+                        break;
+
+                    case 9:
+                        clg.matchData[e.RowIndex].PointsMatch1TeamB = int.Parse(dtClassementgames.Rows[e.RowIndex][9].ToString());
+                        break;
+
+                    case 10:
+                        clg.matchData[e.RowIndex].PointsMatch2TeamA = int.Parse(dtClassementgames.Rows[e.RowIndex][10].ToString());
+                        break;
+
+                    case 11:
+                        clg.matchData[e.RowIndex].PointsMatch2TeamB = int.Parse(dtClassementgames.Rows[e.RowIndex][11].ToString());
+                        break;
+
+                    case 12:
+                        clg.matchData[e.RowIndex].PointsMatch3TeamA = int.Parse(dtClassementgames.Rows[e.RowIndex][12].ToString());
+                        break;
+
+                    case 13:
+                        clg.matchData[e.RowIndex].PointsMatch3TeamB = int.Parse(dtClassementgames.Rows[e.RowIndex][13].ToString());
+                        break;
+                }
+            }
+        }
+
+        private void buttonGenerateClassementgames_Click(object sender, EventArgs e)
+        {
+            lockAction = true;
+
+            if (clg != null && clg.matchData.Count == 0)
+            {
+                log.write("generate classementgames");
+
+                extractFieldnames();
+
+                clg.setParameters(ig.resultData,
+                                cg.matchData,
+                                cg.matchData[cg.matchData.Count - 1].Time,
+                                settings.PauseBetweenCrossgamesClassement,
+                                settings.SetsClassement,
+                                settings.MinutesPerSetClassement,
+                                0,
+                                fieldNames.Count,
+                                countTeams(),
+                                fieldNames,
+                                cg.matchData[cg.matchData.Count - 1].Round + 1,
+                                cg.matchData[cg.matchData.Count - 1].Game + 1,
+                                true); //TODO!!! => welcher spielplan wird gewählt mit 50+ teams
+
+                clg.generateGames();
+
+                loadClassementgames();
+
+                saveClassementgames();
+
+                setRowColorsForEachRound(dataGridViewClassementgamesRound);
+            }
+            else
+            {
+                MessageBox.Show("Spiele sind schon vorhanden, generieren abgebrochen!", "Achtung!", MessageBoxButtons.OK);
+            }
+
+            lockAction = false;
+        }
+
+        private void buttonSaveClassementgames_Click(object sender, EventArgs e)
+        {
+            saveClassementgames();
+        }
+
+        private void buttonClearClassementgames_Click(object sender, EventArgs e)
+        {
+            if (clg != null)
+            {
+                clg.matchData.Clear();
+
+                dtClassementgames.Clear();
+
+                saveClassementgames();
+            }
+        }
+
+        private void buttonPrintClassementgames_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBoxClassementgames_TextChanged(object sender, EventArgs e)
+        {
+            (dataGridViewClassementgamesRound.DataSource as DataTable).DefaultView.RowFilter = string.Format("[Team A] LIKE '{0}%' OR [Team B] LIKE '{0}%' OR Schiedsrichter LIKE '{0}%'", textBoxClassementgamesFilter.Text);
+
+            if ((dataGridViewClassementgamesRound.DataSource as DataTable).DefaultView.Count == clg.matchData.Count)
+            {
+                setRowColorsForEachRound(dataGridViewClassementgamesRound);
+            }
+        }
         #endregion
         #endregion
     }

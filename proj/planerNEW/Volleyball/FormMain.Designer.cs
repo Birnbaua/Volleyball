@@ -79,6 +79,7 @@
             this.buttonClearTeams = new System.Windows.Forms.Button();
             this.dataGridViewTeams = new System.Windows.Forms.DataGridView();
             this.tabPageQualifying = new System.Windows.Forms.TabPage();
+            this.textBoxQualifyingFilter = new System.Windows.Forms.TextBox();
             this.dataGridViewQualifyingRound = new System.Windows.Forms.DataGridView();
             this.buttonResultsQualifying = new System.Windows.Forms.Button();
             this.buttonPrintQualifying = new System.Windows.Forms.Button();
@@ -86,6 +87,7 @@
             this.buttonSaveQualifying = new System.Windows.Forms.Button();
             this.buttonGenerateQualifying = new System.Windows.Forms.Button();
             this.tabPageInterim = new System.Windows.Forms.TabPage();
+            this.textBoxInterimFilter = new System.Windows.Forms.TextBox();
             this.dataGridViewInterimRound = new System.Windows.Forms.DataGridView();
             this.buttonResultsInterim = new System.Windows.Forms.Button();
             this.buttonPrintInterim = new System.Windows.Forms.Button();
@@ -93,18 +95,22 @@
             this.buttonSaveInterim = new System.Windows.Forms.Button();
             this.buttonGenerateInterim = new System.Windows.Forms.Button();
             this.tabPageCrossgames = new System.Windows.Forms.TabPage();
-            this.tabPageClassement = new System.Windows.Forms.TabPage();
-            this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabelEstimatedTournamentTime = new System.Windows.Forms.ToolStripStatusLabel();
-            this.textBoxQualifyingFilter = new System.Windows.Forms.TextBox();
-            this.textBoxInterimFilter = new System.Windows.Forms.TextBox();
             this.textBoxCrossgamesFilter = new System.Windows.Forms.TextBox();
             this.dataGridViewCrossgamesRound = new System.Windows.Forms.DataGridView();
             this.buttonPrintCrossgames = new System.Windows.Forms.Button();
             this.buttonClearCrossgames = new System.Windows.Forms.Button();
             this.buttonSaveCrossgames = new System.Windows.Forms.Button();
             this.buttonGenerateCrossgames = new System.Windows.Forms.Button();
+            this.tabPageClassement = new System.Windows.Forms.TabPage();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabelEstimatedTournamentTime = new System.Windows.Forms.ToolStripStatusLabel();
+            this.textBoxClassementgamesFilter = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.dataGridViewClassementgamesRound = new System.Windows.Forms.DataGridView();
             this.tabControl.SuspendLayout();
             this.tabPageConfiguration.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -134,8 +140,10 @@
             this.tabPageInterim.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInterimRound)).BeginInit();
             this.tabPageCrossgames.SuspendLayout();
-            this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCrossgamesRound)).BeginInit();
+            this.tabPageClassement.SuspendLayout();
+            this.statusStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewClassementgamesRound)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -782,6 +790,15 @@
             this.tabPageQualifying.Text = "Vorrunde";
             this.tabPageQualifying.UseVisualStyleBackColor = true;
             // 
+            // textBoxQualifyingFilter
+            // 
+            this.textBoxQualifyingFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxQualifyingFilter.Location = new System.Drawing.Point(761, 8);
+            this.textBoxQualifyingFilter.Name = "textBoxQualifyingFilter";
+            this.textBoxQualifyingFilter.Size = new System.Drawing.Size(307, 26);
+            this.textBoxQualifyingFilter.TabIndex = 15;
+            this.textBoxQualifyingFilter.TextChanged += new System.EventHandler(this.TextBoxQualifyingFilter_TextChanged);
+            // 
             // dataGridViewQualifyingRound
             // 
             this.dataGridViewQualifyingRound.AllowUserToAddRows = false;
@@ -868,6 +885,15 @@
             this.tabPageInterim.Text = "Zwischenrunde";
             this.tabPageInterim.UseVisualStyleBackColor = true;
             // 
+            // textBoxInterimFilter
+            // 
+            this.textBoxInterimFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxInterimFilter.Location = new System.Drawing.Point(762, 9);
+            this.textBoxInterimFilter.Name = "textBoxInterimFilter";
+            this.textBoxInterimFilter.Size = new System.Drawing.Size(307, 26);
+            this.textBoxInterimFilter.TabIndex = 21;
+            this.textBoxInterimFilter.TextChanged += new System.EventHandler(this.TextBoxInterimFilter_TextChanged);
+            // 
             // dataGridViewInterimRound
             // 
             this.dataGridViewInterimRound.AllowUserToAddRows = false;
@@ -953,8 +979,82 @@
             this.tabPageCrossgames.Text = "Kreuzspiele";
             this.tabPageCrossgames.UseVisualStyleBackColor = true;
             // 
+            // textBoxCrossgamesFilter
+            // 
+            this.textBoxCrossgamesFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxCrossgamesFilter.Location = new System.Drawing.Point(762, 9);
+            this.textBoxCrossgamesFilter.Name = "textBoxCrossgamesFilter";
+            this.textBoxCrossgamesFilter.Size = new System.Drawing.Size(307, 26);
+            this.textBoxCrossgamesFilter.TabIndex = 27;
+            this.textBoxCrossgamesFilter.TextChanged += new System.EventHandler(this.TextBoxCrossgames_TextChanged);
+            // 
+            // dataGridViewCrossgamesRound
+            // 
+            this.dataGridViewCrossgamesRound.AllowUserToAddRows = false;
+            this.dataGridViewCrossgamesRound.AllowUserToDeleteRows = false;
+            this.dataGridViewCrossgamesRound.AllowUserToOrderColumns = true;
+            this.dataGridViewCrossgamesRound.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewCrossgamesRound.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCrossgamesRound.Location = new System.Drawing.Point(7, 43);
+            this.dataGridViewCrossgamesRound.Name = "dataGridViewCrossgamesRound";
+            this.dataGridViewCrossgamesRound.Size = new System.Drawing.Size(1062, 579);
+            this.dataGridViewCrossgamesRound.TabIndex = 26;
+            this.dataGridViewCrossgamesRound.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCrossgamesRound_CellValueChanged);
+            // 
+            // buttonPrintCrossgames
+            // 
+            this.buttonPrintCrossgames.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonPrintCrossgames.Location = new System.Drawing.Point(355, 7);
+            this.buttonPrintCrossgames.Name = "buttonPrintCrossgames";
+            this.buttonPrintCrossgames.Size = new System.Drawing.Size(110, 30);
+            this.buttonPrintCrossgames.TabIndex = 25;
+            this.buttonPrintCrossgames.Text = "Drucken";
+            this.buttonPrintCrossgames.UseVisualStyleBackColor = true;
+            this.buttonPrintCrossgames.Click += new System.EventHandler(this.buttonPrintCrossgames_Click);
+            // 
+            // buttonClearCrossgames
+            // 
+            this.buttonClearCrossgames.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonClearCrossgames.Location = new System.Drawing.Point(239, 7);
+            this.buttonClearCrossgames.Name = "buttonClearCrossgames";
+            this.buttonClearCrossgames.Size = new System.Drawing.Size(110, 30);
+            this.buttonClearCrossgames.TabIndex = 24;
+            this.buttonClearCrossgames.Text = "Löschen";
+            this.buttonClearCrossgames.UseVisualStyleBackColor = true;
+            this.buttonClearCrossgames.Click += new System.EventHandler(this.buttonClearCrossgames_Click);
+            // 
+            // buttonSaveCrossgames
+            // 
+            this.buttonSaveCrossgames.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSaveCrossgames.Location = new System.Drawing.Point(123, 7);
+            this.buttonSaveCrossgames.Name = "buttonSaveCrossgames";
+            this.buttonSaveCrossgames.Size = new System.Drawing.Size(110, 30);
+            this.buttonSaveCrossgames.TabIndex = 23;
+            this.buttonSaveCrossgames.Text = "Speichern";
+            this.buttonSaveCrossgames.UseVisualStyleBackColor = true;
+            this.buttonSaveCrossgames.Click += new System.EventHandler(this.buttonSaveCrossgames_Click);
+            // 
+            // buttonGenerateCrossgames
+            // 
+            this.buttonGenerateCrossgames.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonGenerateCrossgames.Location = new System.Drawing.Point(7, 7);
+            this.buttonGenerateCrossgames.Name = "buttonGenerateCrossgames";
+            this.buttonGenerateCrossgames.Size = new System.Drawing.Size(110, 30);
+            this.buttonGenerateCrossgames.TabIndex = 22;
+            this.buttonGenerateCrossgames.Text = "Generieren";
+            this.buttonGenerateCrossgames.UseVisualStyleBackColor = true;
+            this.buttonGenerateCrossgames.Click += new System.EventHandler(this.buttonGenerateCrossgames_Click);
+            // 
             // tabPageClassement
             // 
+            this.tabPageClassement.Controls.Add(this.dataGridViewClassementgamesRound);
+            this.tabPageClassement.Controls.Add(this.button4);
+            this.tabPageClassement.Controls.Add(this.button3);
+            this.tabPageClassement.Controls.Add(this.button2);
+            this.tabPageClassement.Controls.Add(this.button1);
+            this.tabPageClassement.Controls.Add(this.textBoxClassementgamesFilter);
             this.tabPageClassement.Location = new System.Drawing.Point(4, 29);
             this.tabPageClassement.Name = "tabPageClassement";
             this.tabPageClassement.Padding = new System.Windows.Forms.Padding(3);
@@ -985,84 +1085,72 @@
             this.toolStripStatusLabelEstimatedTournamentTime.Name = "toolStripStatusLabelEstimatedTournamentTime";
             this.toolStripStatusLabelEstimatedTournamentTime.Size = new System.Drawing.Size(0, 17);
             // 
-            // textBoxQualifyingFilter
+            // textBoxClassementgamesFilter
             // 
-            this.textBoxQualifyingFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxQualifyingFilter.Location = new System.Drawing.Point(761, 8);
-            this.textBoxQualifyingFilter.Name = "textBoxQualifyingFilter";
-            this.textBoxQualifyingFilter.Size = new System.Drawing.Size(307, 26);
-            this.textBoxQualifyingFilter.TabIndex = 15;
-            this.textBoxQualifyingFilter.TextChanged += new System.EventHandler(this.TextBoxQualifyingFilter_TextChanged);
+            this.textBoxClassementgamesFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxClassementgamesFilter.Location = new System.Drawing.Point(763, 10);
+            this.textBoxClassementgamesFilter.Name = "textBoxClassementgamesFilter";
+            this.textBoxClassementgamesFilter.Size = new System.Drawing.Size(307, 26);
+            this.textBoxClassementgamesFilter.TabIndex = 28;
             // 
-            // textBoxInterimFilter
+            // button1
             // 
-            this.textBoxInterimFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxInterimFilter.Location = new System.Drawing.Point(762, 9);
-            this.textBoxInterimFilter.Name = "textBoxInterimFilter";
-            this.textBoxInterimFilter.Size = new System.Drawing.Size(307, 26);
-            this.textBoxInterimFilter.TabIndex = 21;
-            this.textBoxInterimFilter.TextChanged += new System.EventHandler(this.TextBoxInterimFilter_TextChanged);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(8, 6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(110, 30);
+            this.button1.TabIndex = 29;
+            this.button1.Text = "Generieren";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.buttonGenerateClassementgames_Click);
             // 
-            // textBoxCrossgamesFilter
+            // button2
             // 
-            this.textBoxCrossgamesFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxCrossgamesFilter.Location = new System.Drawing.Point(762, 9);
-            this.textBoxCrossgamesFilter.Name = "textBoxCrossgamesFilter";
-            this.textBoxCrossgamesFilter.Size = new System.Drawing.Size(307, 26);
-            this.textBoxCrossgamesFilter.TabIndex = 27;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(124, 6);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(110, 30);
+            this.button2.TabIndex = 30;
+            this.button2.Text = "Speichern";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.buttonSaveClassementgames_Click);
             // 
-            // dataGridViewCrossgamesRound
+            // button3
             // 
-            this.dataGridViewCrossgamesRound.AllowUserToAddRows = false;
-            this.dataGridViewCrossgamesRound.AllowUserToDeleteRows = false;
-            this.dataGridViewCrossgamesRound.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(240, 6);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(110, 30);
+            this.button3.TabIndex = 31;
+            this.button3.Text = "Löschen";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.buttonClearClassementgames_Click);
+            // 
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(356, 6);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(110, 30);
+            this.button4.TabIndex = 32;
+            this.button4.Text = "Drucken";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.buttonPrintClassementgames_Click);
+            // 
+            // dataGridViewClassementgamesRound
+            // 
+            this.dataGridViewClassementgamesRound.AllowUserToAddRows = false;
+            this.dataGridViewClassementgamesRound.AllowUserToDeleteRows = false;
+            this.dataGridViewClassementgamesRound.AllowUserToOrderColumns = true;
+            this.dataGridViewClassementgamesRound.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridViewCrossgamesRound.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewCrossgamesRound.Location = new System.Drawing.Point(7, 43);
-            this.dataGridViewCrossgamesRound.Name = "dataGridViewCrossgamesRound";
-            this.dataGridViewCrossgamesRound.Size = new System.Drawing.Size(1062, 579);
-            this.dataGridViewCrossgamesRound.TabIndex = 26;
-            // 
-            // buttonPrintCrossgames
-            // 
-            this.buttonPrintCrossgames.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPrintCrossgames.Location = new System.Drawing.Point(355, 7);
-            this.buttonPrintCrossgames.Name = "buttonPrintCrossgames";
-            this.buttonPrintCrossgames.Size = new System.Drawing.Size(110, 30);
-            this.buttonPrintCrossgames.TabIndex = 25;
-            this.buttonPrintCrossgames.Text = "Drucken";
-            this.buttonPrintCrossgames.UseVisualStyleBackColor = true;
-            // 
-            // buttonClearCrossgames
-            // 
-            this.buttonClearCrossgames.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonClearCrossgames.Location = new System.Drawing.Point(239, 7);
-            this.buttonClearCrossgames.Name = "buttonClearCrossgames";
-            this.buttonClearCrossgames.Size = new System.Drawing.Size(110, 30);
-            this.buttonClearCrossgames.TabIndex = 24;
-            this.buttonClearCrossgames.Text = "Löschen";
-            this.buttonClearCrossgames.UseVisualStyleBackColor = true;
-            // 
-            // buttonSaveCrossgames
-            // 
-            this.buttonSaveCrossgames.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSaveCrossgames.Location = new System.Drawing.Point(123, 7);
-            this.buttonSaveCrossgames.Name = "buttonSaveCrossgames";
-            this.buttonSaveCrossgames.Size = new System.Drawing.Size(110, 30);
-            this.buttonSaveCrossgames.TabIndex = 23;
-            this.buttonSaveCrossgames.Text = "Speichern";
-            this.buttonSaveCrossgames.UseVisualStyleBackColor = true;
-            // 
-            // buttonGenerateCrossgames
-            // 
-            this.buttonGenerateCrossgames.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonGenerateCrossgames.Location = new System.Drawing.Point(7, 7);
-            this.buttonGenerateCrossgames.Name = "buttonGenerateCrossgames";
-            this.buttonGenerateCrossgames.Size = new System.Drawing.Size(110, 30);
-            this.buttonGenerateCrossgames.TabIndex = 22;
-            this.buttonGenerateCrossgames.Text = "Generieren";
-            this.buttonGenerateCrossgames.UseVisualStyleBackColor = true;
+            this.dataGridViewClassementgamesRound.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewClassementgamesRound.Location = new System.Drawing.Point(8, 42);
+            this.dataGridViewClassementgamesRound.Name = "dataGridViewClassementgamesRound";
+            this.dataGridViewClassementgamesRound.Size = new System.Drawing.Size(1062, 579);
+            this.dataGridViewClassementgamesRound.TabIndex = 33;
+            this.dataGridViewClassementgamesRound.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewClassementgamesRound_CellValueChanged);
             // 
             // FormMain
             // 
@@ -1105,9 +1193,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInterimRound)).EndInit();
             this.tabPageCrossgames.ResumeLayout(false);
             this.tabPageCrossgames.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCrossgamesRound)).EndInit();
+            this.tabPageClassement.ResumeLayout(false);
+            this.tabPageClassement.PerformLayout();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCrossgamesRound)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewClassementgamesRound)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1191,6 +1282,12 @@
         private System.Windows.Forms.Button buttonClearCrossgames;
         private System.Windows.Forms.Button buttonSaveCrossgames;
         private System.Windows.Forms.Button buttonGenerateCrossgames;
+        private System.Windows.Forms.TextBox textBoxClassementgamesFilter;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridView dataGridViewClassementgamesRound;
     }
 }
 

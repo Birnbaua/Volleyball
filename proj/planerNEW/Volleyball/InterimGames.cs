@@ -46,7 +46,7 @@ namespace Volleyball
 
             setTimeParameters(setCounter, minutesSet, minutesPause);
 
-            startRound = startRound.AddSeconds(pauseBetweenQualifyingInterim * 60);
+            this.startRound = this.startRound.AddSeconds(pauseBetweenQualifyingInterim * 60);
         }
 
         public void generateGames()
@@ -144,7 +144,7 @@ namespace Volleyball
                     }
                     else if (divisionTeams[ii].PointsSets == divisionTeams[ii + 1].PointsSets
                         && divisionTeams[ii].PointsMatches == divisionTeams[ii + 1].PointsMatches
-                        && divisionTeams[ii].ExternalRank < divisionTeams[ii + 1].ExternalRank)
+                        && divisionTeams[ii].ExternalRank > divisionTeams[ii + 1].ExternalRank)
                     {
                         ResultData team = divisionTeams[ii];
 

@@ -1,0 +1,27 @@
+20190702_14_27_19: System.IO.FileNotFoundException: Die Datei "C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\bin\Debug\qualifying_result_L.csv" konnte nicht gefunden werden.
+Dateiname: "C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\bin\Debug\qualifying_result_L.csv"
+   bei System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   bei System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   bei System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   bei System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   bei System.IO.StreamReader..ctor(String path)
+   bei Volleyball.FormMain.LoadResultDataFromFile(String fileName) in C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\FormMain.cs:Zeile 122.
+20190702_14_27_19: System.IO.FileNotFoundException: Die Datei "C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\bin\Debug\interim_results_L.csv" konnte nicht gefunden werden.
+Dateiname: "C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\bin\Debug\interim_results_L.csv"
+   bei System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   bei System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   bei System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   bei System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   bei System.IO.StreamReader..ctor(String path)
+   bei Volleyball.FormMain.LoadResultDataFromFile(String fileName) in C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\FormMain.cs:Zeile 122.
+20190702_14_27_19: System.IO.FileNotFoundException: Die Datei "C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\bin\Debug\crossgames.csv" konnte nicht gefunden werden.
+Dateiname: "C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\bin\Debug\crossgames.csv"
+   bei System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   bei System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   bei System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   bei System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   bei System.IO.StreamReader..ctor(String path)
+   bei Volleyball.FormMain.LoadMatchDataFromFile(String fileName) in C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\FormMain.cs:Zeile 96.
+20190702_14_27_22: generate crossgames
+20190702_14_27_27: calculating interim results
+20190702_14_27_32: calculating crossgame results
