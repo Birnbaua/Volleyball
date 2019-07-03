@@ -108,7 +108,7 @@ namespace Volleyball
             return calcTeamResults;
         }
 
-        List<String> getResultsForCrossgamesAndClassementgames(MatchData resultToCalculate)
+        public static List<String> getResultsForCrossgamesAndClassementgames(MatchData resultToCalculate)
         {
             TeamResult teamA = new TeamResult();
             TeamResult teamB = new TeamResult();

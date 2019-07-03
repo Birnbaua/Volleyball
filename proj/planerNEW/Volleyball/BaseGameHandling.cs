@@ -78,7 +78,7 @@ namespace Volleyball
 
         public void insertGameTime(DateTime startTournament)
         {
-            int addtime = ((setCounter * minutes) + pause) * 60;
+            int addtime = 0;
 
             for (int i = 0, lastRound = 0; i < matchData.Count; i++)
             {
@@ -87,7 +87,9 @@ namespace Volleyball
                 if (lastRound < roundValue)
                 {
                     lastRound = roundValue;
+
                     startTournament = startTournament.AddSeconds(addtime);
+                    addtime = ((setCounter * minutes) + pause) * 60;
                 }
 
                 matchData[i].Time = startTournament;                

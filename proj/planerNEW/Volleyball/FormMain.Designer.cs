@@ -33,8 +33,6 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dateTimePickerTournamentstart = new System.Windows.Forms.DateTimePicker();
             this.checkBoxUseCrossgames = new System.Windows.Forms.CheckBox();
-            this.numericUpDownPauseAfterFinal = new System.Windows.Forms.NumericUpDown();
-            this.label18 = new System.Windows.Forms.Label();
             this.numericUpDownTimeForFinals = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownClassementMinutesPerSet = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownClassementSets = new System.Windows.Forms.NumericUpDown();
@@ -111,10 +109,10 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.dataGridViewClassementgamesRound = new System.Windows.Forms.DataGridView();
+            this.checkBoxUseSecondGameplan = new System.Windows.Forms.CheckBox();
             this.tabControl.SuspendLayout();
             this.tabPageConfiguration.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPauseAfterFinal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTimeForFinals)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownClassementMinutesPerSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownClassementSets)).BeginInit();
@@ -181,10 +179,9 @@
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.checkBoxUseSecondGameplan);
             this.groupBox3.Controls.Add(this.dateTimePickerTournamentstart);
             this.groupBox3.Controls.Add(this.checkBoxUseCrossgames);
-            this.groupBox3.Controls.Add(this.numericUpDownPauseAfterFinal);
-            this.groupBox3.Controls.Add(this.label18);
             this.groupBox3.Controls.Add(this.numericUpDownTimeForFinals);
             this.groupBox3.Controls.Add(this.numericUpDownClassementMinutesPerSet);
             this.groupBox3.Controls.Add(this.numericUpDownClassementSets);
@@ -247,28 +244,6 @@
             this.checkBoxUseCrossgames.Text = "Kreuzspiele";
             this.checkBoxUseCrossgames.UseVisualStyleBackColor = true;
             this.checkBoxUseCrossgames.CheckedChanged += new System.EventHandler(this.checkBoxUseCrossgames_CheckedChanged);
-            // 
-            // numericUpDownPauseAfterFinal
-            // 
-            this.numericUpDownPauseAfterFinal.Location = new System.Drawing.Point(646, 286);
-            this.numericUpDownPauseAfterFinal.Maximum = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            0});
-            this.numericUpDownPauseAfterFinal.Name = "numericUpDownPauseAfterFinal";
-            this.numericUpDownPauseAfterFinal.Size = new System.Drawing.Size(75, 26);
-            this.numericUpDownPauseAfterFinal.TabIndex = 51;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(359, 288);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(279, 20);
-            this.label18.TabIndex = 50;
-            this.label18.Text = "Dauer Pause n. Finale + Siegerehrung";
-            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // numericUpDownTimeForFinals
             // 
@@ -1152,6 +1127,17 @@
             this.dataGridViewClassementgamesRound.TabIndex = 33;
             this.dataGridViewClassementgamesRound.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewClassementgamesRound_CellValueChanged);
             // 
+            // checkBoxUseSecondGameplan
+            // 
+            this.checkBoxUseSecondGameplan.AutoSize = true;
+            this.checkBoxUseSecondGameplan.Location = new System.Drawing.Point(877, 31);
+            this.checkBoxUseSecondGameplan.Name = "checkBoxUseSecondGameplan";
+            this.checkBoxUseSecondGameplan.Size = new System.Drawing.Size(179, 24);
+            this.checkBoxUseSecondGameplan.TabIndex = 54;
+            this.checkBoxUseSecondGameplan.Text = "Spielpläne 2 Variante";
+            this.checkBoxUseSecondGameplan.UseVisualStyleBackColor = true;
+            this.checkBoxUseSecondGameplan.CheckedChanged += new System.EventHandler(this.checkBoxUseSecondGameplan_CheckedChanged);
+            // 
             // FormMain
             // 
             this.ClientSize = new System.Drawing.Size(1092, 698);
@@ -1163,7 +1149,6 @@
             this.tabPageConfiguration.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPauseAfterFinal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTimeForFinals)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownClassementMinutesPerSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownClassementSets)).EndInit();
@@ -1261,8 +1246,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.NumericUpDown numericUpDownPauseBetweenCrossgamesClassement;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.NumericUpDown numericUpDownPauseAfterFinal;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.CheckBox checkBoxUseCrossgames;
         private System.Windows.Forms.Button buttonSaveTeams;
         private System.Windows.Forms.Button buttonPrintTeams;
@@ -1288,6 +1271,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridViewClassementgamesRound;
+        private System.Windows.Forms.CheckBox checkBoxUseSecondGameplan;
     }
 }
 

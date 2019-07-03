@@ -24,7 +24,7 @@ namespace Volleyball
         int setsClassement;
         int minutesPerSetClassement;
         int minutesForFinals;
-        int pauseAfterFinals;
+        bool useSecondGameplan;
         bool useCrossgames;
         
         public Settings()
@@ -45,7 +45,7 @@ namespace Volleyball
             SetsClassement = 1;
             MinutesPerSetClassement = 10;
             MinutesForFinals = 15;
-            PauseAfterFinals = 30;
+            useSecondGameplan = true;
             UseCrossgames = true;
         }
 
@@ -65,7 +65,7 @@ namespace Volleyball
         public int SetsClassement { get => setsClassement; set => setsClassement = value; }
         public int MinutesPerSetClassement { get => minutesPerSetClassement; set => minutesPerSetClassement = value; }
         public int MinutesForFinals { get => minutesForFinals; set => minutesForFinals = value; }
-        public int PauseAfterFinals { get => pauseAfterFinals; set => pauseAfterFinals = value; }
+        public bool UseSecondGameplan { get => useSecondGameplan; set => useSecondGameplan = value; }
         public bool UseCrossgames { get => useCrossgames; set => useCrossgames = value; }
     }
 }

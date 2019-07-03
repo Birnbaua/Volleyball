@@ -79,8 +79,7 @@ namespace Volleyball
         void generateGamePlan()
         {
             List<List<ResultData>> finalDivisions = new List<List<ResultData>>();
-            int addzeit = ((setCounter * minutesSet) + minutesPause) * 60;
-
+            
             // help lists
             List<ResultData> divisionA = resultCrossgamesList[0];
             List<ResultData> divisionB = resultCrossgamesList[1];

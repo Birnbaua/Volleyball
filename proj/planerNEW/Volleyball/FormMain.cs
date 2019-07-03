@@ -11,13 +11,13 @@ namespace Volleyball
     public partial class FormMain : Form
     {
         #region members
-        static readonly String settingsFileName = "settings.csv";
-        static readonly String fieldsFileName = "fields.csv";
-        static readonly String teamsFileName = "teams.csv";
-        static readonly String qualifyingFileName = "qualifyinggames.csv", qualifyingResultFileName = "qualifying_result";
-        static readonly String interimFileName = "interimgames.csv", interimResultFileName = "interim_results";
-        static readonly String crossgamesFileName = "crossgames.csv";
-        static readonly String classementgamesFileName = "classementgames.csv";
+        static readonly string settingsFileName = "settings.csv";
+        static readonly string fieldsFileName = "fields.csv";
+        static readonly string teamsFileName = "teams.csv";
+        static readonly string qualifyingFileName = "qualifyinggames.csv", qualifyingResultFileName = "qualifying_result";
+        static readonly string interimFileName = "interimgames.csv", interimResultFileName = "interim_results";
+        static readonly string crossgamesFileName = "crossgames.csv";
+        static readonly string classementgamesFileName = "classementgames.csv";
         static readonly List<String> prefix = new List<String>() { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L" };
         static bool lockAction = false;
         static readonly List<Color> rowColors = new List<Color>() { Color.Yellow, Color.LightGray, Color.Cyan, Color.Magenta };
@@ -40,6 +40,7 @@ namespace Volleyball
                                                    new int[]{ 1, 2, 0 },
                                                    new int[]{ 3, 4, 0 },
                                                    new int[]{ 0, 1, 4 }};
+        Timer updateTournamentEndtime;
         #endregion
 
         public FormMain()
@@ -68,6 +69,10 @@ namespace Volleyball
             initDataTableCrossgames();
 
             initDataTableClassementgames();
+
+            initializeTimer();
+
+            checkBoxUseSecondGameplan_CheckedChanged(checkBoxUseSecondGameplan, EventArgs.Empty);
 
             checkBoxUseCrossgames_CheckedChanged(checkBoxUseCrossgames, EventArgs.Empty);
         }
@@ -142,7 +147,63 @@ namespace Volleyball
             return rdList;
         }
 
+        void uploadTournamentDataToWeb()
+        {
+
+        }
+
         #region general ui methods
+        void initializeTimer()
+        {
+            updateTournamentEndtime = new Timer();
+            updateTournamentEndtime.Interval = 10 * 1000;
+            updateTournamentEndtime.Tick += new EventHandler(timerRecalculateTournamentTime);
+            updateTournamentEndtime.Enabled = true;
+        }
+
+        void timerRecalculateTournamentTime(object Sender, EventArgs e)
+        {
+            DateTime lastTimeFromRound = DateTime.Now;
+            int addTime = 0;
+
+            if (clg != null && clg.matchData.Count > 0)
+            {
+                addTime += settings.MinutesForFinals * 60;
+
+                lastTimeFromRound = clg.matchData[clg.matchData.Count - 1].Time;
+                lastTimeFromRound = lastTimeFromRound.AddSeconds(addTime);
+            }
+            else if (cg != null && cg.matchData.Count > 0)
+            {
+                addTime += calculateTimeForClassementgames();
+                addTime += settings.MinutesForFinals * 60;
+
+                lastTimeFromRound = cg.matchData[cg.matchData.Count - 1].Time;
+                lastTimeFromRound = lastTimeFromRound.AddSeconds(addTime);
+            }
+            else if (ig != null && ig.matchData.Count > 0)
+            {
+                addTime += calculateTimeForCrossgames();
+                addTime += calculateTimeForClassementgames();
+                addTime += settings.MinutesForFinals * 60;
+
+                lastTimeFromRound = ig.matchData[ig.matchData.Count - 1].Time;
+                lastTimeFromRound = lastTimeFromRound.AddSeconds(addTime);
+            }
+            else if (qg != null && qg.matchData.Count > 0)
+            {
+                addTime += calculateTimeForInterimgames();
+                addTime += calculateTimeForCrossgames();
+                addTime += calculateTimeForClassementgames();
+                addTime += settings.MinutesForFinals * 60;
+
+                lastTimeFromRound = qg.matchData[qg.matchData.Count - 1].Time;
+                lastTimeFromRound = lastTimeFromRound.AddSeconds(addTime);
+            }
+
+            this.toolStripStatusLabelEstimatedTournamentTime.Text = lastTimeFromRound.ToString("HH:mm");
+        }
+
         void setRowColorsForEachRound(DataGridView dgv)
         {
             int lastRound = 0;
@@ -182,6 +243,55 @@ namespace Volleyball
             {
                 setRowColorsForEachRound(dataGridViewCrossgamesRound);
             }
+            else if (tabName == "tabPageClassement")
+            {
+                setRowColorsForEachRound(dataGridViewClassementgamesRound);
+            }
+        }
+
+        int calculateTimeForInterimgames()
+        {
+            int add = 0;
+
+            add += settings.PauseBetweenQualifyingInterim * 60;
+            add += qg.matchData.Count * (((settings.SetsInterim * settings.MinutesPerSetInterim) + settings.PausePerSetInterim) * 60) / fieldNames.Count;
+
+            return add;
+        }
+
+        int calculateTimeForCrossgames()
+        {
+            int add = 0;
+
+            switch (countTeams())
+            {
+                case 20:
+                    add += ((settings.SetsCrossgames * settings.MinutesPerSetCrossgame) + settings.PausePerSetCrossgame) * 60 * 8 / fieldNames.Count;
+                    break;
+                case 25:
+                    add += ((settings.SetsCrossgames * settings.MinutesPerSetCrossgame) + settings.PausePerSetCrossgame) * 60 * 10 / fieldNames.Count;
+                    break;
+                case 28:
+                case 30:
+                case 35:
+                case 40:
+                case 45:
+                    add += ((settings.SetsCrossgames * settings.MinutesPerSetCrossgame) + settings.PausePerSetCrossgame) * 60 * 12 / fieldNames.Count;
+                    break;
+            }
+
+            return add;
+        }
+
+        int calculateTimeForClassementgames()
+        {
+            int add = 0;
+
+            add += settings.PauseBetweenCrossgamesClassement * 60;
+
+            add += ((countTeams() / 2) - 1) * ((settings.SetsClassement * settings.MinutesPerSetClassement) * 60) / fieldNames.Count;
+
+            return add;
         }
         #endregion
 
@@ -214,7 +324,7 @@ namespace Volleyball
                     settings.SetsClassement = Convert.ToInt32(fieldArray[13]);
                     settings.MinutesPerSetClassement = Convert.ToInt32(fieldArray[14]);
                     settings.MinutesForFinals = Convert.ToInt32(fieldArray[15]);
-                    settings.PauseAfterFinals = Convert.ToInt32(fieldArray[16]);
+                    settings.UseSecondGameplan = Convert.ToBoolean(fieldArray[16]);
                     settings.UseCrossgames = Convert.ToBoolean(fieldArray[17]);
                 }
             }
@@ -246,7 +356,7 @@ namespace Volleyball
                             settings.SetsClassement + ";" +
                             settings.MinutesPerSetClassement + ";" +
                             settings.MinutesForFinals + ";" +
-                            settings.PauseAfterFinals + ";" +
+                            settings.UseSecondGameplan + ";" +
                             settings.UseCrossgames);
             }
         }
@@ -269,7 +379,7 @@ namespace Volleyball
             settings.SetsClassement = 1;
             settings.MinutesPerSetClassement = 15;
             settings.MinutesForFinals = 0;
-            settings.PauseAfterFinals = 0;
+            settings.UseSecondGameplan = true;
             settings.UseCrossgames = true;
 
             loadSettingsToForm();
@@ -295,7 +405,16 @@ namespace Volleyball
             numericUpDownCrossgamesMinutesPerSet.Value = settings.MinutesPerSetCrossgame;
             numericUpDownCrossgamesPauseBetweenSets.Value = settings.PausePerSetCrossgame;
 
-            if(settings.UseCrossgames)
+            if (settings.UseSecondGameplan)
+            {
+                checkBoxUseSecondGameplan.Checked = true;
+            }
+            else
+            {
+                checkBoxUseSecondGameplan.Checked = false;
+            }
+
+            if (settings.UseCrossgames)
             {
                 checkBoxUseCrossgames.Checked = true;
             }
@@ -309,7 +428,6 @@ namespace Volleyball
             numericUpDownClassementSets.Value = settings.SetsClassement;
             numericUpDownClassementMinutesPerSet.Value = settings.MinutesPerSetClassement;
             numericUpDownTimeForFinals.Value = settings.MinutesForFinals;
-            numericUpDownPauseAfterFinal.Value = settings.PauseAfterFinals;
         }
         
         #region forms
@@ -333,6 +451,7 @@ namespace Volleyball
             settings.MinutesPerSetCrossgame = Convert.ToInt32(numericUpDownCrossgamesMinutesPerSet.Value);
             settings.PausePerSetCrossgame = Convert.ToInt32(numericUpDownCrossgamesPauseBetweenSets.Value);
 
+            settings.UseSecondGameplan = checkBoxUseSecondGameplan.Checked;
             settings.UseCrossgames = checkBoxUseCrossgames.Checked;
 
             settings.PauseBetweenCrossgamesClassement = Convert.ToInt32(numericUpDownPauseBetweenCrossgamesClassement.Value);
@@ -340,7 +459,6 @@ namespace Volleyball
             settings.SetsClassement = Convert.ToInt32(numericUpDownClassementSets.Value);
             settings.MinutesPerSetClassement = Convert.ToInt32(numericUpDownClassementMinutesPerSet.Value);
             settings.MinutesForFinals = Convert.ToInt32(numericUpDownTimeForFinals.Value);
-            settings.PauseAfterFinals = Convert.ToInt32(numericUpDownPauseAfterFinal.Value);
 
             writeSettingsToFile();
 
@@ -355,6 +473,11 @@ namespace Volleyball
         private void buttonResetSettings_Click(object sender, EventArgs e)
         {
             loadDefaultSettings();
+        }
+
+        private void checkBoxUseSecondGameplan_CheckedChanged(object sender, EventArgs e)
+        {
+            settings.UseSecondGameplan = checkBoxUseSecondGameplan.Checked;
         }
 
         private void checkBoxUseCrossgames_CheckedChanged(object sender, EventArgs e)
@@ -916,13 +1039,17 @@ namespace Volleyball
 
         void loadDataInterimFromFile()
         {
-            ig.matchData.Clear();
+            if (ig != null && qg.matchData.Count > 0)
+            {
+                ig.matchData.Clear();
 
-            ig.matchData = LoadMatchDataFromFile(interimFileName);
+                ig.matchData = LoadMatchDataFromFile(interimFileName);
 
-            ig.setParameters(qg.resultData,
+                DateTime startTime = qg.matchData[qg.matchData.Count - 1].Time.AddSeconds((settings.SetsQualifying * settings.MinutesPerSetQualifying * 60) + settings.PausePerSetQualifying);
+
+                ig.setParameters(qg.resultData,
                                 gamePlan,
-                                qg.matchData[qg.matchData.Count - 1].Time,
+                                startTime,
                                 settings.PauseBetweenQualifyingInterim,
                                 settings.SetsInterim,
                                 settings.MinutesPerSetInterim,
@@ -932,37 +1059,35 @@ namespace Volleyball
                                 fieldNames,
                                 qg.matchData[qg.matchData.Count - 1].Round + 1,
                                 qg.matchData[qg.matchData.Count - 1].Game + 1,
-                                true); //TODO!!!
+                                settings.UseSecondGameplan);
 
-            ig.resultData.Clear();
+                ig.resultData.Clear();
 
-            for (int i = 0; i < prefix.Count; i++)
-                ig.resultData.Add(LoadResultDataFromFile(interimResultFileName + "_" + prefix[i] + ".csv"));
+                for (int i = 0; i < prefix.Count; i++)
+                    ig.resultData.Add(LoadResultDataFromFile(interimResultFileName + "_" + prefix[i] + ".csv"));
+            }
         }
 
         void loadInterim()
         {
-            if (ig != null)
+            if (ig != null && ig.matchData.Count > 0)
             {
-                if (ig.matchData.Count > 0)
+                foreach (MatchData md in ig.matchData)
                 {
-                    foreach (MatchData md in ig.matchData)
-                    {
-                        dtInterim.Rows.Add(new object[] { md.Game,
-                                                            md.Round,
-                                                            md.Time.ToString("HH:mm"),
-                                                            md.FieldNumber,
-                                                            md.FieldName,
-                                                            md.TeamA,
-                                                            md.TeamB,
-                                                            md.Referee,
-                                                            md.PointsMatch1TeamA,
-                                                            md.PointsMatch1TeamB,
-                                                            md.PointsMatch2TeamA,
-                                                            md.PointsMatch2TeamB,
-                                                            md.PointsMatch3TeamA,
-                                                            md.PointsMatch3TeamB });
-                    }
+                    dtInterim.Rows.Add(new object[] { md.Game,
+                                                        md.Round,
+                                                        md.Time.ToString("HH:mm"),
+                                                        md.FieldNumber,
+                                                        md.FieldName,
+                                                        md.TeamA,
+                                                        md.TeamB,
+                                                        md.Referee,
+                                                        md.PointsMatch1TeamA,
+                                                        md.PointsMatch1TeamB,
+                                                        md.PointsMatch2TeamA,
+                                                        md.PointsMatch2TeamB,
+                                                        md.PointsMatch3TeamA,
+                                                        md.PointsMatch3TeamB });
                 }
             }
         }
@@ -1045,16 +1170,17 @@ namespace Volleyball
             }
             else
             {
-
-                if (ig != null && ig.matchData.Count == 0)
+                if (ig != null && qg.matchData.Count > 0 && ig.matchData.Count == 0)
                 {
                     log.write("generate interim games");
 
                     extractFieldnames();
 
+                    DateTime startTime = qg.matchData[qg.matchData.Count - 1].Time.AddSeconds((settings.SetsQualifying * settings.MinutesPerSetQualifying * 60) + settings.PausePerSetQualifying);
+
                     ig.setParameters(qg.resultData,
                                     gamePlan,
-                                    qg.matchData[qg.matchData.Count - 1].Time,
+                                    startTime,
                                     settings.PauseBetweenQualifyingInterim,
                                     settings.SetsInterim,
                                     settings.MinutesPerSetInterim,
@@ -1064,7 +1190,7 @@ namespace Volleyball
                                     fieldNames,
                                     qg.matchData[qg.matchData.Count - 1].Round + 1,
                                     qg.matchData[qg.matchData.Count - 1].Game + 1,
-                                    true); //TODO!!! => welcher spielplan wird gewählt mit 50+ teams
+                                    settings.UseSecondGameplan);
 
                     ig.generateGames();
 
@@ -1165,49 +1291,51 @@ namespace Volleyball
 
         void loadDataCrossgamesFromFile()
         {
-            cg.matchData.Clear();
+            if (cg != null && ig.matchData.Count > 0)
+            {
+                cg.matchData.Clear();
 
-            cg.matchData = LoadMatchDataFromFile(crossgamesFileName);
+                cg.matchData = LoadMatchDataFromFile(crossgamesFileName);
 
-            cg.setParameters(ig.resultData,
-                                ig.matchData[ig.matchData.Count - 1].Time,
-                                settings.PauseBetweenInterimCrossgames,
-                                settings.SetsCrossgames,
-                                settings.MinutesPerSetCrossgame,
-                                settings.PausePerSetCrossgame,
-                                fieldNames.Count,
-                                countTeams(),
-                                fieldNames,
-                                ig.matchData[ig.matchData.Count - 1].Round + 1,
-                                ig.matchData[ig.matchData.Count - 1].Game + 1,
-                                true); //TODO!!!
+                DateTime startTime = ig.matchData[ig.matchData.Count - 1].Time.AddSeconds((settings.SetsInterim * settings.MinutesPerSetInterim * 60) + settings.PausePerSetInterim);
 
-            cg.resultData.Clear();
+                cg.setParameters(ig.resultData,
+                                    startTime,
+                                    settings.PauseBetweenInterimCrossgames,
+                                    settings.SetsCrossgames,
+                                    settings.MinutesPerSetCrossgame,
+                                    settings.PausePerSetCrossgame,
+                                    fieldNames.Count,
+                                    countTeams(),
+                                    fieldNames,
+                                    ig.matchData[ig.matchData.Count - 1].Round + 1,
+                                    ig.matchData[ig.matchData.Count - 1].Game + 1,
+                                    settings.UseSecondGameplan);
+
+                cg.resultData.Clear();
+            }
         }
 
         void loadCrossgames()
         {
-            if (cg != null)
+            if (cg != null && cg.matchData.Count > 0)
             {
-                if (cg.matchData.Count > 0)
+                foreach (MatchData md in cg.matchData)
                 {
-                    foreach (MatchData md in cg.matchData)
-                    {
-                        dtCrossgames.Rows.Add(new object[] { md.Game,
-                                                            md.Round,
-                                                            md.Time.ToString("HH:mm"),
-                                                            md.FieldNumber,
-                                                            md.FieldName,
-                                                            md.TeamA,
-                                                            md.TeamB,
-                                                            md.Referee,
-                                                            md.PointsMatch1TeamA,
-                                                            md.PointsMatch1TeamB,
-                                                            md.PointsMatch2TeamA,
-                                                            md.PointsMatch2TeamB,
-                                                            md.PointsMatch3TeamA,
-                                                            md.PointsMatch3TeamB });
-                    }
+                    dtCrossgames.Rows.Add(new object[] { md.Game,
+                                                        md.Round,
+                                                        md.Time.ToString("HH:mm"),
+                                                        md.FieldNumber,
+                                                        md.FieldName,
+                                                        md.TeamA,
+                                                        md.TeamB,
+                                                        md.Referee,
+                                                        md.PointsMatch1TeamA,
+                                                        md.PointsMatch1TeamB,
+                                                        md.PointsMatch2TeamA,
+                                                        md.PointsMatch2TeamB,
+                                                        md.PointsMatch3TeamA,
+                                                        md.PointsMatch3TeamB });
                 }
             }
         }
@@ -1280,15 +1408,16 @@ namespace Volleyball
             }
             else
             {
-
-                if (cg != null && cg.matchData.Count == 0)
+                if (cg != null && ig.matchData.Count > 0 && cg.matchData.Count == 0)
                 {
                     log.write("generate crossgames");
 
                     extractFieldnames();
 
+                    DateTime startTime = ig.matchData[ig.matchData.Count - 1].Time.AddSeconds((settings.SetsInterim * settings.MinutesPerSetInterim * 60) + settings.PausePerSetInterim);
+
                     cg.setParameters(ig.resultData,
-                                    ig.matchData[ig.matchData.Count - 1].Time,
+                                    startTime,
                                     settings.PauseBetweenInterimCrossgames,
                                     settings.SetsCrossgames,
                                     settings.MinutesPerSetCrossgame,
@@ -1298,7 +1427,7 @@ namespace Volleyball
                                     fieldNames,
                                     ig.matchData[ig.matchData.Count - 1].Round + 1,
                                     ig.matchData[ig.matchData.Count - 1].Game + 1,
-                                    true); //TODO!!! => welcher spielplan wird gewählt mit 50+ teams
+                                    settings.UseSecondGameplan);
 
                     cg.generateGames();
 
@@ -1388,54 +1517,56 @@ namespace Volleyball
 
         void loadDataClassementgamesFromFile()
         {
-            clg.matchData.Clear();
+            if (clg != null && cg.matchData.Count > 0)
+            {
+                clg.matchData.Clear();
 
-            clg.matchData = LoadMatchDataFromFile(classementgamesFileName);
+                clg.matchData = LoadMatchDataFromFile(classementgamesFileName);
 
-            clg.setParameters(ig.resultData,
-                               cg.matchData,
-                                cg.matchData[cg.matchData.Count - 1].Time,
-                                settings.PauseBetweenCrossgamesClassement,
-                                settings.SetsClassement,
-                                settings.MinutesPerSetClassement,
-                                0,
-                                fieldNames.Count,
-                                countTeams(),
-                                fieldNames,
-                                cg.matchData[cg.matchData.Count - 1].Round + 1,
-                                cg.matchData[cg.matchData.Count - 1].Game + 1,
-                                true); //TODO!!!
+                DateTime startTime = cg.matchData[cg.matchData.Count - 1].Time.AddSeconds(settings.SetsCrossgames * settings.MinutesPerSetCrossgame * 60);
 
-            clg.resultData.Clear();
+                clg.setParameters(ig.resultData,
+                                    cg.matchData,
+                                    startTime,
+                                    settings.PauseBetweenCrossgamesClassement,
+                                    settings.SetsClassement,
+                                    settings.MinutesPerSetClassement,
+                                    0,
+                                    fieldNames.Count,
+                                    countTeams(),
+                                    fieldNames,
+                                    cg.matchData[cg.matchData.Count - 1].Round + 1,
+                                    cg.matchData[cg.matchData.Count - 1].Game + 1,
+                                    settings.UseSecondGameplan); 
+
+                clg.resultData.Clear();
+            }
         }
 
         void loadClassementgames()
         {
-            if (clg != null)
+            if (clg != null && clg.matchData.Count > 0)
             {
-                if (clg.matchData.Count > 0)
+                foreach (MatchData md in clg.matchData)
                 {
-                    foreach (MatchData md in clg.matchData)
-                    {
-                        dtClassementgames.Rows.Add(new object[] { md.Game,
-                                                            md.Round,
-                                                            md.Time.ToString("HH:mm"),
-                                                            md.FieldNumber,
-                                                            md.FieldName,
-                                                            md.TeamA,
-                                                            md.TeamB,
-                                                            md.Referee,
-                                                            md.PointsMatch1TeamA,
-                                                            md.PointsMatch1TeamB,
-                                                            md.PointsMatch2TeamA,
-                                                            md.PointsMatch2TeamB,
-                                                            md.PointsMatch3TeamA,
-                                                            md.PointsMatch3TeamB });
-                    }
+                    dtClassementgames.Rows.Add(new object[] { md.Game,
+                                                        md.Round,
+                                                        md.Time.ToString("HH:mm"),
+                                                        md.FieldNumber,
+                                                        md.FieldName,
+                                                        md.TeamA,
+                                                        md.TeamB,
+                                                        md.Referee,
+                                                        md.PointsMatch1TeamA,
+                                                        md.PointsMatch1TeamB,
+                                                        md.PointsMatch2TeamA,
+                                                        md.PointsMatch2TeamB,
+                                                        md.PointsMatch3TeamA,
+                                                        md.PointsMatch3TeamB });
                 }
             }
         }
-
+                
         void saveClassementgames()
         {
             if (clg != null)
@@ -1495,15 +1626,17 @@ namespace Volleyball
         {
             lockAction = true;
 
-            if (clg != null && clg.matchData.Count == 0)
+            if (clg != null && cg.matchData.Count > 0 && clg.matchData.Count == 0)
             {
                 log.write("generate classementgames");
 
                 extractFieldnames();
 
+                DateTime startTime = cg.matchData[cg.matchData.Count - 1].Time.AddSeconds(settings.SetsCrossgames * settings.MinutesPerSetCrossgame * 60);
+
                 clg.setParameters(ig.resultData,
                                 cg.matchData,
-                                cg.matchData[cg.matchData.Count - 1].Time,
+                                startTime,
                                 settings.PauseBetweenCrossgamesClassement,
                                 settings.SetsClassement,
                                 settings.MinutesPerSetClassement,
@@ -1513,7 +1646,7 @@ namespace Volleyball
                                 fieldNames,
                                 cg.matchData[cg.matchData.Count - 1].Round + 1,
                                 cg.matchData[cg.matchData.Count - 1].Game + 1,
-                                true); //TODO!!! => welcher spielplan wird gewählt mit 50+ teams
+                                settings.UseSecondGameplan);
 
                 clg.generateGames();
 
