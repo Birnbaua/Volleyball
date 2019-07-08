@@ -29,5 +29,4 @@ C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\obj\Debug\Volley
 C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\obj\Debug\Volleyball.csproj.GenerateResource.Cache
 C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\bin\Debug\Volleyball.exe
 C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\bin\Debug\Volleyball.pdb
-C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\obj\Debug\Volleyball.csprojAssemblyReference.cache
 C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\obj\Debug\Volleyball.csproj.CoreCompileInputs.cache

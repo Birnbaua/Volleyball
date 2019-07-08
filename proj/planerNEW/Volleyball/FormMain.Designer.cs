@@ -31,6 +31,7 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageConfiguration = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.checkBoxUseSecondGameplan = new System.Windows.Forms.CheckBox();
             this.dateTimePickerTournamentstart = new System.Windows.Forms.DateTimePicker();
             this.checkBoxUseCrossgames = new System.Windows.Forms.CheckBox();
             this.numericUpDownTimeForFinals = new System.Windows.Forms.NumericUpDown();
@@ -100,16 +101,15 @@
             this.buttonSaveCrossgames = new System.Windows.Forms.Button();
             this.buttonGenerateCrossgames = new System.Windows.Forms.Button();
             this.tabPageClassement = new System.Windows.Forms.TabPage();
+            this.dataGridViewClassementgamesRound = new System.Windows.Forms.DataGridView();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBoxClassementgamesFilter = new System.Windows.Forms.TextBox();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelEstimatedTournamentTime = new System.Windows.Forms.ToolStripStatusLabel();
-            this.textBoxClassementgamesFilter = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.dataGridViewClassementgamesRound = new System.Windows.Forms.DataGridView();
-            this.checkBoxUseSecondGameplan = new System.Windows.Forms.CheckBox();
             this.tabControl.SuspendLayout();
             this.tabPageConfiguration.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -140,8 +140,8 @@
             this.tabPageCrossgames.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCrossgamesRound)).BeginInit();
             this.tabPageClassement.SuspendLayout();
-            this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewClassementgamesRound)).BeginInit();
+            this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -223,6 +223,17 @@
             this.groupBox3.TabIndex = 16;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Zeitplanung";
+            // 
+            // checkBoxUseSecondGameplan
+            // 
+            this.checkBoxUseSecondGameplan.AutoSize = true;
+            this.checkBoxUseSecondGameplan.Location = new System.Drawing.Point(877, 31);
+            this.checkBoxUseSecondGameplan.Name = "checkBoxUseSecondGameplan";
+            this.checkBoxUseSecondGameplan.Size = new System.Drawing.Size(179, 24);
+            this.checkBoxUseSecondGameplan.TabIndex = 54;
+            this.checkBoxUseSecondGameplan.Text = "Spielpläne 2 Variante";
+            this.checkBoxUseSecondGameplan.UseVisualStyleBackColor = true;
+            this.checkBoxUseSecondGameplan.CheckedChanged += new System.EventHandler(this.checkBoxUseSecondGameplan_CheckedChanged);
             // 
             // dateTimePickerTournamentstart
             // 
@@ -1038,6 +1049,73 @@
             this.tabPageClassement.Text = "Platzierungsspiele";
             this.tabPageClassement.UseVisualStyleBackColor = true;
             // 
+            // dataGridViewClassementgamesRound
+            // 
+            this.dataGridViewClassementgamesRound.AllowUserToAddRows = false;
+            this.dataGridViewClassementgamesRound.AllowUserToDeleteRows = false;
+            this.dataGridViewClassementgamesRound.AllowUserToOrderColumns = true;
+            this.dataGridViewClassementgamesRound.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewClassementgamesRound.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewClassementgamesRound.Location = new System.Drawing.Point(8, 42);
+            this.dataGridViewClassementgamesRound.Name = "dataGridViewClassementgamesRound";
+            this.dataGridViewClassementgamesRound.Size = new System.Drawing.Size(1062, 579);
+            this.dataGridViewClassementgamesRound.TabIndex = 33;
+            this.dataGridViewClassementgamesRound.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewClassementgamesRound_CellValueChanged);
+            // 
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(356, 6);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(110, 30);
+            this.button4.TabIndex = 32;
+            this.button4.Text = "Drucken";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.buttonPrintClassementgames_Click);
+            // 
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(240, 6);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(110, 30);
+            this.button3.TabIndex = 31;
+            this.button3.Text = "Löschen";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.buttonClearClassementgames_Click);
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(124, 6);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(110, 30);
+            this.button2.TabIndex = 30;
+            this.button2.Text = "Speichern";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.buttonSaveClassementgames_Click);
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(8, 6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(110, 30);
+            this.button1.TabIndex = 29;
+            this.button1.Text = "Generieren";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.buttonGenerateClassementgames_Click);
+            // 
+            // textBoxClassementgamesFilter
+            // 
+            this.textBoxClassementgamesFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxClassementgamesFilter.Location = new System.Drawing.Point(763, 10);
+            this.textBoxClassementgamesFilter.Name = "textBoxClassementgamesFilter";
+            this.textBoxClassementgamesFilter.Size = new System.Drawing.Size(307, 26);
+            this.textBoxClassementgamesFilter.TabIndex = 28;
+            // 
             // statusStrip
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1059,84 +1137,6 @@
             // 
             this.toolStripStatusLabelEstimatedTournamentTime.Name = "toolStripStatusLabelEstimatedTournamentTime";
             this.toolStripStatusLabelEstimatedTournamentTime.Size = new System.Drawing.Size(0, 17);
-            // 
-            // textBoxClassementgamesFilter
-            // 
-            this.textBoxClassementgamesFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxClassementgamesFilter.Location = new System.Drawing.Point(763, 10);
-            this.textBoxClassementgamesFilter.Name = "textBoxClassementgamesFilter";
-            this.textBoxClassementgamesFilter.Size = new System.Drawing.Size(307, 26);
-            this.textBoxClassementgamesFilter.TabIndex = 28;
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(8, 6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(110, 30);
-            this.button1.TabIndex = 29;
-            this.button1.Text = "Generieren";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.buttonGenerateClassementgames_Click);
-            // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(124, 6);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(110, 30);
-            this.button2.TabIndex = 30;
-            this.button2.Text = "Speichern";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.buttonSaveClassementgames_Click);
-            // 
-            // button3
-            // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(240, 6);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(110, 30);
-            this.button3.TabIndex = 31;
-            this.button3.Text = "Löschen";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.buttonClearClassementgames_Click);
-            // 
-            // button4
-            // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(356, 6);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(110, 30);
-            this.button4.TabIndex = 32;
-            this.button4.Text = "Drucken";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.buttonPrintClassementgames_Click);
-            // 
-            // dataGridViewClassementgamesRound
-            // 
-            this.dataGridViewClassementgamesRound.AllowUserToAddRows = false;
-            this.dataGridViewClassementgamesRound.AllowUserToDeleteRows = false;
-            this.dataGridViewClassementgamesRound.AllowUserToOrderColumns = true;
-            this.dataGridViewClassementgamesRound.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridViewClassementgamesRound.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewClassementgamesRound.Location = new System.Drawing.Point(8, 42);
-            this.dataGridViewClassementgamesRound.Name = "dataGridViewClassementgamesRound";
-            this.dataGridViewClassementgamesRound.Size = new System.Drawing.Size(1062, 579);
-            this.dataGridViewClassementgamesRound.TabIndex = 33;
-            this.dataGridViewClassementgamesRound.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewClassementgamesRound_CellValueChanged);
-            // 
-            // checkBoxUseSecondGameplan
-            // 
-            this.checkBoxUseSecondGameplan.AutoSize = true;
-            this.checkBoxUseSecondGameplan.Location = new System.Drawing.Point(877, 31);
-            this.checkBoxUseSecondGameplan.Name = "checkBoxUseSecondGameplan";
-            this.checkBoxUseSecondGameplan.Size = new System.Drawing.Size(179, 24);
-            this.checkBoxUseSecondGameplan.TabIndex = 54;
-            this.checkBoxUseSecondGameplan.Text = "Spielpläne 2 Variante";
-            this.checkBoxUseSecondGameplan.UseVisualStyleBackColor = true;
-            this.checkBoxUseSecondGameplan.CheckedChanged += new System.EventHandler(this.checkBoxUseSecondGameplan_CheckedChanged);
             // 
             // FormMain
             // 
@@ -1181,9 +1181,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCrossgamesRound)).EndInit();
             this.tabPageClassement.ResumeLayout(false);
             this.tabPageClassement.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewClassementgamesRound)).EndInit();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewClassementgamesRound)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1574,6 +1574,8 @@ namespace Volleyball
                 log.write("calculating classement results");
 
                 SaveMatchDataToFile(classementgamesFileName, clg.matchData);
+
+                clg.createFinalClassement();
             }
         }
         #endregion

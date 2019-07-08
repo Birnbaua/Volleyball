@@ -22,11 +22,13 @@ namespace Volleyball
         List<String> fieldNames;
         List<List<ResultData>> resultInterimList;
         List<MatchData> resultCrossgamesList;
+        List<ClassementData> finalClassement;
         #endregion
 
         public ClassementGames(Logging log) : base(log)
         {
             this.log = log;
+            finalClassement = new List<ClassementData>();
         }
 
         public void setParameters(List<List<ResultData>> resultInterimList, List<MatchData> resultCrossgamesList, DateTime startRound,
@@ -191,6 +193,67 @@ namespace Volleyball
                         i++;
                     }
                 }
+            }
+        }
+
+        public void createFinalClassement()
+        {
+            int classement = teamsCount;
+
+            finalClassement.Clear();
+
+            switch (teamsCount)
+            {
+                case 55:
+                    // create the classements for the worst teams
+                    List<ResultData> bottomRankings = resultInterimList[10];
+
+                    for (int i = 4; i >= 0; i--)
+                    {
+                        finalClassement.Add(new ClassementData() { Rank = classement, Team = bottomRankings[i].Team });
+                        classement--;
+                    }
+
+                    // create the classements for teams that played cross game
+                    for (int i = 0; i < 5; i++, classement--)
+                    {
+                        List<String> cgGameResult = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[i]);
+                        
+                        // generate looser
+                        finalClassement.Add(new ClassementData() { Rank = classement, Team = cgGameResult[2] });
+                        classement--;
+
+                        // generate winner
+                        finalClassement.Add(new ClassementData() { Rank = classement, Team = cgGameResult[1] });
+                    }
+
+                    // create the next classements for teams that played classement game
+                    for (int i = 0, x = classement; x > 0; i++, x--)
+                    {
+                        List<String> clgGameResult = CalculateResults.getResultsForCrossgamesAndClassementgames(matchData[i]);
+                        
+                        // generate looser
+                        finalClassement.Add(new ClassementData() { Rank = x, Team = clgGameResult[2] });
+                        x--;
+
+                        // generate winner query
+                        finalClassement.Add(new ClassementData() { Rank = x, Team = clgGameResult[1] });
+                    }
+                    break;
+
+                case 60:
+                    for (int i = 0, x = classement; x > 0; i++, x--)
+                    {
+                        List<String> clgGameResult = CalculateResults.getResultsForCrossgamesAndClassementgames(matchData[i]);
+                        
+                        // generate looser
+                        finalClassement.Add(new ClassementData() { Rank = x, Team = clgGameResult[2] });
+                        x--;
+
+                        // generate winner query
+                        finalClassement.Add(new ClassementData() { Rank = x, Team = clgGameResult[1] });
+                    }
+                    break;
             }
         }
     }
