@@ -4,7 +4,7 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="data" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="data (Settings)" PropertyReference="ApplicationSettings.vbtournamentreporter.Properties.Settings.GlobalReference.Default.data" Provider="Devart.Data.SQLite" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="data" IsAppSettingsProperty="true" Modifier="Assembly" Name="data (Settings)" PropertyReference="ApplicationSettings.vbtournamentreporter.Properties.Settings.GlobalReference.Default.data" Provider="Devart.Data.SQLite" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="kreuzspiele_spielplanTableAdapter" GeneratorDataComponentClassName="kreuzspiele_spielplanTableAdapter" Name="kreuzspiele_spielplan" UserDataComponentName="kreuzspiele_spielplanTableAdapter">
@@ -1608,356 +1608,6 @@
             </Mappings>
             <Sources />
           </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="platzierungen_viewTableAdapter" GeneratorDataComponentClassName="platzierungen_viewTableAdapter" Name="platzierungen_view" UserDataComponentName="platzierungen_viewTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="data (Settings)" DbObjectName="&quot;main&quot;.platzierungen_view" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ms, platz FROM "main".platzierungen_view</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="ms" DataSetColumn="ms" />
-              <Mapping SourceColumn="platz" DataSetColumn="platz" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vorrunde_gra_viewTableAdapter" GeneratorDataComponentClassName="vorrunde_gra_viewTableAdapter" Name="vorrunde_gra_view" UserDataComponentName="vorrunde_gra_viewTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="data (Settings)" DbObjectName="&quot;main&quot;.vorrunde_gra_view" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ms, punkte, satz FROM "main".vorrunde_gra_view</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="ms" DataSetColumn="ms" />
-              <Mapping SourceColumn="punkte" DataSetColumn="punkte" />
-              <Mapping SourceColumn="satz" DataSetColumn="satz" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vorrunde_grb_viewTableAdapter" GeneratorDataComponentClassName="vorrunde_grb_viewTableAdapter" Name="vorrunde_grb_view" UserDataComponentName="vorrunde_grb_viewTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="data (Settings)" DbObjectName="&quot;main&quot;.vorrunde_grb_view" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ms, punkte, satz FROM "main".vorrunde_grb_view</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="ms" DataSetColumn="ms" />
-              <Mapping SourceColumn="punkte" DataSetColumn="punkte" />
-              <Mapping SourceColumn="satz" DataSetColumn="satz" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vorrunde_grc_viewTableAdapter" GeneratorDataComponentClassName="vorrunde_grc_viewTableAdapter" Name="vorrunde_grc_view" UserDataComponentName="vorrunde_grc_viewTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="data (Settings)" DbObjectName="&quot;main&quot;.vorrunde_grc_view" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ms, punkte, satz FROM "main".vorrunde_grc_view</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="ms" DataSetColumn="ms" />
-              <Mapping SourceColumn="punkte" DataSetColumn="punkte" />
-              <Mapping SourceColumn="satz" DataSetColumn="satz" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vorrunde_grd_viewTableAdapter" GeneratorDataComponentClassName="vorrunde_grd_viewTableAdapter" Name="vorrunde_grd_view" UserDataComponentName="vorrunde_grd_viewTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="data (Settings)" DbObjectName="&quot;main&quot;.vorrunde_grd_view" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ms, punkte, satz FROM "main".vorrunde_grd_view</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="ms" DataSetColumn="ms" />
-              <Mapping SourceColumn="punkte" DataSetColumn="punkte" />
-              <Mapping SourceColumn="satz" DataSetColumn="satz" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vorrunde_gre_viewTableAdapter" GeneratorDataComponentClassName="vorrunde_gre_viewTableAdapter" Name="vorrunde_gre_view" UserDataComponentName="vorrunde_gre_viewTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="data (Settings)" DbObjectName="&quot;main&quot;.vorrunde_gre_view" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ms, punkte, satz FROM "main".vorrunde_gre_view</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="ms" DataSetColumn="ms" />
-              <Mapping SourceColumn="punkte" DataSetColumn="punkte" />
-              <Mapping SourceColumn="satz" DataSetColumn="satz" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vorrunde_grf_viewTableAdapter" GeneratorDataComponentClassName="vorrunde_grf_viewTableAdapter" Name="vorrunde_grf_view" UserDataComponentName="vorrunde_grf_viewTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="data (Settings)" DbObjectName="&quot;main&quot;.vorrunde_grf_view" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ms, punkte, satz FROM "main".vorrunde_grf_view</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="ms" DataSetColumn="ms" />
-              <Mapping SourceColumn="punkte" DataSetColumn="punkte" />
-              <Mapping SourceColumn="satz" DataSetColumn="satz" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vorrunde_grg_viewTableAdapter" GeneratorDataComponentClassName="vorrunde_grg_viewTableAdapter" Name="vorrunde_grg_view" UserDataComponentName="vorrunde_grg_viewTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="data (Settings)" DbObjectName="&quot;main&quot;.vorrunde_grg_view" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ms, punkte, satz FROM "main".vorrunde_grg_view</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="ms" DataSetColumn="ms" />
-              <Mapping SourceColumn="punkte" DataSetColumn="punkte" />
-              <Mapping SourceColumn="satz" DataSetColumn="satz" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vorrunde_grh_viewTableAdapter" GeneratorDataComponentClassName="vorrunde_grh_viewTableAdapter" Name="vorrunde_grh_view" UserDataComponentName="vorrunde_grh_viewTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="data (Settings)" DbObjectName="&quot;main&quot;.vorrunde_grh_view" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ms, punkte, satz FROM "main".vorrunde_grh_view</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="ms" DataSetColumn="ms" />
-              <Mapping SourceColumn="punkte" DataSetColumn="punkte" />
-              <Mapping SourceColumn="satz" DataSetColumn="satz" />
-            </Mappings>
-            <Sources>
-              <DbSource ConnectionRef="data (Settings)" DbObjectName="&quot;main&quot;.vorrunde_gri_view" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillBy">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ms, punkte, satz FROM "main".vorrunde_gri_view</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </Sources>
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vorrunde_gri_viewTableAdapter" GeneratorDataComponentClassName="vorrunde_gri_viewTableAdapter" Name="vorrunde_gri_view" UserDataComponentName="vorrunde_gri_viewTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="data (Settings)" DbObjectName="&quot;main&quot;.vorrunde_gri_view" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ms, punkte, satz FROM "main".vorrunde_gri_view</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="ms" DataSetColumn="ms" />
-              <Mapping SourceColumn="punkte" DataSetColumn="punkte" />
-              <Mapping SourceColumn="satz" DataSetColumn="satz" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="zwischenrunde_gra_viewTableAdapter" GeneratorDataComponentClassName="zwischenrunde_gra_viewTableAdapter" Name="zwischenrunde_gra_view" UserDataComponentName="zwischenrunde_gra_viewTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="data (Settings)" DbObjectName="&quot;main&quot;.zwischenrunde_gra_view" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ms, punkte, satz FROM "main".zwischenrunde_gra_view</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="ms" DataSetColumn="ms" />
-              <Mapping SourceColumn="punkte" DataSetColumn="punkte" />
-              <Mapping SourceColumn="satz" DataSetColumn="satz" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="zwischenrunde_grb_viewTableAdapter" GeneratorDataComponentClassName="zwischenrunde_grb_viewTableAdapter" Name="zwischenrunde_grb_view" UserDataComponentName="zwischenrunde_grb_viewTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="data (Settings)" DbObjectName="&quot;main&quot;.zwischenrunde_grb_view" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ms, punkte, satz FROM "main".zwischenrunde_grb_view</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="ms" DataSetColumn="ms" />
-              <Mapping SourceColumn="punkte" DataSetColumn="punkte" />
-              <Mapping SourceColumn="satz" DataSetColumn="satz" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="zwischenrunde_grc_viewTableAdapter" GeneratorDataComponentClassName="zwischenrunde_grc_viewTableAdapter" Name="zwischenrunde_grc_view" UserDataComponentName="zwischenrunde_grc_viewTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="data (Settings)" DbObjectName="&quot;main&quot;.zwischenrunde_grc_view" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ms, punkte, satz FROM "main".zwischenrunde_grc_view</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="ms" DataSetColumn="ms" />
-              <Mapping SourceColumn="punkte" DataSetColumn="punkte" />
-              <Mapping SourceColumn="satz" DataSetColumn="satz" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="zwischenrunde_grd_viewTableAdapter" GeneratorDataComponentClassName="zwischenrunde_grd_viewTableAdapter" Name="zwischenrunde_grd_view" UserDataComponentName="zwischenrunde_grd_viewTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="data (Settings)" DbObjectName="&quot;main&quot;.zwischenrunde_grd_view" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ms, punkte, satz FROM "main".zwischenrunde_grd_view</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="ms" DataSetColumn="ms" />
-              <Mapping SourceColumn="punkte" DataSetColumn="punkte" />
-              <Mapping SourceColumn="satz" DataSetColumn="satz" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="zwischenrunde_gre_viewTableAdapter" GeneratorDataComponentClassName="zwischenrunde_gre_viewTableAdapter" Name="zwischenrunde_gre_view" UserDataComponentName="zwischenrunde_gre_viewTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="data (Settings)" DbObjectName="&quot;main&quot;.zwischenrunde_gre_view" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ms, punkte, satz FROM "main".zwischenrunde_gre_view</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="ms" DataSetColumn="ms" />
-              <Mapping SourceColumn="punkte" DataSetColumn="punkte" />
-              <Mapping SourceColumn="satz" DataSetColumn="satz" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="zwischenrunde_grf_viewTableAdapter" GeneratorDataComponentClassName="zwischenrunde_grf_viewTableAdapter" Name="zwischenrunde_grf_view" UserDataComponentName="zwischenrunde_grf_viewTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="data (Settings)" DbObjectName="&quot;main&quot;.zwischenrunde_grf_view" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ms, punkte, satz FROM "main".zwischenrunde_grf_view</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="ms" DataSetColumn="ms" />
-              <Mapping SourceColumn="punkte" DataSetColumn="punkte" />
-              <Mapping SourceColumn="satz" DataSetColumn="satz" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="zwischenrunde_grg_viewTableAdapter" GeneratorDataComponentClassName="zwischenrunde_grg_viewTableAdapter" Name="zwischenrunde_grg_view" UserDataComponentName="zwischenrunde_grg_viewTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="data (Settings)" DbObjectName="&quot;main&quot;.zwischenrunde_grg_view" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ms, punkte, satz FROM "main".zwischenrunde_grg_view</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="ms" DataSetColumn="ms" />
-              <Mapping SourceColumn="punkte" DataSetColumn="punkte" />
-              <Mapping SourceColumn="satz" DataSetColumn="satz" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="zwischenrunde_grh_viewTableAdapter" GeneratorDataComponentClassName="zwischenrunde_grh_viewTableAdapter" Name="zwischenrunde_grh_view" UserDataComponentName="zwischenrunde_grh_viewTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="data (Settings)" DbObjectName="&quot;main&quot;.zwischenrunde_grh_view" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ms, punkte, satz FROM "main".zwischenrunde_grh_view</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="ms" DataSetColumn="ms" />
-              <Mapping SourceColumn="punkte" DataSetColumn="punkte" />
-              <Mapping SourceColumn="satz" DataSetColumn="satz" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="zwischenrunde_gri_viewTableAdapter" GeneratorDataComponentClassName="zwischenrunde_gri_viewTableAdapter" Name="zwischenrunde_gri_view" UserDataComponentName="zwischenrunde_gri_viewTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="data (Settings)" DbObjectName="&quot;main&quot;.zwischenrunde_gri_view" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT ms, punkte, satz FROM "main".zwischenrunde_gri_view</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="ms" DataSetColumn="ms" />
-              <Mapping SourceColumn="punkte" DataSetColumn="punkte" />
-              <Mapping SourceColumn="satz" DataSetColumn="satz" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -1966,7 +1616,7 @@
   <xs:element name="tables" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="tables" msprop:Generator_UserDSName="tables">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="kreuzspiele_spielplan" msprop:Generator_TableClassName="kreuzspiele_spielplanDataTable" msprop:Generator_TableVarName="tablekreuzspiele_spielplan" msprop:Generator_RowChangedName="kreuzspiele_spielplanRowChanged" msprop:Generator_TablePropName="kreuzspiele_spielplan" msprop:Generator_RowDeletingName="kreuzspiele_spielplanRowDeleting" msprop:Generator_RowChangingName="kreuzspiele_spielplanRowChanging" msprop:Generator_RowEvHandlerName="kreuzspiele_spielplanRowChangeEventHandler" msprop:Generator_RowDeletedName="kreuzspiele_spielplanRowDeleted" msprop:Generator_RowClassName="kreuzspiele_spielplanRow" msprop:Generator_UserTableName="kreuzspiele_spielplan" msprop:Generator_RowEvArgName="kreuzspiele_spielplanRowChangeEvent">
+        <xs:element name="kreuzspiele_spielplan" msprop:Generator_TableClassName="kreuzspiele_spielplanDataTable" msprop:Generator_TableVarName="tablekreuzspiele_spielplan" msprop:Generator_TablePropName="kreuzspiele_spielplan" msprop:Generator_RowDeletingName="kreuzspiele_spielplanRowDeleting" msprop:Generator_RowChangingName="kreuzspiele_spielplanRowChanging" msprop:Generator_RowEvHandlerName="kreuzspiele_spielplanRowChangeEventHandler" msprop:Generator_RowDeletedName="kreuzspiele_spielplanRowDeleted" msprop:Generator_UserTableName="kreuzspiele_spielplan" msprop:Generator_RowChangedName="kreuzspiele_spielplanRowChanged" msprop:Generator_RowEvArgName="kreuzspiele_spielplanRowChangeEvent" msprop:Generator_RowClassName="kreuzspiele_spielplanRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" />
@@ -1987,7 +1637,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="mannschaften" msprop:Generator_TableClassName="mannschaftenDataTable" msprop:Generator_TableVarName="tablemannschaften" msprop:Generator_RowChangedName="mannschaftenRowChanged" msprop:Generator_TablePropName="mannschaften" msprop:Generator_RowDeletingName="mannschaftenRowDeleting" msprop:Generator_RowChangingName="mannschaftenRowChanging" msprop:Generator_RowEvHandlerName="mannschaftenRowChangeEventHandler" msprop:Generator_RowDeletedName="mannschaftenRowDeleted" msprop:Generator_RowClassName="mannschaftenRow" msprop:Generator_UserTableName="mannschaften" msprop:Generator_RowEvArgName="mannschaftenRowChangeEvent">
+        <xs:element name="mannschaften" msprop:Generator_TableClassName="mannschaftenDataTable" msprop:Generator_TableVarName="tablemannschaften" msprop:Generator_TablePropName="mannschaften" msprop:Generator_RowDeletingName="mannschaftenRowDeleting" msprop:Generator_RowChangingName="mannschaftenRowChanging" msprop:Generator_RowEvHandlerName="mannschaftenRowChangeEventHandler" msprop:Generator_RowDeletedName="mannschaftenRowDeleted" msprop:Generator_UserTableName="mannschaften" msprop:Generator_RowChangedName="mannschaftenRowChanged" msprop:Generator_RowEvArgName="mannschaftenRowChangeEvent" msprop:Generator_RowClassName="mannschaftenRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" minOccurs="0" />
@@ -2003,7 +1653,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="platzierungen" msprop:Generator_TableClassName="platzierungenDataTable" msprop:Generator_TableVarName="tableplatzierungen" msprop:Generator_RowChangedName="platzierungenRowChanged" msprop:Generator_TablePropName="platzierungen" msprop:Generator_RowDeletingName="platzierungenRowDeleting" msprop:Generator_RowChangingName="platzierungenRowChanging" msprop:Generator_RowEvHandlerName="platzierungenRowChangeEventHandler" msprop:Generator_RowDeletedName="platzierungenRowDeleted" msprop:Generator_RowClassName="platzierungenRow" msprop:Generator_UserTableName="platzierungen" msprop:Generator_RowEvArgName="platzierungenRowChangeEvent">
+        <xs:element name="platzierungen" msprop:Generator_TableClassName="platzierungenDataTable" msprop:Generator_TableVarName="tableplatzierungen" msprop:Generator_TablePropName="platzierungen" msprop:Generator_RowDeletingName="platzierungenRowDeleting" msprop:Generator_RowChangingName="platzierungenRowChanging" msprop:Generator_RowEvHandlerName="platzierungenRowChangeEventHandler" msprop:Generator_RowDeletedName="platzierungenRowDeleted" msprop:Generator_UserTableName="platzierungen" msprop:Generator_RowChangedName="platzierungenRowChanged" msprop:Generator_RowEvArgName="platzierungenRowChangeEvent" msprop:Generator_RowClassName="platzierungenRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" />
@@ -2012,7 +1662,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="platzspiele_spielplan" msprop:Generator_TableClassName="platzspiele_spielplanDataTable" msprop:Generator_TableVarName="tableplatzspiele_spielplan" msprop:Generator_RowChangedName="platzspiele_spielplanRowChanged" msprop:Generator_TablePropName="platzspiele_spielplan" msprop:Generator_RowDeletingName="platzspiele_spielplanRowDeleting" msprop:Generator_RowChangingName="platzspiele_spielplanRowChanging" msprop:Generator_RowEvHandlerName="platzspiele_spielplanRowChangeEventHandler" msprop:Generator_RowDeletedName="platzspiele_spielplanRowDeleted" msprop:Generator_RowClassName="platzspiele_spielplanRow" msprop:Generator_UserTableName="platzspiele_spielplan" msprop:Generator_RowEvArgName="platzspiele_spielplanRowChangeEvent">
+        <xs:element name="platzspiele_spielplan" msprop:Generator_TableClassName="platzspiele_spielplanDataTable" msprop:Generator_TableVarName="tableplatzspiele_spielplan" msprop:Generator_TablePropName="platzspiele_spielplan" msprop:Generator_RowDeletingName="platzspiele_spielplanRowDeleting" msprop:Generator_RowChangingName="platzspiele_spielplanRowChanging" msprop:Generator_RowEvHandlerName="platzspiele_spielplanRowChangeEventHandler" msprop:Generator_RowDeletedName="platzspiele_spielplanRowDeleted" msprop:Generator_UserTableName="platzspiele_spielplan" msprop:Generator_RowChangedName="platzspiele_spielplanRowChanged" msprop:Generator_RowEvArgName="platzspiele_spielplanRowChangeEvent" msprop:Generator_RowClassName="platzspiele_spielplanRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" />
@@ -2033,7 +1683,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vorrunde_erg_gra" msprop:Generator_TableClassName="vorrunde_erg_graDataTable" msprop:Generator_TableVarName="tablevorrunde_erg_gra" msprop:Generator_RowChangedName="vorrunde_erg_graRowChanged" msprop:Generator_TablePropName="vorrunde_erg_gra" msprop:Generator_RowDeletingName="vorrunde_erg_graRowDeleting" msprop:Generator_RowChangingName="vorrunde_erg_graRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_erg_graRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_erg_graRowDeleted" msprop:Generator_RowClassName="vorrunde_erg_graRow" msprop:Generator_UserTableName="vorrunde_erg_gra" msprop:Generator_RowEvArgName="vorrunde_erg_graRowChangeEvent">
+        <xs:element name="vorrunde_erg_gra" msprop:Generator_TableClassName="vorrunde_erg_graDataTable" msprop:Generator_TableVarName="tablevorrunde_erg_gra" msprop:Generator_TablePropName="vorrunde_erg_gra" msprop:Generator_RowDeletingName="vorrunde_erg_graRowDeleting" msprop:Generator_RowChangingName="vorrunde_erg_graRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_erg_graRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_erg_graRowDeleted" msprop:Generator_UserTableName="vorrunde_erg_gra" msprop:Generator_RowChangedName="vorrunde_erg_graRowChanged" msprop:Generator_RowEvArgName="vorrunde_erg_graRowChangeEvent" msprop:Generator_RowClassName="vorrunde_erg_graRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" minOccurs="0" />
@@ -2045,7 +1695,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vorrunde_erg_grb" msprop:Generator_TableClassName="vorrunde_erg_grbDataTable" msprop:Generator_TableVarName="tablevorrunde_erg_grb" msprop:Generator_RowChangedName="vorrunde_erg_grbRowChanged" msprop:Generator_TablePropName="vorrunde_erg_grb" msprop:Generator_RowDeletingName="vorrunde_erg_grbRowDeleting" msprop:Generator_RowChangingName="vorrunde_erg_grbRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_erg_grbRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_erg_grbRowDeleted" msprop:Generator_RowClassName="vorrunde_erg_grbRow" msprop:Generator_UserTableName="vorrunde_erg_grb" msprop:Generator_RowEvArgName="vorrunde_erg_grbRowChangeEvent">
+        <xs:element name="vorrunde_erg_grb" msprop:Generator_TableClassName="vorrunde_erg_grbDataTable" msprop:Generator_TableVarName="tablevorrunde_erg_grb" msprop:Generator_TablePropName="vorrunde_erg_grb" msprop:Generator_RowDeletingName="vorrunde_erg_grbRowDeleting" msprop:Generator_RowChangingName="vorrunde_erg_grbRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_erg_grbRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_erg_grbRowDeleted" msprop:Generator_UserTableName="vorrunde_erg_grb" msprop:Generator_RowChangedName="vorrunde_erg_grbRowChanged" msprop:Generator_RowEvArgName="vorrunde_erg_grbRowChangeEvent" msprop:Generator_RowClassName="vorrunde_erg_grbRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" minOccurs="0" />
@@ -2057,7 +1707,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vorrunde_erg_grc" msprop:Generator_TableClassName="vorrunde_erg_grcDataTable" msprop:Generator_TableVarName="tablevorrunde_erg_grc" msprop:Generator_RowChangedName="vorrunde_erg_grcRowChanged" msprop:Generator_TablePropName="vorrunde_erg_grc" msprop:Generator_RowDeletingName="vorrunde_erg_grcRowDeleting" msprop:Generator_RowChangingName="vorrunde_erg_grcRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_erg_grcRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_erg_grcRowDeleted" msprop:Generator_RowClassName="vorrunde_erg_grcRow" msprop:Generator_UserTableName="vorrunde_erg_grc" msprop:Generator_RowEvArgName="vorrunde_erg_grcRowChangeEvent">
+        <xs:element name="vorrunde_erg_grc" msprop:Generator_TableClassName="vorrunde_erg_grcDataTable" msprop:Generator_TableVarName="tablevorrunde_erg_grc" msprop:Generator_TablePropName="vorrunde_erg_grc" msprop:Generator_RowDeletingName="vorrunde_erg_grcRowDeleting" msprop:Generator_RowChangingName="vorrunde_erg_grcRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_erg_grcRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_erg_grcRowDeleted" msprop:Generator_UserTableName="vorrunde_erg_grc" msprop:Generator_RowChangedName="vorrunde_erg_grcRowChanged" msprop:Generator_RowEvArgName="vorrunde_erg_grcRowChangeEvent" msprop:Generator_RowClassName="vorrunde_erg_grcRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" minOccurs="0" />
@@ -2069,7 +1719,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vorrunde_erg_grd" msprop:Generator_TableClassName="vorrunde_erg_grdDataTable" msprop:Generator_TableVarName="tablevorrunde_erg_grd" msprop:Generator_RowChangedName="vorrunde_erg_grdRowChanged" msprop:Generator_TablePropName="vorrunde_erg_grd" msprop:Generator_RowDeletingName="vorrunde_erg_grdRowDeleting" msprop:Generator_RowChangingName="vorrunde_erg_grdRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_erg_grdRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_erg_grdRowDeleted" msprop:Generator_RowClassName="vorrunde_erg_grdRow" msprop:Generator_UserTableName="vorrunde_erg_grd" msprop:Generator_RowEvArgName="vorrunde_erg_grdRowChangeEvent">
+        <xs:element name="vorrunde_erg_grd" msprop:Generator_TableClassName="vorrunde_erg_grdDataTable" msprop:Generator_TableVarName="tablevorrunde_erg_grd" msprop:Generator_TablePropName="vorrunde_erg_grd" msprop:Generator_RowDeletingName="vorrunde_erg_grdRowDeleting" msprop:Generator_RowChangingName="vorrunde_erg_grdRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_erg_grdRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_erg_grdRowDeleted" msprop:Generator_UserTableName="vorrunde_erg_grd" msprop:Generator_RowChangedName="vorrunde_erg_grdRowChanged" msprop:Generator_RowEvArgName="vorrunde_erg_grdRowChangeEvent" msprop:Generator_RowClassName="vorrunde_erg_grdRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" minOccurs="0" />
@@ -2081,7 +1731,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vorrunde_erg_gre" msprop:Generator_TableClassName="vorrunde_erg_greDataTable" msprop:Generator_TableVarName="tablevorrunde_erg_gre" msprop:Generator_RowChangedName="vorrunde_erg_greRowChanged" msprop:Generator_TablePropName="vorrunde_erg_gre" msprop:Generator_RowDeletingName="vorrunde_erg_greRowDeleting" msprop:Generator_RowChangingName="vorrunde_erg_greRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_erg_greRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_erg_greRowDeleted" msprop:Generator_RowClassName="vorrunde_erg_greRow" msprop:Generator_UserTableName="vorrunde_erg_gre" msprop:Generator_RowEvArgName="vorrunde_erg_greRowChangeEvent">
+        <xs:element name="vorrunde_erg_gre" msprop:Generator_TableClassName="vorrunde_erg_greDataTable" msprop:Generator_TableVarName="tablevorrunde_erg_gre" msprop:Generator_TablePropName="vorrunde_erg_gre" msprop:Generator_RowDeletingName="vorrunde_erg_greRowDeleting" msprop:Generator_RowChangingName="vorrunde_erg_greRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_erg_greRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_erg_greRowDeleted" msprop:Generator_UserTableName="vorrunde_erg_gre" msprop:Generator_RowChangedName="vorrunde_erg_greRowChanged" msprop:Generator_RowEvArgName="vorrunde_erg_greRowChangeEvent" msprop:Generator_RowClassName="vorrunde_erg_greRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" minOccurs="0" />
@@ -2093,7 +1743,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vorrunde_erg_grf" msprop:Generator_TableClassName="vorrunde_erg_grfDataTable" msprop:Generator_TableVarName="tablevorrunde_erg_grf" msprop:Generator_RowChangedName="vorrunde_erg_grfRowChanged" msprop:Generator_TablePropName="vorrunde_erg_grf" msprop:Generator_RowDeletingName="vorrunde_erg_grfRowDeleting" msprop:Generator_RowChangingName="vorrunde_erg_grfRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_erg_grfRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_erg_grfRowDeleted" msprop:Generator_RowClassName="vorrunde_erg_grfRow" msprop:Generator_UserTableName="vorrunde_erg_grf" msprop:Generator_RowEvArgName="vorrunde_erg_grfRowChangeEvent">
+        <xs:element name="vorrunde_erg_grf" msprop:Generator_TableClassName="vorrunde_erg_grfDataTable" msprop:Generator_TableVarName="tablevorrunde_erg_grf" msprop:Generator_TablePropName="vorrunde_erg_grf" msprop:Generator_RowDeletingName="vorrunde_erg_grfRowDeleting" msprop:Generator_RowChangingName="vorrunde_erg_grfRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_erg_grfRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_erg_grfRowDeleted" msprop:Generator_UserTableName="vorrunde_erg_grf" msprop:Generator_RowChangedName="vorrunde_erg_grfRowChanged" msprop:Generator_RowEvArgName="vorrunde_erg_grfRowChangeEvent" msprop:Generator_RowClassName="vorrunde_erg_grfRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" minOccurs="0" />
@@ -2105,7 +1755,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vorrunde_erg_grg" msprop:Generator_TableClassName="vorrunde_erg_grgDataTable" msprop:Generator_TableVarName="tablevorrunde_erg_grg" msprop:Generator_RowChangedName="vorrunde_erg_grgRowChanged" msprop:Generator_TablePropName="vorrunde_erg_grg" msprop:Generator_RowDeletingName="vorrunde_erg_grgRowDeleting" msprop:Generator_RowChangingName="vorrunde_erg_grgRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_erg_grgRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_erg_grgRowDeleted" msprop:Generator_RowClassName="vorrunde_erg_grgRow" msprop:Generator_UserTableName="vorrunde_erg_grg" msprop:Generator_RowEvArgName="vorrunde_erg_grgRowChangeEvent">
+        <xs:element name="vorrunde_erg_grg" msprop:Generator_TableClassName="vorrunde_erg_grgDataTable" msprop:Generator_TableVarName="tablevorrunde_erg_grg" msprop:Generator_TablePropName="vorrunde_erg_grg" msprop:Generator_RowDeletingName="vorrunde_erg_grgRowDeleting" msprop:Generator_RowChangingName="vorrunde_erg_grgRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_erg_grgRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_erg_grgRowDeleted" msprop:Generator_UserTableName="vorrunde_erg_grg" msprop:Generator_RowChangedName="vorrunde_erg_grgRowChanged" msprop:Generator_RowEvArgName="vorrunde_erg_grgRowChangeEvent" msprop:Generator_RowClassName="vorrunde_erg_grgRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" minOccurs="0" />
@@ -2117,7 +1767,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vorrunde_erg_grh" msprop:Generator_TableClassName="vorrunde_erg_grhDataTable" msprop:Generator_TableVarName="tablevorrunde_erg_grh" msprop:Generator_RowChangedName="vorrunde_erg_grhRowChanged" msprop:Generator_TablePropName="vorrunde_erg_grh" msprop:Generator_RowDeletingName="vorrunde_erg_grhRowDeleting" msprop:Generator_RowChangingName="vorrunde_erg_grhRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_erg_grhRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_erg_grhRowDeleted" msprop:Generator_RowClassName="vorrunde_erg_grhRow" msprop:Generator_UserTableName="vorrunde_erg_grh" msprop:Generator_RowEvArgName="vorrunde_erg_grhRowChangeEvent">
+        <xs:element name="vorrunde_erg_grh" msprop:Generator_TableClassName="vorrunde_erg_grhDataTable" msprop:Generator_TableVarName="tablevorrunde_erg_grh" msprop:Generator_TablePropName="vorrunde_erg_grh" msprop:Generator_RowDeletingName="vorrunde_erg_grhRowDeleting" msprop:Generator_RowChangingName="vorrunde_erg_grhRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_erg_grhRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_erg_grhRowDeleted" msprop:Generator_UserTableName="vorrunde_erg_grh" msprop:Generator_RowChangedName="vorrunde_erg_grhRowChanged" msprop:Generator_RowEvArgName="vorrunde_erg_grhRowChangeEvent" msprop:Generator_RowClassName="vorrunde_erg_grhRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" minOccurs="0" />
@@ -2129,7 +1779,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vorrunde_erg_gri" msprop:Generator_TableClassName="vorrunde_erg_griDataTable" msprop:Generator_TableVarName="tablevorrunde_erg_gri" msprop:Generator_RowChangedName="vorrunde_erg_griRowChanged" msprop:Generator_TablePropName="vorrunde_erg_gri" msprop:Generator_RowDeletingName="vorrunde_erg_griRowDeleting" msprop:Generator_RowChangingName="vorrunde_erg_griRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_erg_griRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_erg_griRowDeleted" msprop:Generator_RowClassName="vorrunde_erg_griRow" msprop:Generator_UserTableName="vorrunde_erg_gri" msprop:Generator_RowEvArgName="vorrunde_erg_griRowChangeEvent">
+        <xs:element name="vorrunde_erg_gri" msprop:Generator_TableClassName="vorrunde_erg_griDataTable" msprop:Generator_TableVarName="tablevorrunde_erg_gri" msprop:Generator_TablePropName="vorrunde_erg_gri" msprop:Generator_RowDeletingName="vorrunde_erg_griRowDeleting" msprop:Generator_RowChangingName="vorrunde_erg_griRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_erg_griRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_erg_griRowDeleted" msprop:Generator_UserTableName="vorrunde_erg_gri" msprop:Generator_RowChangedName="vorrunde_erg_griRowChanged" msprop:Generator_RowEvArgName="vorrunde_erg_griRowChangeEvent" msprop:Generator_RowClassName="vorrunde_erg_griRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" minOccurs="0" />
@@ -2141,7 +1791,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vorrunde_spielplan" msprop:Generator_TableClassName="vorrunde_spielplanDataTable" msprop:Generator_TableVarName="tablevorrunde_spielplan" msprop:Generator_RowChangedName="vorrunde_spielplanRowChanged" msprop:Generator_TablePropName="vorrunde_spielplan" msprop:Generator_RowDeletingName="vorrunde_spielplanRowDeleting" msprop:Generator_RowChangingName="vorrunde_spielplanRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_spielplanRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_spielplanRowDeleted" msprop:Generator_RowClassName="vorrunde_spielplanRow" msprop:Generator_UserTableName="vorrunde_spielplan" msprop:Generator_RowEvArgName="vorrunde_spielplanRowChangeEvent">
+        <xs:element name="vorrunde_spielplan" msprop:Generator_TableClassName="vorrunde_spielplanDataTable" msprop:Generator_TableVarName="tablevorrunde_spielplan" msprop:Generator_TablePropName="vorrunde_spielplan" msprop:Generator_RowDeletingName="vorrunde_spielplanRowDeleting" msprop:Generator_RowChangingName="vorrunde_spielplanRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_spielplanRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_spielplanRowDeleted" msprop:Generator_UserTableName="vorrunde_spielplan" msprop:Generator_RowChangedName="vorrunde_spielplanRowChanged" msprop:Generator_RowEvArgName="vorrunde_spielplanRowChangeEvent" msprop:Generator_RowClassName="vorrunde_spielplanRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" />
@@ -2162,7 +1812,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="zwischenrunde_erg_gra" msprop:Generator_TableClassName="zwischenrunde_erg_graDataTable" msprop:Generator_TableVarName="tablezwischenrunde_erg_gra" msprop:Generator_RowChangedName="zwischenrunde_erg_graRowChanged" msprop:Generator_TablePropName="zwischenrunde_erg_gra" msprop:Generator_RowDeletingName="zwischenrunde_erg_graRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_erg_graRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_erg_graRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_erg_graRowDeleted" msprop:Generator_RowClassName="zwischenrunde_erg_graRow" msprop:Generator_UserTableName="zwischenrunde_erg_gra" msprop:Generator_RowEvArgName="zwischenrunde_erg_graRowChangeEvent">
+        <xs:element name="zwischenrunde_erg_gra" msprop:Generator_TableClassName="zwischenrunde_erg_graDataTable" msprop:Generator_TableVarName="tablezwischenrunde_erg_gra" msprop:Generator_TablePropName="zwischenrunde_erg_gra" msprop:Generator_RowDeletingName="zwischenrunde_erg_graRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_erg_graRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_erg_graRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_erg_graRowDeleted" msprop:Generator_UserTableName="zwischenrunde_erg_gra" msprop:Generator_RowChangedName="zwischenrunde_erg_graRowChanged" msprop:Generator_RowEvArgName="zwischenrunde_erg_graRowChangeEvent" msprop:Generator_RowClassName="zwischenrunde_erg_graRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" />
@@ -2174,7 +1824,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="zwischenrunde_erg_grb" msprop:Generator_TableClassName="zwischenrunde_erg_grbDataTable" msprop:Generator_TableVarName="tablezwischenrunde_erg_grb" msprop:Generator_RowChangedName="zwischenrunde_erg_grbRowChanged" msprop:Generator_TablePropName="zwischenrunde_erg_grb" msprop:Generator_RowDeletingName="zwischenrunde_erg_grbRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_erg_grbRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_erg_grbRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_erg_grbRowDeleted" msprop:Generator_RowClassName="zwischenrunde_erg_grbRow" msprop:Generator_UserTableName="zwischenrunde_erg_grb" msprop:Generator_RowEvArgName="zwischenrunde_erg_grbRowChangeEvent">
+        <xs:element name="zwischenrunde_erg_grb" msprop:Generator_TableClassName="zwischenrunde_erg_grbDataTable" msprop:Generator_TableVarName="tablezwischenrunde_erg_grb" msprop:Generator_TablePropName="zwischenrunde_erg_grb" msprop:Generator_RowDeletingName="zwischenrunde_erg_grbRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_erg_grbRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_erg_grbRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_erg_grbRowDeleted" msprop:Generator_UserTableName="zwischenrunde_erg_grb" msprop:Generator_RowChangedName="zwischenrunde_erg_grbRowChanged" msprop:Generator_RowEvArgName="zwischenrunde_erg_grbRowChangeEvent" msprop:Generator_RowClassName="zwischenrunde_erg_grbRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" />
@@ -2186,7 +1836,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="zwischenrunde_erg_grc" msprop:Generator_TableClassName="zwischenrunde_erg_grcDataTable" msprop:Generator_TableVarName="tablezwischenrunde_erg_grc" msprop:Generator_RowChangedName="zwischenrunde_erg_grcRowChanged" msprop:Generator_TablePropName="zwischenrunde_erg_grc" msprop:Generator_RowDeletingName="zwischenrunde_erg_grcRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_erg_grcRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_erg_grcRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_erg_grcRowDeleted" msprop:Generator_RowClassName="zwischenrunde_erg_grcRow" msprop:Generator_UserTableName="zwischenrunde_erg_grc" msprop:Generator_RowEvArgName="zwischenrunde_erg_grcRowChangeEvent">
+        <xs:element name="zwischenrunde_erg_grc" msprop:Generator_TableClassName="zwischenrunde_erg_grcDataTable" msprop:Generator_TableVarName="tablezwischenrunde_erg_grc" msprop:Generator_TablePropName="zwischenrunde_erg_grc" msprop:Generator_RowDeletingName="zwischenrunde_erg_grcRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_erg_grcRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_erg_grcRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_erg_grcRowDeleted" msprop:Generator_UserTableName="zwischenrunde_erg_grc" msprop:Generator_RowChangedName="zwischenrunde_erg_grcRowChanged" msprop:Generator_RowEvArgName="zwischenrunde_erg_grcRowChangeEvent" msprop:Generator_RowClassName="zwischenrunde_erg_grcRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" />
@@ -2198,7 +1848,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="zwischenrunde_erg_grd" msprop:Generator_TableClassName="zwischenrunde_erg_grdDataTable" msprop:Generator_TableVarName="tablezwischenrunde_erg_grd" msprop:Generator_RowChangedName="zwischenrunde_erg_grdRowChanged" msprop:Generator_TablePropName="zwischenrunde_erg_grd" msprop:Generator_RowDeletingName="zwischenrunde_erg_grdRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_erg_grdRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_erg_grdRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_erg_grdRowDeleted" msprop:Generator_RowClassName="zwischenrunde_erg_grdRow" msprop:Generator_UserTableName="zwischenrunde_erg_grd" msprop:Generator_RowEvArgName="zwischenrunde_erg_grdRowChangeEvent">
+        <xs:element name="zwischenrunde_erg_grd" msprop:Generator_TableClassName="zwischenrunde_erg_grdDataTable" msprop:Generator_TableVarName="tablezwischenrunde_erg_grd" msprop:Generator_TablePropName="zwischenrunde_erg_grd" msprop:Generator_RowDeletingName="zwischenrunde_erg_grdRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_erg_grdRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_erg_grdRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_erg_grdRowDeleted" msprop:Generator_UserTableName="zwischenrunde_erg_grd" msprop:Generator_RowChangedName="zwischenrunde_erg_grdRowChanged" msprop:Generator_RowEvArgName="zwischenrunde_erg_grdRowChangeEvent" msprop:Generator_RowClassName="zwischenrunde_erg_grdRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" />
@@ -2210,7 +1860,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="zwischenrunde_erg_gre" msprop:Generator_TableClassName="zwischenrunde_erg_greDataTable" msprop:Generator_TableVarName="tablezwischenrunde_erg_gre" msprop:Generator_RowChangedName="zwischenrunde_erg_greRowChanged" msprop:Generator_TablePropName="zwischenrunde_erg_gre" msprop:Generator_RowDeletingName="zwischenrunde_erg_greRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_erg_greRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_erg_greRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_erg_greRowDeleted" msprop:Generator_RowClassName="zwischenrunde_erg_greRow" msprop:Generator_UserTableName="zwischenrunde_erg_gre" msprop:Generator_RowEvArgName="zwischenrunde_erg_greRowChangeEvent">
+        <xs:element name="zwischenrunde_erg_gre" msprop:Generator_TableClassName="zwischenrunde_erg_greDataTable" msprop:Generator_TableVarName="tablezwischenrunde_erg_gre" msprop:Generator_TablePropName="zwischenrunde_erg_gre" msprop:Generator_RowDeletingName="zwischenrunde_erg_greRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_erg_greRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_erg_greRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_erg_greRowDeleted" msprop:Generator_UserTableName="zwischenrunde_erg_gre" msprop:Generator_RowChangedName="zwischenrunde_erg_greRowChanged" msprop:Generator_RowEvArgName="zwischenrunde_erg_greRowChangeEvent" msprop:Generator_RowClassName="zwischenrunde_erg_greRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" />
@@ -2222,7 +1872,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="zwischenrunde_erg_grf" msprop:Generator_TableClassName="zwischenrunde_erg_grfDataTable" msprop:Generator_TableVarName="tablezwischenrunde_erg_grf" msprop:Generator_RowChangedName="zwischenrunde_erg_grfRowChanged" msprop:Generator_TablePropName="zwischenrunde_erg_grf" msprop:Generator_RowDeletingName="zwischenrunde_erg_grfRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_erg_grfRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_erg_grfRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_erg_grfRowDeleted" msprop:Generator_RowClassName="zwischenrunde_erg_grfRow" msprop:Generator_UserTableName="zwischenrunde_erg_grf" msprop:Generator_RowEvArgName="zwischenrunde_erg_grfRowChangeEvent">
+        <xs:element name="zwischenrunde_erg_grf" msprop:Generator_TableClassName="zwischenrunde_erg_grfDataTable" msprop:Generator_TableVarName="tablezwischenrunde_erg_grf" msprop:Generator_TablePropName="zwischenrunde_erg_grf" msprop:Generator_RowDeletingName="zwischenrunde_erg_grfRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_erg_grfRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_erg_grfRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_erg_grfRowDeleted" msprop:Generator_UserTableName="zwischenrunde_erg_grf" msprop:Generator_RowChangedName="zwischenrunde_erg_grfRowChanged" msprop:Generator_RowEvArgName="zwischenrunde_erg_grfRowChangeEvent" msprop:Generator_RowClassName="zwischenrunde_erg_grfRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" />
@@ -2234,7 +1884,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="zwischenrunde_erg_grg" msprop:Generator_TableClassName="zwischenrunde_erg_grgDataTable" msprop:Generator_TableVarName="tablezwischenrunde_erg_grg" msprop:Generator_RowChangedName="zwischenrunde_erg_grgRowChanged" msprop:Generator_TablePropName="zwischenrunde_erg_grg" msprop:Generator_RowDeletingName="zwischenrunde_erg_grgRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_erg_grgRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_erg_grgRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_erg_grgRowDeleted" msprop:Generator_RowClassName="zwischenrunde_erg_grgRow" msprop:Generator_UserTableName="zwischenrunde_erg_grg" msprop:Generator_RowEvArgName="zwischenrunde_erg_grgRowChangeEvent">
+        <xs:element name="zwischenrunde_erg_grg" msprop:Generator_TableClassName="zwischenrunde_erg_grgDataTable" msprop:Generator_TableVarName="tablezwischenrunde_erg_grg" msprop:Generator_TablePropName="zwischenrunde_erg_grg" msprop:Generator_RowDeletingName="zwischenrunde_erg_grgRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_erg_grgRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_erg_grgRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_erg_grgRowDeleted" msprop:Generator_UserTableName="zwischenrunde_erg_grg" msprop:Generator_RowChangedName="zwischenrunde_erg_grgRowChanged" msprop:Generator_RowEvArgName="zwischenrunde_erg_grgRowChangeEvent" msprop:Generator_RowClassName="zwischenrunde_erg_grgRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" />
@@ -2246,7 +1896,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="zwischenrunde_erg_grh" msprop:Generator_TableClassName="zwischenrunde_erg_grhDataTable" msprop:Generator_TableVarName="tablezwischenrunde_erg_grh" msprop:Generator_RowChangedName="zwischenrunde_erg_grhRowChanged" msprop:Generator_TablePropName="zwischenrunde_erg_grh" msprop:Generator_RowDeletingName="zwischenrunde_erg_grhRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_erg_grhRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_erg_grhRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_erg_grhRowDeleted" msprop:Generator_RowClassName="zwischenrunde_erg_grhRow" msprop:Generator_UserTableName="zwischenrunde_erg_grh" msprop:Generator_RowEvArgName="zwischenrunde_erg_grhRowChangeEvent">
+        <xs:element name="zwischenrunde_erg_grh" msprop:Generator_TableClassName="zwischenrunde_erg_grhDataTable" msprop:Generator_TableVarName="tablezwischenrunde_erg_grh" msprop:Generator_TablePropName="zwischenrunde_erg_grh" msprop:Generator_RowDeletingName="zwischenrunde_erg_grhRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_erg_grhRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_erg_grhRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_erg_grhRowDeleted" msprop:Generator_UserTableName="zwischenrunde_erg_grh" msprop:Generator_RowChangedName="zwischenrunde_erg_grhRowChanged" msprop:Generator_RowEvArgName="zwischenrunde_erg_grhRowChangeEvent" msprop:Generator_RowClassName="zwischenrunde_erg_grhRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" />
@@ -2258,7 +1908,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="zwischenrunde_erg_gri" msprop:Generator_TableClassName="zwischenrunde_erg_griDataTable" msprop:Generator_TableVarName="tablezwischenrunde_erg_gri" msprop:Generator_RowChangedName="zwischenrunde_erg_griRowChanged" msprop:Generator_TablePropName="zwischenrunde_erg_gri" msprop:Generator_RowDeletingName="zwischenrunde_erg_griRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_erg_griRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_erg_griRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_erg_griRowDeleted" msprop:Generator_RowClassName="zwischenrunde_erg_griRow" msprop:Generator_UserTableName="zwischenrunde_erg_gri" msprop:Generator_RowEvArgName="zwischenrunde_erg_griRowChangeEvent">
+        <xs:element name="zwischenrunde_erg_gri" msprop:Generator_TableClassName="zwischenrunde_erg_griDataTable" msprop:Generator_TableVarName="tablezwischenrunde_erg_gri" msprop:Generator_TablePropName="zwischenrunde_erg_gri" msprop:Generator_RowDeletingName="zwischenrunde_erg_griRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_erg_griRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_erg_griRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_erg_griRowDeleted" msprop:Generator_UserTableName="zwischenrunde_erg_gri" msprop:Generator_RowChangedName="zwischenrunde_erg_griRowChanged" msprop:Generator_RowEvArgName="zwischenrunde_erg_griRowChangeEvent" msprop:Generator_RowClassName="zwischenrunde_erg_griRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" minOccurs="0" />
@@ -2270,7 +1920,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="zwischenrunde_spielplan" msprop:Generator_TableClassName="zwischenrunde_spielplanDataTable" msprop:Generator_TableVarName="tablezwischenrunde_spielplan" msprop:Generator_RowChangedName="zwischenrunde_spielplanRowChanged" msprop:Generator_TablePropName="zwischenrunde_spielplan" msprop:Generator_RowDeletingName="zwischenrunde_spielplanRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_spielplanRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_spielplanRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_spielplanRowDeleted" msprop:Generator_RowClassName="zwischenrunde_spielplanRow" msprop:Generator_UserTableName="zwischenrunde_spielplan" msprop:Generator_RowEvArgName="zwischenrunde_spielplanRowChangeEvent">
+        <xs:element name="zwischenrunde_spielplan" msprop:Generator_TableClassName="zwischenrunde_spielplanDataTable" msprop:Generator_TableVarName="tablezwischenrunde_spielplan" msprop:Generator_TablePropName="zwischenrunde_spielplan" msprop:Generator_RowDeletingName="zwischenrunde_spielplanRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_spielplanRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_spielplanRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_spielplanRowDeleted" msprop:Generator_UserTableName="zwischenrunde_spielplan" msprop:Generator_RowChangedName="zwischenrunde_spielplanRowChanged" msprop:Generator_RowEvArgName="zwischenrunde_spielplanRowChangeEvent" msprop:Generator_RowClassName="zwischenrunde_spielplanRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:long" />
@@ -2288,176 +1938,6 @@
               <xs:element name="satz2b" msprop:Generator_ColumnVarNameInTable="columnsatz2b" msprop:Generator_ColumnPropNameInRow="satz2b" msprop:Generator_ColumnPropNameInTable="satz2bColumn" msprop:Generator_UserColumnName="satz2b" type="xs:double" minOccurs="0" />
               <xs:element name="satz3a" msprop:Generator_ColumnVarNameInTable="columnsatz3a" msprop:Generator_ColumnPropNameInRow="satz3a" msprop:Generator_ColumnPropNameInTable="satz3aColumn" msprop:Generator_UserColumnName="satz3a" type="xs:double" minOccurs="0" />
               <xs:element name="satz3b" msprop:Generator_ColumnVarNameInTable="columnsatz3b" msprop:Generator_ColumnPropNameInRow="satz3b" msprop:Generator_ColumnPropNameInTable="satz3bColumn" msprop:Generator_UserColumnName="satz3b" type="xs:double" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="platzierungen_view" msprop:Generator_TableClassName="platzierungen_viewDataTable" msprop:Generator_TableVarName="tableplatzierungen_view" msprop:Generator_RowChangedName="platzierungen_viewRowChanged" msprop:Generator_TablePropName="platzierungen_view" msprop:Generator_RowDeletingName="platzierungen_viewRowDeleting" msprop:Generator_RowChangingName="platzierungen_viewRowChanging" msprop:Generator_RowEvHandlerName="platzierungen_viewRowChangeEventHandler" msprop:Generator_RowDeletedName="platzierungen_viewRowDeleted" msprop:Generator_RowClassName="platzierungen_viewRow" msprop:Generator_UserTableName="platzierungen_view" msprop:Generator_RowEvArgName="platzierungen_viewRowChangeEvent">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="ms" msprop:Generator_ColumnVarNameInTable="columnms" msprop:Generator_ColumnPropNameInRow="ms" msprop:Generator_ColumnPropNameInTable="msColumn" msprop:Generator_UserColumnName="ms" type="xs:string" minOccurs="0" />
-              <xs:element name="platz" msprop:Generator_ColumnVarNameInTable="columnplatz" msprop:Generator_ColumnPropNameInRow="platz" msprop:Generator_ColumnPropNameInTable="platzColumn" msprop:Generator_UserColumnName="platz" type="xs:double" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="vorrunde_gra_view" msprop:Generator_TableClassName="vorrunde_gra_viewDataTable" msprop:Generator_TableVarName="tablevorrunde_gra_view" msprop:Generator_RowChangedName="vorrunde_gra_viewRowChanged" msprop:Generator_TablePropName="vorrunde_gra_view" msprop:Generator_RowDeletingName="vorrunde_gra_viewRowDeleting" msprop:Generator_RowChangingName="vorrunde_gra_viewRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_gra_viewRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_gra_viewRowDeleted" msprop:Generator_RowClassName="vorrunde_gra_viewRow" msprop:Generator_UserTableName="vorrunde_gra_view" msprop:Generator_RowEvArgName="vorrunde_gra_viewRowChangeEvent">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="ms" msprop:Generator_ColumnVarNameInTable="columnms" msprop:Generator_ColumnPropNameInRow="ms" msprop:Generator_ColumnPropNameInTable="msColumn" msprop:Generator_UserColumnName="ms" type="xs:string" minOccurs="0" />
-              <xs:element name="punkte" msprop:Generator_ColumnVarNameInTable="columnpunkte" msprop:Generator_ColumnPropNameInRow="punkte" msprop:Generator_ColumnPropNameInTable="punkteColumn" msprop:Generator_UserColumnName="punkte" type="xs:long" minOccurs="0" />
-              <xs:element name="satz" msprop:Generator_ColumnVarNameInTable="columnsatz" msprop:Generator_ColumnPropNameInRow="satz" msprop:Generator_ColumnPropNameInTable="satzColumn" msprop:Generator_UserColumnName="satz" type="xs:long" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="vorrunde_grb_view" msprop:Generator_TableClassName="vorrunde_grb_viewDataTable" msprop:Generator_TableVarName="tablevorrunde_grb_view" msprop:Generator_RowChangedName="vorrunde_grb_viewRowChanged" msprop:Generator_TablePropName="vorrunde_grb_view" msprop:Generator_RowDeletingName="vorrunde_grb_viewRowDeleting" msprop:Generator_RowChangingName="vorrunde_grb_viewRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_grb_viewRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_grb_viewRowDeleted" msprop:Generator_RowClassName="vorrunde_grb_viewRow" msprop:Generator_UserTableName="vorrunde_grb_view" msprop:Generator_RowEvArgName="vorrunde_grb_viewRowChangeEvent">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="ms" msprop:Generator_ColumnVarNameInTable="columnms" msprop:Generator_ColumnPropNameInRow="ms" msprop:Generator_ColumnPropNameInTable="msColumn" msprop:Generator_UserColumnName="ms" type="xs:string" minOccurs="0" />
-              <xs:element name="punkte" msprop:Generator_ColumnVarNameInTable="columnpunkte" msprop:Generator_ColumnPropNameInRow="punkte" msprop:Generator_ColumnPropNameInTable="punkteColumn" msprop:Generator_UserColumnName="punkte" type="xs:long" minOccurs="0" />
-              <xs:element name="satz" msprop:Generator_ColumnVarNameInTable="columnsatz" msprop:Generator_ColumnPropNameInRow="satz" msprop:Generator_ColumnPropNameInTable="satzColumn" msprop:Generator_UserColumnName="satz" type="xs:long" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="vorrunde_grc_view" msprop:Generator_TableClassName="vorrunde_grc_viewDataTable" msprop:Generator_TableVarName="tablevorrunde_grc_view" msprop:Generator_RowChangedName="vorrunde_grc_viewRowChanged" msprop:Generator_TablePropName="vorrunde_grc_view" msprop:Generator_RowDeletingName="vorrunde_grc_viewRowDeleting" msprop:Generator_RowChangingName="vorrunde_grc_viewRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_grc_viewRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_grc_viewRowDeleted" msprop:Generator_RowClassName="vorrunde_grc_viewRow" msprop:Generator_UserTableName="vorrunde_grc_view" msprop:Generator_RowEvArgName="vorrunde_grc_viewRowChangeEvent">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="ms" msprop:Generator_ColumnVarNameInTable="columnms" msprop:Generator_ColumnPropNameInRow="ms" msprop:Generator_ColumnPropNameInTable="msColumn" msprop:Generator_UserColumnName="ms" type="xs:string" minOccurs="0" />
-              <xs:element name="punkte" msprop:Generator_ColumnVarNameInTable="columnpunkte" msprop:Generator_ColumnPropNameInRow="punkte" msprop:Generator_ColumnPropNameInTable="punkteColumn" msprop:Generator_UserColumnName="punkte" type="xs:long" minOccurs="0" />
-              <xs:element name="satz" msprop:Generator_ColumnVarNameInTable="columnsatz" msprop:Generator_ColumnPropNameInRow="satz" msprop:Generator_ColumnPropNameInTable="satzColumn" msprop:Generator_UserColumnName="satz" type="xs:long" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="vorrunde_grd_view" msprop:Generator_TableClassName="vorrunde_grd_viewDataTable" msprop:Generator_TableVarName="tablevorrunde_grd_view" msprop:Generator_RowChangedName="vorrunde_grd_viewRowChanged" msprop:Generator_TablePropName="vorrunde_grd_view" msprop:Generator_RowDeletingName="vorrunde_grd_viewRowDeleting" msprop:Generator_RowChangingName="vorrunde_grd_viewRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_grd_viewRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_grd_viewRowDeleted" msprop:Generator_RowClassName="vorrunde_grd_viewRow" msprop:Generator_UserTableName="vorrunde_grd_view" msprop:Generator_RowEvArgName="vorrunde_grd_viewRowChangeEvent">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="ms" msprop:Generator_ColumnVarNameInTable="columnms" msprop:Generator_ColumnPropNameInRow="ms" msprop:Generator_ColumnPropNameInTable="msColumn" msprop:Generator_UserColumnName="ms" type="xs:string" minOccurs="0" />
-              <xs:element name="punkte" msprop:Generator_ColumnVarNameInTable="columnpunkte" msprop:Generator_ColumnPropNameInRow="punkte" msprop:Generator_ColumnPropNameInTable="punkteColumn" msprop:Generator_UserColumnName="punkte" type="xs:long" minOccurs="0" />
-              <xs:element name="satz" msprop:Generator_ColumnVarNameInTable="columnsatz" msprop:Generator_ColumnPropNameInRow="satz" msprop:Generator_ColumnPropNameInTable="satzColumn" msprop:Generator_UserColumnName="satz" type="xs:long" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="vorrunde_gre_view" msprop:Generator_TableClassName="vorrunde_gre_viewDataTable" msprop:Generator_TableVarName="tablevorrunde_gre_view" msprop:Generator_RowChangedName="vorrunde_gre_viewRowChanged" msprop:Generator_TablePropName="vorrunde_gre_view" msprop:Generator_RowDeletingName="vorrunde_gre_viewRowDeleting" msprop:Generator_RowChangingName="vorrunde_gre_viewRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_gre_viewRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_gre_viewRowDeleted" msprop:Generator_RowClassName="vorrunde_gre_viewRow" msprop:Generator_UserTableName="vorrunde_gre_view" msprop:Generator_RowEvArgName="vorrunde_gre_viewRowChangeEvent">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="ms" msprop:Generator_ColumnVarNameInTable="columnms" msprop:Generator_ColumnPropNameInRow="ms" msprop:Generator_ColumnPropNameInTable="msColumn" msprop:Generator_UserColumnName="ms" type="xs:string" minOccurs="0" />
-              <xs:element name="punkte" msprop:Generator_ColumnVarNameInTable="columnpunkte" msprop:Generator_ColumnPropNameInRow="punkte" msprop:Generator_ColumnPropNameInTable="punkteColumn" msprop:Generator_UserColumnName="punkte" type="xs:long" minOccurs="0" />
-              <xs:element name="satz" msprop:Generator_ColumnVarNameInTable="columnsatz" msprop:Generator_ColumnPropNameInRow="satz" msprop:Generator_ColumnPropNameInTable="satzColumn" msprop:Generator_UserColumnName="satz" type="xs:long" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="vorrunde_grf_view" msprop:Generator_TableClassName="vorrunde_grf_viewDataTable" msprop:Generator_TableVarName="tablevorrunde_grf_view" msprop:Generator_RowChangedName="vorrunde_grf_viewRowChanged" msprop:Generator_TablePropName="vorrunde_grf_view" msprop:Generator_RowDeletingName="vorrunde_grf_viewRowDeleting" msprop:Generator_RowChangingName="vorrunde_grf_viewRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_grf_viewRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_grf_viewRowDeleted" msprop:Generator_RowClassName="vorrunde_grf_viewRow" msprop:Generator_UserTableName="vorrunde_grf_view" msprop:Generator_RowEvArgName="vorrunde_grf_viewRowChangeEvent">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="ms" msprop:Generator_ColumnVarNameInTable="columnms" msprop:Generator_ColumnPropNameInRow="ms" msprop:Generator_ColumnPropNameInTable="msColumn" msprop:Generator_UserColumnName="ms" type="xs:string" minOccurs="0" />
-              <xs:element name="punkte" msprop:Generator_ColumnVarNameInTable="columnpunkte" msprop:Generator_ColumnPropNameInRow="punkte" msprop:Generator_ColumnPropNameInTable="punkteColumn" msprop:Generator_UserColumnName="punkte" type="xs:long" minOccurs="0" />
-              <xs:element name="satz" msprop:Generator_ColumnVarNameInTable="columnsatz" msprop:Generator_ColumnPropNameInRow="satz" msprop:Generator_ColumnPropNameInTable="satzColumn" msprop:Generator_UserColumnName="satz" type="xs:long" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="vorrunde_grg_view" msprop:Generator_TableClassName="vorrunde_grg_viewDataTable" msprop:Generator_TableVarName="tablevorrunde_grg_view" msprop:Generator_RowChangedName="vorrunde_grg_viewRowChanged" msprop:Generator_TablePropName="vorrunde_grg_view" msprop:Generator_RowDeletingName="vorrunde_grg_viewRowDeleting" msprop:Generator_RowChangingName="vorrunde_grg_viewRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_grg_viewRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_grg_viewRowDeleted" msprop:Generator_RowClassName="vorrunde_grg_viewRow" msprop:Generator_UserTableName="vorrunde_grg_view" msprop:Generator_RowEvArgName="vorrunde_grg_viewRowChangeEvent">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="ms" msprop:Generator_ColumnVarNameInTable="columnms" msprop:Generator_ColumnPropNameInRow="ms" msprop:Generator_ColumnPropNameInTable="msColumn" msprop:Generator_UserColumnName="ms" type="xs:string" minOccurs="0" />
-              <xs:element name="punkte" msprop:Generator_ColumnVarNameInTable="columnpunkte" msprop:Generator_ColumnPropNameInRow="punkte" msprop:Generator_ColumnPropNameInTable="punkteColumn" msprop:Generator_UserColumnName="punkte" type="xs:long" minOccurs="0" />
-              <xs:element name="satz" msprop:Generator_ColumnVarNameInTable="columnsatz" msprop:Generator_ColumnPropNameInRow="satz" msprop:Generator_ColumnPropNameInTable="satzColumn" msprop:Generator_UserColumnName="satz" type="xs:long" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="vorrunde_grh_view" msprop:Generator_TableClassName="vorrunde_grh_viewDataTable" msprop:Generator_TableVarName="tablevorrunde_grh_view" msprop:Generator_RowChangedName="vorrunde_grh_viewRowChanged" msprop:Generator_TablePropName="vorrunde_grh_view" msprop:Generator_RowDeletingName="vorrunde_grh_viewRowDeleting" msprop:Generator_RowChangingName="vorrunde_grh_viewRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_grh_viewRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_grh_viewRowDeleted" msprop:Generator_RowClassName="vorrunde_grh_viewRow" msprop:Generator_UserTableName="vorrunde_grh_view" msprop:Generator_RowEvArgName="vorrunde_grh_viewRowChangeEvent">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="ms" msprop:Generator_ColumnVarNameInTable="columnms" msprop:Generator_ColumnPropNameInRow="ms" msprop:Generator_ColumnPropNameInTable="msColumn" msprop:Generator_UserColumnName="ms" type="xs:string" minOccurs="0" />
-              <xs:element name="punkte" msprop:Generator_ColumnVarNameInTable="columnpunkte" msprop:Generator_ColumnPropNameInRow="punkte" msprop:Generator_ColumnPropNameInTable="punkteColumn" msprop:Generator_UserColumnName="punkte" type="xs:long" minOccurs="0" />
-              <xs:element name="satz" msprop:Generator_ColumnVarNameInTable="columnsatz" msprop:Generator_ColumnPropNameInRow="satz" msprop:Generator_ColumnPropNameInTable="satzColumn" msprop:Generator_UserColumnName="satz" type="xs:long" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="vorrunde_gri_view" msprop:Generator_TableClassName="vorrunde_gri_viewDataTable" msprop:Generator_TableVarName="tablevorrunde_gri_view" msprop:Generator_RowChangedName="vorrunde_gri_viewRowChanged" msprop:Generator_TablePropName="vorrunde_gri_view" msprop:Generator_RowDeletingName="vorrunde_gri_viewRowDeleting" msprop:Generator_RowChangingName="vorrunde_gri_viewRowChanging" msprop:Generator_RowEvHandlerName="vorrunde_gri_viewRowChangeEventHandler" msprop:Generator_RowDeletedName="vorrunde_gri_viewRowDeleted" msprop:Generator_RowClassName="vorrunde_gri_viewRow" msprop:Generator_UserTableName="vorrunde_gri_view" msprop:Generator_RowEvArgName="vorrunde_gri_viewRowChangeEvent">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="ms" msprop:Generator_ColumnVarNameInTable="columnms" msprop:Generator_ColumnPropNameInRow="ms" msprop:Generator_ColumnPropNameInTable="msColumn" msprop:Generator_UserColumnName="ms" type="xs:string" minOccurs="0" />
-              <xs:element name="punkte" msprop:Generator_ColumnVarNameInTable="columnpunkte" msprop:Generator_ColumnPropNameInRow="punkte" msprop:Generator_ColumnPropNameInTable="punkteColumn" msprop:Generator_UserColumnName="punkte" type="xs:long" minOccurs="0" />
-              <xs:element name="satz" msprop:Generator_ColumnVarNameInTable="columnsatz" msprop:Generator_ColumnPropNameInRow="satz" msprop:Generator_ColumnPropNameInTable="satzColumn" msprop:Generator_UserColumnName="satz" type="xs:long" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="zwischenrunde_gra_view" msprop:Generator_TableClassName="zwischenrunde_gra_viewDataTable" msprop:Generator_TableVarName="tablezwischenrunde_gra_view" msprop:Generator_RowChangedName="zwischenrunde_gra_viewRowChanged" msprop:Generator_TablePropName="zwischenrunde_gra_view" msprop:Generator_RowDeletingName="zwischenrunde_gra_viewRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_gra_viewRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_gra_viewRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_gra_viewRowDeleted" msprop:Generator_RowClassName="zwischenrunde_gra_viewRow" msprop:Generator_UserTableName="zwischenrunde_gra_view" msprop:Generator_RowEvArgName="zwischenrunde_gra_viewRowChangeEvent">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="ms" msprop:Generator_ColumnVarNameInTable="columnms" msprop:Generator_ColumnPropNameInRow="ms" msprop:Generator_ColumnPropNameInTable="msColumn" msprop:Generator_UserColumnName="ms" type="xs:string" minOccurs="0" />
-              <xs:element name="punkte" msprop:Generator_ColumnVarNameInTable="columnpunkte" msprop:Generator_ColumnPropNameInRow="punkte" msprop:Generator_ColumnPropNameInTable="punkteColumn" msprop:Generator_UserColumnName="punkte" type="xs:double" minOccurs="0" />
-              <xs:element name="satz" msprop:Generator_ColumnVarNameInTable="columnsatz" msprop:Generator_ColumnPropNameInRow="satz" msprop:Generator_ColumnPropNameInTable="satzColumn" msprop:Generator_UserColumnName="satz" type="xs:double" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="zwischenrunde_grb_view" msprop:Generator_TableClassName="zwischenrunde_grb_viewDataTable" msprop:Generator_TableVarName="tablezwischenrunde_grb_view" msprop:Generator_RowChangedName="zwischenrunde_grb_viewRowChanged" msprop:Generator_TablePropName="zwischenrunde_grb_view" msprop:Generator_RowDeletingName="zwischenrunde_grb_viewRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_grb_viewRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_grb_viewRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_grb_viewRowDeleted" msprop:Generator_RowClassName="zwischenrunde_grb_viewRow" msprop:Generator_UserTableName="zwischenrunde_grb_view" msprop:Generator_RowEvArgName="zwischenrunde_grb_viewRowChangeEvent">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="ms" msprop:Generator_ColumnVarNameInTable="columnms" msprop:Generator_ColumnPropNameInRow="ms" msprop:Generator_ColumnPropNameInTable="msColumn" msprop:Generator_UserColumnName="ms" type="xs:string" minOccurs="0" />
-              <xs:element name="punkte" msprop:Generator_ColumnVarNameInTable="columnpunkte" msprop:Generator_ColumnPropNameInRow="punkte" msprop:Generator_ColumnPropNameInTable="punkteColumn" msprop:Generator_UserColumnName="punkte" type="xs:double" minOccurs="0" />
-              <xs:element name="satz" msprop:Generator_ColumnVarNameInTable="columnsatz" msprop:Generator_ColumnPropNameInRow="satz" msprop:Generator_ColumnPropNameInTable="satzColumn" msprop:Generator_UserColumnName="satz" type="xs:double" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="zwischenrunde_grc_view" msprop:Generator_TableClassName="zwischenrunde_grc_viewDataTable" msprop:Generator_TableVarName="tablezwischenrunde_grc_view" msprop:Generator_RowChangedName="zwischenrunde_grc_viewRowChanged" msprop:Generator_TablePropName="zwischenrunde_grc_view" msprop:Generator_RowDeletingName="zwischenrunde_grc_viewRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_grc_viewRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_grc_viewRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_grc_viewRowDeleted" msprop:Generator_RowClassName="zwischenrunde_grc_viewRow" msprop:Generator_UserTableName="zwischenrunde_grc_view" msprop:Generator_RowEvArgName="zwischenrunde_grc_viewRowChangeEvent">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="ms" msprop:Generator_ColumnVarNameInTable="columnms" msprop:Generator_ColumnPropNameInRow="ms" msprop:Generator_ColumnPropNameInTable="msColumn" msprop:Generator_UserColumnName="ms" type="xs:string" minOccurs="0" />
-              <xs:element name="punkte" msprop:Generator_ColumnVarNameInTable="columnpunkte" msprop:Generator_ColumnPropNameInRow="punkte" msprop:Generator_ColumnPropNameInTable="punkteColumn" msprop:Generator_UserColumnName="punkte" type="xs:double" minOccurs="0" />
-              <xs:element name="satz" msprop:Generator_ColumnVarNameInTable="columnsatz" msprop:Generator_ColumnPropNameInRow="satz" msprop:Generator_ColumnPropNameInTable="satzColumn" msprop:Generator_UserColumnName="satz" type="xs:double" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="zwischenrunde_grd_view" msprop:Generator_TableClassName="zwischenrunde_grd_viewDataTable" msprop:Generator_TableVarName="tablezwischenrunde_grd_view" msprop:Generator_RowChangedName="zwischenrunde_grd_viewRowChanged" msprop:Generator_TablePropName="zwischenrunde_grd_view" msprop:Generator_RowDeletingName="zwischenrunde_grd_viewRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_grd_viewRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_grd_viewRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_grd_viewRowDeleted" msprop:Generator_RowClassName="zwischenrunde_grd_viewRow" msprop:Generator_UserTableName="zwischenrunde_grd_view" msprop:Generator_RowEvArgName="zwischenrunde_grd_viewRowChangeEvent">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="ms" msprop:Generator_ColumnVarNameInTable="columnms" msprop:Generator_ColumnPropNameInRow="ms" msprop:Generator_ColumnPropNameInTable="msColumn" msprop:Generator_UserColumnName="ms" type="xs:string" minOccurs="0" />
-              <xs:element name="punkte" msprop:Generator_ColumnVarNameInTable="columnpunkte" msprop:Generator_ColumnPropNameInRow="punkte" msprop:Generator_ColumnPropNameInTable="punkteColumn" msprop:Generator_UserColumnName="punkte" type="xs:double" minOccurs="0" />
-              <xs:element name="satz" msprop:Generator_ColumnVarNameInTable="columnsatz" msprop:Generator_ColumnPropNameInRow="satz" msprop:Generator_ColumnPropNameInTable="satzColumn" msprop:Generator_UserColumnName="satz" type="xs:double" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="zwischenrunde_gre_view" msprop:Generator_TableClassName="zwischenrunde_gre_viewDataTable" msprop:Generator_TableVarName="tablezwischenrunde_gre_view" msprop:Generator_RowChangedName="zwischenrunde_gre_viewRowChanged" msprop:Generator_TablePropName="zwischenrunde_gre_view" msprop:Generator_RowDeletingName="zwischenrunde_gre_viewRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_gre_viewRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_gre_viewRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_gre_viewRowDeleted" msprop:Generator_RowClassName="zwischenrunde_gre_viewRow" msprop:Generator_UserTableName="zwischenrunde_gre_view" msprop:Generator_RowEvArgName="zwischenrunde_gre_viewRowChangeEvent">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="ms" msprop:Generator_ColumnVarNameInTable="columnms" msprop:Generator_ColumnPropNameInRow="ms" msprop:Generator_ColumnPropNameInTable="msColumn" msprop:Generator_UserColumnName="ms" type="xs:string" minOccurs="0" />
-              <xs:element name="punkte" msprop:Generator_ColumnVarNameInTable="columnpunkte" msprop:Generator_ColumnPropNameInRow="punkte" msprop:Generator_ColumnPropNameInTable="punkteColumn" msprop:Generator_UserColumnName="punkte" type="xs:double" minOccurs="0" />
-              <xs:element name="satz" msprop:Generator_ColumnVarNameInTable="columnsatz" msprop:Generator_ColumnPropNameInRow="satz" msprop:Generator_ColumnPropNameInTable="satzColumn" msprop:Generator_UserColumnName="satz" type="xs:double" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="zwischenrunde_grf_view" msprop:Generator_TableClassName="zwischenrunde_grf_viewDataTable" msprop:Generator_TableVarName="tablezwischenrunde_grf_view" msprop:Generator_RowChangedName="zwischenrunde_grf_viewRowChanged" msprop:Generator_TablePropName="zwischenrunde_grf_view" msprop:Generator_RowDeletingName="zwischenrunde_grf_viewRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_grf_viewRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_grf_viewRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_grf_viewRowDeleted" msprop:Generator_RowClassName="zwischenrunde_grf_viewRow" msprop:Generator_UserTableName="zwischenrunde_grf_view" msprop:Generator_RowEvArgName="zwischenrunde_grf_viewRowChangeEvent">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="ms" msprop:Generator_ColumnVarNameInTable="columnms" msprop:Generator_ColumnPropNameInRow="ms" msprop:Generator_ColumnPropNameInTable="msColumn" msprop:Generator_UserColumnName="ms" type="xs:string" minOccurs="0" />
-              <xs:element name="punkte" msprop:Generator_ColumnVarNameInTable="columnpunkte" msprop:Generator_ColumnPropNameInRow="punkte" msprop:Generator_ColumnPropNameInTable="punkteColumn" msprop:Generator_UserColumnName="punkte" type="xs:double" minOccurs="0" />
-              <xs:element name="satz" msprop:Generator_ColumnVarNameInTable="columnsatz" msprop:Generator_ColumnPropNameInRow="satz" msprop:Generator_ColumnPropNameInTable="satzColumn" msprop:Generator_UserColumnName="satz" type="xs:double" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="zwischenrunde_grg_view" msprop:Generator_TableClassName="zwischenrunde_grg_viewDataTable" msprop:Generator_TableVarName="tablezwischenrunde_grg_view" msprop:Generator_RowChangedName="zwischenrunde_grg_viewRowChanged" msprop:Generator_TablePropName="zwischenrunde_grg_view" msprop:Generator_RowDeletingName="zwischenrunde_grg_viewRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_grg_viewRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_grg_viewRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_grg_viewRowDeleted" msprop:Generator_RowClassName="zwischenrunde_grg_viewRow" msprop:Generator_UserTableName="zwischenrunde_grg_view" msprop:Generator_RowEvArgName="zwischenrunde_grg_viewRowChangeEvent">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="ms" msprop:Generator_ColumnVarNameInTable="columnms" msprop:Generator_ColumnPropNameInRow="ms" msprop:Generator_ColumnPropNameInTable="msColumn" msprop:Generator_UserColumnName="ms" type="xs:string" minOccurs="0" />
-              <xs:element name="punkte" msprop:Generator_ColumnVarNameInTable="columnpunkte" msprop:Generator_ColumnPropNameInRow="punkte" msprop:Generator_ColumnPropNameInTable="punkteColumn" msprop:Generator_UserColumnName="punkte" type="xs:double" minOccurs="0" />
-              <xs:element name="satz" msprop:Generator_ColumnVarNameInTable="columnsatz" msprop:Generator_ColumnPropNameInRow="satz" msprop:Generator_ColumnPropNameInTable="satzColumn" msprop:Generator_UserColumnName="satz" type="xs:double" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="zwischenrunde_grh_view" msprop:Generator_TableClassName="zwischenrunde_grh_viewDataTable" msprop:Generator_TableVarName="tablezwischenrunde_grh_view" msprop:Generator_RowChangedName="zwischenrunde_grh_viewRowChanged" msprop:Generator_TablePropName="zwischenrunde_grh_view" msprop:Generator_RowDeletingName="zwischenrunde_grh_viewRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_grh_viewRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_grh_viewRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_grh_viewRowDeleted" msprop:Generator_RowClassName="zwischenrunde_grh_viewRow" msprop:Generator_UserTableName="zwischenrunde_grh_view" msprop:Generator_RowEvArgName="zwischenrunde_grh_viewRowChangeEvent">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="ms" msprop:Generator_ColumnVarNameInTable="columnms" msprop:Generator_ColumnPropNameInRow="ms" msprop:Generator_ColumnPropNameInTable="msColumn" msprop:Generator_UserColumnName="ms" type="xs:string" minOccurs="0" />
-              <xs:element name="punkte" msprop:Generator_ColumnVarNameInTable="columnpunkte" msprop:Generator_ColumnPropNameInRow="punkte" msprop:Generator_ColumnPropNameInTable="punkteColumn" msprop:Generator_UserColumnName="punkte" type="xs:double" minOccurs="0" />
-              <xs:element name="satz" msprop:Generator_ColumnVarNameInTable="columnsatz" msprop:Generator_ColumnPropNameInRow="satz" msprop:Generator_ColumnPropNameInTable="satzColumn" msprop:Generator_UserColumnName="satz" type="xs:double" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="zwischenrunde_gri_view" msprop:Generator_TableClassName="zwischenrunde_gri_viewDataTable" msprop:Generator_TableVarName="tablezwischenrunde_gri_view" msprop:Generator_RowChangedName="zwischenrunde_gri_viewRowChanged" msprop:Generator_TablePropName="zwischenrunde_gri_view" msprop:Generator_RowDeletingName="zwischenrunde_gri_viewRowDeleting" msprop:Generator_RowChangingName="zwischenrunde_gri_viewRowChanging" msprop:Generator_RowEvHandlerName="zwischenrunde_gri_viewRowChangeEventHandler" msprop:Generator_RowDeletedName="zwischenrunde_gri_viewRowDeleted" msprop:Generator_RowClassName="zwischenrunde_gri_viewRow" msprop:Generator_UserTableName="zwischenrunde_gri_view" msprop:Generator_RowEvArgName="zwischenrunde_gri_viewRowChangeEvent">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="ms" msprop:Generator_ColumnVarNameInTable="columnms" msprop:Generator_ColumnPropNameInRow="ms" msprop:Generator_ColumnPropNameInTable="msColumn" msprop:Generator_UserColumnName="ms" type="xs:string" minOccurs="0" />
-              <xs:element name="punkte" msprop:Generator_ColumnVarNameInTable="columnpunkte" msprop:Generator_ColumnPropNameInRow="punkte" msprop:Generator_ColumnPropNameInTable="punkteColumn" msprop:Generator_UserColumnName="punkte" type="xs:long" minOccurs="0" />
-              <xs:element name="satz" msprop:Generator_ColumnVarNameInTable="columnsatz" msprop:Generator_ColumnPropNameInRow="satz" msprop:Generator_ColumnPropNameInTable="satzColumn" msprop:Generator_UserColumnName="satz" type="xs:long" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

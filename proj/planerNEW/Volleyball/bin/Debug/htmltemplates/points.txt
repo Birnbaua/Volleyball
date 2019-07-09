@@ -1,0 +1,74 @@
+<p><br></p>
+<table style='width: 30%; border: 1px solid black;'>
+<tbody>
+<tr>
+<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 75%;'><span style='font-size: 30px;'>Punkte Satz1 Team A</span></td>
+<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 25%;'><br></td>
+</tr>
+<tr>
+<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 75%;'><span style='font-size: 30px;'>Punkte Satz1 Team B</span></td>
+<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 25%;'><br></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<table style='width: 30%; border: 1px solid black;'>
+<tbody>
+<tr>
+<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 75%;'><span style='font-size: 30px;'>Punkte Satz2 Team A</span></td>
+<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 25%;'><br></td>
+</tr>                                                                         
+<tr>                                                                          
+<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 75%;'><span style='font-size: 30px;'>Punkte Satz2 Team B</span></td>
+<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 25%;'><br></td>
+</tr>                                                                         
+</tbody>                                                                      
+</table>                                                                      
+<p><br></p>                                                                   
+<table style='width: 30%; border: 1px solid black;'>                          
+<tbody>                                                                       
+<tr>                                                                          
+<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 75%;'><span style='font-size: 30px;'>Punkte Satz3 Team A</span></td>
+<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 25%;'><br></td>
+</tr>
+<tr>
+<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 75%;'><span style='font-size: 30px;'>Punkte Satz3 Team B</span></td>
+<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 25%;'><br></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p style='font-family: Arial, Helvetica, sans-serif; font-size: 30px;'>Sieger:_______________________________</p>
+<p><br></p>
+<table style='width: 100%; border: 1px solid black;'>
+    <tbody>
+        <tr>
+            <td style='font-family: Arial, Helvetica, sans-serif; width: 10%;'><span style='font-size: 30px;'>Unterschrift</span></td>
+            <td style='font-family: Arial, Helvetica, sans-serif; width: 23.3%;'></td>
+            <td style='font-family: Arial, Helvetica, sans-serif; width: 10%;'></td>
+            <td style='font-family: Arial, Helvetica, sans-serif; width: 23.3%;'></td>
+            <td style='font-family: Arial, Helvetica, sans-serif; width: 10%;'></td>
+            <td style='font-family: Arial, Helvetica, sans-serif; width: 23.3%;'></td>
+        </tr>
+    </tbody>
+	<tbody>
+        <tr>
+            <td style='font-family: Arial, Helvetica, sans-serif; width: 10%;'>&nbsp;</td>
+            <td style='font-family: Arial, Helvetica, sans-serif; width: 23.3%;'>&nbsp;</td>
+            <td style='font-family: Arial, Helvetica, sans-serif; width: 10%;'>&nbsp;</td>
+            <td style='font-family: Arial, Helvetica, sans-serif; width: 23.3%;'>&nbsp;</td>
+            <td style='font-family: Arial, Helvetica, sans-serif; width: 10%;'>&nbsp;</td>
+            <td style='font-family: Arial, Helvetica, sans-serif; width: 23.3%;'>&nbsp;</td>
+        </tr>
+    </tbody>
+	<tbody>
+        <tr>
+            <td style='font-family: Arial, Helvetica, sans-serif; width: 10%;'><span style='font-size: 30px;'>Team A:</span></td>
+            <td style='font-family: Arial, Helvetica, sans-serif; width: 23.3%;'><br></td>
+            <td style='font-family: Arial, Helvetica, sans-serif; width: 10%;'><span style='font-size: 30px;'>Team B:</span></td>
+            <td style='font-family: Arial, Helvetica, sans-serif; width: 23.3%;'><br></td>
+            <td style='font-family: Arial, Helvetica, sans-serif; width: 10%;'><span style='font-size: 30px;'>Schiedsgericht:</span></td>
+            <td style='font-family: Arial, Helvetica, sans-serif; width: 23.3%;'><br></td>
+        </tr>
+    </tbody>
+</table>

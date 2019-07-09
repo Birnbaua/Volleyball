@@ -61,3 +61,6 @@ C:\appl\Downloads\Volleyball\src\reporter\obj\Debug\vbtournamentreporter.reporte
 C:\appl\Downloads\Volleyball\src\reporter\obj\Debug\vbtournamentreporter.csproj.GenerateResource.Cache
 C:\appl\Downloads\Volleyball\src\reporter\obj\Debug\RdlCompile.cache
 C:\appl\Downloads\Volleyball\src\reporter\obj\Debug\RdlCompile.compiled
+C:\appl\github\Volleyball\builds\Debug-vbreporter\vbtournamentreporter.exe.config
+C:\appl\github\Volleyball\proj\reporter\obj\Debug\vbtournamentreporter.exe
+C:\appl\github\Volleyball\proj\reporter\obj\Debug\vbtournamentreporter.pdb

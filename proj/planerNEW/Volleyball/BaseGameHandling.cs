@@ -18,7 +18,7 @@ namespace Volleyball
         public List<MatchData> matchData;
         public List<List<ResultData>> resultData;
         #endregion
-
+        
         public BaseGameHandling(Logging log)
         {
             this.log = log;

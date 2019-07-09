@@ -5,22 +5,31 @@ using System.Windows.Forms;
 using System.Data;
 using System.Reflection;
 using System.Drawing;
+using System.Data.SQLite;
+using OpenHtmlToPdf;
 
 namespace Volleyball
 {
     public partial class FormMain : Form
     {
         #region members
-        static readonly string settingsFileName = "settings.csv";
-        static readonly string fieldsFileName = "fields.csv";
-        static readonly string teamsFileName = "teams.csv";
-        static readonly string qualifyingFileName = "qualifyinggames.csv", qualifyingResultFileName = "qualifying_result";
-        static readonly string interimFileName = "interimgames.csv", interimResultFileName = "interim_results";
-        static readonly string crossgamesFileName = "crossgames.csv";
-        static readonly string classementgamesFileName = "classementgames.csv";
+        static readonly string resourcePath = "./matchdata/";
+        static readonly string htmlPath = "./htmltemplates/";
+        static readonly string pdfPath = "./pdfs/";
+        static readonly string settingsFileName = resourcePath + "settings.csv";
+        static readonly string fieldsFileName = resourcePath + "fields.csv";
+        static readonly string teamsFileName = resourcePath + "teams.csv";
+        static readonly string qualifyingFileName = resourcePath + "qualifyinggames.csv", qualifyingResultFileName = resourcePath + "qualifying_result";
+        static readonly string interimFileName = resourcePath + "interimgames.csv", interimResultFileName = resourcePath + "interim_results";
+        static readonly string crossgamesFileName = resourcePath + "crossgames.csv";
+        static readonly string classementgamesFileName = resourcePath + "classementgames.csv";
         static readonly List<String> prefix = new List<String>() { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L" };
         static bool lockAction = false;
         static readonly List<Color> rowColors = new List<Color>() { Color.Yellow, Color.LightGray, Color.Cyan, Color.Magenta };
+        static readonly string headerHtml = "<!DOCTYPE html><html><body>";
+        static readonly string tableHeader = File.ReadAllText(htmlPath + "tableheader.txt");
+        static readonly string tablePoints = File.ReadAllText(htmlPath + "points.txt");
+        static readonly string footerHtml = "</body></html>";
         Settings settings;
         DataTable dtFields, dtTeams, dtQualifying, dtInterim, dtCrossgames, dtClassementgames;
         QualifyingGames qg;
@@ -39,8 +48,16 @@ namespace Volleyball
                                                    new int[]{ 0, 4, 3 },
                                                    new int[]{ 1, 2, 0 },
                                                    new int[]{ 3, 4, 0 },
-                                                   new int[]{ 0, 1, 4 }};
+                                                   new int[]{ 0, 1, 4 } };
+        static readonly List<String> tableNames = new List<String>() { "vorrunde_erg_gr",
+                                                                        "vorrunde_spielplan",
+                                                                        "zwischenrunde_erg_gr",
+                                                                        "zwischenrunde_spielplan",
+                                                                        "kreuzspiele_spielplan",
+                                                                        "platzspiele_spielplan",
+                                                                        "platzierungen" };
         Timer updateTournamentEndtime;
+        SQLiteConnection connSqlite;
         #endregion
 
         public FormMain()
@@ -75,6 +92,10 @@ namespace Volleyball
             checkBoxUseSecondGameplan_CheckedChanged(checkBoxUseSecondGameplan, EventArgs.Empty);
 
             checkBoxUseCrossgames_CheckedChanged(checkBoxUseCrossgames, EventArgs.Empty);
+
+            connSqlite = new SQLiteConnection("Data Source = data.db; Version = 3;");
+
+            this.Text = "TournamentPlaner V13";
         }
 
         void SaveMatchDataToFile(String fileName, List<MatchData> data)
@@ -149,7 +170,133 @@ namespace Volleyball
 
         void uploadTournamentDataToWeb()
         {
+            connSqlite.Open();
 
+            try
+            {
+                SQLiteCommand cmdSqlite = new SQLiteCommand(connSqlite);
+
+                foreach (String tableName in tableNames)
+                {
+                    if (tableName.Contains("vorrunde_erg") || tableName.Contains("zwischenrunde_erg"))
+                    {
+                        foreach (String pr in prefix)
+                        {
+                            cmdSqlite.CommandText = "delete from " + tableName + pr + ";";
+                            cmdSqlite.ExecuteNonQuery();
+                        }
+                    }
+                    else
+                    {
+                        cmdSqlite.CommandText = "delete from " + tableName + ";";
+                        cmdSqlite.ExecuteNonQuery();
+                    }
+                }
+
+                if (qg != null)
+                {
+                    for (int i = 0; i < qg.matchData.Count; i++)
+                    {
+                        MatchData md = qg.matchData[i];
+                        cmdSqlite.CommandText = "INSERT INTO vorrunde_spielplan VALUES(" + i + "," + md.Round + "," + md.Game + ",'"
+                            + md.Time + "'," + md.FieldNumber + ",'" + md.FieldName + "','" + md.TeamA + "','" + md.TeamB + "','"
+                            + md.Referee + "'," + md.PointsMatch1TeamA + "," + md.PointsMatch1TeamB
+                            + "," + md.PointsMatch2TeamA + "," + md.PointsMatch2TeamB
+                            + "," + md.PointsMatch3TeamA + "," + md.PointsMatch3TeamB + ")";
+                        cmdSqlite.ExecuteNonQuery();
+                    }
+
+                    foreach (String tableName in tableNames)
+                    {
+                        if (tableName.Contains("vorrunde_erg"))
+                        {
+                            for(int i = 0; i < prefix.Count; i++)
+                            {
+                                for(int ii = 0; ii < qg.resultData[i].Count; ii++)
+                                {
+                                    cmdSqlite.CommandText = "INSERT INTO " + tableName + prefix[i];
+                                    cmdSqlite.CommandText += " VALUES(" + qg.resultData[i][ii].Rank;
+                                    cmdSqlite.CommandText += ",'" + qg.resultData[i][ii].Team + "'";
+                                    cmdSqlite.CommandText += "," + qg.resultData[i][ii].PointsSets;
+                                    cmdSqlite.CommandText += "," + qg.resultData[i][ii].PointsMatches;
+                                    cmdSqlite.CommandText += "," + qg.resultData[i][ii].InternalRank;
+                                    cmdSqlite.CommandText += "," + qg.resultData[i][ii].ExternalRank + ")";
+                                    cmdSqlite.ExecuteNonQuery();
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (ig != null)
+                {
+                    for (int i = 0; i < ig.matchData.Count; i++)
+                    {
+                        MatchData md = ig.matchData[i];
+                        cmdSqlite.CommandText = "INSERT INTO zwischenrunde_spielplan VALUES(" + i + "," + md.Round + "," + md.Game + ",'"
+                            + md.Time + "'," + md.FieldNumber + ",'" + md.FieldName + "','" + md.TeamA + "','" + md.TeamB + "','"
+                            + md.Referee + "'," + md.PointsMatch1TeamA + "," + md.PointsMatch1TeamB
+                            + "," + md.PointsMatch2TeamA + "," + md.PointsMatch2TeamB
+                            + "," + md.PointsMatch3TeamA + "," + md.PointsMatch3TeamB + ")";
+                        cmdSqlite.ExecuteNonQuery();
+                    }
+
+                    foreach (String tableName in tableNames)
+                    {
+                        if (tableName.Contains("zwischenrunde_erg"))
+                        {
+                            for (int i = 0; i < prefix.Count; i++)
+                            {
+                                for (int ii = 0; ii < ig.resultData[i].Count; ii++)
+                                {
+                                    cmdSqlite.CommandText = "INSERT INTO " + tableName + prefix[i];
+                                    cmdSqlite.CommandText += " VALUES(" + ig.resultData[i][ii].Rank;
+                                    cmdSqlite.CommandText += ",'" + ig.resultData[i][ii].Team + "'";
+                                    cmdSqlite.CommandText += "," + ig.resultData[i][ii].PointsSets;
+                                    cmdSqlite.CommandText += "," + ig.resultData[i][ii].PointsMatches;
+                                    cmdSqlite.CommandText += "," + ig.resultData[i][ii].InternalRank;
+                                    cmdSqlite.CommandText += "," + ig.resultData[i][ii].ExternalRank + ")";
+                                    cmdSqlite.ExecuteNonQuery();
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (cg != null)
+                {
+                    for (int i = 0; i < cg.matchData.Count; i++)
+                    {
+                        MatchData md = cg.matchData[i];
+                        cmdSqlite.CommandText = "INSERT INTO kreuzspiele_spielplan VALUES(" + i + "," + md.Round + "," + md.Game + ",'"
+                            + md.Time + "'," + md.FieldNumber + ",'" + md.FieldName + "','" + md.TeamA + "','" + md.TeamB + "','"
+                            + md.Referee + "'," + md.PointsMatch1TeamA + "," + md.PointsMatch1TeamB
+                            + "," + md.PointsMatch2TeamA + "," + md.PointsMatch2TeamB
+                            + "," + md.PointsMatch3TeamA + "," + md.PointsMatch3TeamB + ")";
+                        cmdSqlite.ExecuteNonQuery();
+                    }
+                }
+
+                if (clg != null)
+                {
+                    for (int i = 0; i < clg.matchData.Count; i++)
+                    {
+                        MatchData md = clg.matchData[i];
+                        cmdSqlite.CommandText = "INSERT INTO platzspiele_spielplan VALUES(" + i + "," + md.Round + "," + md.Game + ",'"
+                            + md.Time + "'," + md.FieldNumber + ",'" + md.FieldName + "','" + md.TeamA + "','" + md.TeamB + "','"
+                            + md.Referee + "'," + md.PointsMatch1TeamA + "," + md.PointsMatch1TeamB
+                            + "," + md.PointsMatch2TeamA + "," + md.PointsMatch2TeamB
+                            + "," + md.PointsMatch3TeamA + "," + md.PointsMatch3TeamB + ")";
+                        cmdSqlite.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            connSqlite.Close();
         }
 
         #region general ui methods
@@ -871,6 +1018,8 @@ namespace Volleyball
                     if(qg.resultData[i].Count > 0)
                         SaveResultDataToFile(qualifyingResultFileName + "_" + prefix[i] + ".csv", qg.resultData[i]);
                 }
+
+                uploadTournamentDataToWeb();
             }
         }
         #endregion
@@ -978,7 +1127,37 @@ namespace Volleyball
 
         private void buttonPrintQualifying_Click(object sender, EventArgs e)
         {
+            if(qg != null && qg.matchData.Count > 0)
+            {
+                String gameHtml = headerHtml;
 
+                foreach(MatchData md in qg.matchData)
+                {
+                    gameHtml += tableHeader;
+
+                    gameHtml += "<tr>";
+                    gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 10%; text-align: center;'><span style='font-size: 30px;'>" + md.Game + "</span></td>";
+                    gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 10%; text-align: center;'><span style='font-size: 30px;'>" + md.FieldNumber + "</span></td>";
+                    gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 20%; text-align: center;'><span style='font-size: 30px;'>" + md.FieldName + "</span></td>";
+                    gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 20%; text-align: center;'><span style='font-size: 30px;'>" + md.TeamA + "</span></td>";
+                    gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 20%; text-align: center;'><span style='font-size: 30px;'>" + md.TeamB + "</span></td>";
+                    gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 20%; text-align: center;'><span style='font-size: 30px;'>" + md.Referee + "</span></td>";
+                    gameHtml += "</tr>";
+                    gameHtml += "</tbody>";
+                    gameHtml += "</table>";
+
+                    gameHtml += tablePoints;
+
+                    if(md != qg.matchData[qg.matchData.Count - 1])
+                        gameHtml += "<div style='page-break-after: always;'></div>";
+                }
+
+                gameHtml += footerHtml;
+
+                var pdf = Pdf.From(gameHtml).OfSize(PaperSize.A4).Landscape().Comressed().Content();
+
+                File.WriteAllBytes(pdfPath + "qualifyingGames.pdf", pdf);
+            }
         }
 
         private void buttonResultsQualifying_Click(object sender, EventArgs e)
@@ -1109,6 +1288,8 @@ namespace Volleyball
                     if (ig.resultData[i].Count > 0)
                         SaveResultDataToFile(interimResultFileName + "_" + prefix[i] + ".csv", ig.resultData[i]);
                 }
+
+                uploadTournamentDataToWeb();
             }
         }
         #endregion
@@ -1347,6 +1528,8 @@ namespace Volleyball
                 log.write("calculating crossgame results");
 
                 SaveMatchDataToFile(crossgamesFileName, cg.matchData);
+
+                uploadTournamentDataToWeb();
             }
         }
         #endregion
@@ -1576,6 +1759,8 @@ namespace Volleyball
                 SaveMatchDataToFile(classementgamesFileName, clg.matchData);
 
                 clg.createFinalClassement();
+
+                uploadTournamentDataToWeb();
             }
         }
         #endregion

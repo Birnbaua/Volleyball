@@ -11,11 +11,12 @@ namespace Volleyball
     {
         #region members
         String fileName;
+        static readonly String logPath = "./log/";
         #endregion
 
         public Logging()
         {
-            fileName = DateTime.Now.ToString("yyyyMMdd_HH_mm_ss") + "_log.txt";
+            fileName = logPath + DateTime.Now.ToString("yyyyMMdd_HH_mm_ss") + "_log.txt";
         }
         
         public void write(String message)
