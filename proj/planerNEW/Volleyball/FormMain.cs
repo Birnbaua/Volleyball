@@ -7,6 +7,8 @@ using System.Reflection;
 using System.Drawing;
 using System.Data.SQLite;
 using OpenHtmlToPdf;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace Volleyball
 {
@@ -27,8 +29,8 @@ namespace Volleyball
         static bool lockAction = false;
         static readonly List<Color> rowColors = new List<Color>() { Color.Yellow, Color.LightGray, Color.Cyan, Color.Magenta };
         static readonly string headerHtml = "<!DOCTYPE html><html><body>";
-        static readonly string tableHeader = File.ReadAllText(htmlPath + "tableheader.txt");
-        static readonly string tablePoints = File.ReadAllText(htmlPath + "points.txt");
+        static readonly string part1Html = File.ReadAllText(htmlPath + "part1Html.txt");
+        static readonly string part2Html = File.ReadAllText(htmlPath + "part2Html.txt");
         static readonly string footerHtml = "</body></html>";
         Settings settings;
         DataTable dtFields, dtTeams, dtQualifying, dtInterim, dtCrossgames, dtClassementgames;
@@ -93,7 +95,7 @@ namespace Volleyball
 
             checkBoxUseCrossgames_CheckedChanged(checkBoxUseCrossgames, EventArgs.Empty);
 
-            connSqlite = new SQLiteConnection("Data Source = data.db; Version = 3;");
+            connSqlite = new SQLiteConnection("Data Source = " + resourcePath + "data.db; Version = 3;");
 
             this.Text = "TournamentPlaner V13";
         }
@@ -168,7 +170,8 @@ namespace Volleyball
             return rdList;
         }
 
-        void uploadTournamentDataToWeb()
+        #region data export and upload
+        void exportTournamentDataToDB()
         {
             connSqlite.Open();
 
@@ -295,9 +298,57 @@ namespace Volleyball
             {
                 MessageBox.Show(e.Message);
             }
-
+            
             connSqlite.Close();
         }
+
+        bool FileInUse(string path)
+        {
+            try
+            {
+                using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
+                {
+                    bool bcw = fs.CanWrite;
+                }
+
+                return false;
+            }
+            catch (IOException ex)
+            {
+                return true;
+            }
+        }
+        
+        void uploadToFTP()
+        {
+            if (!FileInUse(resourcePath + "data.db"))
+            {
+                try
+                {
+                    using (WebClient client = new WebClient())
+                    {
+                        client.Credentials = new NetworkCredential("38730ftp3", "");
+                        client.UploadFile("ftp://e35811-ftp.services.easyname.eu", WebRequestMethods.Ftp.UploadFile, resourcePath + "data.db");
+                    }
+                    
+                    log.write("db file upload finished");
+                }
+                catch(Exception e)
+                {
+                    log.write(e.Message);
+                }
+            }
+            else
+            {
+                log.write("db file is in use, NO upload possible");
+            }
+        }
+
+        private void buttonFTP_Click(object sender, EventArgs e)
+        {
+            uploadToFTP();
+        }
+        #endregion
 
         #region general ui methods
         void initializeTimer()
@@ -662,6 +713,9 @@ namespace Volleyball
 
             dataGridViewFields.DataSource = dtFields;
 
+            foreach (DataGridViewColumn dgvc in dataGridViewFields.Columns)
+                dgvc.SortMode = DataGridViewColumnSortMode.NotSortable;
+
             loadFields();
 
             if (dtFields.Rows.Count == 0)
@@ -755,6 +809,9 @@ namespace Volleyball
                                                 new object[]{ true });
 
             dataGridViewTeams.DataSource = dtTeams;
+
+            foreach (DataGridViewColumn dgvc in dataGridViewTeams.Columns)
+                dgvc.SortMode = DataGridViewColumnSortMode.NotSortable;
 
             loadTeams();
 
@@ -942,6 +999,9 @@ namespace Volleyball
 
             dataGridViewQualifyingRound.DataSource = dtQualifying;
 
+            foreach (DataGridViewColumn dgvc in dataGridViewQualifyingRound.Columns)
+                dgvc.SortMode = DataGridViewColumnSortMode.NotSortable;
+
             qg = new QualifyingGames(log);
 
             loadDataQualifyingFromFile();
@@ -1019,7 +1079,7 @@ namespace Volleyball
                         SaveResultDataToFile(qualifyingResultFileName + "_" + prefix[i] + ".csv", qg.resultData[i]);
                 }
 
-                uploadTournamentDataToWeb();
+                exportTournamentDataToDB();
             }
         }
         #endregion
@@ -1133,7 +1193,7 @@ namespace Volleyball
 
                 foreach(MatchData md in qg.matchData)
                 {
-                    gameHtml += tableHeader;
+                    gameHtml += part1Html;
 
                     gameHtml += "<tr>";
                     gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 10%; text-align: center;'><span style='font-size: 30px;'>" + md.Game + "</span></td>";
@@ -1146,7 +1206,7 @@ namespace Volleyball
                     gameHtml += "</tbody>";
                     gameHtml += "</table>";
 
-                    gameHtml += tablePoints;
+                    gameHtml += part2Html;
 
                     if(md != qg.matchData[qg.matchData.Count - 1])
                         gameHtml += "<div style='page-break-after: always;'></div>";
@@ -1156,7 +1216,7 @@ namespace Volleyball
 
                 var pdf = Pdf.From(gameHtml).OfSize(PaperSize.A4).Landscape().Comressed().Content();
 
-                File.WriteAllBytes(pdfPath + "qualifyingGames.pdf", pdf);
+                File.WriteAllBytes(pdfPath + "vorrunde.pdf", pdf);
             }
         }
 
@@ -1208,6 +1268,9 @@ namespace Volleyball
                                                 new object[] { true });
 
             dataGridViewInterimRound.DataSource = dtInterim;
+
+            foreach (DataGridViewColumn dgvc in dataGridViewInterimRound.Columns)
+                dgvc.SortMode = DataGridViewColumnSortMode.NotSortable;
 
             ig = new InterimGames(log);
 
@@ -1289,7 +1352,7 @@ namespace Volleyball
                         SaveResultDataToFile(interimResultFileName + "_" + prefix[i] + ".csv", ig.resultData[i]);
                 }
 
-                uploadTournamentDataToWeb();
+                exportTournamentDataToDB();
             }
         }
         #endregion
@@ -1411,7 +1474,37 @@ namespace Volleyball
 
         private void buttonPrintInterim_Click(object sender, EventArgs e)
         {
+            if (ig != null && ig.matchData.Count > 0)
+            {
+                String gameHtml = headerHtml;
 
+                foreach (MatchData md in ig.matchData)
+                {
+                    gameHtml += part1Html;
+
+                    gameHtml += "<tr>";
+                    gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 10%; text-align: center;'><span style='font-size: 30px;'>" + md.Game + "</span></td>";
+                    gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 10%; text-align: center;'><span style='font-size: 30px;'>" + md.FieldNumber + "</span></td>";
+                    gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 20%; text-align: center;'><span style='font-size: 30px;'>" + md.FieldName + "</span></td>";
+                    gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 20%; text-align: center;'><span style='font-size: 30px;'>" + md.TeamA + "</span></td>";
+                    gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 20%; text-align: center;'><span style='font-size: 30px;'>" + md.TeamB + "</span></td>";
+                    gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 20%; text-align: center;'><span style='font-size: 30px;'>" + md.Referee + "</span></td>";
+                    gameHtml += "</tr>";
+                    gameHtml += "</tbody>";
+                    gameHtml += "</table>";
+
+                    gameHtml += part2Html;
+
+                    if (md != ig.matchData[ig.matchData.Count - 1])
+                        gameHtml += "<div style='page-break-after: always;'></div>";
+                }
+
+                gameHtml += footerHtml;
+
+                var pdf = Pdf.From(gameHtml).OfSize(PaperSize.A4).Landscape().Comressed().Content();
+
+                File.WriteAllBytes(pdfPath + "zwischenrunde.pdf", pdf);
+            }
         }
 
         private void buttonResultsInterim_Click(object sender, EventArgs e)
@@ -1462,6 +1555,9 @@ namespace Volleyball
                                                 new object[] { true });
 
             dataGridViewCrossgamesRound.DataSource = dtCrossgames;
+
+            foreach (DataGridViewColumn dgvc in dataGridViewCrossgamesRound.Columns)
+                dgvc.SortMode = DataGridViewColumnSortMode.NotSortable;
 
             cg = new CrossGames(log);
 
@@ -1529,7 +1625,7 @@ namespace Volleyball
 
                 SaveMatchDataToFile(crossgamesFileName, cg.matchData);
 
-                uploadTournamentDataToWeb();
+                exportTournamentDataToDB();
             }
         }
         #endregion
@@ -1648,7 +1744,37 @@ namespace Volleyball
 
         private void buttonPrintCrossgames_Click(object sender, EventArgs e)
         {
+            if (cg != null && cg.matchData.Count > 0)
+            {
+                String gameHtml = headerHtml;
 
+                foreach (MatchData md in cg.matchData)
+                {
+                    gameHtml += part1Html;
+
+                    gameHtml += "<tr>";
+                    gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 10%; text-align: center;'><span style='font-size: 30px;'>" + md.Game + "</span></td>";
+                    gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 10%; text-align: center;'><span style='font-size: 30px;'>" + md.FieldNumber + "</span></td>";
+                    gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 20%; text-align: center;'><span style='font-size: 30px;'>" + md.FieldName + "</span></td>";
+                    gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 20%; text-align: center;'><span style='font-size: 30px;'>" + md.TeamA + "</span></td>";
+                    gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 20%; text-align: center;'><span style='font-size: 30px;'>" + md.TeamB + "</span></td>";
+                    gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 20%; text-align: center;'><span style='font-size: 30px;'>" + md.Referee + "</span></td>";
+                    gameHtml += "</tr>";
+                    gameHtml += "</tbody>";
+                    gameHtml += "</table>";
+
+                    gameHtml += part2Html;
+
+                    if (md != cg.matchData[cg.matchData.Count - 1])
+                        gameHtml += "<div style='page-break-after: always;'></div>";
+                }
+
+                gameHtml += footerHtml;
+
+                var pdf = Pdf.From(gameHtml).OfSize(PaperSize.A4).Landscape().Comressed().Content();
+
+                File.WriteAllBytes(pdfPath + "kreuzspiele.pdf", pdf);
+            }
         }
 
         private void TextBoxCrossgames_TextChanged(object sender, EventArgs e)
@@ -1690,6 +1816,9 @@ namespace Volleyball
                                                 new object[] { true });
 
             dataGridViewClassementgamesRound.DataSource = dtClassementgames;
+
+            foreach (DataGridViewColumn dgvc in dataGridViewClassementgamesRound.Columns)
+                dgvc.SortMode = DataGridViewColumnSortMode.NotSortable;
 
             clg = new ClassementGames(log);
 
@@ -1749,7 +1878,7 @@ namespace Volleyball
                 }
             }
         }
-                
+               
         void saveClassementgames()
         {
             if (clg != null)
@@ -1760,7 +1889,7 @@ namespace Volleyball
 
                 clg.createFinalClassement();
 
-                uploadTournamentDataToWeb();
+                exportTournamentDataToDB();
             }
         }
         #endregion
@@ -1870,7 +1999,37 @@ namespace Volleyball
 
         private void buttonPrintClassementgames_Click(object sender, EventArgs e)
         {
+            if (clg != null && clg.matchData.Count > 0)
+            {
+                String gameHtml = headerHtml;
 
+                foreach (MatchData md in clg.matchData)
+                {
+                    gameHtml += part1Html;
+
+                    gameHtml += "<tr>";
+                    gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 10%; text-align: center;'><span style='font-size: 30px;'>" + md.Game + "</span></td>";
+                    gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 10%; text-align: center;'><span style='font-size: 30px;'>" + md.FieldNumber + "</span></td>";
+                    gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 20%; text-align: center;'><span style='font-size: 30px;'>" + md.FieldName + "</span></td>";
+                    gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 20%; text-align: center;'><span style='font-size: 30px;'>" + md.TeamA + "</span></td>";
+                    gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 20%; text-align: center;'><span style='font-size: 30px;'>" + md.TeamB + "</span></td>";
+                    gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 20%; text-align: center;'><span style='font-size: 30px;'>" + md.Referee + "</span></td>";
+                    gameHtml += "</tr>";
+                    gameHtml += "</tbody>";
+                    gameHtml += "</table>";
+
+                    gameHtml += part2Html;
+
+                    if (md != clg.matchData[clg.matchData.Count - 1])
+                        gameHtml += "<div style='page-break-after: always;'></div>";
+                }
+
+                gameHtml += footerHtml;
+
+                var pdf = Pdf.From(gameHtml).OfSize(PaperSize.A4).Landscape().Comressed().Content();
+
+                File.WriteAllBytes(pdfPath + "platzspiele.pdf", pdf);
+            }
         }
 
         private void TextBoxClassementgames_TextChanged(object sender, EventArgs e)

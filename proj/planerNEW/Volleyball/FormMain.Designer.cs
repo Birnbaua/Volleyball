@@ -94,6 +94,7 @@
             this.buttonSaveInterim = new System.Windows.Forms.Button();
             this.buttonGenerateInterim = new System.Windows.Forms.Button();
             this.tabPageCrossgames = new System.Windows.Forms.TabPage();
+            this.buttonFTPcg = new System.Windows.Forms.Button();
             this.textBoxCrossgamesFilter = new System.Windows.Forms.TextBox();
             this.dataGridViewCrossgamesRound = new System.Windows.Forms.DataGridView();
             this.buttonPrintCrossgames = new System.Windows.Forms.Button();
@@ -101,6 +102,7 @@
             this.buttonSaveCrossgames = new System.Windows.Forms.Button();
             this.buttonGenerateCrossgames = new System.Windows.Forms.Button();
             this.tabPageClassement = new System.Windows.Forms.TabPage();
+            this.buttonFTPclg = new System.Windows.Forms.Button();
             this.dataGridViewClassementgamesRound = new System.Windows.Forms.DataGridView();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -110,6 +112,8 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelEstimatedTournamentTime = new System.Windows.Forms.ToolStripStatusLabel();
+            this.buttonFTPig = new System.Windows.Forms.Button();
+            this.buttonqg = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPageConfiguration.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -761,6 +765,7 @@
             // 
             // tabPageQualifying
             // 
+            this.tabPageQualifying.Controls.Add(this.buttonqg);
             this.tabPageQualifying.Controls.Add(this.textBoxQualifyingFilter);
             this.tabPageQualifying.Controls.Add(this.dataGridViewQualifyingRound);
             this.tabPageQualifying.Controls.Add(this.buttonResultsQualifying);
@@ -856,6 +861,7 @@
             // 
             // tabPageInterim
             // 
+            this.tabPageInterim.Controls.Add(this.buttonFTPig);
             this.tabPageInterim.Controls.Add(this.textBoxInterimFilter);
             this.tabPageInterim.Controls.Add(this.dataGridViewInterimRound);
             this.tabPageInterim.Controls.Add(this.buttonResultsInterim);
@@ -951,6 +957,7 @@
             // 
             // tabPageCrossgames
             // 
+            this.tabPageCrossgames.Controls.Add(this.buttonFTPcg);
             this.tabPageCrossgames.Controls.Add(this.textBoxCrossgamesFilter);
             this.tabPageCrossgames.Controls.Add(this.dataGridViewCrossgamesRound);
             this.tabPageCrossgames.Controls.Add(this.buttonPrintCrossgames);
@@ -964,6 +971,17 @@
             this.tabPageCrossgames.TabIndex = 3;
             this.tabPageCrossgames.Text = "Kreuzspiele";
             this.tabPageCrossgames.UseVisualStyleBackColor = true;
+            // 
+            // buttonFTPcg
+            // 
+            this.buttonFTPcg.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonFTPcg.Location = new System.Drawing.Point(471, 7);
+            this.buttonFTPcg.Name = "buttonFTPcg";
+            this.buttonFTPcg.Size = new System.Drawing.Size(110, 30);
+            this.buttonFTPcg.TabIndex = 35;
+            this.buttonFTPcg.Text = "FTP-Upload";
+            this.buttonFTPcg.UseVisualStyleBackColor = true;
+            this.buttonFTPcg.Click += new System.EventHandler(this.buttonFTP_Click);
             // 
             // textBoxCrossgamesFilter
             // 
@@ -1035,6 +1053,7 @@
             // 
             // tabPageClassement
             // 
+            this.tabPageClassement.Controls.Add(this.buttonFTPclg);
             this.tabPageClassement.Controls.Add(this.dataGridViewClassementgamesRound);
             this.tabPageClassement.Controls.Add(this.button4);
             this.tabPageClassement.Controls.Add(this.button3);
@@ -1048,6 +1067,17 @@
             this.tabPageClassement.TabIndex = 4;
             this.tabPageClassement.Text = "Platzierungsspiele";
             this.tabPageClassement.UseVisualStyleBackColor = true;
+            // 
+            // buttonFTPclg
+            // 
+            this.buttonFTPclg.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonFTPclg.Location = new System.Drawing.Point(472, 6);
+            this.buttonFTPclg.Name = "buttonFTPclg";
+            this.buttonFTPclg.Size = new System.Drawing.Size(110, 30);
+            this.buttonFTPclg.TabIndex = 34;
+            this.buttonFTPclg.Text = "FTP-Upload";
+            this.buttonFTPclg.UseVisualStyleBackColor = true;
+            this.buttonFTPclg.Click += new System.EventHandler(this.buttonFTP_Click);
             // 
             // dataGridViewClassementgamesRound
             // 
@@ -1137,6 +1167,28 @@
             // 
             this.toolStripStatusLabelEstimatedTournamentTime.Name = "toolStripStatusLabelEstimatedTournamentTime";
             this.toolStripStatusLabelEstimatedTournamentTime.Size = new System.Drawing.Size(0, 17);
+            // 
+            // buttonFTPig
+            // 
+            this.buttonFTPig.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonFTPig.Location = new System.Drawing.Point(587, 7);
+            this.buttonFTPig.Name = "buttonFTPig";
+            this.buttonFTPig.Size = new System.Drawing.Size(110, 30);
+            this.buttonFTPig.TabIndex = 35;
+            this.buttonFTPig.Text = "FTP-Upload";
+            this.buttonFTPig.UseVisualStyleBackColor = true;
+            this.buttonFTPig.Click += new System.EventHandler(this.buttonFTP_Click);
+            // 
+            // buttonqg
+            // 
+            this.buttonqg.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonqg.Location = new System.Drawing.Point(586, 6);
+            this.buttonqg.Name = "buttonqg";
+            this.buttonqg.Size = new System.Drawing.Size(110, 30);
+            this.buttonqg.TabIndex = 36;
+            this.buttonqg.Text = "FTP-Upload";
+            this.buttonqg.UseVisualStyleBackColor = true;
+            this.buttonqg.Click += new System.EventHandler(this.buttonFTP_Click);
             // 
             // FormMain
             // 
@@ -1272,6 +1324,10 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridViewClassementgamesRound;
         private System.Windows.Forms.CheckBox checkBoxUseSecondGameplan;
+        private System.Windows.Forms.Button buttonFTPclg;
+        private System.Windows.Forms.Button buttonFTPcg;
+        private System.Windows.Forms.Button buttonFTPig;
+        private System.Windows.Forms.Button buttonqg;
     }
 }
 
