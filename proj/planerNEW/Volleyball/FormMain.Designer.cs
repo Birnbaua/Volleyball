@@ -78,6 +78,7 @@
             this.buttonClearTeams = new System.Windows.Forms.Button();
             this.dataGridViewTeams = new System.Windows.Forms.DataGridView();
             this.tabPageQualifying = new System.Windows.Forms.TabPage();
+            this.buttonqg = new System.Windows.Forms.Button();
             this.textBoxQualifyingFilter = new System.Windows.Forms.TextBox();
             this.dataGridViewQualifyingRound = new System.Windows.Forms.DataGridView();
             this.buttonResultsQualifying = new System.Windows.Forms.Button();
@@ -86,6 +87,7 @@
             this.buttonSaveQualifying = new System.Windows.Forms.Button();
             this.buttonGenerateQualifying = new System.Windows.Forms.Button();
             this.tabPageInterim = new System.Windows.Forms.TabPage();
+            this.buttonFTPig = new System.Windows.Forms.Button();
             this.textBoxInterimFilter = new System.Windows.Forms.TextBox();
             this.dataGridViewInterimRound = new System.Windows.Forms.DataGridView();
             this.buttonResultsInterim = new System.Windows.Forms.Button();
@@ -112,8 +114,7 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelEstimatedTournamentTime = new System.Windows.Forms.ToolStripStatusLabel();
-            this.buttonFTPig = new System.Windows.Forms.Button();
-            this.buttonqg = new System.Windows.Forms.Button();
+            this.checkBoxUseInterim = new System.Windows.Forms.CheckBox();
             this.tabControl.SuspendLayout();
             this.tabPageConfiguration.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -183,6 +184,7 @@
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.checkBoxUseInterim);
             this.groupBox3.Controls.Add(this.checkBoxUseSecondGameplan);
             this.groupBox3.Controls.Add(this.dateTimePickerTournamentstart);
             this.groupBox3.Controls.Add(this.checkBoxUseCrossgames);
@@ -231,7 +233,7 @@
             // checkBoxUseSecondGameplan
             // 
             this.checkBoxUseSecondGameplan.AutoSize = true;
-            this.checkBoxUseSecondGameplan.Location = new System.Drawing.Point(877, 31);
+            this.checkBoxUseSecondGameplan.Location = new System.Drawing.Point(762, 60);
             this.checkBoxUseSecondGameplan.Name = "checkBoxUseSecondGameplan";
             this.checkBoxUseSecondGameplan.Size = new System.Drawing.Size(179, 24);
             this.checkBoxUseSecondGameplan.TabIndex = 54;
@@ -252,7 +254,7 @@
             // checkBoxUseCrossgames
             // 
             this.checkBoxUseCrossgames.AutoSize = true;
-            this.checkBoxUseCrossgames.Location = new System.Drawing.Point(765, 31);
+            this.checkBoxUseCrossgames.Location = new System.Drawing.Point(904, 32);
             this.checkBoxUseCrossgames.Name = "checkBoxUseCrossgames";
             this.checkBoxUseCrossgames.Size = new System.Drawing.Size(110, 24);
             this.checkBoxUseCrossgames.TabIndex = 52;
@@ -641,9 +643,9 @@
             this.groupBox1.Controls.Add(this.dataGridViewFields);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.numericUpDownFields);
-            this.groupBox1.Location = new System.Drawing.Point(762, 64);
+            this.groupBox1.Location = new System.Drawing.Point(762, 94);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(300, 248);
+            this.groupBox1.Size = new System.Drawing.Size(300, 218);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Felder";
@@ -660,7 +662,7 @@
             this.dataGridViewFields.Location = new System.Drawing.Point(6, 59);
             this.dataGridViewFields.MultiSelect = false;
             this.dataGridViewFields.Name = "dataGridViewFields";
-            this.dataGridViewFields.Size = new System.Drawing.Size(288, 183);
+            this.dataGridViewFields.Size = new System.Drawing.Size(288, 153);
             this.dataGridViewFields.TabIndex = 11;
             // 
             // label1
@@ -781,6 +783,17 @@
             this.tabPageQualifying.Text = "Vorrunde";
             this.tabPageQualifying.UseVisualStyleBackColor = true;
             // 
+            // buttonqg
+            // 
+            this.buttonqg.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonqg.Location = new System.Drawing.Point(586, 6);
+            this.buttonqg.Name = "buttonqg";
+            this.buttonqg.Size = new System.Drawing.Size(110, 30);
+            this.buttonqg.TabIndex = 36;
+            this.buttonqg.Text = "FTP-Upload";
+            this.buttonqg.UseVisualStyleBackColor = true;
+            this.buttonqg.Click += new System.EventHandler(this.buttonFTP_Click);
+            // 
             // textBoxQualifyingFilter
             // 
             this.textBoxQualifyingFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -876,6 +889,17 @@
             this.tabPageInterim.TabIndex = 2;
             this.tabPageInterim.Text = "Zwischenrunde";
             this.tabPageInterim.UseVisualStyleBackColor = true;
+            // 
+            // buttonFTPig
+            // 
+            this.buttonFTPig.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonFTPig.Location = new System.Drawing.Point(587, 7);
+            this.buttonFTPig.Name = "buttonFTPig";
+            this.buttonFTPig.Size = new System.Drawing.Size(110, 30);
+            this.buttonFTPig.TabIndex = 35;
+            this.buttonFTPig.Text = "FTP-Upload";
+            this.buttonFTPig.UseVisualStyleBackColor = true;
+            this.buttonFTPig.Click += new System.EventHandler(this.buttonFTP_Click);
             // 
             // textBoxInterimFilter
             // 
@@ -1160,7 +1184,7 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(141, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(132, 17);
             this.toolStripStatusLabel1.Text = "berechnetes Turnierende:";
             // 
             // toolStripStatusLabelEstimatedTournamentTime
@@ -1168,27 +1192,16 @@
             this.toolStripStatusLabelEstimatedTournamentTime.Name = "toolStripStatusLabelEstimatedTournamentTime";
             this.toolStripStatusLabelEstimatedTournamentTime.Size = new System.Drawing.Size(0, 17);
             // 
-            // buttonFTPig
+            // checkBoxUseInterim
             // 
-            this.buttonFTPig.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonFTPig.Location = new System.Drawing.Point(587, 7);
-            this.buttonFTPig.Name = "buttonFTPig";
-            this.buttonFTPig.Size = new System.Drawing.Size(110, 30);
-            this.buttonFTPig.TabIndex = 35;
-            this.buttonFTPig.Text = "FTP-Upload";
-            this.buttonFTPig.UseVisualStyleBackColor = true;
-            this.buttonFTPig.Click += new System.EventHandler(this.buttonFTP_Click);
-            // 
-            // buttonqg
-            // 
-            this.buttonqg.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonqg.Location = new System.Drawing.Point(586, 6);
-            this.buttonqg.Name = "buttonqg";
-            this.buttonqg.Size = new System.Drawing.Size(110, 30);
-            this.buttonqg.TabIndex = 36;
-            this.buttonqg.Text = "FTP-Upload";
-            this.buttonqg.UseVisualStyleBackColor = true;
-            this.buttonqg.Click += new System.EventHandler(this.buttonFTP_Click);
+            this.checkBoxUseInterim.AutoSize = true;
+            this.checkBoxUseInterim.Location = new System.Drawing.Point(762, 30);
+            this.checkBoxUseInterim.Name = "checkBoxUseInterim";
+            this.checkBoxUseInterim.Size = new System.Drawing.Size(136, 24);
+            this.checkBoxUseInterim.TabIndex = 55;
+            this.checkBoxUseInterim.Text = "Zwischenrunde";
+            this.checkBoxUseInterim.UseVisualStyleBackColor = true;
+            this.checkBoxUseInterim.CheckedChanged += new System.EventHandler(this.checkBoxUseInterim_CheckedChanged);
             // 
             // FormMain
             // 
@@ -1328,6 +1341,7 @@
         private System.Windows.Forms.Button buttonFTPcg;
         private System.Windows.Forms.Button buttonFTPig;
         private System.Windows.Forms.Button buttonqg;
+        private System.Windows.Forms.CheckBox checkBoxUseInterim;
     }
 }
 

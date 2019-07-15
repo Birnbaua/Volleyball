@@ -8,6 +8,7 @@ namespace Volleyball
 {
     class Settings
     {
+        #region members
         DateTime startTournament;
         int setsQualifying;
         int minutesPerSetQualifying;
@@ -26,7 +27,9 @@ namespace Volleyball
         int minutesForFinals;
         bool useSecondGameplan;
         bool useCrossgames;
-        
+        bool useInterim;
+        #endregion
+
         public Settings()
         {
             StartTournament = DateTime.Now;
@@ -47,6 +50,7 @@ namespace Volleyball
             MinutesForFinals = 15;
             useSecondGameplan = true;
             UseCrossgames = true;
+            useInterim = true;
         }
 
         public DateTime StartTournament { get => startTournament; set => startTournament = value; }
@@ -67,5 +71,6 @@ namespace Volleyball
         public int MinutesForFinals { get => minutesForFinals; set => minutesForFinals = value; }
         public bool UseSecondGameplan { get => useSecondGameplan; set => useSecondGameplan = value; }
         public bool UseCrossgames { get => useCrossgames; set => useCrossgames = value; }
+        public bool UseInterim { get => useInterim; set => useInterim = value; }
     }
 }

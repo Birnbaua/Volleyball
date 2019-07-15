@@ -95,6 +95,8 @@ namespace Volleyball
 
             checkBoxUseCrossgames_CheckedChanged(checkBoxUseCrossgames, EventArgs.Empty);
 
+            checkBoxUseInterim_CheckedChanged(checkBoxUseInterim, EventArgs.Empty);
+
             connSqlite = new SQLiteConnection("Data Source = " + resourcePath + "data.db; Version = 3;");
 
             this.Text = "TournamentPlaner V13";
@@ -209,22 +211,25 @@ namespace Volleyball
                         cmdSqlite.ExecuteNonQuery();
                     }
 
-                    foreach (String tableName in tableNames)
+                    if (qg.matchData.Count > 0)
                     {
-                        if (tableName.Contains("vorrunde_erg"))
+                        foreach (String tableName in tableNames)
                         {
-                            for(int i = 0; i < prefix.Count; i++)
+                            if (tableName.Contains("vorrunde_erg"))
                             {
-                                for(int ii = 0; ii < qg.resultData[i].Count; ii++)
+                                for(int i = 0; i < prefix.Count; i++)
                                 {
-                                    cmdSqlite.CommandText = "INSERT INTO " + tableName + prefix[i];
-                                    cmdSqlite.CommandText += " VALUES(" + qg.resultData[i][ii].Rank;
-                                    cmdSqlite.CommandText += ",'" + qg.resultData[i][ii].Team + "'";
-                                    cmdSqlite.CommandText += "," + qg.resultData[i][ii].PointsSets;
-                                    cmdSqlite.CommandText += "," + qg.resultData[i][ii].PointsMatches;
-                                    cmdSqlite.CommandText += "," + qg.resultData[i][ii].InternalRank;
-                                    cmdSqlite.CommandText += "," + qg.resultData[i][ii].ExternalRank + ")";
-                                    cmdSqlite.ExecuteNonQuery();
+                                    for(int ii = 0; ii < qg.resultData[i].Count; ii++)
+                                    {
+                                        cmdSqlite.CommandText = "INSERT INTO " + tableName + prefix[i];
+                                        cmdSqlite.CommandText += " VALUES(" + qg.resultData[i][ii].Rank;
+                                        cmdSqlite.CommandText += ",'" + qg.resultData[i][ii].Team + "'";
+                                        cmdSqlite.CommandText += "," + qg.resultData[i][ii].PointsSets;
+                                        cmdSqlite.CommandText += "," + qg.resultData[i][ii].PointsMatches;
+                                        cmdSqlite.CommandText += "," + qg.resultData[i][ii].InternalRank;
+                                        cmdSqlite.CommandText += "," + qg.resultData[i][ii].ExternalRank + ")";
+                                        cmdSqlite.ExecuteNonQuery();
+                                    }
                                 }
                             }
                         }
@@ -244,22 +249,25 @@ namespace Volleyball
                         cmdSqlite.ExecuteNonQuery();
                     }
 
-                    foreach (String tableName in tableNames)
+                    if(ig.matchData.Count > 0)
                     {
-                        if (tableName.Contains("zwischenrunde_erg"))
+                        foreach (String tableName in tableNames)
                         {
-                            for (int i = 0; i < prefix.Count; i++)
+                            if (tableName.Contains("zwischenrunde_erg"))
                             {
-                                for (int ii = 0; ii < ig.resultData[i].Count; ii++)
+                                for (int i = 0; i < prefix.Count; i++)
                                 {
-                                    cmdSqlite.CommandText = "INSERT INTO " + tableName + prefix[i];
-                                    cmdSqlite.CommandText += " VALUES(" + ig.resultData[i][ii].Rank;
-                                    cmdSqlite.CommandText += ",'" + ig.resultData[i][ii].Team + "'";
-                                    cmdSqlite.CommandText += "," + ig.resultData[i][ii].PointsSets;
-                                    cmdSqlite.CommandText += "," + ig.resultData[i][ii].PointsMatches;
-                                    cmdSqlite.CommandText += "," + ig.resultData[i][ii].InternalRank;
-                                    cmdSqlite.CommandText += "," + ig.resultData[i][ii].ExternalRank + ")";
-                                    cmdSqlite.ExecuteNonQuery();
+                                    for (int ii = 0; ii < ig.resultData[i].Count; ii++)
+                                    {
+                                        cmdSqlite.CommandText = "INSERT INTO " + tableName + prefix[i];
+                                        cmdSqlite.CommandText += " VALUES(" + ig.resultData[i][ii].Rank;
+                                        cmdSqlite.CommandText += ",'" + ig.resultData[i][ii].Team + "'";
+                                        cmdSqlite.CommandText += "," + ig.resultData[i][ii].PointsSets;
+                                        cmdSqlite.CommandText += "," + ig.resultData[i][ii].PointsMatches;
+                                        cmdSqlite.CommandText += "," + ig.resultData[i][ii].InternalRank;
+                                        cmdSqlite.CommandText += "," + ig.resultData[i][ii].ExternalRank + ")";
+                                        cmdSqlite.ExecuteNonQuery();
+                                    }
                                 }
                             }
                         }
@@ -524,6 +532,7 @@ namespace Volleyball
                     settings.MinutesForFinals = Convert.ToInt32(fieldArray[15]);
                     settings.UseSecondGameplan = Convert.ToBoolean(fieldArray[16]);
                     settings.UseCrossgames = Convert.ToBoolean(fieldArray[17]);
+                    settings.UseInterim = Convert.ToBoolean(fieldArray[18]);
                 }
             }
             else
@@ -555,7 +564,8 @@ namespace Volleyball
                             settings.MinutesPerSetClassement + ";" +
                             settings.MinutesForFinals + ";" +
                             settings.UseSecondGameplan + ";" +
-                            settings.UseCrossgames);
+                            settings.UseCrossgames + ";" + 
+                            settings.UseInterim);
             }
         }
 
@@ -579,6 +589,7 @@ namespace Volleyball
             settings.MinutesForFinals = 0;
             settings.UseSecondGameplan = true;
             settings.UseCrossgames = true;
+            settings.UseInterim = true;
 
             loadSettingsToForm();
         }
@@ -621,6 +632,15 @@ namespace Volleyball
                 checkBoxUseCrossgames.Checked = false;
             }
 
+            if (settings.UseInterim)
+            {
+                checkBoxUseInterim.Checked = true;
+            }
+            else
+            {
+                checkBoxUseInterim.Checked = false;
+            }
+
             numericUpDownPauseBetweenCrossgamesClassement.Value = settings.PauseBetweenCrossgamesClassement;
 
             numericUpDownClassementSets.Value = settings.SetsClassement;
@@ -651,6 +671,7 @@ namespace Volleyball
 
             settings.UseSecondGameplan = checkBoxUseSecondGameplan.Checked;
             settings.UseCrossgames = checkBoxUseCrossgames.Checked;
+            settings.UseInterim = checkBoxUseInterim.Checked;
 
             settings.PauseBetweenCrossgamesClassement = Convert.ToInt32(numericUpDownPauseBetweenCrossgamesClassement.Value);
 
@@ -685,12 +706,32 @@ namespace Volleyball
                 numericUpDownCrossgamesSets.Enabled = true;
                 numericUpDownCrossgamesMinutesPerSet.Enabled = true;
                 numericUpDownCrossgamesPauseBetweenSets.Enabled = true;
+                tabControl.TabPages.Insert(3, tabPageCrossgames);
             }
             else
             {
                 numericUpDownCrossgamesSets.Enabled = false;
                 numericUpDownCrossgamesMinutesPerSet.Enabled = false;
                 numericUpDownCrossgamesPauseBetweenSets.Enabled = false;
+                tabControl.TabPages.Remove(tabPageCrossgames);
+            }
+        }
+
+        private void checkBoxUseInterim_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxUseInterim.Checked)
+            {
+                numericUpDownInterimSets.Enabled = true;
+                numericUpDownInterimMinutesPerSet.Enabled = true;
+                numericUpDownInterimPauseBetweenSets.Enabled = true;
+                tabControl.TabPages.Insert(2, tabPageInterim);                
+            }
+            else
+            {
+                numericUpDownInterimSets.Enabled = false;
+                numericUpDownInterimMinutesPerSet.Enabled = false;
+                numericUpDownInterimPauseBetweenSets.Enabled = false;
+                tabControl.TabPages.Remove(tabPageInterim);
             }
         }
         #endregion
@@ -724,6 +765,8 @@ namespace Volleyball
                 numericUpDownFields.Value = dtFields.Rows.Count;
                 writeFieldsToFile();
             }
+
+            extractFieldnames();
         }
 
         void extractFieldnames()
@@ -1340,9 +1383,11 @@ namespace Volleyball
             {
                 log.write("calculating interim results");
 
-                ig.calculateResults();
-
-                ig.sortResults();
+                if(ig.matchData.Count > 0)
+                {
+                    ig.calculateResults();
+                    ig.sortResults();
+                }
 
                 SaveMatchDataToFile(interimFileName, ig.matchData);
 
@@ -1568,26 +1613,64 @@ namespace Volleyball
 
         void loadDataCrossgamesFromFile()
         {
-            if (cg != null && ig.matchData.Count > 0)
+            bool tmpMatchDataCountOK = false;
+
+            if (settings.UseInterim)
+            {
+                log.write("use configuration from interim");
+
+                if (ig.matchData.Count > 0)
+                    tmpMatchDataCountOK = true;
+            }
+            else
+            {
+                log.write("use configuration from qualifying");
+
+                if (qg.matchData.Count > 0)
+                    tmpMatchDataCountOK = true;
+            }
+
+            if (cg != null && tmpMatchDataCountOK)
             {
                 cg.matchData.Clear();
 
                 cg.matchData = LoadMatchDataFromFile(crossgamesFileName);
 
-                DateTime startTime = ig.matchData[ig.matchData.Count - 1].Time.AddSeconds((settings.SetsInterim * settings.MinutesPerSetInterim * 60) + settings.PausePerSetInterim);
+                DateTime startTime;
+                List<List<ResultData>> tmpResultData;
+                int tmpPauseBetweenRounds;
+                int tmpRound;
+                int tmpGame;
 
-                cg.setParameters(ig.resultData,
-                                    startTime,
-                                    settings.PauseBetweenInterimCrossgames,
-                                    settings.SetsCrossgames,
-                                    settings.MinutesPerSetCrossgame,
-                                    settings.PausePerSetCrossgame,
-                                    fieldNames.Count,
-                                    countTeams(),
-                                    fieldNames,
-                                    ig.matchData[ig.matchData.Count - 1].Round + 1,
-                                    ig.matchData[ig.matchData.Count - 1].Game + 1,
-                                    settings.UseSecondGameplan);
+                if (settings.UseInterim)
+                {
+                    startTime = ig.matchData[ig.matchData.Count - 1].Time.AddSeconds((settings.SetsInterim * settings.MinutesPerSetInterim * 60) + settings.PausePerSetInterim);
+                    tmpResultData = ig.resultData;
+                    tmpPauseBetweenRounds = settings.PauseBetweenInterimCrossgames;
+                    tmpRound = ig.matchData[ig.matchData.Count - 1].Round + 1;
+                    tmpGame = ig.matchData[ig.matchData.Count - 1].Game + 1;
+                }
+                else
+                {
+                    startTime = qg.matchData[qg.matchData.Count - 1].Time.AddSeconds((settings.SetsQualifying * settings.MinutesPerSetQualifying * 60) + settings.PausePerSetQualifying);
+                    tmpResultData = qg.resultData;
+                    tmpPauseBetweenRounds = 0;
+                    tmpRound = qg.matchData[qg.matchData.Count - 1].Round + 1;
+                    tmpGame = qg.matchData[qg.matchData.Count - 1].Game + 1;
+                }
+
+                cg.setParameters(tmpResultData,
+                                startTime,
+                                tmpPauseBetweenRounds,
+                                settings.SetsCrossgames,
+                                settings.MinutesPerSetCrossgame,
+                                settings.PausePerSetCrossgame,
+                                fieldNames.Count,
+                                countTeams(),
+                                fieldNames,
+                                tmpRound,
+                                tmpGame,
+                                settings.UseSecondGameplan);
 
                 cg.resultData.Clear();
             }
@@ -1678,7 +1761,18 @@ namespace Volleyball
         {
             lockAction = true;
 
-            List<String> doubleResults = ig.checkEqualDivisionResults();
+            List<String> doubleResults;
+
+            if (settings.UseInterim)
+            {
+                log.write("check double results from interim");
+                doubleResults = ig.checkEqualDivisionResults();
+            }
+            else
+            {
+                log.write("check double results from qualifying");
+                doubleResults = qg.checkEqualDivisionResults();
+            }
 
             if (doubleResults.Count > 0)
             {
@@ -1687,25 +1781,63 @@ namespace Volleyball
             }
             else
             {
-                if (cg != null && ig.matchData.Count > 0 && cg.matchData.Count == 0)
+                bool tmpMatchDataCountOK = false;
+
+                if(settings.UseInterim)
+                {
+                    log.write("use configuration from interim");
+
+                    if (ig.matchData.Count > 0)
+                        tmpMatchDataCountOK = true;
+                }
+                else
+                {
+                    log.write("use configuration from qualifying");
+
+                    if (qg.matchData.Count > 0)
+                        tmpMatchDataCountOK = true;
+                }
+
+                if (cg != null && cg.matchData.Count == 0 && tmpMatchDataCountOK)
                 {
                     log.write("generate crossgames");
 
                     extractFieldnames();
 
-                    DateTime startTime = ig.matchData[ig.matchData.Count - 1].Time.AddSeconds((settings.SetsInterim * settings.MinutesPerSetInterim * 60) + settings.PausePerSetInterim);
+                    DateTime startTime;
+                    List<List<ResultData>> tmpResultData;
+                    int tmpPauseBetweenRounds;
+                    int tmpRound;
+                    int tmpGame;
+                    
+                    if (settings.UseInterim)
+                    {
+                        startTime = ig.matchData[ig.matchData.Count - 1].Time.AddSeconds((settings.SetsInterim * settings.MinutesPerSetInterim * 60) + settings.PausePerSetInterim);
+                        tmpResultData = ig.resultData;
+                        tmpPauseBetweenRounds = settings.PauseBetweenInterimCrossgames;
+                        tmpRound = ig.matchData[ig.matchData.Count - 1].Round + 1;
+                        tmpGame = ig.matchData[ig.matchData.Count - 1].Game + 1;
+                    }
+                    else
+                    {
+                        startTime = qg.matchData[qg.matchData.Count - 1].Time.AddSeconds((settings.SetsQualifying * settings.MinutesPerSetQualifying * 60) + settings.PausePerSetQualifying);
+                        tmpResultData = qg.resultData;
+                        tmpPauseBetweenRounds = 0;
+                        tmpRound = qg.matchData[qg.matchData.Count - 1].Round + 1;
+                        tmpGame = qg.matchData[qg.matchData.Count - 1].Game + 1;
+                    }
 
-                    cg.setParameters(ig.resultData,
+                    cg.setParameters(tmpResultData,
                                     startTime,
-                                    settings.PauseBetweenInterimCrossgames,
+                                    tmpPauseBetweenRounds,
                                     settings.SetsCrossgames,
                                     settings.MinutesPerSetCrossgame,
                                     settings.PausePerSetCrossgame,
                                     fieldNames.Count,
                                     countTeams(),
                                     fieldNames,
-                                    ig.matchData[ig.matchData.Count - 1].Round + 1,
-                                    ig.matchData[ig.matchData.Count - 1].Game + 1,
+                                    tmpRound,
+                                    tmpGame,
                                     settings.UseSecondGameplan);
 
                     cg.generateGames();
@@ -1829,7 +1961,24 @@ namespace Volleyball
 
         void loadDataClassementgamesFromFile()
         {
-            if (clg != null && cg.matchData.Count > 0)
+            bool tmpMatchDataCountOK = false;
+
+            if (settings.UseInterim)
+            {
+                log.write("use configuration from interim");
+
+                if (ig.matchData.Count > 0)
+                    tmpMatchDataCountOK = true;
+            }
+            else
+            {
+                log.write("use configuration from qualifying");
+
+                if (qg.matchData.Count > 0)
+                    tmpMatchDataCountOK = true;
+            }
+
+            if (clg != null && cg.matchData.Count > 0 && tmpMatchDataCountOK)
             {
                 clg.matchData.Clear();
 
@@ -1837,7 +1986,18 @@ namespace Volleyball
 
                 DateTime startTime = cg.matchData[cg.matchData.Count - 1].Time.AddSeconds(settings.SetsCrossgames * settings.MinutesPerSetCrossgame * 60);
 
-                clg.setParameters(ig.resultData,
+                List<List<ResultData>> tmpResultData;
+                
+                if (settings.UseInterim)
+                {
+                    tmpResultData = ig.resultData;
+                }
+                else
+                {
+                    tmpResultData = qg.resultData;
+                }
+
+                clg.setParameters(tmpResultData,
                                     cg.matchData,
                                     startTime,
                                     settings.PauseBetweenCrossgamesClassement,
@@ -1878,7 +2038,7 @@ namespace Volleyball
                 }
             }
         }
-               
+
         void saveClassementgames()
         {
             if (clg != null)
@@ -1887,7 +2047,8 @@ namespace Volleyball
 
                 SaveMatchDataToFile(classementgamesFileName, clg.matchData);
 
-                clg.createFinalClassement();
+                if(clg.matchData.Count > 0)
+                    clg.createFinalClassement();
 
                 exportTournamentDataToDB();
             }
