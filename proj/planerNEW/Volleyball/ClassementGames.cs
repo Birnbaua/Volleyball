@@ -95,7 +95,432 @@ namespace Volleyball
 
             if (!useSecondGamePlaning)
             {
+                if (teamsCount == 20 || teamsCount == 25)
+                {
+                    // spiel um platz 9
+                    matchData.Add(new MatchData() {
+                        TeamA = divisionA[4].Team,
+                        TeamB = divisionB[4].Team,
+                        Referee = divisionA[1].Team
+                    });
 
+                    // spiel um platz 7
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[1])[2],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[5])[2],
+                        Referee = divisionB[1].Team
+                    });
+
+                    // spiel um platz 19
+                    matchData.Add(new MatchData() {
+                        TeamA = divisionC[4].Team,
+                        TeamB = divisionD[4].Team,
+                        Referee = divisionC[1].Team
+                    });
+
+                    // spiel um platz 17
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[3])[2],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[7])[2],
+                        Referee = divisionD[1].Team
+                    });
+
+                    // spiel um platz 5
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[1])[1],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[5])[1],
+                        Referee = divisionA[4].Team
+                    });
+
+                    // spiel um platz 3
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[0])[2],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[4])[2],
+                        Referee = divisionB[4].Team
+                    });
+
+                    // spiel um platz 15
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[3])[1],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[7])[1],
+                        Referee = divisionC[4].Team
+                    });
+
+                    // spiel um platz 13
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[2])[2],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[6])[2],
+                        Referee = divisionD[4].Team
+                    });
+
+                    // spiel um platz 11
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[2])[1],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[6])[1],
+                        Referee = divisionC[3].Team
+                    });
+
+                    // spiel um platz 1
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[0])[1],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[4])[1],
+                        Referee = divisionA[3].Team
+                    });
+                }
+                else if (teamsCount == 28)
+                {
+                    // spiel um platz 7
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[1])[2],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[7])[2],
+                        Referee = divisionB[1].Team
+                    });
+
+                    // spiel um platz 19
+                    matchData.Add(new MatchData() {
+                        TeamA = divisionC[4].Team,
+                        TeamB = divisionD[4].Team,
+                        Referee = divisionC[1].Team
+                    });
+
+                    // spiel um platz 17
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[3])[2],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[9])[2],
+                        Referee = divisionD[1].Team
+                    });
+
+                    // spiel um platz 27
+                    matchData.Add(new MatchData() {
+                        TeamA = divisionE[4].Team,
+                        TeamB = divisionF[4].Team,
+                        Referee = divisionE[1].Team
+                    });
+
+                    // spiel um platz 25
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[5])[2],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[11])[2],
+                        Referee = divisionF[1].Team
+                    });
+
+                    // spiel um platz 5
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[1])[1],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[7])[2],
+                        Referee = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[1])[2]
+                    });
+
+                    // spiel um platz 3
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[0])[2],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[6])[2],
+                        Referee = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[7])[2]
+                    });
+
+                    // spiel um platz 15
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[3])[1],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[9])[1],
+                        Referee = divisionC[4].Team
+                    });
+
+                    // spiel um platz 13
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[2])[2],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[8])[2],
+                        Referee = divisionD[4].Team
+                    });
+
+                    // spiel um platz 23
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[5])[1],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[11])[1],
+                        Referee = divisionE[4].Team
+                    });
+
+                    // spiel um platz 9
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[4])[2],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[10])[2],
+                        Referee = divisionF[4].Team
+                    });
+
+                    // spiel um platz 21
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[4])[1],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[10])[1],
+                        Referee = divisionE[4].Team
+                    });
+
+                    // spiel um platz 11
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[2])[1],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[8])[1],
+                        Referee = divisionC[4].Team
+                    });
+
+                    // spiel um platz 1
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[0])[1],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[6])[1],
+                        Referee = divisionA[4].Team
+                    });
+                }
+                else if (teamsCount == 20 || teamsCount == 25)
+                {
+                    // spiel um platz 9
+                    matchData.Add(new MatchData() {
+                        TeamA = divisionA[4].Team,
+                        TeamB = divisionB[4].Team,
+                        Referee = divisionA[1].Team
+                    });
+
+                    // spiel um platz 19
+                    matchData.Add(new MatchData() {
+                        TeamA = divisionC[4].Team,
+                        TeamB = divisionD[4].Team,
+                        Referee = divisionC[1].Team
+                    });
+
+                    // spiel um platz 29
+                    matchData.Add(new MatchData() {
+                        TeamA = divisionE[4].Team,
+                        TeamB = divisionF[4].Team,
+                        Referee = divisionE[1].Team
+                    });
+
+                    // spiel um platz 7
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[1])[2],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[7])[2],
+                        Referee = divisionB[1].Team
+                    });
+
+                    // spiel um platz 17
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[3])[2],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[9])[2],
+                        Referee = divisionD[1].Team
+                    });
+
+                    // spiel um platz 27
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[5])[2],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[11])[2],
+                        Referee = divisionF[1].Team
+                    });
+
+                    // spiel um platz 5
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[1])[1],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[7])[1],
+                        Referee = divisionA[4].Team
+                    });
+
+                    // spiel um platz 15
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[3])[1],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[9])[1],
+                        Referee = divisionC[4].Team
+                    });
+
+                    // spiel um platz 25
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[5])[1],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[11])[1],
+                        Referee = divisionE[4].Team
+                    });
+
+                    // spiel um platz 3
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[0])[2],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[6])[2],
+                        Referee = divisionB[4].Team
+                    });
+
+                    // spiel um platz 13
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[2])[2],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[8])[2],
+                        Referee = divisionD[4].Team
+                    });
+
+                    // spiel um platz 23
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[4])[2],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[10])[2],
+                        Referee = divisionF[4].Team
+                    });
+
+                    // spiel um platz 21
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[2])[1],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[8])[1],
+                        Referee = divisionA[3].Team
+                    });
+
+                    // spiel um platz 11
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[4])[1],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[10])[1],
+                        Referee = divisionB[3].Team
+                    });
+
+                    // spiel um platz 1
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[0])[1],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[6])[1],
+                        Referee = divisionA[3].Team
+                    });
+                }
+                else if (teamsCount == 40 || teamsCount == 45)
+                {
+                    // spiel um platz 9
+                    matchData.Add(new MatchData() {
+                        TeamA = divisionA[4].Team,
+                        TeamB = divisionB[4].Team,
+                        Referee = divisionA[1].Team
+                    });
+
+                    // spiel um platz 19
+                    matchData.Add(new MatchData() {
+                        TeamA = divisionC[4].Team,
+                        TeamB = divisionD[4].Team,
+                        Referee = divisionC[1].Team
+                    });
+
+                    // spiel um platz 29
+                    matchData.Add(new MatchData() {
+                        TeamA = divisionE[4].Team,
+                        TeamB = divisionF[4].Team,
+                        Referee = divisionE[1].Team
+                    });
+
+                    // spiel um platz 39
+                    matchData.Add(new MatchData() {
+                        TeamA = divisionG[4].Team,
+                        TeamB = divisionH[4].Team,
+                        Referee = divisionG[1].Team
+                    });
+
+                    // spiel um platz 7
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[1])[2],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[9])[2],
+                        Referee = divisionB[1].Team
+                    });
+
+                    // spiel um platz 17
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[3])[2],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[11])[2],
+                        Referee = divisionD[1].Team
+                    });
+
+                    // spiel um platz 27
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[5])[2],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[13])[2],
+                        Referee = divisionF[1].Team
+                    });
+
+                    // spiel um platz 37
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[7])[2],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[15])[2],
+                        Referee = divisionH[1].Team
+                    });
+
+                    // spiel um platz 5
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[1])[1],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[9])[1],
+                        Referee = divisionA[4].Team
+                    });
+
+                    // spiel um platz 15
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[3])[1],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[11])[1],
+                        Referee = divisionC[4].Team
+                    });
+
+                    // spiel um platz 25
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[5])[1],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[13])[1],
+                        Referee = divisionE[4].Team
+                    });
+
+                    // spiel um platz 35
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[7])[1],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[15])[1],
+                        Referee = divisionG[4].Team
+                    });
+
+                    // spiel um platz 3
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[0])[2],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[8])[2],
+                        Referee = divisionB[4].Team
+                    });
+
+                    // spiel um platz 13
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[2])[2],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[10])[2],
+                        Referee = divisionD[4].Team
+                    });
+
+                    // spiel um platz 23
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[4])[2],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[12])[2],
+                        Referee = divisionF[4].Team
+                    });
+
+                    // spiel um platz 33
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[6])[2],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[14])[2],
+                        Referee = divisionH[4].Team
+                    });
+
+                    // spiel um platz 11
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[2])[1],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[10])[1],
+                        Referee = divisionA[3].Team
+                    });
+
+                    // spiel um platz 21
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[4])[1],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[12])[1],
+                        Referee = divisionB[3].Team
+                    });
+
+                    // spiel um platz 31
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[6])[1],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[14])[1],
+                        Referee = divisionC[3].Team
+                    });
+
+                    // spiel um platz 1
+                    matchData.Add(new MatchData() {
+                        TeamA = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[0])[1],
+                        TeamB = CalculateResults.getResultsForCrossgamesAndClassementgames(resultCrossgamesList[8])[1]
+                    });
+                }
+                else if (teamsCount == 50)
+                {
+                }
+                else if (teamsCount == 55)
+                {
+                }
             }
             else
             {
