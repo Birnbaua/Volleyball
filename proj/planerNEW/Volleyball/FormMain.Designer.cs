@@ -31,6 +31,7 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageConfiguration = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.checkBoxUseInterim = new System.Windows.Forms.CheckBox();
             this.checkBoxUseSecondGameplan = new System.Windows.Forms.CheckBox();
             this.dateTimePickerTournamentstart = new System.Windows.Forms.DateTimePicker();
             this.checkBoxUseCrossgames = new System.Windows.Forms.CheckBox();
@@ -114,7 +115,6 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelEstimatedTournamentTime = new System.Windows.Forms.ToolStripStatusLabel();
-            this.checkBoxUseInterim = new System.Windows.Forms.CheckBox();
             this.tabControl.SuspendLayout();
             this.tabPageConfiguration.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -229,6 +229,17 @@
             this.groupBox3.TabIndex = 16;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Zeitplanung";
+            // 
+            // checkBoxUseInterim
+            // 
+            this.checkBoxUseInterim.AutoSize = true;
+            this.checkBoxUseInterim.Location = new System.Drawing.Point(762, 30);
+            this.checkBoxUseInterim.Name = "checkBoxUseInterim";
+            this.checkBoxUseInterim.Size = new System.Drawing.Size(136, 24);
+            this.checkBoxUseInterim.TabIndex = 55;
+            this.checkBoxUseInterim.Text = "Zwischenrunde";
+            this.checkBoxUseInterim.UseVisualStyleBackColor = true;
+            this.checkBoxUseInterim.CheckedChanged += new System.EventHandler(this.checkBoxUseInterim_CheckedChanged);
             // 
             // checkBoxUseSecondGameplan
             // 
@@ -726,6 +737,7 @@
             this.buttonSaveTeams.TabIndex = 11;
             this.buttonSaveTeams.Text = "Speichern";
             this.buttonSaveTeams.UseVisualStyleBackColor = true;
+            this.buttonSaveTeams.Click += new System.EventHandler(this.buttonSaveTeams_Click);
             // 
             // buttonPrintTeams
             // 
@@ -737,6 +749,7 @@
             this.buttonPrintTeams.TabIndex = 13;
             this.buttonPrintTeams.Text = "Drucken";
             this.buttonPrintTeams.UseVisualStyleBackColor = true;
+            this.buttonPrintTeams.Click += new System.EventHandler(this.buttonPrintTeams_Click);
             // 
             // buttonClearTeams
             // 
@@ -748,6 +761,7 @@
             this.buttonClearTeams.TabIndex = 12;
             this.buttonClearTeams.Text = "Löschen";
             this.buttonClearTeams.UseVisualStyleBackColor = true;
+            this.buttonClearTeams.Click += new System.EventHandler(this.buttonClearTeams_Click);
             // 
             // dataGridViewTeams
             // 
@@ -1184,24 +1198,13 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(132, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(141, 17);
             this.toolStripStatusLabel1.Text = "berechnetes Turnierende:";
             // 
             // toolStripStatusLabelEstimatedTournamentTime
             // 
             this.toolStripStatusLabelEstimatedTournamentTime.Name = "toolStripStatusLabelEstimatedTournamentTime";
             this.toolStripStatusLabelEstimatedTournamentTime.Size = new System.Drawing.Size(0, 17);
-            // 
-            // checkBoxUseInterim
-            // 
-            this.checkBoxUseInterim.AutoSize = true;
-            this.checkBoxUseInterim.Location = new System.Drawing.Point(762, 30);
-            this.checkBoxUseInterim.Name = "checkBoxUseInterim";
-            this.checkBoxUseInterim.Size = new System.Drawing.Size(136, 24);
-            this.checkBoxUseInterim.TabIndex = 55;
-            this.checkBoxUseInterim.Text = "Zwischenrunde";
-            this.checkBoxUseInterim.UseVisualStyleBackColor = true;
-            this.checkBoxUseInterim.CheckedChanged += new System.EventHandler(this.checkBoxUseInterim_CheckedChanged);
             // 
             // FormMain
             // 

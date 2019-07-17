@@ -219,16 +219,19 @@ namespace Volleyball
                             {
                                 for(int i = 0; i < prefix.Count; i++)
                                 {
-                                    for(int ii = 0; ii < qg.resultData[i].Count; ii++)
+                                    if (i < qg.resultData.Count)
                                     {
-                                        cmdSqlite.CommandText = "INSERT INTO " + tableName + prefix[i];
-                                        cmdSqlite.CommandText += " VALUES(" + qg.resultData[i][ii].Rank;
-                                        cmdSqlite.CommandText += ",'" + qg.resultData[i][ii].Team + "'";
-                                        cmdSqlite.CommandText += "," + qg.resultData[i][ii].PointsSets;
-                                        cmdSqlite.CommandText += "," + qg.resultData[i][ii].PointsMatches;
-                                        cmdSqlite.CommandText += "," + qg.resultData[i][ii].InternalRank;
-                                        cmdSqlite.CommandText += "," + qg.resultData[i][ii].ExternalRank + ")";
-                                        cmdSqlite.ExecuteNonQuery();
+                                        for (int ii = 0; ii < qg.resultData[i].Count; ii++)
+                                        {
+                                            cmdSqlite.CommandText = "INSERT INTO " + tableName + prefix[i];
+                                            cmdSqlite.CommandText += " VALUES(" + qg.resultData[i][ii].Rank;
+                                            cmdSqlite.CommandText += ",'" + qg.resultData[i][ii].Team + "'";
+                                            cmdSqlite.CommandText += "," + qg.resultData[i][ii].PointsSets;
+                                            cmdSqlite.CommandText += "," + qg.resultData[i][ii].PointsMatches;
+                                            cmdSqlite.CommandText += "," + qg.resultData[i][ii].InternalRank;
+                                            cmdSqlite.CommandText += "," + qg.resultData[i][ii].ExternalRank + ")";
+                                            cmdSqlite.ExecuteNonQuery();
+                                        }
                                     }
                                 }
                             }
@@ -257,16 +260,19 @@ namespace Volleyball
                             {
                                 for (int i = 0; i < prefix.Count; i++)
                                 {
-                                    for (int ii = 0; ii < ig.resultData[i].Count; ii++)
+                                    if (i < ig.resultData.Count)
                                     {
-                                        cmdSqlite.CommandText = "INSERT INTO " + tableName + prefix[i];
-                                        cmdSqlite.CommandText += " VALUES(" + ig.resultData[i][ii].Rank;
-                                        cmdSqlite.CommandText += ",'" + ig.resultData[i][ii].Team + "'";
-                                        cmdSqlite.CommandText += "," + ig.resultData[i][ii].PointsSets;
-                                        cmdSqlite.CommandText += "," + ig.resultData[i][ii].PointsMatches;
-                                        cmdSqlite.CommandText += "," + ig.resultData[i][ii].InternalRank;
-                                        cmdSqlite.CommandText += "," + ig.resultData[i][ii].ExternalRank + ")";
-                                        cmdSqlite.ExecuteNonQuery();
+                                        for (int ii = 0; ii < ig.resultData[i].Count; ii++)
+                                        {
+                                            cmdSqlite.CommandText = "INSERT INTO " + tableName + prefix[i];
+                                            cmdSqlite.CommandText += " VALUES(" + ig.resultData[i][ii].Rank;
+                                            cmdSqlite.CommandText += ",'" + ig.resultData[i][ii].Team + "'";
+                                            cmdSqlite.CommandText += "," + ig.resultData[i][ii].PointsSets;
+                                            cmdSqlite.CommandText += "," + ig.resultData[i][ii].PointsMatches;
+                                            cmdSqlite.CommandText += "," + ig.resultData[i][ii].InternalRank;
+                                            cmdSqlite.CommandText += "," + ig.resultData[i][ii].ExternalRank + ")";
+                                            cmdSqlite.ExecuteNonQuery();
+                                        }
                                     }
                                 }
                             }
@@ -1116,10 +1122,17 @@ namespace Volleyball
 
                 SaveMatchDataToFile(qualifyingFileName, qg.matchData);
 
-                for (int i = 0; i < qg.resultData.Count; i++)
+                for (int i = 0; i < prefix.Count; i++)
                 {
-                    if(qg.resultData[i].Count > 0)
-                        SaveResultDataToFile(qualifyingResultFileName + "_" + prefix[i] + ".csv", qg.resultData[i]);
+                    if (qg.resultData.Count > 0 && i < qg.resultData.Count)
+                    {
+                        if (qg.resultData[i].Count > 0)
+                            SaveResultDataToFile(qualifyingResultFileName + "_" + prefix[i] + ".csv", qg.resultData[i]);
+                    }
+                    else
+                    {
+                        File.WriteAllText(qualifyingResultFileName + "_" + prefix[i] + ".csv", String.Empty);
+                    }
                 }
 
                 exportTournamentDataToDB();
@@ -1391,10 +1404,17 @@ namespace Volleyball
 
                 SaveMatchDataToFile(interimFileName, ig.matchData);
 
-                for (int i = 0; i < ig.resultData.Count; i++)
+                for (int i = 0; i < prefix.Count; i++)
                 {
-                    if (ig.resultData[i].Count > 0)
-                        SaveResultDataToFile(interimResultFileName + "_" + prefix[i] + ".csv", ig.resultData[i]);
+                    if (ig.resultData.Count > 0 && i < ig.resultData.Count)
+                    {
+                        if (ig.resultData[i].Count > 0)
+                            SaveResultDataToFile(interimResultFileName + "_" + prefix[i] + ".csv", ig.resultData[i]);
+                    }
+                    else
+                    {
+                        File.WriteAllText(interimResultFileName + "_" + prefix[i] + ".csv", String.Empty);
+                    }
                 }
 
                 exportTournamentDataToDB();

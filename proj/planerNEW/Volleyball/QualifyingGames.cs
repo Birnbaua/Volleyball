@@ -90,18 +90,16 @@ namespace Volleyball
                     matchDataHelperList.Add(matchDataList);
                 }
                                 
-                for (int i = 1, ii = 0; i <= gamesCount;)
+                for (int i = 1, ii = 0; i <= gamesCount; ii++)
                 {
                     foreach (List<MatchData> mdl in matchDataHelperList)
                     {
-                        matchData.Add(mdl[ii]);
-                        i++;
+                        if (ii < mdl.Count)
+                        {
+                            matchData.Add(mdl[ii]);
+                            i++;
+                        }
                     }
-
-                    if (ii >= matchDataHelperList.Count)
-                        ii = 0;
-                    else
-                        ii++;
                 }
 
                 return true;
