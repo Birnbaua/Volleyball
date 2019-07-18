@@ -40,3 +40,7 @@ C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\bin\Debug\System
 C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\bin\Debug\System.Data.SQLite.dll.config
 C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\obj\Debug\Volleyball.csprojAssemblyReference.cache
 C:\Users\feizlch\Downloads\Volleyball\proj\planerNEW\Volleyball\obj\Debug\Volleyball.csproj.CopyComplete
+C:\appl\github\Volleyball\proj\planerNEW\Volleyball\bin\Debug\Volleyball.exe.manifest
+C:\appl\github\Volleyball\proj\planerNEW\Volleyball\bin\Debug\Volleyball.application
+C:\appl\github\Volleyball\proj\planerNEW\Volleyball\obj\Debug\Volleyball.exe.manifest
+C:\appl\github\Volleyball\proj\planerNEW\Volleyball\obj\Debug\Volleyball.application

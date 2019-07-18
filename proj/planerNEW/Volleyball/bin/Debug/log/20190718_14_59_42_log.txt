@@ -1,0 +1,16 @@
+20190718_14_59_42: use configuration from interim
+20190718_14_59_42: use configuration from interim
+20190718_14_59_57: calculating interim results
+20190718_15_00_05: calculating interim results
+20190718_15_00_43: calculating interim results
+20190718_15_02_28: calculating interim results
+20190718_15_03_12: calculating interim results
+20190718_15_04_00: check double results from interim
+20190718_15_04_00: use configuration from interim
+20190718_15_04_00: generate crossgames
+20190718_15_04_00: calculating crossgame results
+20190718_15_04_05: calculating interim results
+20190718_15_12_23: calculating crossgame results
+20190718_15_12_26: generate classementgames
+20190718_15_12_26: calculating classement results
+20190718_15_13_20: calculating interim results

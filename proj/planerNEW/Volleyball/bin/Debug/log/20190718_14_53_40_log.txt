@@ -1,0 +1,3 @@
+20190718_14_53_40: use configuration from interim
+20190718_14_53_40: use configuration from interim
+20190718_14_53_44: Der angeforderte URI ist für diesen FTP-Befehl ungültig.

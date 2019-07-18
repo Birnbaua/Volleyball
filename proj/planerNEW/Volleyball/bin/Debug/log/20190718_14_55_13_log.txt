@@ -1,0 +1,4 @@
+20190718_14_55_13: use configuration from interim
+20190718_14_55_13: use configuration from interim
+20190718_14_55_17: db file upload finished
+20190718_14_58_03: db file upload finished

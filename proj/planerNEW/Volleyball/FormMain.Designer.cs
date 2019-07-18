@@ -163,7 +163,7 @@
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1084, 662);
+            this.tabControl.Size = new System.Drawing.Size(1084, 556);
             this.tabControl.TabIndex = 7;
             this.tabControl.Click += new System.EventHandler(this.tabControl_Click);
             // 
@@ -174,7 +174,7 @@
             this.tabPageConfiguration.Location = new System.Drawing.Point(4, 29);
             this.tabPageConfiguration.Name = "tabPageConfiguration";
             this.tabPageConfiguration.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageConfiguration.Size = new System.Drawing.Size(1076, 629);
+            this.tabPageConfiguration.Size = new System.Drawing.Size(1076, 523);
             this.tabPageConfiguration.TabIndex = 0;
             this.tabPageConfiguration.Text = "Mannschaften/Einstellungen";
             this.tabPageConfiguration.UseVisualStyleBackColor = true;
@@ -225,7 +225,7 @@
             this.groupBox3.Controls.Add(this.groupBox1);
             this.groupBox3.Location = new System.Drawing.Point(0, 6);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1068, 362);
+            this.groupBox3.Size = new System.Drawing.Size(1068, 256);
             this.groupBox3.TabIndex = 16;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Zeitplanung";
@@ -617,7 +617,7 @@
             // 
             this.buttonResetSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonResetSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonResetSettings.Location = new System.Drawing.Point(852, 326);
+            this.buttonResetSettings.Location = new System.Drawing.Point(852, 220);
             this.buttonResetSettings.Name = "buttonResetSettings";
             this.buttonResetSettings.Size = new System.Drawing.Size(210, 30);
             this.buttonResetSettings.TabIndex = 17;
@@ -629,7 +629,7 @@
             // 
             this.buttonRejectSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonRejectSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRejectSettings.Location = new System.Drawing.Point(636, 326);
+            this.buttonRejectSettings.Location = new System.Drawing.Point(636, 220);
             this.buttonRejectSettings.Name = "buttonRejectSettings";
             this.buttonRejectSettings.Size = new System.Drawing.Size(210, 30);
             this.buttonRejectSettings.TabIndex = 16;
@@ -641,7 +641,7 @@
             // 
             this.buttonSaveSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonSaveSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSaveSettings.Location = new System.Drawing.Point(420, 326);
+            this.buttonSaveSettings.Location = new System.Drawing.Point(420, 220);
             this.buttonSaveSettings.Name = "buttonSaveSettings";
             this.buttonSaveSettings.Size = new System.Drawing.Size(210, 30);
             this.buttonSaveSettings.TabIndex = 15;
@@ -720,7 +720,7 @@
             this.groupBox2.Controls.Add(this.buttonPrintTeams);
             this.groupBox2.Controls.Add(this.buttonClearTeams);
             this.groupBox2.Controls.Add(this.dataGridViewTeams);
-            this.groupBox2.Location = new System.Drawing.Point(0, 374);
+            this.groupBox2.Location = new System.Drawing.Point(0, 268);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(1068, 249);
             this.groupBox2.TabIndex = 15;
@@ -1189,7 +1189,7 @@
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.toolStripStatusLabelEstimatedTournamentTime});
-            this.statusStrip.Location = new System.Drawing.Point(0, 676);
+            this.statusStrip.Location = new System.Drawing.Point(0, 570);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(1092, 22);
             this.statusStrip.TabIndex = 8;
@@ -1198,7 +1198,7 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(141, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(132, 17);
             this.toolStripStatusLabel1.Text = "berechnetes Turnierende:";
             // 
             // toolStripStatusLabelEstimatedTournamentTime
@@ -1208,10 +1208,10 @@
             // 
             // FormMain
             // 
-            this.ClientSize = new System.Drawing.Size(1092, 698);
+            this.ClientSize = new System.Drawing.Size(1092, 592);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.tabControl);
-            this.MinimumSize = new System.Drawing.Size(1100, 725);
+            this.MinimumSize = new System.Drawing.Size(1100, 561);
             this.Name = "FormMain";
             this.tabControl.ResumeLayout(false);
             this.tabPageConfiguration.ResumeLayout(false);

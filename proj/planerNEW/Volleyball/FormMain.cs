@@ -342,7 +342,7 @@ namespace Volleyball
                     using (WebClient client = new WebClient())
                     {
                         client.Credentials = new NetworkCredential("38730ftp3", "");
-                        client.UploadFile("ftp://e35811-ftp.services.easyname.eu", WebRequestMethods.Ftp.UploadFile, resourcePath + "data.db");
+                        client.UploadFile("e35811-ftp.services.easyname.eu", WebRequestMethods.Ftp.UploadFile, resourcePath + "data.db");
                     }
                     
                     log.write("db file upload finished");

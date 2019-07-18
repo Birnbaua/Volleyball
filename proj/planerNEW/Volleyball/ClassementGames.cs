@@ -65,9 +65,11 @@ namespace Volleyball
             {
                 insertGameNumber(lastGameNr);
 
+                insertRoundNumber(lastRoundNr, fieldCount);
+
                 insertGameTime(startRound);
 
-                insertFieldnames(fieldNames);
+                insertFieldnumbersAndFieldnames(fieldCount, fieldNames);
             }
             else
             {
