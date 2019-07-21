@@ -327,8 +327,9 @@ namespace Volleyball
 
                 return false;
             }
-            catch (IOException ex)
+            catch (IOException e)
             {
+                log.write(e.Message);
                 return true;
             }
         }
@@ -2220,6 +2221,44 @@ namespace Volleyball
             if ((dataGridViewClassementgamesRound.DataSource as DataTable).DefaultView.Count == clg.matchData.Count)
             {
                 setRowColorsForEachRound(dataGridViewClassementgamesRound);
+            }
+        }
+
+        private void buttonFinalClassment_Click(object sender, EventArgs e)
+        {
+            if (clg != null && clg.matchData.Count > 0)
+            {
+                clg.createFinalClassement();
+
+                String gameHtml = headerHtml;
+
+                gameHtml += "<table style='width: 100%; border: 1px solid black;'>";
+                gameHtml += "<tbody>";
+                gameHtml += "<tr>";
+                gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 10%; text-align: center; background-color: rgb(239, 239, 239);'><strong><span style='font-size: 30px;'>Rang</span></strong></td>";
+                gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 10%; text-align: center; background-color: rgb(239, 239, 239);'><strong><span style='font-size: 30px;'>Mannschaft</span></strong></td>";
+                gameHtml += "</tr>";
+                gameHtml += "</tbody>";
+
+                gameHtml += "<tbody>";
+                gameHtml += "<tr>";
+
+                foreach (ClassementData cd in clg.finalClassement)
+                {
+                    gameHtml += "<tr>";
+                    gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 10%; text-align: center;'><span style='font-size: 30px;'>" + cd.Rank + "</span></td>";
+                    gameHtml += "<td style='font-family: Arial, Helvetica, sans-serif; border: 1px solid black; width: 10%; text-align: center;'><span style='font-size: 30px;'>" + cd.Team + "</span></td>";
+                    gameHtml += "</tr>";
+                }
+
+                gameHtml += "</tbody>";
+                gameHtml += "</table>";
+
+                gameHtml += footerHtml;
+
+                var pdf = Pdf.From(gameHtml).OfSize(PaperSize.A4).Landscape().Comressed().Content();
+
+                File.WriteAllBytes(pdfPath + "platzierungen.pdf", pdf);
             }
         }
         #endregion

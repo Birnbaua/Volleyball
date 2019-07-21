@@ -5,76 +5,66 @@
 5;1;20.02.2019 09:00:00;5;Feld5;Die Wuerstel sind fertig;Black Cat Volleyteam;1 Meter no;26;8;0;0;0;0
 6;1;20.02.2019 09:00:00;6;Feld6;20 zwequschte Zwetschken;Haribus;SK Lation;22;11;0;0;0;0
 7;1;20.02.2019 09:00:00;7;Feld7;Springginkerl;Die vier Fragezeichen;Superkalefragelistigexoialigestis;12;19;0;0;0;0
-8;1;20.02.2019 09:00:00;8;Feld8;Waterlemons;Unblockable;LeitWollHofRyll;14;15;0;0;0;0
-9;2;20.02.2019 09:10:00;2;Feld2;The Best Losers;Foi am Sand;Die Beachboys;8;26;0;0;0;0
-10;2;20.02.2019 09:10:00;3;Feld3;Ratsherrn Allstarts;Stieglitz;Ich und die 3 Hansln;20;9;0;0;0;0
-11;2;20.02.2019 09:10:00;4;Feld4;Pancakesmashers;Scharf aber out;Die supercoolsten Megacoolen;9;16;0;0;0;0
-12;2;20.02.2019 09:10:00;5;Feld5;Die gestiefelten Muskelkater;Truthtrain;Schluckspecht GmbH;17;16;0;0;0;0
-13;2;20.02.2019 09:10:00;6;Feld6;Volleybaerenbande;1 Meter no;Auf Ex;17;16;0;0;0;0
-14;2;20.02.2019 09:10:00;7;Feld7;Moes Hoes;SK Lation;Die TSVour;11;19;0;0;0;0
-15;2;20.02.2019 09:10:00;8;Feld8;Winterzauber 4.0;Superkalefragelistigexoialigestis;Bombig Beerig;10;27;0;0;0;0
-16;2;20.02.2019 09:10:00;1;Feld1;Kimbo und die Bimbos;LeitWollHofRyll;Nimm na du i hob na fix;28;9;0;0;0;0
-17;3;20.02.2019 09:20:00;3;Feld3;Eisen;Die Beachboys;The Best Losers;18;21;0;0;0;0
-18;3;20.02.2019 09:20:00;4;Feld4;Wuedsaubande;Ich und die 3 Hansln;Ratsherrn Allstarts;11;16;0;0;0;0
-19;3;20.02.2019 09:20:00;5;Feld5;Sandviper;Die supercoolsten Megacoolen;Pancakesmashers;8;24;0;0;0;0
-20;3;20.02.2019 09:20:00;6;Feld6;Netninjas;Schluckspecht GmbH;Die gestiefelten Muskelkater;15;12;0;0;0;0
-21;3;20.02.2019 09:20:00;7;Feld7;Black Cat Volleyteam;Auf Ex;Volleybaerenbande;9;28;0;0;0;0
-22;3;20.02.2019 09:20:00;8;Feld8;Haribus;Die TSVour;Moes Hoes;25;9;0;0;0;0
-23;3;20.02.2019 09:20:00;1;Feld1;Die vier Fragezeichen;Bombig Beerig;Winterzauber 4.0;16;16;0;0;0;0
-24;3;20.02.2019 09:20:00;2;Feld2;Unblockable;Nimm na du i hob na fix;Kimbo und die Bimbos;7;23;0;0;0;0
-25;4;20.02.2019 09:30:00;4;Feld4;Schmettbos;Foi am Sand;Eisen;20;12;0;0;0;0
-26;4;20.02.2019 09:30:00;5;Feld5;Namenlose Qualitaet;Stieglitz;Wuedsaubande;8;25;0;0;0;0
-27;4;20.02.2019 09:30:00;6;Feld6;Du WerRegenZone;Scharf aber out;Sandviper;10;27;0;0;0;0
-28;4;20.02.2019 09:30:00;7;Feld7;Carpe Noctem;Truthtrain;Netninjas;22;12;0;0;0;0
-29;4;20.02.2019 09:30:00;8;Feld8;Die Wuerstel sind fertig;1 Meter no;Black Cat Volleyteam;19;10;0;0;0;0
-30;4;20.02.2019 09:30:00;1;Feld1;20 zwequschte Zwetschken;SK Lation;Haribus;23;8;0;0;0;0
-31;4;20.02.2019 09:30:00;2;Feld2;Springginkerl;Superkalefragelistigexoialigestis;Die vier Fragezeichen;11;15;0;0;0;0
-32;4;20.02.2019 09:30:00;3;Feld3;Waterlemons;LeitWollHofRyll;Unblockable;16;13;0;0;0;0
-33;5;20.02.2019 09:40:00;5;Feld5;The Best Losers;Die Beachboys;Schmettbos;19;8;0;0;0;0
-34;5;20.02.2019 09:40:00;6;Feld6;Ratsherrn Allstarts;Ich und die 3 Hansln;Namenlose Qualitaet;15;10;0;0;0;0
-35;5;20.02.2019 09:40:00;7;Feld7;Pancakesmashers;Die supercoolsten Megacoolen;Du WerRegenZone;19;12;0;0;0;0
-36;5;20.02.2019 09:40:00;8;Feld8;Die gestiefelten Muskelkater;Schluckspecht GmbH;Carpe Noctem;12;16;0;0;0;0
-37;5;20.02.2019 09:40:00;1;Feld1;Volleybaerenbande;Auf Ex;Die Wuerstel sind fertig;19;10;0;0;0;0
-38;5;20.02.2019 09:40:00;2;Feld2;Moes Hoes;Die TSVour;20 zwequschte Zwetschken;22;9;0;0;0;0
-39;5;20.02.2019 09:40:00;3;Feld3;Winterzauber 4.0;Bombig Beerig;Springginkerl;23;11;0;0;0;0
-40;5;20.02.2019 09:40:00;4;Feld4;Kimbo und die Bimbos;Nimm na du i hob na fix;Waterlemons;16;14;0;0;0;0
-41;6;20.02.2019 09:50:00;6;Feld6;Eisen;Foi am Sand;The Best Losers;10;21;0;0;0;0
-42;6;20.02.2019 09:50:00;7;Feld7;Wuedsaubande;Stieglitz;Ratsherrn Allstarts;13;14;0;0;0;0
-43;6;20.02.2019 09:50:00;8;Feld8;Sandviper;Scharf aber out;Pancakesmashers;28;6;0;0;0;0
-44;6;20.02.2019 09:50:00;1;Feld1;Netninjas;Truthtrain;Die gestiefelten Muskelkater;21;14;0;0;0;0
-45;6;20.02.2019 09:50:00;2;Feld2;Black Cat Volleyteam;1 Meter no;Volleybaerenbande;9;23;0;0;0;0
-46;6;20.02.2019 09:50:00;3;Feld3;Haribus;SK Lation;Moes Hoes;11;16;0;0;0;0
-47;6;20.02.2019 09:50:00;4;Feld4;Die vier Fragezeichen;Superkalefragelistigexoialigestis;Winterzauber 4.0;18;17;0;0;0;0
-48;6;20.02.2019 09:50:00;5;Feld5;Unblockable;LeitWollHofRyll;Kimbo und die Bimbos;10;18;0;0;0;0
-49;7;20.02.2019 10:00:00;7;Feld7;Schmettbos;Die Beachboys;Foi am Sand;16;16;0;0;0;0
-50;7;20.02.2019 10:00:00;8;Feld8;Namenlose Qualitaet;Ich und die 3 Hansln;Stieglitz;9;21;0;0;0;0
-51;7;20.02.2019 10:00:00;1;Feld1;Du WerRegenZone;Die supercoolsten Megacoolen;Scharf aber out;10;22;0;0;0;0
-52;7;20.02.2019 10:00:00;2;Feld2;Carpe Noctem;Schluckspecht GmbH;Truthtrain;21;10;0;0;0;0
-53;7;20.02.2019 10:00:00;3;Feld3;Die Wuerstel sind fertig;Auf Ex;1 Meter no;8;23;0;0;0;0
-54;7;20.02.2019 10:00:00;4;Feld4;20 zwequschte Zwetschken;Die TSVour;SK Lation;5;30;0;0;0;0
-55;7;20.02.2019 10:00:00;5;Feld5;Springginkerl;Bombig Beerig;Superkalefragelistigexoialigestis;16;11;0;0;0;0
-56;7;20.02.2019 10:00:00;6;Feld6;Waterlemons;Nimm na du i hob na fix;LeitWollHofRyll;12;18;0;0;0;0
-57;8;20.02.2019 10:10:00;8;Feld8;The Best Losers;Eisen;Schmettbos;13;17;0;0;0;0
-58;8;20.02.2019 10:10:00;1;Feld1;Ratsherrn Allstarts;Wuedsaubande;Namenlose Qualitaet;11;14;0;0;0;0
-59;8;20.02.2019 10:10:00;2;Feld2;Pancakesmashers;Sandviper;Du WerRegenZone;13;20;0;0;0;0
-60;8;20.02.2019 10:10:00;3;Feld3;Die gestiefelten Muskelkater;Netninjas;Carpe Noctem;16;14;0;0;0;0
-61;8;20.02.2019 10:10:00;4;Feld4;Volleybaerenbande;Black Cat Volleyteam;Die Wuerstel sind fertig;17;17;0;0;0;0
-62;8;20.02.2019 10:10:00;5;Feld5;Moes Hoes;Haribus;20 zwequschte Zwetschken;18;11;0;0;0;0
-63;8;20.02.2019 10:10:00;6;Feld6;Winterzauber 4.0;Die vier Fragezeichen;Springginkerl;12;14;0;0;0;0
-64;8;20.02.2019 10:10:00;7;Feld7;Kimbo und die Bimbos;Unblockable;Waterlemons;20;10;0;0;0;0
-65;9;20.02.2019 10:20:00;1;Feld1;Foi am Sand;Die Beachboys;Schmettbos;25;7;0;0;0;0
-66;9;20.02.2019 10:20:00;2;Feld2;Stieglitz;Ich und die 3 Hansln;Namenlose Qualitaet;17;9;0;0;0;0
-67;9;20.02.2019 10:20:00;3;Feld3;Scharf aber out;Die supercoolsten Megacoolen;Du WerRegenZone;12;19;0;0;0;0
-68;9;20.02.2019 10:20:00;4;Feld4;Truthtrain;Schluckspecht GmbH;Carpe Noctem;5;20;0;0;0;0
-69;9;20.02.2019 10:20:00;5;Feld5;1 Meter no;Auf Ex;Die Wuerstel sind fertig;22;11;0;0;0;0
-70;9;20.02.2019 10:20:00;6;Feld6;SK Lation;Die TSVour;20 zwequschte Zwetschken;21;7;0;0;0;0
-71;9;20.02.2019 10:20:00;7;Feld7;Superkalefragelistigexoialigestis;Bombig Beerig;Springginkerl;13;13;0;0;0;0
-72;9;20.02.2019 10:20:00;8;Feld8;LeitWollHofRyll;Nimm na du i hob na fix;Waterlemons;12;18;0;0;0;0
-73;10;20.02.2019 10:30:00;2;Feld2;Schmettbos;The Best Losers;Die Beachboys;18;12;0;0;0;0
-74;10;20.02.2019 10:30:00;3;Feld3;Namenlose Qualitaet;Ratsherrn Allstarts;Ich und die 3 Hansln;23;13;0;0;0;0
-75;10;20.02.2019 10:30:00;4;Feld4;Du WerRegenZone;Pancakesmashers;Die supercoolsten Megacoolen;14;17;0;0;0;0
-76;10;20.02.2019 10:30:00;5;Feld5;Carpe Noctem;Die gestiefelten Muskelkater;Schluckspecht GmbH;19;11;0;0;0;0
-77;10;20.02.2019 10:30:00;6;Feld6;Die Wuerstel sind fertig;Volleybaerenbande;Auf Ex;22;10;0;0;0;0
-78;10;20.02.2019 10:30:00;7;Feld7;20 zwequschte Zwetschken;Moes Hoes;Die TSVour;11;9;0;0;0;0
-79;10;20.02.2019 10:30:00;8;Feld8;Springginkerl;Winterzauber 4.0;Bombig Beerig;17;14;0;0;0;0
-80;10;20.02.2019 10:30:00;1;Feld1;Waterlemons;Kimbo und die Bimbos;Nimm na du i hob na fix;6;18;0;0;0;0
+8;2;20.02.2019 09:10:00;2;Feld2;The Best Losers;Foi am Sand;Die Beachboys;14;15;0;0;0;0
+9;2;20.02.2019 09:10:00;3;Feld3;Ratsherrn Allstarts;Stieglitz;Ich und die 3 Hansln;8;26;0;0;0;0
+10;2;20.02.2019 09:10:00;4;Feld4;Pancakesmashers;Scharf aber out;Die supercoolsten Megacoolen;20;9;0;0;0;0
+11;2;20.02.2019 09:10:00;5;Feld5;Die gestiefelten Muskelkater;Truthtrain;Schluckspecht GmbH;9;16;0;0;0;0
+12;2;20.02.2019 09:10:00;6;Feld6;Volleybaerenbande;1 Meter no;Auf Ex;17;16;0;0;0;0
+13;2;20.02.2019 09:10:00;7;Feld7;Moes Hoes;SK Lation;Die TSVour;17;16;0;0;0;0
+14;2;20.02.2019 09:10:00;1;Feld1;Winterzauber 4.0;Superkalefragelistigexoialigestis;Bombig Beerig;11;19;0;0;0;0
+15;3;20.02.2019 09:20:00;3;Feld3;Eisen;Die Beachboys;The Best Losers;10;27;0;0;0;0
+16;3;20.02.2019 09:20:00;4;Feld4;Wuedsaubande;Ich und die 3 Hansln;Ratsherrn Allstarts;28;9;0;0;0;0
+17;3;20.02.2019 09:20:00;5;Feld5;Sandviper;Die supercoolsten Megacoolen;Pancakesmashers;18;21;0;0;0;0
+18;3;20.02.2019 09:20:00;6;Feld6;Netninjas;Schluckspecht GmbH;Die gestiefelten Muskelkater;11;16;0;0;0;0
+19;3;20.02.2019 09:20:00;7;Feld7;Black Cat Volleyteam;Auf Ex;Volleybaerenbande;8;24;0;0;0;0
+20;3;20.02.2019 09:20:00;1;Feld1;Haribus;Die TSVour;Moes Hoes;15;12;0;0;0;0
+21;3;20.02.2019 09:20:00;2;Feld2;Die vier Fragezeichen;Bombig Beerig;Winterzauber 4.0;9;28;0;0;0;0
+22;4;20.02.2019 09:30:00;4;Feld4;Schmettbos;Foi am Sand;Eisen;25;9;0;0;0;0
+23;4;20.02.2019 09:30:00;5;Feld5;Namenlose Qualitaet;Stieglitz;Wuedsaubande;16;16;0;0;0;0
+24;4;20.02.2019 09:30:00;6;Feld6;Du WerRegenZone;Scharf aber out;Sandviper;7;23;0;0;0;0
+25;4;20.02.2019 09:30:00;7;Feld7;Carpe Noctem;Truthtrain;Netninjas;20;12;0;0;0;0
+26;4;20.02.2019 09:30:00;1;Feld1;Die Wuerstel sind fertig;1 Meter no;Black Cat Volleyteam;8;25;0;0;0;0
+27;4;20.02.2019 09:30:00;2;Feld2;20 zwequschte Zwetschken;SK Lation;Haribus;10;27;0;0;0;0
+28;4;20.02.2019 09:30:00;3;Feld3;Springginkerl;Superkalefragelistigexoialigestis;Die vier Fragezeichen;22;12;0;0;0;0
+29;5;20.02.2019 09:40:00;5;Feld5;The Best Losers;Die Beachboys;Schmettbos;19;10;0;0;0;0
+30;5;20.02.2019 09:40:00;6;Feld6;Ratsherrn Allstarts;Ich und die 3 Hansln;Namenlose Qualitaet;23;8;0;0;0;0
+31;5;20.02.2019 09:40:00;7;Feld7;Pancakesmashers;Die supercoolsten Megacoolen;Du WerRegenZone;11;15;0;0;0;0
+32;5;20.02.2019 09:40:00;1;Feld1;Die gestiefelten Muskelkater;Schluckspecht GmbH;Carpe Noctem;16;13;0;0;0;0
+33;5;20.02.2019 09:40:00;2;Feld2;Volleybaerenbande;Auf Ex;Die Wuerstel sind fertig;19;8;0;0;0;0
+34;5;20.02.2019 09:40:00;3;Feld3;Moes Hoes;Die TSVour;20 zwequschte Zwetschken;15;10;0;0;0;0
+35;5;20.02.2019 09:40:00;4;Feld4;Winterzauber 4.0;Bombig Beerig;Springginkerl;19;12;0;0;0;0
+36;6;20.02.2019 09:50:00;6;Feld6;Eisen;Foi am Sand;The Best Losers;12;16;0;0;0;0
+37;6;20.02.2019 09:50:00;7;Feld7;Wuedsaubande;Stieglitz;Ratsherrn Allstarts;19;10;0;0;0;0
+38;6;20.02.2019 09:50:00;1;Feld1;Sandviper;Scharf aber out;Pancakesmashers;22;9;0;0;0;0
+39;6;20.02.2019 09:50:00;2;Feld2;Netninjas;Truthtrain;Die gestiefelten Muskelkater;23;11;0;0;0;0
+40;6;20.02.2019 09:50:00;3;Feld3;Black Cat Volleyteam;1 Meter no;Volleybaerenbande;16;14;0;0;0;0
+41;6;20.02.2019 09:50:00;4;Feld4;Haribus;SK Lation;Moes Hoes;10;21;0;0;0;0
+42;6;20.02.2019 09:50:00;5;Feld5;Die vier Fragezeichen;Superkalefragelistigexoialigestis;Winterzauber 4.0;13;14;0;0;0;0
+43;7;20.02.2019 10:00:00;7;Feld7;Schmettbos;Die Beachboys;Foi am Sand;28;6;0;0;0;0
+44;7;20.02.2019 10:00:00;1;Feld1;Namenlose Qualitaet;Ich und die 3 Hansln;Stieglitz;21;14;0;0;0;0
+45;7;20.02.2019 10:00:00;2;Feld2;Du WerRegenZone;Die supercoolsten Megacoolen;Scharf aber out;9;23;0;0;0;0
+46;7;20.02.2019 10:00:00;3;Feld3;Carpe Noctem;Schluckspecht GmbH;Truthtrain;11;16;0;0;0;0
+47;7;20.02.2019 10:00:00;4;Feld4;Die Wuerstel sind fertig;Auf Ex;1 Meter no;18;17;0;0;0;0
+48;7;20.02.2019 10:00:00;5;Feld5;20 zwequschte Zwetschken;Die TSVour;SK Lation;10;18;0;0;0;0
+49;7;20.02.2019 10:00:00;6;Feld6;Springginkerl;Bombig Beerig;Superkalefragelistigexoialigestis;16;16;0;0;0;0
+50;8;20.02.2019 10:10:00;1;Feld1;The Best Losers;Eisen;Schmettbos;9;21;0;0;0;0
+51;8;20.02.2019 10:10:00;2;Feld2;Ratsherrn Allstarts;Wuedsaubande;Namenlose Qualitaet;10;22;0;0;0;0
+52;8;20.02.2019 10:10:00;3;Feld3;Pancakesmashers;Sandviper;Du WerRegenZone;21;10;0;0;0;0
+53;8;20.02.2019 10:10:00;4;Feld4;Die gestiefelten Muskelkater;Netninjas;Carpe Noctem;8;23;0;0;0;0
+54;8;20.02.2019 10:10:00;5;Feld5;Volleybaerenbande;Black Cat Volleyteam;Die Wuerstel sind fertig;5;30;0;0;0;0
+55;8;20.02.2019 10:10:00;6;Feld6;Moes Hoes;Haribus;20 zwequschte Zwetschken;16;11;0;0;0;0
+56;8;20.02.2019 10:10:00;7;Feld7;Winterzauber 4.0;Die vier Fragezeichen;Springginkerl;12;18;0;0;0;0
+57;9;20.02.2019 10:20:00;2;Feld2;Foi am Sand;Die Beachboys;Schmettbos;13;17;0;0;0;0
+58;9;20.02.2019 10:20:00;3;Feld3;Stieglitz;Ich und die 3 Hansln;Namenlose Qualitaet;11;14;0;0;0;0
+59;9;20.02.2019 10:20:00;4;Feld4;Scharf aber out;Die supercoolsten Megacoolen;Du WerRegenZone;13;20;0;0;0;0
+60;9;20.02.2019 10:20:00;5;Feld5;Truthtrain;Schluckspecht GmbH;Carpe Noctem;16;14;0;0;0;0
+61;9;20.02.2019 10:20:00;6;Feld6;1 Meter no;Auf Ex;Die Wuerstel sind fertig;17;17;0;0;0;0
+62;9;20.02.2019 10:20:00;7;Feld7;SK Lation;Die TSVour;20 zwequschte Zwetschken;18;11;0;0;0;0
+63;9;20.02.2019 10:20:00;1;Feld1;Superkalefragelistigexoialigestis;Bombig Beerig;Springginkerl;12;14;0;0;0;0
+64;10;20.02.2019 10:30:00;3;Feld3;Schmettbos;The Best Losers;Die Beachboys;20;10;0;0;0;0
+65;10;20.02.2019 10:30:00;4;Feld4;Namenlose Qualitaet;Ratsherrn Allstarts;Ich und die 3 Hansln;25;7;0;0;0;0
+66;10;20.02.2019 10:30:00;5;Feld5;Du WerRegenZone;Pancakesmashers;Die supercoolsten Megacoolen;17;9;0;0;0;0
+67;10;20.02.2019 10:30:00;6;Feld6;Carpe Noctem;Die gestiefelten Muskelkater;Schluckspecht GmbH;12;19;0;0;0;0
+68;10;20.02.2019 10:30:00;7;Feld7;Die Wuerstel sind fertig;Volleybaerenbande;Auf Ex;5;20;0;0;0;0
+69;10;20.02.2019 10:30:00;1;Feld1;20 zwequschte Zwetschken;Moes Hoes;Die TSVour;22;11;0;0;0;0
+70;10;20.02.2019 10:30:00;2;Feld2;Springginkerl;Winterzauber 4.0;Bombig Beerig;21;7;0;0;0;0

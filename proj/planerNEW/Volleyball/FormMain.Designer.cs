@@ -115,6 +115,7 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelEstimatedTournamentTime = new System.Windows.Forms.ToolStripStatusLabel();
+            this.buttonFinalClassment = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPageConfiguration.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -792,7 +793,7 @@
             this.tabPageQualifying.Location = new System.Drawing.Point(4, 29);
             this.tabPageQualifying.Name = "tabPageQualifying";
             this.tabPageQualifying.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageQualifying.Size = new System.Drawing.Size(1076, 629);
+            this.tabPageQualifying.Size = new System.Drawing.Size(1076, 523);
             this.tabPageQualifying.TabIndex = 1;
             this.tabPageQualifying.Text = "Vorrunde";
             this.tabPageQualifying.UseVisualStyleBackColor = true;
@@ -827,7 +828,7 @@
             this.dataGridViewQualifyingRound.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewQualifyingRound.Location = new System.Drawing.Point(6, 42);
             this.dataGridViewQualifyingRound.Name = "dataGridViewQualifyingRound";
-            this.dataGridViewQualifyingRound.Size = new System.Drawing.Size(1062, 579);
+            this.dataGridViewQualifyingRound.Size = new System.Drawing.Size(1062, 473);
             this.dataGridViewQualifyingRound.TabIndex = 14;
             this.dataGridViewQualifyingRound.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewQualifyingRound_CellValueChanged);
             // 
@@ -899,7 +900,7 @@
             this.tabPageInterim.Location = new System.Drawing.Point(4, 29);
             this.tabPageInterim.Name = "tabPageInterim";
             this.tabPageInterim.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageInterim.Size = new System.Drawing.Size(1076, 629);
+            this.tabPageInterim.Size = new System.Drawing.Size(1076, 523);
             this.tabPageInterim.TabIndex = 2;
             this.tabPageInterim.Text = "Zwischenrunde";
             this.tabPageInterim.UseVisualStyleBackColor = true;
@@ -934,7 +935,7 @@
             this.dataGridViewInterimRound.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewInterimRound.Location = new System.Drawing.Point(7, 43);
             this.dataGridViewInterimRound.Name = "dataGridViewInterimRound";
-            this.dataGridViewInterimRound.Size = new System.Drawing.Size(1062, 579);
+            this.dataGridViewInterimRound.Size = new System.Drawing.Size(1062, 473);
             this.dataGridViewInterimRound.TabIndex = 20;
             this.dataGridViewInterimRound.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewInterimRound_CellValueChanged);
             // 
@@ -1005,7 +1006,7 @@
             this.tabPageCrossgames.Location = new System.Drawing.Point(4, 29);
             this.tabPageCrossgames.Name = "tabPageCrossgames";
             this.tabPageCrossgames.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageCrossgames.Size = new System.Drawing.Size(1076, 629);
+            this.tabPageCrossgames.Size = new System.Drawing.Size(1076, 523);
             this.tabPageCrossgames.TabIndex = 3;
             this.tabPageCrossgames.Text = "Kreuzspiele";
             this.tabPageCrossgames.UseVisualStyleBackColor = true;
@@ -1041,7 +1042,7 @@
             this.dataGridViewCrossgamesRound.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCrossgamesRound.Location = new System.Drawing.Point(7, 43);
             this.dataGridViewCrossgamesRound.Name = "dataGridViewCrossgamesRound";
-            this.dataGridViewCrossgamesRound.Size = new System.Drawing.Size(1062, 579);
+            this.dataGridViewCrossgamesRound.Size = new System.Drawing.Size(1062, 473);
             this.dataGridViewCrossgamesRound.TabIndex = 26;
             this.dataGridViewCrossgamesRound.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCrossgamesRound_CellValueChanged);
             // 
@@ -1091,6 +1092,7 @@
             // 
             // tabPageClassement
             // 
+            this.tabPageClassement.Controls.Add(this.buttonFinalClassment);
             this.tabPageClassement.Controls.Add(this.buttonFTPclg);
             this.tabPageClassement.Controls.Add(this.dataGridViewClassementgamesRound);
             this.tabPageClassement.Controls.Add(this.button4);
@@ -1101,7 +1103,7 @@
             this.tabPageClassement.Location = new System.Drawing.Point(4, 29);
             this.tabPageClassement.Name = "tabPageClassement";
             this.tabPageClassement.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageClassement.Size = new System.Drawing.Size(1076, 629);
+            this.tabPageClassement.Size = new System.Drawing.Size(1076, 523);
             this.tabPageClassement.TabIndex = 4;
             this.tabPageClassement.Text = "Platzierungsspiele";
             this.tabPageClassement.UseVisualStyleBackColor = true;
@@ -1128,7 +1130,7 @@
             this.dataGridViewClassementgamesRound.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewClassementgamesRound.Location = new System.Drawing.Point(8, 42);
             this.dataGridViewClassementgamesRound.Name = "dataGridViewClassementgamesRound";
-            this.dataGridViewClassementgamesRound.Size = new System.Drawing.Size(1062, 579);
+            this.dataGridViewClassementgamesRound.Size = new System.Drawing.Size(1062, 473);
             this.dataGridViewClassementgamesRound.TabIndex = 33;
             this.dataGridViewClassementgamesRound.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewClassementgamesRound_CellValueChanged);
             // 
@@ -1205,6 +1207,17 @@
             // 
             this.toolStripStatusLabelEstimatedTournamentTime.Name = "toolStripStatusLabelEstimatedTournamentTime";
             this.toolStripStatusLabelEstimatedTournamentTime.Size = new System.Drawing.Size(0, 17);
+            // 
+            // buttonFinalClassment
+            // 
+            this.buttonFinalClassment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonFinalClassment.Location = new System.Drawing.Point(588, 6);
+            this.buttonFinalClassment.Name = "buttonFinalClassment";
+            this.buttonFinalClassment.Size = new System.Drawing.Size(110, 30);
+            this.buttonFinalClassment.TabIndex = 35;
+            this.buttonFinalClassment.Text = "Endresultat";
+            this.buttonFinalClassment.UseVisualStyleBackColor = true;
+            this.buttonFinalClassment.Click += new System.EventHandler(this.buttonFinalClassment_Click);
             // 
             // FormMain
             // 
@@ -1345,6 +1358,7 @@
         private System.Windows.Forms.Button buttonFTPig;
         private System.Windows.Forms.Button buttonqg;
         private System.Windows.Forms.CheckBox checkBoxUseInterim;
+        private System.Windows.Forms.Button buttonFinalClassment;
     }
 }
 

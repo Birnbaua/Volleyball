@@ -15,7 +15,6 @@ namespace Volleyball
         int teamsCount;
         int lastGameNr;
         int lastRoundNr;
-        bool useSecondGamePlaning;
         List<String> fieldNames;
         List<List<ResultData>> divisionsQualifyingList;
         List<List<String>> divisionsList;
@@ -42,8 +41,7 @@ namespace Volleyball
             this.lastGameNr = lastGameNr;
             this.lastRoundNr = lastRoundNr;
             this.gamePlan = gamePlan;
-            //this.useSecondGamePlaning = useSecondGamePlaning;
-
+            
             setTimeParameters(setCounter, minutesSet, minutesPause);
 
             this.startRound = this.startRound.AddSeconds(pauseBetweenQualifyingInterim * 60);
@@ -189,121 +187,121 @@ namespace Volleyball
             //log.write("interim games generateNewDivisions(), useSecondGamePlaning = " + useSecondGamePlaning);
 
             if (teamsCount == 20)
-                {
-                    // make ranking of all divisions thrid teams
-                    divisionRanksFirstToFifth[2] = giveMeSort(divisionRanksFirstToFifth[2]);
+            {
+                // make ranking of all divisions thrid teams
+                divisionRanksFirstToFifth[2] = giveMeSort(divisionRanksFirstToFifth[2]);
 
-                    // group A
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[0][0].Team,
-                            divisionRanksFirstToFifth[0][1].Team,
-                            divisionRanksFirstToFifth[1][2].Team,
-                            divisionRanksFirstToFifth[1][3].Team,
-                            divisionRanksFirstToFifth[2][0].Team
-                        });
+                // group A
+                newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[0][0].Team,
+                        divisionRanksFirstToFifth[0][1].Team,
+                        divisionRanksFirstToFifth[1][2].Team,
+                        divisionRanksFirstToFifth[1][3].Team,
+                        divisionRanksFirstToFifth[2][0].Team
+                    });
 
-                    // group B
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[0][2].Team,
-                            divisionRanksFirstToFifth[0][3].Team,
-                            divisionRanksFirstToFifth[1][0].Team,
-                            divisionRanksFirstToFifth[1][1].Team,
-                            divisionRanksFirstToFifth[2][1].Team
-                        });
+                // group B
+                newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[0][2].Team,
+                        divisionRanksFirstToFifth[0][3].Team,
+                        divisionRanksFirstToFifth[1][0].Team,
+                        divisionRanksFirstToFifth[1][1].Team,
+                        divisionRanksFirstToFifth[2][1].Team
+                    });
 
-                    // group C
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[2][2].Team,
-                            divisionRanksFirstToFifth[3][0].Team,
-                            divisionRanksFirstToFifth[3][1].Team,
-                            divisionRanksFirstToFifth[4][2].Team,
-                            divisionRanksFirstToFifth[4][3].Team
-                        });
+                // group C
+                newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[2][2].Team,
+                        divisionRanksFirstToFifth[3][0].Team,
+                        divisionRanksFirstToFifth[3][1].Team,
+                        divisionRanksFirstToFifth[4][2].Team,
+                        divisionRanksFirstToFifth[4][3].Team
+                    });
 
-                    // group D
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[2][3].Team,
-                            divisionRanksFirstToFifth[3][2].Team,
-                            divisionRanksFirstToFifth[3][3].Team,
-                            divisionRanksFirstToFifth[4][0].Team,
-                            divisionRanksFirstToFifth[4][1].Team
-                        });
-                }
+                // group D
+                newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[2][3].Team,
+                        divisionRanksFirstToFifth[3][2].Team,
+                        divisionRanksFirstToFifth[3][3].Team,
+                        divisionRanksFirstToFifth[4][0].Team,
+                        divisionRanksFirstToFifth[4][1].Team
+                    });
+            }
             else if (teamsCount == 25)
-                {
-                    // group A
-                    newDivisionList.Add(giveMeTeamnames(divisionRanksFirstToFifth[0]));
+            {
+                // group A
+                newDivisionList.Add(giveMeTeamnames(divisionRanksFirstToFifth[0]));
 
-                    // group B
-                    newDivisionList.Add(giveMeTeamnames(divisionRanksFirstToFifth[1]));
+                // group B
+                newDivisionList.Add(giveMeTeamnames(divisionRanksFirstToFifth[1]));
 
-                    // group C
-                    newDivisionList.Add(giveMeTeamnames(divisionRanksFirstToFifth[2]));
+                // group C
+                newDivisionList.Add(giveMeTeamnames(divisionRanksFirstToFifth[2]));
 
-                    // group D
-                    newDivisionList.Add(giveMeTeamnames(divisionRanksFirstToFifth[3]));
+                // group D
+                newDivisionList.Add(giveMeTeamnames(divisionRanksFirstToFifth[3]));
 
-                    // group E
-                    newDivisionList.Add(giveMeTeamnames(divisionRanksFirstToFifth[4]));
-                }
+                // group E
+                newDivisionList.Add(giveMeTeamnames(divisionRanksFirstToFifth[4]));
+            }
             else if (teamsCount == 28)
-                {
-                    // make ranking of all divisions second teams
-                    divisionRanksFirstToFifth[1] = giveMeSort(divisionRanksFirstToFifth[1]);
+            {
+                // make ranking of all divisions second teams
+                divisionRanksFirstToFifth[1] = giveMeSort(divisionRanksFirstToFifth[1]);
 
-                    // group A
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[0][0].Team,
-                            divisionRanksFirstToFifth[0][1].Team,
-                            divisionRanksFirstToFifth[0][2].Team,
-                            divisionRanksFirstToFifth[1][0].Team
-                        });
+                // group A
+                newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[0][0].Team,
+                        divisionRanksFirstToFifth[0][1].Team,
+                        divisionRanksFirstToFifth[0][2].Team,
+                        divisionRanksFirstToFifth[1][0].Team
+                    });
 
-                    // group B
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[0][3].Team,
-                            divisionRanksFirstToFifth[0][4].Team,
-                            divisionRanksFirstToFifth[0][5].Team,
-                            divisionRanksFirstToFifth[1][1].Team
-                        });
+                // group B
+                newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[0][3].Team,
+                        divisionRanksFirstToFifth[0][4].Team,
+                        divisionRanksFirstToFifth[0][5].Team,
+                        divisionRanksFirstToFifth[1][1].Team
+                    });
 
-                    // group C
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[1][2].Team,
-                            divisionRanksFirstToFifth[1][5].Team,
-                            divisionRanksFirstToFifth[2][0].Team,
-                            divisionRanksFirstToFifth[2][1].Team,
-                            divisionRanksFirstToFifth[2][2].Team
-                        });
+                // group C
+                newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[1][2].Team,
+                        divisionRanksFirstToFifth[1][5].Team,
+                        divisionRanksFirstToFifth[2][0].Team,
+                        divisionRanksFirstToFifth[2][1].Team,
+                        divisionRanksFirstToFifth[2][2].Team
+                    });
 
-                    // group D
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[1][3].Team,
-                            divisionRanksFirstToFifth[1][4].Team,
-                            divisionRanksFirstToFifth[2][3].Team,
-                            divisionRanksFirstToFifth[2][4].Team,
-                            divisionRanksFirstToFifth[2][5].Team
-                        });
+                // group D
+                newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[1][3].Team,
+                        divisionRanksFirstToFifth[1][4].Team,
+                        divisionRanksFirstToFifth[2][3].Team,
+                        divisionRanksFirstToFifth[2][4].Team,
+                        divisionRanksFirstToFifth[2][5].Team
+                    });
 
-                    // group E
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[3][0].Team,
-                            divisionRanksFirstToFifth[3][1].Team,
-                            divisionRanksFirstToFifth[3][2].Team,
-                            divisionRanksFirstToFifth[4][2].Team,
-                            divisionRanksFirstToFifth[4][3].Team
-                        });
+                // group E
+                newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[3][0].Team,
+                        divisionRanksFirstToFifth[3][1].Team,
+                        divisionRanksFirstToFifth[3][2].Team,
+                        divisionRanksFirstToFifth[4][2].Team,
+                        divisionRanksFirstToFifth[4][3].Team
+                    });
 
-                    // group F
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[3][3].Team,
-                            divisionRanksFirstToFifth[3][4].Team,
-                            divisionRanksFirstToFifth[3][5].Team,
-                            divisionRanksFirstToFifth[4][0].Team,
-                            divisionRanksFirstToFifth[4][1].Team
-                        });
+                // group F
+                newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[3][3].Team,
+                        divisionRanksFirstToFifth[3][4].Team,
+                        divisionRanksFirstToFifth[3][5].Team,
+                        divisionRanksFirstToFifth[4][0].Team,
+                        divisionRanksFirstToFifth[4][1].Team
+                    });
 
-                }
+            }
             else if (teamsCount == 30)
             {
                 // make ranking of all divisions second teams
@@ -368,265 +366,182 @@ namespace Volleyball
 
             }
             else if (teamsCount == 35)
-                {
-                    // make ranking of all divisions second teams
-                    divisionRanksFirstToFifth[1] = giveMeSort(divisionRanksFirstToFifth[1]);
-
-                    // make ranking of all divisions third teams
-                    divisionRanksFirstToFifth[2] = giveMeSort(divisionRanksFirstToFifth[2]);
-
-                    // make ranking of all divisions fourth teams
-                    divisionRanksFirstToFifth[3] = giveMeSort(divisionRanksFirstToFifth[3]);
-
-                    // make ranking of all divisions fifth teams
-                    divisionRanksFirstToFifth[4] = giveMeSort(divisionRanksFirstToFifth[4]);
-
-                    // group A
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[0][0].Team,
-                            divisionRanksFirstToFifth[0][1].Team,
-                            divisionRanksFirstToFifth[0][2].Team,
-                            divisionRanksFirstToFifth[0][3].Team,
-                            divisionRanksFirstToFifth[1][1].Team
-                        });
-
-                    // group B
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[0][4].Team,
-                            divisionRanksFirstToFifth[0][5].Team,
-                            divisionRanksFirstToFifth[0][6].Team,
-                            divisionRanksFirstToFifth[1][0].Team,
-                            divisionRanksFirstToFifth[1][2].Team
-                        });
-
-                    // group C
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[1][3].Team,
-                            divisionRanksFirstToFifth[1][5].Team,
-                            divisionRanksFirstToFifth[2][0].Team,
-                            divisionRanksFirstToFifth[2][2].Team,
-                            divisionRanksFirstToFifth[2][4].Team
-                        });
-
-                    // group D
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[1][4].Team,
-                            divisionRanksFirstToFifth[1][6].Team,
-                            divisionRanksFirstToFifth[2][1].Team,
-                            divisionRanksFirstToFifth[2][3].Team,
-                            divisionRanksFirstToFifth[2][5].Team
-                        });
-
-                    // group E
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[2][6].Team,
-                            divisionRanksFirstToFifth[3][1].Team,
-                            divisionRanksFirstToFifth[3][3].Team,
-                            divisionRanksFirstToFifth[3][5].Team,
-                            divisionRanksFirstToFifth[4][0].Team
-                        });
-
-                    // group F
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[3][0].Team,
-                            divisionRanksFirstToFifth[3][2].Team,
-                            divisionRanksFirstToFifth[3][4].Team,
-                            divisionRanksFirstToFifth[3][6].Team,
-                            divisionRanksFirstToFifth[4][1].Team
-                        });
-
-                    // group G
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[4][2].Team,
-                            divisionRanksFirstToFifth[4][3].Team,
-                            divisionRanksFirstToFifth[4][4].Team,
-                            divisionRanksFirstToFifth[4][5].Team,
-                            divisionRanksFirstToFifth[4][6].Team
-                        });
-                }
-            else if (teamsCount == 40)
-                {
-                    // make ranking of all divisions second teams
-                    divisionRanksFirstToFifth[1] = giveMeSort(divisionRanksFirstToFifth[1]);
-
-                    // make ranking of all divisions third teams
-                    divisionRanksFirstToFifth[2] = giveMeSort(divisionRanksFirstToFifth[2]);
-
-                    // make ranking of all divisions fourth teams
-                    divisionRanksFirstToFifth[3] = giveMeSort(divisionRanksFirstToFifth[3]);
-
-                    // make ranking of all divisions fifth teams
-                    divisionRanksFirstToFifth[4] = giveMeSort(divisionRanksFirstToFifth[4]);
-
-                    // group A
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[0][0].Team,
-                            divisionRanksFirstToFifth[0][1].Team,
-                            divisionRanksFirstToFifth[0][2].Team,
-                            divisionRanksFirstToFifth[0][3].Team,
-                            divisionRanksFirstToFifth[1][0].Team
-                        });
-
-                    // group B
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[0][4].Team,
-                            divisionRanksFirstToFifth[0][5].Team,
-                            divisionRanksFirstToFifth[0][6].Team,
-                            divisionRanksFirstToFifth[0][7].Team,
-                            divisionRanksFirstToFifth[1][1].Team
-                        });
-
-                    // group C
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[1][2].Team,
-                            divisionRanksFirstToFifth[1][3].Team,
-                            divisionRanksFirstToFifth[1][4].Team,
-                            divisionRanksFirstToFifth[2][0].Team,
-                            divisionRanksFirstToFifth[2][2].Team
-                        });
-
-                    // group D
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[1][5].Team,
-                            divisionRanksFirstToFifth[1][6].Team,
-                            divisionRanksFirstToFifth[1][7].Team,
-                            divisionRanksFirstToFifth[2][1].Team,
-                            divisionRanksFirstToFifth[2][3].Team
-                        });
-
-                    // group E
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[2][4].Team,
-                            divisionRanksFirstToFifth[2][6].Team,
-                            divisionRanksFirstToFifth[3][0].Team,
-                            divisionRanksFirstToFifth[3][2].Team,
-                            divisionRanksFirstToFifth[3][4].Team
-                        });
-
-                    // group F
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[2][5].Team,
-                            divisionRanksFirstToFifth[2][7].Team,
-                            divisionRanksFirstToFifth[3][1].Team,
-                            divisionRanksFirstToFifth[3][3].Team,
-                            divisionRanksFirstToFifth[3][5].Team
-                        });
-
-                    // group G
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[3][6].Team,
-                            divisionRanksFirstToFifth[4][0].Team,
-                            divisionRanksFirstToFifth[4][2].Team,
-                            divisionRanksFirstToFifth[4][4].Team,
-                            divisionRanksFirstToFifth[4][6].Team
-                        });
-
-                    // group H
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[3][7].Team,
-                            divisionRanksFirstToFifth[4][1].Team,
-                            divisionRanksFirstToFifth[4][3].Team,
-                            divisionRanksFirstToFifth[4][5].Team,
-                            divisionRanksFirstToFifth[4][7].Team
-                        });
-                }
-            else if (teamsCount == 45)
-                {
-                    // make ranking of all divisions second teams
-                    divisionRanksFirstToFifth[1] = giveMeSort(divisionRanksFirstToFifth[1]);
-
-                    // make ranking of all divisions third teams
-                    divisionRanksFirstToFifth[2] = giveMeSort(divisionRanksFirstToFifth[2]);
-
-                    // make ranking of all divisions fourth teams
-                    divisionRanksFirstToFifth[3] = giveMeSort(divisionRanksFirstToFifth[3]);
-
-                    // make ranking of all divisions fifth teams
-                    divisionRanksFirstToFifth[4] = giveMeSort(divisionRanksFirstToFifth[4]);
-
-                    // group A
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[0][0].Team,
-                            divisionRanksFirstToFifth[0][1].Team,
-                            divisionRanksFirstToFifth[0][2].Team,
-                            divisionRanksFirstToFifth[0][3].Team,
-                            divisionRanksFirstToFifth[0][4].Team
-                        });
-
-                    // group B
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[0][5].Team,
-                            divisionRanksFirstToFifth[0][6].Team,
-                            divisionRanksFirstToFifth[0][7].Team,
-                            divisionRanksFirstToFifth[0][8].Team,
-                            divisionRanksFirstToFifth[1][0].Team
-                        });
-
-                    // group C
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[1][1].Team,
-                            divisionRanksFirstToFifth[1][2].Team,
-                            divisionRanksFirstToFifth[1][3].Team,
-                            divisionRanksFirstToFifth[1][4].Team,
-                            divisionRanksFirstToFifth[2][0].Team
-                        });
-
-                    // group D
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[1][5].Team,
-                            divisionRanksFirstToFifth[1][6].Team,
-                            divisionRanksFirstToFifth[1][7].Team,
-                            divisionRanksFirstToFifth[1][8].Team,
-                            divisionRanksFirstToFifth[2][1].Team
-                        });
-
-                    // group E
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[2][2].Team,
-                            divisionRanksFirstToFifth[2][4].Team,
-                            divisionRanksFirstToFifth[2][6].Team,
-                            divisionRanksFirstToFifth[2][8].Team,
-                            divisionRanksFirstToFifth[3][0].Team
-                        });
-
-                    // group F
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[2][3].Team,
-                            divisionRanksFirstToFifth[2][5].Team,
-                            divisionRanksFirstToFifth[2][7].Team,
-                            divisionRanksFirstToFifth[3][1].Team,
-                            divisionRanksFirstToFifth[3][2].Team
-                        });
-
-                    // group G
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[3][4].Team,
-                            divisionRanksFirstToFifth[3][6].Team,
-                            divisionRanksFirstToFifth[3][8].Team,
-                            divisionRanksFirstToFifth[4][0].Team,
-                            divisionRanksFirstToFifth[4][2].Team
-                        });
-
-                    // group H
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[3][3].Team,
-                            divisionRanksFirstToFifth[3][5].Team,
-                            divisionRanksFirstToFifth[3][7].Team,
-                            divisionRanksFirstToFifth[4][1].Team,
-                            divisionRanksFirstToFifth[4][3].Team
-                        });
-
-                    // group J
-                    newDivisionList.Add(new List<string>() {
-                            divisionRanksFirstToFifth[4][4].Team,
-                            divisionRanksFirstToFifth[4][5].Team,
-                            divisionRanksFirstToFifth[4][6].Team,
-                            divisionRanksFirstToFifth[4][7].Team,
-                            divisionRanksFirstToFifth[4][8].Team
-                        });
-                }
-            /*else if (teamsCount == 50)
             {
+                // make ranking of all divisions second teams
+                divisionRanksFirstToFifth[1] = giveMeSort(divisionRanksFirstToFifth[1]);
+
+                // make ranking of all divisions third teams
+                divisionRanksFirstToFifth[2] = giveMeSort(divisionRanksFirstToFifth[2]);
+
+                // make ranking of all divisions fourth teams
+                divisionRanksFirstToFifth[3] = giveMeSort(divisionRanksFirstToFifth[3]);
+
+                // make ranking of all divisions fifth teams
+                divisionRanksFirstToFifth[4] = giveMeSort(divisionRanksFirstToFifth[4]);
+
+                // group A
+                newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[0][0].Team,
+                        divisionRanksFirstToFifth[0][1].Team,
+                        divisionRanksFirstToFifth[0][2].Team,
+                        divisionRanksFirstToFifth[0][3].Team,
+                        divisionRanksFirstToFifth[1][1].Team
+                    });
+
+                // group B
+                newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[0][4].Team,
+                        divisionRanksFirstToFifth[0][5].Team,
+                        divisionRanksFirstToFifth[0][6].Team,
+                        divisionRanksFirstToFifth[1][0].Team,
+                        divisionRanksFirstToFifth[1][2].Team
+                    });
+
+                // group C
+                newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[1][3].Team,
+                        divisionRanksFirstToFifth[1][5].Team,
+                        divisionRanksFirstToFifth[2][0].Team,
+                        divisionRanksFirstToFifth[2][2].Team,
+                        divisionRanksFirstToFifth[2][4].Team
+                    });
+
+                // group D
+                newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[1][4].Team,
+                        divisionRanksFirstToFifth[1][6].Team,
+                        divisionRanksFirstToFifth[2][1].Team,
+                        divisionRanksFirstToFifth[2][3].Team,
+                        divisionRanksFirstToFifth[2][5].Team
+                    });
+
+                // group E
+                newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[2][6].Team,
+                        divisionRanksFirstToFifth[3][1].Team,
+                        divisionRanksFirstToFifth[3][3].Team,
+                        divisionRanksFirstToFifth[3][5].Team,
+                        divisionRanksFirstToFifth[4][0].Team
+                    });
+
+                // group F
+                newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[3][0].Team,
+                        divisionRanksFirstToFifth[3][2].Team,
+                        divisionRanksFirstToFifth[3][4].Team,
+                        divisionRanksFirstToFifth[3][6].Team,
+                        divisionRanksFirstToFifth[4][1].Team
+                    });
+
+                // group G
+                newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[4][2].Team,
+                        divisionRanksFirstToFifth[4][3].Team,
+                        divisionRanksFirstToFifth[4][4].Team,
+                        divisionRanksFirstToFifth[4][5].Team,
+                        divisionRanksFirstToFifth[4][6].Team
+                    });
+            }
+            else if (teamsCount == 40)
+            {
+                // make ranking of all divisions second teams
+                divisionRanksFirstToFifth[1] = giveMeSort(divisionRanksFirstToFifth[1]);
+
+                // make ranking of all divisions third teams
+                divisionRanksFirstToFifth[2] = giveMeSort(divisionRanksFirstToFifth[2]);
+
+                // make ranking of all divisions fourth teams
+                divisionRanksFirstToFifth[3] = giveMeSort(divisionRanksFirstToFifth[3]);
+
+                // make ranking of all divisions fifth teams
+                divisionRanksFirstToFifth[4] = giveMeSort(divisionRanksFirstToFifth[4]);
+
+                // group A
+                newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[0][0].Team,
+                        divisionRanksFirstToFifth[0][1].Team,
+                        divisionRanksFirstToFifth[0][2].Team,
+                        divisionRanksFirstToFifth[0][3].Team,
+                        divisionRanksFirstToFifth[1][0].Team
+                    });
+
+                // group B
+                newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[0][4].Team,
+                        divisionRanksFirstToFifth[0][5].Team,
+                        divisionRanksFirstToFifth[0][6].Team,
+                        divisionRanksFirstToFifth[0][7].Team,
+                        divisionRanksFirstToFifth[1][1].Team
+                    });
+
+                // group C
+                newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[1][2].Team,
+                        divisionRanksFirstToFifth[1][3].Team,
+                        divisionRanksFirstToFifth[1][4].Team,
+                        divisionRanksFirstToFifth[2][0].Team,
+                        divisionRanksFirstToFifth[2][2].Team
+                    });
+
+                // group D
+                newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[1][5].Team,
+                        divisionRanksFirstToFifth[1][6].Team,
+                        divisionRanksFirstToFifth[1][7].Team,
+                        divisionRanksFirstToFifth[2][1].Team,
+                        divisionRanksFirstToFifth[2][3].Team
+                    });
+
+                // group E
+                newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[2][4].Team,
+                        divisionRanksFirstToFifth[2][6].Team,
+                        divisionRanksFirstToFifth[3][0].Team,
+                        divisionRanksFirstToFifth[3][2].Team,
+                        divisionRanksFirstToFifth[3][4].Team
+                    });
+
+                // group F
+                newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[2][5].Team,
+                        divisionRanksFirstToFifth[2][7].Team,
+                        divisionRanksFirstToFifth[3][1].Team,
+                        divisionRanksFirstToFifth[3][3].Team,
+                        divisionRanksFirstToFifth[3][5].Team
+                    });
+
+                // group G
+                newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[3][6].Team,
+                        divisionRanksFirstToFifth[4][0].Team,
+                        divisionRanksFirstToFifth[4][2].Team,
+                        divisionRanksFirstToFifth[4][4].Team,
+                        divisionRanksFirstToFifth[4][6].Team
+                    });
+
+                // group H
+                newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[3][7].Team,
+                        divisionRanksFirstToFifth[4][1].Team,
+                        divisionRanksFirstToFifth[4][3].Team,
+                        divisionRanksFirstToFifth[4][5].Team,
+                        divisionRanksFirstToFifth[4][7].Team
+                    });
+            }
+            else if (teamsCount == 45)
+            {
+                // make ranking of all divisions second teams
+                divisionRanksFirstToFifth[1] = giveMeSort(divisionRanksFirstToFifth[1]);
+
+                // make ranking of all divisions third teams
+                divisionRanksFirstToFifth[2] = giveMeSort(divisionRanksFirstToFifth[2]);
+
+                // make ranking of all divisions fourth teams
+                divisionRanksFirstToFifth[3] = giveMeSort(divisionRanksFirstToFifth[3]);
+
+                // make ranking of all divisions fifth teams
+                divisionRanksFirstToFifth[4] = giveMeSort(divisionRanksFirstToFifth[4]);
+
                 // group A
                 newDivisionList.Add(new List<string>() {
                         divisionRanksFirstToFifth[0][0].Team,
@@ -635,88 +550,79 @@ namespace Volleyball
                         divisionRanksFirstToFifth[0][3].Team,
                         divisionRanksFirstToFifth[0][4].Team
                     });
-            
+
                 // group B
                 newDivisionList.Add(new List<string>() {
                         divisionRanksFirstToFifth[0][5].Team,
                         divisionRanksFirstToFifth[0][6].Team,
                         divisionRanksFirstToFifth[0][7].Team,
                         divisionRanksFirstToFifth[0][8].Team,
-                        divisionRanksFirstToFifth[0][9].Team
+                        divisionRanksFirstToFifth[1][0].Team
                     });
-            
+
                 // group C
                 newDivisionList.Add(new List<string>() {
-                        divisionRanksFirstToFifth[1][0].Team,
                         divisionRanksFirstToFifth[1][1].Team,
                         divisionRanksFirstToFifth[1][2].Team,
                         divisionRanksFirstToFifth[1][3].Team,
-                        divisionRanksFirstToFifth[1][4].Team
+                        divisionRanksFirstToFifth[1][4].Team,
+                        divisionRanksFirstToFifth[2][0].Team
                     });
-            
+
                 // group D
                 newDivisionList.Add(new List<string>() {
                         divisionRanksFirstToFifth[1][5].Team,
                         divisionRanksFirstToFifth[1][6].Team,
                         divisionRanksFirstToFifth[1][7].Team,
                         divisionRanksFirstToFifth[1][8].Team,
-                        divisionRanksFirstToFifth[1][9].Team
+                        divisionRanksFirstToFifth[2][1].Team
                     });
-            
+
                 // group E
                 newDivisionList.Add(new List<string>() {
-                        divisionRanksFirstToFifth[2][0].Team,
-                        divisionRanksFirstToFifth[2][1].Team,
                         divisionRanksFirstToFifth[2][2].Team,
-                        divisionRanksFirstToFifth[2][3].Team,
-                        divisionRanksFirstToFifth[2][4].Team
+                        divisionRanksFirstToFifth[2][4].Team,
+                        divisionRanksFirstToFifth[2][6].Team,
+                        divisionRanksFirstToFifth[2][8].Team,
+                        divisionRanksFirstToFifth[3][0].Team
                     });
-            
+
                 // group F
                 newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[2][3].Team,
                         divisionRanksFirstToFifth[2][5].Team,
-                        divisionRanksFirstToFifth[2][6].Team,
                         divisionRanksFirstToFifth[2][7].Team,
-                        divisionRanksFirstToFifth[2][8].Team,
-                        divisionRanksFirstToFifth[2][9].Team
+                        divisionRanksFirstToFifth[3][1].Team,
+                        divisionRanksFirstToFifth[3][2].Team
                     });
-            
+
                 // group G
                 newDivisionList.Add(new List<string>() {
-                        divisionRanksFirstToFifth[3][0].Team,
-                        divisionRanksFirstToFifth[3][1].Team,
-                        divisionRanksFirstToFifth[3][2].Team,
-                        divisionRanksFirstToFifth[3][3].Team,
-                        divisionRanksFirstToFifth[3][4].Team
+                        divisionRanksFirstToFifth[3][4].Team,
+                        divisionRanksFirstToFifth[3][6].Team,
+                        divisionRanksFirstToFifth[3][8].Team,
+                        divisionRanksFirstToFifth[4][0].Team,
+                        divisionRanksFirstToFifth[4][2].Team
                     });
-            
+
                 // group H
                 newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[3][3].Team,
                         divisionRanksFirstToFifth[3][5].Team,
-                        divisionRanksFirstToFifth[3][6].Team,
                         divisionRanksFirstToFifth[3][7].Team,
-                        divisionRanksFirstToFifth[3][8].Team,
-                        divisionRanksFirstToFifth[3][9].Team
-                    });
-            
-                // group I
-                newDivisionList.Add(new List<string>() {
-                        divisionRanksFirstToFifth[4][0].Team,
                         divisionRanksFirstToFifth[4][1].Team,
-                        divisionRanksFirstToFifth[4][2].Team,
-                        divisionRanksFirstToFifth[4][3].Team,
-                        divisionRanksFirstToFifth[4][4].Team
+                        divisionRanksFirstToFifth[4][3].Team
                     });
-            
+
                 // group J
                 newDivisionList.Add(new List<string>() {
+                        divisionRanksFirstToFifth[4][4].Team,
                         divisionRanksFirstToFifth[4][5].Team,
                         divisionRanksFirstToFifth[4][6].Team,
                         divisionRanksFirstToFifth[4][7].Team,
-                        divisionRanksFirstToFifth[4][8].Team,
-                        divisionRanksFirstToFifth[4][9].Team
+                        divisionRanksFirstToFifth[4][8].Team
                     });
-            }*/
+            }
             else if(teamsCount == 50)
             {
                  # region profi
@@ -816,17 +722,17 @@ namespace Volleyball
                  #endregion
             }
             else if(teamsCount == 55)
-                {
-                    // make ranking of all divisions second teams
-                    divisionRanksFirstToFifth[1] = giveMeSort(divisionRanksFirstToFifth[1]);
+            {
+                // make ranking of all divisions second teams
+                divisionRanksFirstToFifth[1] = giveMeSort(divisionRanksFirstToFifth[1]);
 
-                    // make ranking of all divisions fourth teams
-                    divisionRanksFirstToFifth[3] = giveMeSort(divisionRanksFirstToFifth[3]);
+                // make ranking of all divisions fourth teams
+                divisionRanksFirstToFifth[3] = giveMeSort(divisionRanksFirstToFifth[3]);
 
-                    // make ranking of all divisions fifth teams
-                    divisionRanksFirstToFifth[4] = giveMeSort(divisionRanksFirstToFifth[4]);
+                // make ranking of all divisions fifth teams
+                divisionRanksFirstToFifth[4] = giveMeSort(divisionRanksFirstToFifth[4]);
 
-                    # region profi
+                # region profi
                     // group A
                     newDivisionList.Add(new List<string>() {
                             divisionRanksFirstToFifth[0][0].Team,
@@ -864,7 +770,7 @@ namespace Volleyball
                         });
                     #endregion
 
-                    #region hobby a
+                #region hobby a
                     // group A
                     newDivisionList.Add(new List<string>() {
                             divisionRanksFirstToFifth[1][9].Team,
@@ -902,7 +808,7 @@ namespace Volleyball
                         });
                     #endregion
 
-                    #region hobby b
+                #region hobby b
                     // group A
                     newDivisionList.Add(new List<string>() {
                             divisionRanksFirstToFifth[3][7].Team,
@@ -930,7 +836,7 @@ namespace Volleyball
                             divisionRanksFirstToFifth[4][10].Team
                         });
                     #endregion
-                }
+            }
             else if (teamsCount == 60)
             {
                 // make ranking of all divisions second teams
