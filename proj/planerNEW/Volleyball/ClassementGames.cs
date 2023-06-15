@@ -663,8 +663,10 @@ namespace Volleyball
                 List<MatchData> copyCrossgamesList = resultCrossgamesList;
                 int resultInterimListCount = resultInterimList.Count();
                 List<String> winAndlooser;
+                Console.WriteLine("Before");
 
                 // if 55 teams, remove the first 5 kr game results, because this teams do not play any classement games
+                /*
                 if (teamsCount == 35 || teamsCount == 45 || teamsCount == 55)
                 {
                     for (int i = 0; i < 5; i++)
@@ -672,6 +674,10 @@ namespace Volleyball
 
                     resultInterimListCount--;
                 }
+                */
+
+                Console.WriteLine("After");
+                Console.WriteLine(copyCrossgamesList);
 
                 // get as many referees as needed for first round
                 for (int i = 0; refereeList.Count() < fieldCount; i++)
@@ -679,6 +685,8 @@ namespace Volleyball
                     for (int ii = 0; ii < resultInterimList[i].Count() && refereeList.Count() < fieldCount; ii++)
                         refereeList.Add(resultInterimList[i][ii].Team);
                 }
+
+
 
                 // generate games
                 for (int i = 0, x = resultInterimListCount - 1, y = ((resultInterimList[x].Count() + resultInterimList[x - 1].Count()) / 2) - 1,
@@ -753,6 +761,174 @@ namespace Volleyball
                         i++;
                     }
                 }
+
+
+
+                if(teamsCount == 45)
+                {
+                    matchData.Clear();
+                    for (int i = 0, x = resultInterimListCount - 1, y = ((resultInterimList[x].Count() + resultInterimList[x - 1].Count()) / 2) - 1,
+                    startingReferee = 0, fCount = 1; (i) < 5; startingReferee++)
+                    {
+
+                        String referee1 = "", referee2 = "";
+
+                        // get the referee for the looser game
+                        if (startingReferee < fieldCount)
+                        {
+                            referee1 = refereeList[startingReferee];
+                            startingReferee++;
+                        }
+
+                        // check if there is a next referee for the winner game
+                        if (startingReferee < fieldCount)
+                            referee2 = refereeList[startingReferee];
+
+                        // get winner and looser for the next related games
+                        winAndlooser = CalculateResults.getResultsForCrossgamesAndClassementgames(copyCrossgamesList[i]);
+                        String winner1 = winAndlooser[1];
+                        String looser1 = winAndlooser[2];
+
+                        winAndlooser = CalculateResults.getResultsForCrossgamesAndClassementgames(copyCrossgamesList[i + 5]);
+                        String winner2 = winAndlooser[1];
+                        String looser2 = winAndlooser[2];
+
+                        // create looser match
+                        matchData.Add(new MatchData()
+                        {
+                            Round = lastRoundNr,
+                            FieldNumber = fCount,
+                            TeamA = looser1,
+                            TeamB = looser2,
+                            Referee = referee1
+                        });
+
+                        if (fCount >= fieldCount)
+                        {
+                            fCount = 1;
+                            lastRoundNr++;
+                        }
+                        else
+                        {
+                            fCount++;
+                        }
+
+                        // create winner query
+                        matchData.Add(new MatchData()
+                        {
+                            Round = lastRoundNr,
+                            FieldNumber = fCount,
+                            TeamA = winner1,
+                            TeamB = winner2,
+                            Referee = referee2
+                        });
+
+                        if (fCount >= fieldCount)
+                        {
+                            fCount = 1;
+                            lastRoundNr++;
+                        }
+                        else
+                        {
+                            fCount++;
+                        }
+
+
+                        if (i < y)
+                        {
+                            i++;
+                        }
+                        else
+                        {
+                            x = x - 2;
+                            int toAdd = resultInterimList[x].Count() + resultInterimList[x - 1].Count();
+                            y = y + toAdd;
+                            //i = i + (toAdd / 2);
+                            i++;
+                        }
+                    }
+                    for (int i = 0, x = resultInterimListCount - 1, y = ((resultInterimList[x].Count() + resultInterimList[x - 1].Count()) / 2) - 1,
+                    startingReferee = 0, fCount = 1; (i) < 5; startingReferee++)
+                    {
+                        //############################################################################################################
+
+                        String referee1 = "", referee2 = "";
+
+                        // get the referee for the looser game
+                        if (startingReferee < fieldCount)
+                        {
+                            referee1 = "";
+                            startingReferee++;
+                        }
+
+                        // check if there is a next referee for the winner game
+                        if (startingReferee < fieldCount)
+                            referee2 = "";
+
+                        // get winner and looser for the next related games
+                        winAndlooser = CalculateResults.getResultsForCrossgamesAndClassementgames(copyCrossgamesList[10+i]);
+                        String winner1 = winAndlooser[1];
+                        String looser1 = winAndlooser[2];
+
+                        winAndlooser = CalculateResults.getResultsForCrossgamesAndClassementgames(copyCrossgamesList[10+i + 5]);
+                        String winner2 = winAndlooser[1];
+                        String looser2 = winAndlooser[2];
+
+                        // create looser match
+                        matchData.Add(new MatchData()
+                        {
+                            Round = lastRoundNr,
+                            FieldNumber = fCount,
+                            TeamA = looser1,
+                            TeamB = looser2,
+                            Referee = referee1
+                        });
+
+                        if (fCount >= fieldCount)
+                        {
+                            fCount = 1;
+                            lastRoundNr++;
+                        }
+                        else
+                        {
+                            fCount++;
+                        }
+
+                        // create winner query
+                        matchData.Add(new MatchData()
+                        {
+                            Round = lastRoundNr,
+                            FieldNumber = fCount,
+                            TeamA = winner1,
+                            TeamB = winner2,
+                            Referee = referee2
+                        });
+
+                        if (fCount >= fieldCount)
+                        {
+                            fCount = 1;
+                            lastRoundNr++;
+                        }
+                        else
+                        {
+                            fCount++;
+                        }
+
+
+                        if (i < y)
+                        {
+                            i++;
+                        }
+                        else
+                        {
+                            x = x - 2;
+                            int toAdd = resultInterimList[x].Count() + resultInterimList[x - 1].Count();
+                            y = y + toAdd;
+                            //i = i + (toAdd / 2);
+                            i++;
+                        }
+                    }
+                }
             }
         }
 
@@ -793,6 +969,23 @@ namespace Volleyball
             }
             if (teamsCount == 45)
             {
+                finalClassement.Clear();
+                for(int i = 0; i<20;i++)
+                {
+                    List<String> result = CalculateResults.getResultsForCrossgamesAndClassementgames(matchData[i]);
+                    finalClassement.Add(new ClassementData()
+                    {
+                        Rank = 40 - (i*2) - 1,
+                        Team = result[1]
+                    });
+                    finalClassement.Add(new ClassementData()
+                    {
+                        Rank = 40 - (i*2),
+                        Team = result[2]
+                    });
+
+                }
+
                 int rank = 41;
                 for (int i = 0; i < resultInterimList[(teamsCount / 5) - 1].Count; i++, rank++)
                 {
@@ -802,6 +995,7 @@ namespace Volleyball
                         Team = resultInterimList[(teamsCount / 5) - 1][i].Team
                     });
                 }
+                finalClassement.Sort((p,q) => p.Rank.CompareTo(q.Rank));
             }
             else if (teamsCount == 55)
             {

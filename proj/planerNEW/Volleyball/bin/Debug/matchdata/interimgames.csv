@@ -1,70 +1,90 @@
-71;11;20.02.2019 10:50:00;1;Feld1;Schmettbos;Die supercoolsten Megacoolen;Netninjas;18;12;0;0;0;0
-72;11;20.02.2019 10:50:00;2;Feld2;Volleybaerenbande;Springginkerl;Wuedsaubande;20;9;0;0;0;0
-73;11;20.02.2019 10:50:00;3;Feld3;Sandviper;Pancakesmashers;20 zwequschte Zwetschken;8;22;0;0;0;0
-74;11;20.02.2019 10:50:00;4;Feld4;Carpe Noctem;Schluckspecht GmbH;Superkalefragelistigexoialigestis;20;10;0;0;0;0
-75;11;20.02.2019 10:50:00;5;Feld5;Stieglitz;Die TSVour;Scharf aber out;26;8;0;0;0;0
-76;11;20.02.2019 10:50:00;6;Feld6;Die vier Fragezeichen;The Best Losers;Ratsherrn Allstarts;22;11;0;0;0;0
-77;11;20.02.2019 10:50:00;7;Feld7;Eisen;Haribus;Du WerRegenZone;12;19;0;0;0;0
-78;12;20.02.2019 11:10:00;2;Feld2;Namenlose Qualitaet;Netninjas;Moes Hoes;14;15;0;0;0;0
-79;12;20.02.2019 11:10:00;3;Feld3;SK Lation;Wuedsaubande;Bombig Beerig;8;26;0;0;0;0
-80;12;20.02.2019 11:10:00;4;Feld4;Black Cat Volleyteam;20 zwequschte Zwetschken;Die Wuerstel sind fertig;20;9;0;0;0;0
-81;12;20.02.2019 11:10:00;5;Feld5;Die Beachboys;Superkalefragelistigexoialigestis;Foi am Sand;9;16;0;0;0;0
-82;12;20.02.2019 11:10:00;6;Feld6;Truthtrain;Scharf aber out;Die gestiefelten Muskelkater;17;16;0;0;0;0
-83;12;20.02.2019 11:10:00;7;Feld7;1 Meter no;Ratsherrn Allstarts;Auf Ex;17;16;0;0;0;0
-84;12;20.02.2019 11:10:00;1;Feld1;Winterzauber 4.0;Du WerRegenZone;Ich und die 3 Hansln;11;19;0;0;0;0
-85;13;20.02.2019 11:30:00;3;Feld3;Die supercoolsten Megacoolen;Moes Hoes;Namenlose Qualitaet;10;27;0;0;0;0
-86;13;20.02.2019 11:30:00;4;Feld4;Springginkerl;Bombig Beerig;SK Lation;28;9;0;0;0;0
-87;13;20.02.2019 11:30:00;5;Feld5;Pancakesmashers;Die Wuerstel sind fertig;Black Cat Volleyteam;18;21;0;0;0;0
-88;13;20.02.2019 11:30:00;6;Feld6;Schluckspecht GmbH;Foi am Sand;Die Beachboys;11;16;0;0;0;0
-89;13;20.02.2019 11:30:00;7;Feld7;Die TSVour;Die gestiefelten Muskelkater;Truthtrain;8;24;0;0;0;0
-90;13;20.02.2019 11:30:00;1;Feld1;The Best Losers;Auf Ex;1 Meter no;15;12;0;0;0;0
-91;13;20.02.2019 11:30:00;2;Feld2;Haribus;Ich und die 3 Hansln;Winterzauber 4.0;9;28;0;0;0;0
-92;14;20.02.2019 11:50:00;4;Feld4;Schmettbos;Netninjas;Die supercoolsten Megacoolen;25;9;0;0;0;0
-93;14;20.02.2019 11:50:00;5;Feld5;Volleybaerenbande;Wuedsaubande;Springginkerl;16;16;0;0;0;0
-94;14;20.02.2019 11:50:00;6;Feld6;Sandviper;20 zwequschte Zwetschken;Pancakesmashers;7;23;0;0;0;0
-95;14;20.02.2019 11:50:00;7;Feld7;Carpe Noctem;Superkalefragelistigexoialigestis;Schluckspecht GmbH;20;12;0;0;0;0
-96;14;20.02.2019 11:50:00;1;Feld1;Stieglitz;Scharf aber out;Die TSVour;8;25;0;0;0;0
-97;14;20.02.2019 11:50:00;2;Feld2;Die vier Fragezeichen;Ratsherrn Allstarts;The Best Losers;10;27;0;0;0;0
-98;14;20.02.2019 11:50:00;3;Feld3;Eisen;Du WerRegenZone;Haribus;22;12;0;0;0;0
-99;15;20.02.2019 12:10:00;5;Feld5;Namenlose Qualitaet;Moes Hoes;Schmettbos;19;10;0;0;0;0
-100;15;20.02.2019 12:10:00;6;Feld6;SK Lation;Bombig Beerig;Volleybaerenbande;23;8;0;0;0;0
-101;15;20.02.2019 12:10:00;7;Feld7;Black Cat Volleyteam;Die Wuerstel sind fertig;Sandviper;11;15;0;0;0;0
-102;15;20.02.2019 12:10:00;1;Feld1;Die Beachboys;Foi am Sand;Carpe Noctem;16;13;0;0;0;0
-103;15;20.02.2019 12:10:00;2;Feld2;Truthtrain;Die gestiefelten Muskelkater;Stieglitz;19;8;0;0;0;0
-104;15;20.02.2019 12:10:00;3;Feld3;1 Meter no;Auf Ex;Die vier Fragezeichen;15;10;0;0;0;0
-105;15;20.02.2019 12:10:00;4;Feld4;Winterzauber 4.0;Ich und die 3 Hansln;Eisen;19;12;0;0;0;0
-106;16;20.02.2019 12:30:00;6;Feld6;Die supercoolsten Megacoolen;Netninjas;Namenlose Qualitaet;12;16;0;0;0;0
-107;16;20.02.2019 12:30:00;7;Feld7;Springginkerl;Wuedsaubande;SK Lation;19;10;0;0;0;0
-108;16;20.02.2019 12:30:00;1;Feld1;Pancakesmashers;20 zwequschte Zwetschken;Black Cat Volleyteam;22;9;0;0;0;0
-109;16;20.02.2019 12:30:00;2;Feld2;Schluckspecht GmbH;Superkalefragelistigexoialigestis;Die Beachboys;23;11;0;0;0;0
-110;16;20.02.2019 12:30:00;3;Feld3;Die TSVour;Scharf aber out;Truthtrain;16;14;0;0;0;0
-111;16;20.02.2019 12:30:00;4;Feld4;The Best Losers;Ratsherrn Allstarts;1 Meter no;10;21;0;0;0;0
-112;16;20.02.2019 12:30:00;5;Feld5;Haribus;Du WerRegenZone;Winterzauber 4.0;13;14;0;0;0;0
-113;17;20.02.2019 12:50:00;7;Feld7;Schmettbos;Moes Hoes;Netninjas;28;6;0;0;0;0
-114;17;20.02.2019 12:50:00;1;Feld1;Volleybaerenbande;Bombig Beerig;Wuedsaubande;21;14;0;0;0;0
-115;17;20.02.2019 12:50:00;2;Feld2;Sandviper;Die Wuerstel sind fertig;20 zwequschte Zwetschken;9;23;0;0;0;0
-116;17;20.02.2019 12:50:00;3;Feld3;Carpe Noctem;Foi am Sand;Superkalefragelistigexoialigestis;11;16;0;0;0;0
-117;17;20.02.2019 12:50:00;4;Feld4;Stieglitz;Die gestiefelten Muskelkater;Scharf aber out;18;17;0;0;0;0
-118;17;20.02.2019 12:50:00;5;Feld5;Die vier Fragezeichen;Auf Ex;Ratsherrn Allstarts;10;18;0;0;0;0
-119;17;20.02.2019 12:50:00;6;Feld6;Eisen;Ich und die 3 Hansln;Du WerRegenZone;16;16;0;0;0;0
-120;18;20.02.2019 13:10:00;1;Feld1;Namenlose Qualitaet;Die supercoolsten Megacoolen;Schmettbos;9;21;0;0;0;0
-121;18;20.02.2019 13:10:00;2;Feld2;SK Lation;Springginkerl;Volleybaerenbande;10;22;0;0;0;0
-122;18;20.02.2019 13:10:00;3;Feld3;Black Cat Volleyteam;Pancakesmashers;Sandviper;21;10;0;0;0;0
-123;18;20.02.2019 13:10:00;4;Feld4;Die Beachboys;Schluckspecht GmbH;Carpe Noctem;8;23;0;0;0;0
-124;18;20.02.2019 13:10:00;5;Feld5;Truthtrain;Die TSVour;Stieglitz;5;30;0;0;0;0
-125;18;20.02.2019 13:10:00;6;Feld6;1 Meter no;The Best Losers;Die vier Fragezeichen;16;11;0;0;0;0
-126;18;20.02.2019 13:10:00;7;Feld7;Winterzauber 4.0;Haribus;Eisen;12;18;0;0;0;0
-127;19;20.02.2019 13:30:00;2;Feld2;Netninjas;Moes Hoes;Schmettbos;13;17;0;0;0;0
-128;19;20.02.2019 13:30:00;3;Feld3;Wuedsaubande;Bombig Beerig;Volleybaerenbande;11;14;0;0;0;0
-129;19;20.02.2019 13:30:00;4;Feld4;20 zwequschte Zwetschken;Die Wuerstel sind fertig;Sandviper;13;20;0;0;0;0
-130;19;20.02.2019 13:30:00;5;Feld5;Superkalefragelistigexoialigestis;Foi am Sand;Carpe Noctem;16;14;0;0;0;0
-131;19;20.02.2019 13:30:00;6;Feld6;Scharf aber out;Die gestiefelten Muskelkater;Stieglitz;17;17;0;0;0;0
-132;19;20.02.2019 13:30:00;7;Feld7;Ratsherrn Allstarts;Auf Ex;Die vier Fragezeichen;18;11;0;0;0;0
-133;19;20.02.2019 13:30:00;1;Feld1;Du WerRegenZone;Ich und die 3 Hansln;Eisen;12;14;0;0;0;0
-134;20;20.02.2019 13:50:00;3;Feld3;Schmettbos;Namenlose Qualitaet;Moes Hoes;20;10;0;0;0;0
-135;20;20.02.2019 13:50:00;4;Feld4;Volleybaerenbande;SK Lation;Bombig Beerig;25;7;0;0;0;0
-136;20;20.02.2019 13:50:00;5;Feld5;Sandviper;Black Cat Volleyteam;Die Wuerstel sind fertig;17;9;0;0;0;0
-137;20;20.02.2019 13:50:00;6;Feld6;Carpe Noctem;Die Beachboys;Foi am Sand;12;19;0;0;0;0
-138;20;20.02.2019 13:50:00;7;Feld7;Stieglitz;Truthtrain;Die gestiefelten Muskelkater;5;20;0;0;0;0
-139;20;20.02.2019 13:50:00;1;Feld1;Die vier Fragezeichen;1 Meter no;Auf Ex;22;11;0;0;0;0
-140;20;20.02.2019 13:50:00;2;Feld2;Eisen;Winterzauber 4.0;Ich und die 3 Hansln;21;7;0;0;0;0
+91;11;15.06.2022 12:40:00;1;FELD1;A1;C1;D1;12;1;0;0;0;0
+92;11;15.06.2022 12:40:00;2;FELD2;F1;H1;I1;23;1;0;0;0;0
+93;11;15.06.2022 12:40:00;3;FELD3;E2;D2;A2;23;1;0;0;0;0
+94;11;15.06.2022 12:40:00;4;FELD4;G2;H2;I2;34;1;0;0;0;0
+95;11;15.06.2022 12:40:00;5;FELD5;A3;G3;C3;3;1;0;0;0;0
+96;11;15.06.2022 12:40:00;6;FELD6;D3;B3;G4;45;1;0;0;0;0
+97;11;15.06.2022 12:40:00;7;FELD7;A4;C4;F5;45;1;0;0;0;0
+98;11;15.06.2022 12:40:00;8;FELD8;B4;E4;A5;65;1;0;0;0;0
+99;11;15.06.2022 12:40:00;9;FELD9;H5;I5;D5;4;1;0;0;0;0
+100;12;15.06.2022 13:00:00;2;FELD2;B1;D1;E1;3;1;0;0;0;0
+101;12;15.06.2022 13:00:00;3;FELD3;G1;I1;C2;23;1;0;0;0;0
+102;12;15.06.2022 13:00:00;4;FELD4;B2;A2;I3;54;1;0;0;0;0
+103;12;15.06.2022 13:00:00;5;FELD5;F2;I2;H3;56;1;0;0;0;0
+104;12;15.06.2022 13:00:00;6;FELD6;E3;C3;F4;7;1;0;0;0;0
+105;12;15.06.2022 13:00:00;7;FELD7;F3;G4;D4;8;1;0;0;0;0
+106;12;15.06.2022 13:00:00;8;FELD8;H4;F5;E5;7;1;0;0;0;0
+107;12;15.06.2022 13:00:00;9;FELD9;I4;A5;B5;6;1;0;0;0;0
+108;12;15.06.2022 13:00:00;1;FELD1;C5;D5;G5;5;1;0;0;0;0
+109;13;15.06.2022 13:20:00;3;FELD3;C1;E1;B1;7;1;0;0;0;0
+110;13;15.06.2022 13:20:00;4;FELD4;H1;C2;G1;97;1;0;0;0;0
+111;13;15.06.2022 13:20:00;5;FELD5;D2;I3;B2;43;1;0;0;0;0
+112;13;15.06.2022 13:20:00;6;FELD6;H2;H3;F2;23;1;0;0;0;0
+113;13;15.06.2022 13:20:00;7;FELD7;G3;F4;E3;23;1;0;0;0;0
+114;13;15.06.2022 13:20:00;8;FELD8;B3;D4;F3;12;1;0;0;0;0
+115;13;15.06.2022 13:20:00;9;FELD9;C4;E5;H4;12;1;0;0;0;0
+116;13;15.06.2022 13:20:00;1;FELD1;E4;B5;I4;43;1;0;0;0;0
+117;13;15.06.2022 13:20:00;2;FELD2;I5;G5;C5;54;1;0;0;0;0
+118;14;15.06.2022 13:40:00;4;FELD4;A1;D1;C1;65;1;0;0;0;0
+119;14;15.06.2022 13:40:00;5;FELD5;F1;I1;H1;3;1;0;0;0;0
+120;14;15.06.2022 13:40:00;6;FELD6;E2;A2;D2;31;1;0;0;0;0
+121;14;15.06.2022 13:40:00;7;FELD7;G2;I2;H2;12;1;0;0;0;0
+122;14;15.06.2022 13:40:00;8;FELD8;A3;C3;G3;21;1;0;0;0;0
+123;14;15.06.2022 13:40:00;9;FELD9;D3;G4;B3;12;1;0;0;0;0
+124;14;15.06.2022 13:40:00;1;FELD1;A4;F5;C4;34;1;0;0;0;0
+125;14;15.06.2022 13:40:00;2;FELD2;B4;A5;E4;54;1;0;0;0;0
+126;14;15.06.2022 13:40:00;3;FELD3;H5;D5;I5;65;1;0;0;0;0
+127;15;15.06.2022 14:00:00;5;FELD5;B1;E1;A1;12;1;0;0;0;0
+128;15;15.06.2022 14:00:00;6;FELD6;G1;C2;F1;34;1;0;0;0;0
+129;15;15.06.2022 14:00:00;7;FELD7;B2;I3;E2;12;1;0;0;0;0
+130;15;15.06.2022 14:00:00;8;FELD8;F2;H3;G2;43;1;0;0;0;0
+131;15;15.06.2022 14:00:00;9;FELD9;E3;F4;A3;54;1;0;0;0;0
+132;15;15.06.2022 14:00:00;1;FELD1;F3;D4;D3;65;1;0;0;0;0
+133;15;15.06.2022 14:00:00;2;FELD2;H4;E5;A4;7;1;0;0;0;0
+134;15;15.06.2022 14:00:00;3;FELD3;I4;B5;B4;5;1;0;0;0;0
+135;15;15.06.2022 14:00:00;4;FELD4;C5;G5;H5;5;1;0;0;0;0
+136;16;15.06.2022 14:20:00;6;FELD6;C1;D1;B1;4;1;0;0;0;0
+137;16;15.06.2022 14:20:00;7;FELD7;H1;I1;G1;3;1;0;0;0;0
+138;16;15.06.2022 14:20:00;8;FELD8;D2;A2;B2;3;1;0;0;0;0
+139;16;15.06.2022 14:20:00;9;FELD9;H2;I2;F2;2;1;0;0;0;0
+140;16;15.06.2022 14:20:00;1;FELD1;G3;C3;E3;54;1;0;0;0;0
+141;16;15.06.2022 14:20:00;2;FELD2;B3;G4;F3;23;1;0;0;0;0
+142;16;15.06.2022 14:20:00;3;FELD3;C4;F5;H4;32;1;0;0;0;0
+143;16;15.06.2022 14:20:00;4;FELD4;E4;A5;I4;3;1;0;0;0;0
+144;16;15.06.2022 14:20:00;5;FELD5;I5;D5;C5;2;1;0;0;0;0
+145;17;15.06.2022 14:40:00;7;FELD7;A1;E1;D1;34;1;0;0;0;0
+146;17;15.06.2022 14:40:00;8;FELD8;F1;C2;I1;45;1;0;0;0;0
+147;17;15.06.2022 14:40:00;9;FELD9;E2;I3;A2;56;1;0;0;0;0
+148;17;15.06.2022 14:40:00;1;FELD1;G2;H3;I2;6;1;0;0;0;0
+149;17;15.06.2022 14:40:00;2;FELD2;A3;F4;C3;43;1;0;0;0;0
+150;17;15.06.2022 14:40:00;3;FELD3;D3;D4;G4;32;1;0;0;0;0
+151;17;15.06.2022 14:40:00;4;FELD4;A4;E5;F5;43;1;0;0;0;0
+152;17;15.06.2022 14:40:00;5;FELD5;B4;B5;A5;54;1;0;0;0;0
+153;17;15.06.2022 14:40:00;6;FELD6;H5;G5;D5;65;1;0;0;0;0
+154;18;15.06.2022 15:00:00;8;FELD8;B1;C1;A1;6;1;0;0;0;0
+155;18;15.06.2022 15:00:00;9;FELD9;G1;H1;F1;7;1;0;0;0;0
+156;18;15.06.2022 15:00:00;1;FELD1;B2;D2;E2;8;1;0;0;0;0
+157;18;15.06.2022 15:00:00;2;FELD2;F2;H2;G2;9;1;0;0;0;0
+158;18;15.06.2022 15:00:00;3;FELD3;E3;G3;A3;45;1;0;0;0;0
+159;18;15.06.2022 15:00:00;4;FELD4;F3;B3;D3;3;1;0;0;0;0
+160;18;15.06.2022 15:00:00;5;FELD5;H4;C4;A4;2;1;0;0;0;0
+161;18;15.06.2022 15:00:00;6;FELD6;I4;E4;B4;2;1;0;0;0;0
+162;18;15.06.2022 15:00:00;7;FELD7;C5;I5;H5;3;1;0;0;0;0
+163;19;15.06.2022 15:20:00;9;FELD9;D1;E1;C1;34;1;0;0;0;0
+164;19;15.06.2022 15:20:00;1;FELD1;I1;C2;H1;54;1;0;0;0;0
+165;19;15.06.2022 15:20:00;2;FELD2;A2;I3;D2;5;1;0;0;0;0
+166;19;15.06.2022 15:20:00;3;FELD3;I2;H3;H2;3;1;0;0;0;0
+167;19;15.06.2022 15:20:00;4;FELD4;C3;F4;G3;2;1;0;0;0;0
+168;19;15.06.2022 15:20:00;5;FELD5;G4;D4;B3;32;1;0;0;0;0
+169;19;15.06.2022 15:20:00;6;FELD6;F5;E5;C4;23;1;0;0;0;0
+170;19;15.06.2022 15:20:00;7;FELD7;A5;B5;E4;43;1;0;0;0;0
+171;19;15.06.2022 15:20:00;8;FELD8;D5;G5;I5;54;1;0;0;0;0
+172;20;15.06.2022 15:40:00;1;FELD1;A1;B1;E1;54;1;0;0;0;0
+173;20;15.06.2022 15:40:00;2;FELD2;F1;G1;C2;65;1;0;0;0;0
+174;20;15.06.2022 15:40:00;3;FELD3;E2;B2;I3;32;1;0;0;0;0
+175;20;15.06.2022 15:40:00;4;FELD4;G2;F2;H3;32;1;0;0;0;0
+176;20;15.06.2022 15:40:00;5;FELD5;A3;E3;F4;12;1;0;0;0;0
+177;20;15.06.2022 15:40:00;6;FELD6;D3;F3;D4;34;1;0;0;0;0
+178;20;15.06.2022 15:40:00;7;FELD7;A4;H4;E5;54;1;0;0;0;0
+179;20;15.06.2022 15:40:00;8;FELD8;B4;I4;B5;54;1;0;0;0;0
+180;20;15.06.2022 15:40:00;9;FELD9;H5;C5;G5;65;1;0;0;0;0

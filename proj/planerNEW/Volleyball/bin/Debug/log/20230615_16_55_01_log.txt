@@ -1,0 +1,5 @@
+20230615_16_55_01: use configuration from interim
+20230615_16_55_01: use configuration from interim
+20230615_16_55_06: calculating classement results
+20230615_16_55_09: generate classementgames
+20230615_16_55_09: calculating classement results

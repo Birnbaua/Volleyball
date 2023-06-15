@@ -1,15 +1,20 @@
-153;23;20.02.2019 14:36:04;1;Feld1;Die supercoolsten Megacoolen;Bombig Beerig;Moes Hoes;21;15;0;0;0;0
-154;23;20.02.2019 14:36:04;2;Feld2;Sandviper;Die Beachboys;Pancakesmashers;21;10;0;0;0;0
-155;23;20.02.2019 14:36:04;3;Feld3;Die gestiefelten Muskelkater;The Best Losers;Die TSVour;10;21;0;0;0;0
-156;23;20.02.2019 14:36:04;4;Feld4;SK Lation;Namenlose Qualitaet;Springginkerl;19;21;0;0;0;0
-157;23;20.02.2019 14:36:04;5;Feld5;Superkalefragelistigexoialigestis;Foi am Sand;Carpe Noctem;12;21;0;0;0;0
-158;23;20.02.2019 14:36:04;6;Feld6;Auf Ex;Die vier Fragezeichen;1 Meter no;10;21;0;0;0;0
-159;23;20.02.2019 14:36:04;7;Feld7;Netninjas;Wuedsaubande;Die supercoolsten Megacoolen;21;5;0;0;0;0
-160;24;20.02.2019 14:51:04;2;Feld2;Black Cat Volleyteam;20 zwequschte Zwetschken;Sandviper;9;21;0;0;0;0
-161;24;20.02.2019 14:51:04;3;Feld3;Stieglitz;Scharf aber out;Die gestiefelten Muskelkater;21;9;0;0;0;0
-162;24;20.02.2019 14:51:04;4;Feld4;Springginkerl;Moes Hoes;Bombig Beerig;21;17;0;0;0;0
-163;24;20.02.2019 14:51:04;5;Feld5;Die Wuerstel sind fertig;Pancakesmashers;Die Beachboys;21;16;0;0;0;0
-164;24;20.02.2019 14:51:04;6;Feld6;1 Meter no;Die TSVour;The Best Losers;21;15;0;0;0;0
-165;24;20.02.2019 14:51:04;7;Feld7;Carpe Noctem;Schluckspecht GmbH;Namenlose Qualitaet;21;9;0;0;0;0
-166;24;20.02.2019 14:51:04;1;Feld1;Truthtrain;Ratsherrn Allstarts;SK Lation;9;21;0;0;0;0
-167;25;20.02.2019 15:06:04;3;Feld3;Schmettbos;Volleybaerenbande;Namenlose Qualitaet;0;0;0;0;0;0
+201;27;15.06.2022 17:25:00;1;FELD1;B5;D4;A1;2;1;0;0;0;0
+202;27;15.06.2022 17:25:00;2;FELD2;E5;F4;B1;2;1;0;0;0;0
+203;27;15.06.2022 17:25:00;3;FELD3;A5;G4;C1;2;1;0;0;0;0
+204;27;15.06.2022 17:25:00;4;FELD4;F5;C3;D1;2;1;0;0;0;0
+205;27;15.06.2022 17:25:00;5;FELD5;E4;B3;E1;2;1;0;0;0;0
+206;27;15.06.2022 17:25:00;6;FELD6;C4;G3;F1;2;1;0;0;0;0
+207;27;15.06.2022 17:25:00;7;FELD7;I4;F3;G1;2;1;0;0;0;0
+208;27;15.06.2022 17:25:00;8;FELD8;H4;E3;H1;2;1;0;0;0;0
+209;27;15.06.2022 17:25:00;9;FELD9;B4;D3;I1;2;1;0;0;0;0
+210;28;15.06.2022 17:45:00;2;FELD2;A4;A3;;2;1;0;0;0;0
+211;28;15.06.2022 17:45:00;3;FELD3;H3;C2;;2;1;0;0;0;0
+212;28;15.06.2022 17:45:00;4;FELD4;I3;E1;;2;1;0;0;0;0
+213;28;15.06.2022 17:45:00;5;FELD5;I2;I1;;2;1;0;0;0;0
+214;28;15.06.2022 17:45:00;6;FELD6;A2;D1;;2;1;0;0;0;0
+215;28;15.06.2022 17:45:00;7;FELD7;H2;H1;;2;1;0;0;0;0
+216;28;15.06.2022 17:45:00;8;FELD8;D2;C1;;2;1;0;0;0;0
+217;28;15.06.2022 17:45:00;9;FELD9;F2;G1;;2;1;0;0;0;0
+218;28;15.06.2022 17:45:00;1;FELD1;B2;B1;;2;1;0;0;0;0
+219;29;15.06.2022 18:05:00;3;FELD3;G2;F1;;2;1;0;0;0;0
+220;29;15.06.2022 18:05:00;4;FELD4;E2;A1;;2;1;0;0;0;0
