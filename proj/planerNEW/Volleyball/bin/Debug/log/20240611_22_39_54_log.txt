@@ -1,0 +1,4 @@
+20240611_22_39_54: use configuration from interim
+20240611_22_39_54: use configuration from interim
+20240611_22_39_59: calculating classement results
+20240611_22_40_02: generate classementgames

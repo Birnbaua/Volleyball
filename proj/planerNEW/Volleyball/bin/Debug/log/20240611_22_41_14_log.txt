@@ -1,0 +1,3 @@
+20240611_22_41_14: use configuration from interim
+20240611_22_41_14: use configuration from interim
+20240611_22_41_21: generate classementgames
