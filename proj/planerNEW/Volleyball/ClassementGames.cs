@@ -1165,6 +1165,8 @@ namespace Volleyball
             }
             else if (teamsCount == 55)
             {
+                finalClassement.Clear();
+                classement = 55;
                 // create the classements for the worst teams
                 List<ResultData> bottomRankings = resultInterimList[10];
 
