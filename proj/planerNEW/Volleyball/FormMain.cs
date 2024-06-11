@@ -49,7 +49,7 @@ namespace Volleyball
                                                    new int[]{ 2, 3, 1 },
                                                    new int[]{ 0, 4, 3 },
                                                    new int[]{ 1, 2, 0 },
-                                                   new int[]{ 3, 4, 0 },
+                                                   new int[]{ 3, 4, 2 },
                                                    new int[]{ 0, 1, 4 } };
         static readonly List<String> tableNames = new List<String>() { "vorrunde_erg_gr",
                                                                         "vorrunde_spielplan",
